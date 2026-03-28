@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint --fix",
     "type-check": "tsc --noEmit",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "husky install || true"
   },
   "dependencies": {
     "next": "^16.2.0",
