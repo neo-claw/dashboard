@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #e0e0e0;
+  --card: #111;
+  --card-foreground: #e0e0e0;
+  --popover: #111;
+  --popover-foreground: #e0e0e0;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #e0e0e0;
+  --muted: #555;
+  --muted-foreground: #888;
+  --accent: #00ff9d;
+  --accent-foreground: #0a0a0a;
+  --border: #222;
+  --input: #222;
+  --ring: #00ff9d;
+  --radius: 0.5rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* shadcn badge variant override for our default */
+.badge-default {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+.badge-outline {
+  color: var(--accent);
+  border: 1px solid var(--border);
+}
