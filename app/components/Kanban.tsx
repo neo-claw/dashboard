@@ -1,6 +1,7 @@
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import { MoreHorizontal, GripVertical } from 'lucide-react';
 
 const mockKanban = {
   todo: [
@@ -17,56 +18,68 @@ const mockKanban = {
   ],
 };
 
-const tagColors: Record<string, string> = {
-  ops: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-  deploy: 'bg-green-500/20 text-green-300 border-green-500/30',
-  core: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-  tooling: 'bg-orange-500/20 text-orange-300 border-orange-500/30',
-  done: 'bg-gray-500/20 text-gray-300 border-gray-500/30',
+const tagColors: Record<string, { bg: string; text: string; border: string }> = {
+  ops: { bg: 'bg-blue-500/20', text: 'text-blue-300', border: 'border-blue-500/30' },
+  deploy: { bg: 'bg-green-500/20', text: 'text-green-300', border: 'border-green-500/30' },
+  core: { bg: 'bg-purple-500/20', text: 'text-purple-300', border: 'border-purple-500/30' },
+  tooling: { bg: 'bg-orange-500/20', text: 'text-orange-300', border: 'border-orange-500/30' },
+  done: { bg: 'bg-gray-500/20', text: 'text-gray-300', border: 'border-gray-500/30' },
 };
 
-const priorityColors: Record<string, string> = {
-  high: 'bg-red-500/20 text-red-300',
-  medium: 'bg-yellow-500/20 text-yellow-300',
-  low: 'bg-green-500/20 text-green-300',
+const priorityIcons: Record<string, string> = {
+  high: '🔴',
+  medium: '🟡',
+  low: '🟢',
 };
 
 export default function Kanban() {
   const columns = [
-    { key: 'todo', title: 'To Do', color: 'text-red-400' },
-    { key: 'inprogress', title: 'In Progress', color: 'text-yellow-400' },
-    { key: 'done', title: 'Done', color: 'text-green-400' },
+    { key: 'todo', title: 'To Do', color: 'text-red-400', gradient: 'from-red-500/20 to-transparent' },
+    { key: 'inprogress', title: 'In Progress', color: 'text-yellow-400', gradient: 'from-yellow-500/20 to-transparent' },
+    { key: 'done', title: 'Done', color: 'text-green-400', gradient: 'from-green-500/20 to-transparent' },
   ] as const;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
       {columns.map(col => (
         <Card
           key={col.key}
-          className="flex flex-col border border-border bg-surface"
+          className="flex flex-col border border-border/50 bg-surface-card rounded-2xl overflow-hidden group"
         >
-          <CardHeader className="pb-3">
-            <CardTitle className={cn('text-lg font-semibold', col.color)}>
+          <CardHeader className="pb-3 relative">
+            <div className={cn('absolute inset-0 bg-gradient-to-b opacity-0 group-hover:opacity-100 transition-opacity', col.gradient)} />
+            <CardTitle className={cn('text-lg font-semibold relative z-10', col.color)}>
               {col.title}
             </CardTitle>
-            <p className="text-xs text-muted mt-1">
+            <p className="text-xs text-muted mt-1 relative z-10">
               {mockKanban[col.key].length} tasks
             </p>
           </CardHeader>
-          <CardContent className="flex-1 space-y-3">
+          <CardContent className="flex-1 space-y-3 relative z-10">
             {mockKanban[col.key].map(task => (
               <div
                 key={task.id}
-                className="group p-3 rounded-lg border border-border bg-bg hover:bg-surface-hover hover:border-accent/30 transition-all cursor-pointer shadow-sm hover:shadow-glow-sm"
+                className="group p-4 rounded-xl border border-border/50 bg-bg hover:bg-surface-hover hover:border-accent/40 transition-all cursor-pointer shadow-sm hover:shadow-glow-sm relative"
               >
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <Badge
-                    variant="outline"
-                    className={cn('text-[10px] uppercase tracking-wider border', tagColors[task.tag] || 'bg-gray-500/20')}
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button className="p-1 rounded hover:bg-border/50">
+                    <MoreHorizontal size={14} className="text-muted" />
+                  </button>
+                </div>
+                <div className="flex items-start gap-2 mb-2">
+                  <div
+                    className={cn(
+                      'px-2 py-0.5 rounded text-[10px] uppercase font-semibold border',
+                      tagColors[task.tag]?.bg || 'bg-gray-500/20',
+                      tagColors[task.tag]?.text || 'text-gray-300',
+                      tagColors[task.tag]?.border || 'border-gray-500/30'
+                    )}
                   >
                     {task.tag}
-                  </Badge>
-                  <div className={cn('w-2 h-2 rounded-full mt-1', priorityColors[task.priority] || 'bg-gray-500')} />
+                  </div>
+                  <div className="text-xs" title={task.priority}>
+                    {priorityIcons[task.priority]}
+                  </div>
                 </div>
                 <p className="text-sm text-fg leading-relaxed">{task.title}</p>
               </div>

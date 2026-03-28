@@ -9,6 +9,8 @@ import {
   Calendar as CalendarIcon,
   Menu,
   X,
+  Activity,
+  Zap,
 } from 'lucide-react';
 import Overview from '@/app/components/Overview';
 import Kanban from '@/app/components/Kanban';
@@ -30,10 +32,16 @@ export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
-    <div className="min-h-screen bg-bg flex">
+    <div className="min-h-screen bg-bg flex relative">
+      {/* Animated mesh gradient background */}
+      <div className="fixed inset-0 z-0 opacity-30 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-purple-500/5 animate-pulse" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2Zy4uLgo=')] bg-[length:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black,transparent)]" />
+      </div>
+
       {/* Mobile sidebar toggle */}
       <button
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-surface border border-border rounded-lg shadow-glow-sm"
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-surface/80 backdrop-blur border border-border rounded-lg shadow-glow-sm"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
         {sidebarOpen ? <X size={20} className="text-accent" /> : <Menu size={20} className="text-accent" />}
@@ -42,67 +50,84 @@ export default function Home() {
       {/* Sidebar */}
       <aside
         className={cn(
-          'fixed lg:static inset-y-0 left-0 z-40 w-64 bg-surface border-r border-border transform transition-transform duration-300 ease-in-out',
+          'fixed lg:static inset-y-0 left-0 z-40 w-64 bg-surface/80 backdrop-blur-xl border-r border-border transform transition-transform duration-300 ease-in-out',
           sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0 lg:hidden'
         )}
       >
-        <div className="p-6">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center shadow-glow-sm">
-              <Brain className="text-accent" size={24} />
+        <div className="p-6 flex flex-col h-full">
+          {/* Profile header */}
+          <div className="flex items-center gap-3 mb-8 pb-6 border-b border-border">
+            <div className="relative">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-cyan-500 flex items-center justify-center shadow-glow">
+                <Brain className="text-bg" size={24} />
+              </div>
+              <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-green-500 border-2 border-surface animate-pulse" />
             </div>
-            <div>
-              <h1 className="text-xl font-bold text-accent tracking-tight">Neo & Trinity</h1>
-              <p className="text-xs text-muted">Dashboard v0.1</p>
+            <div className="min-w-0">
+              <h1 className="text-lg font-bold text-fg truncate">Neo & Trinity</h1>
+              <p className="text-xs text-muted truncate">AI Dashboard</p>
             </div>
           </div>
 
-          <nav className="space-y-1">
+          {/* Navigation */}
+          <nav className="space-y-1 flex-1">
             {navItems.map(item => (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
                 className={cn(
-                  'w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200',
+                  'w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group',
                   activeTab === item.id
-                    ? 'bg-accent/10 text-accent border border-accent/30 shadow-glow-sm'
-                    : 'text-muted hover:text-fg hover:bg-bg-hover border border-transparent'
+                    ? 'bg-accent/15 text-accent border border-accent/30 shadow-glow-sm'
+                    : 'text-muted hover:text-fg hover:bg-surface-hover border border-transparent'
                 )}
               >
-                <item.icon size={18} />
+                <item.icon size={18} className={cn(activeTab === item.id ? 'text-accent' : 'group-hover:text-accent')} />
                 {item.label}
               </button>
             ))}
           </nav>
-        </div>
 
-        <div className="absolute bottom-4 left-4 right-4">
-          <div className="p-4 bg-bg-card rounded-xl border border-border">
-            <p className="text-xs text-muted mb-1">System Status</p>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <span className="text-sm text-fg">Gateway healthy</span>
+          {/* Bottom status */}
+          <div className="pt-4 border-t border-border">
+            <div className="p-4 rounded-xl bg-bg border border-border/50">
+              <p className="text-xs text-muted mb-2 flex items-center gap-2">
+                <Zap size={12} /> System Status
+              </p>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-accent animate-pulse shadow-[0_0_8px_rgba(0,255,157,0.6)]" />
+                <span className="text-sm text-fg truncate">Gateway healthy</span>
+              </div>
+              <p className="text-[10px] text-muted mt-2 opacity-60">
+                OpenClaw • v0.1.0
+              </p>
             </div>
           </div>
         </div>
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 lg:ml-0 min-h-screen">
+      <main className="flex-1 lg:ml-0 min-h-screen relative z-10">
         <div className="p-4 lg:p-8 pt-16 lg:pt-8">
           <div className="max-w-6xl mx-auto">
             {/* Header */}
-            <header className="mb-8">
-              <h2 className="text-3xl font-bold text-fg mb-1">
-                {navItems.find(i => i.id === activeTab)?.label}
-              </h2>
-              <p className="text-muted text-sm">
-                Real-time overview of your brain and agents
-              </p>
+            <header className="mb-8 flex items-center justify-between">
+              <div>
+                <h2 className="text-3xl font-bold text-fg tracking-tight">
+                  {navItems.find(i => i.id === activeTab)?.label}
+                </h2>
+                <p className="text-muted text-sm mt-1">
+                  Real-time overview of your brain and agents
+                </p>
+              </div>
+              <div className="hidden md:flex items-center gap-2 text-xs text-muted">
+                <Activity size={14} />
+                <span>Live</span>
+              </div>
             </header>
 
             {/* Tab content */}
-            <div className="animate-fade-in">
+            <div className="animate-slide-up">
               {activeTab === 'overview' && <Overview />}
               {activeTab === 'kanban' && <Kanban />}
               {activeTab === 'learnings' && <Learnings />}
@@ -111,8 +136,8 @@ export default function Home() {
             </div>
 
             {/* Footer */}
-            <footer className="mt-12 pt-6 border-t border-border text-center text-muted text-sm">
-              <p>Built by Trinity ◈ Data from <code className="px-1.5 py-0.5 bg-bg-card rounded text-accent text-xs">neo-claw/brain</code></p>
+            <footer className="mt-12 pt-6 border-t border-border/50 text-center text-muted text-sm">
+              <p>Built by <span className="text-accent">Trinity</span> ◈ Data from <code className="px-1.5 py-0.5 bg-bg border border-border/50 rounded text-accent text-xs">neo-claw/brain</code></p>
               <p className="mt-1 text-xs opacity-60">Dashboard • {new Date().toLocaleDateString()}</p>
             </footer>
           </div>

@@ -11,43 +11,70 @@ export default {
       colors: {
         accent: {
           DEFAULT: '#00ff9d',
-          glow: 'rgba(0, 255, 157, 0.3)',
+          glow: 'rgba(0, 255, 157, 0.25)',
+          dim: 'rgba(0, 255, 157, 0.1)',
         },
         bg: {
-          DEFAULT: '#0a0a0a',
+          DEFAULT: '#050505',
+          card: '#0a0a0a',
+          hover: '#0f0f0f',
         },
         fg: {
           DEFAULT: '#f5f5f5',
+          muted: '#9ca3af',
         },
         surface: {
-          DEFAULT: '#0f0f0f',
-          hover: '#1a1a1a',
-          card: '#111111',
+          DEFAULT: '#0a0a0a',
+          elevated: '#111111',
+          glass: 'rgba(17, 17, 17, 0.7)',
         },
         muted: {
           DEFAULT: '#6b7280',
+          subtle: '#374151',
         },
         border: {
           DEFAULT: '#262626',
+          light: 'rgba(255, 255, 255, 0.08)',
           glow: 'rgba(0, 255, 157, 0.15)',
         },
       },
       boxShadow: {
         'glow': '0 0 20px rgba(0, 255, 157, 0.15)',
         'glow-sm': '0 0 10px rgba(0, 255, 157, 0.1)',
+        'card': '0 4px 20px -2px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.03)',
+        'inner-glow': 'inset 0 0 12px rgba(0, 255, 157, 0.05)',
       },
       borderRadius: {
         'xl': '1rem',
         '2xl': '1.5rem',
+        '3xl': '2rem',
       },
       animation: {
-        'fade-in': 'fadeIn 0.3s ease-in-out',
+        'fade-in': 'fadeIn 0.3s ease-out',
+        'slide-up': 'slideUp 0.4s ease-out',
+        'pulse-glow': 'pulseGlow 3s infinite',
+        shimmer: 'shimmer 2s linear infinite',
       },
       keyframes: {
         fadeIn: {
-          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '0%': { opacity: '0', transform: 'translateY(8px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+        slideUp: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        pulseGlow: {
+          '0%, 100%': { boxShadow: '0 0 10px rgba(0, 255, 157, 0.1)' },
+          '50%': { boxShadow: '0 0 20px rgba(0, 255, 157, 0.25)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
+        },
+      },
+      backdropBlur: {
+        xs: '2px',
       },
     },
   },
