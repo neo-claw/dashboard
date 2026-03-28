@@ -6,7 +6,7 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --fix",
+    "lint": "next lint",
     "type-check": "tsc --noEmit",
     "prepare": "husky install",
     "postinstall": "husky install || true"
