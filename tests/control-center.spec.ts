@@ -27,6 +27,8 @@ test.describe('Control Center Integration', () => {
     const sendButton = page.getByRole('button', { name: 'Send' });
 
     await chatInput.fill('hello from playwright');
+    // Wait for button to become enabled (input non-empty)
+    await expect(sendButton).toBeEnabled({ timeout: 5000 });
     await sendButton.click();
 
     // User message appears
