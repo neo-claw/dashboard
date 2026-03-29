@@ -1,4 +1,4 @@
-import { flattenContent } from './utils';
+import { flattenContent } from '../utils';
 
 export function extractReply(stdout: string): string {
   try {

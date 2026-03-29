@@ -95,7 +95,7 @@ class FileIndexer<T> {
     try {
       const data = await fs.readFile(this.metaPath, 'utf-8');
       return JSON.parse(data);
-    } catch (err) {
+    } catch (err: any) {
       if (err.code === 'ENOENT') return {};
       throw err;
     }

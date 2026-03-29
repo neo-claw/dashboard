@@ -68,7 +68,7 @@ export async function getSessionEvents(sessionKey: string, limit = 50, since?: s
   try {
     const metaContent = await readFile(metaPath, 'utf-8');
     meta = JSON.parse(metaContent);
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(`Cannot read sessions meta: ${err.message}`);
   }
   let sessionMeta = meta[sessionKey];

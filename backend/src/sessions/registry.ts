@@ -20,7 +20,7 @@ export async function loadRegistry(): Promise<Registry> {
   try {
     const data = await fs.readFile(REGISTRY_PATH, 'utf-8');
     return JSON.parse(data);
-  } catch (err) {
+  } catch (err: any) {
     if (err.code === 'ENOENT') {
       return { sessions: [], version: 1 };
     }

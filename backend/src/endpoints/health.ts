@@ -3,8 +3,12 @@ import { promisify } from 'util';
 import { join } from 'path';
 import { stat } from 'fs/promises';
 import { Request, Response } from 'express';
+import { createCache } from '../cache/simpleCache';
 
 const execAsync = promisify(exec);
+
+const CACHE_TTL = 60_000; // 60 seconds
+const healthCache = createCache<SystemHealth>(CACHE_TTL);
 
 interface SystemHealth {
   gateway: {
@@ -25,6 +29,14 @@ interface SystemHealth {
 
 export function registerHealthEndpoint(app: any, workspaceRoot: string) {
   app.get('/api/v1/system/health', async (req: Request, res: Response) => {
+    const cached = healthCache.get('health');
+    if (cached) {
+      console.log('[health] cache HIT');
+      res.set('Cache-Control', 'public, max-age=60, stale-while-revalidate=30');
+      return res.json(cached);
+    }
+    console.log('[health] cache MISS');
+
     try {
       const health: SystemHealth = {
         gateway: {
@@ -75,6 +87,8 @@ export function registerHealthEndpoint(app: any, workspaceRoot: string) {
         health.workspace = { sizeBytes: 0, fileCount: 0 };
       }
 
+      healthCache.set('health', health);
+      res.set('Cache-Control', 'public, max-age=60, stale-while-revalidate=30');
       res.json(health);
     } catch (err: any) {
       console.error('Error in /api/v1/system/health:', err);

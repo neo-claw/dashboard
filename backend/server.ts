@@ -11,25 +11,26 @@ import { WebSocket } from 'ws';
 import os from 'os';
 
 // Cache
-import { LRUCache } from './cache/LRUCache';
+import { LRUCache } from './src/cache/LRUCache';
 
 // Types & validation
-import { ChatSessionSchema, LearningSchema, GatewayStatusSchema, CronStatusSchema, CreateChatSessionBodySchema, SendChatMessageBodySchema } from './schemas';
+import { ChatSessionSchema, LearningSchema, GatewayStatusSchema, CronStatusSchema, CreateChatSessionBodySchema, SendChatMessageBodySchema } from './src/schemas';
 
 // Utils
-import { sha1 } from './utils';
+import { sha1 } from './src/utils';
 
 // Parsers
-import { parseLearnings } from './parsers/learningsParser';
+import { parseLearnings } from './src/parsers/learningsParser';
 
 // Session management
-import { createSession, getSessions, getSession, updateSession, deleteSession, type Registry } from './sessions/registry';
-import { spawnSession, sendMessage as openClawSendMessage, getSessionEvents as getOpenClawEvents } from './sessions/openClawSession';
+import { createSession, getSessions, getSession, updateSession, deleteSession, type Registry } from './src/sessions/registry';
+import { spawnSession, sendMessage as openClawSendMessage, getSessionEvents as getOpenClawEvents } from './src/sessions/openClawSession';
 import { registerLearningsEndpoint } from './src/endpoints/learnings';
 import { registerTrinityEndpoint } from './src/endpoints/trinity';
 import { registerKanbanEndpoint } from './src/endpoints/kanban';
 import { registerStatsEndpoint } from './src/endpoints/stats';
 import { registerHealthEndpoint } from './src/endpoints/health';
+import { extractReply } from './src/chat/replyExtractor';
 
 dotenv.config(); // Load .env file
 

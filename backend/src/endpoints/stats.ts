@@ -2,8 +2,12 @@ import { exec } from 'child_process';
 import { promisify } from 'util';
 import { Request, Response } from 'express';
 import { join } from 'path';
+import { createCache } from '../cache/simpleCache';
 
 const execAsync = promisify(exec);
+
+const CACHE_TTL = 60_000; // 60 seconds
+const statsCache = createCache<OverviewStats>(CACHE_TTL);
 
 interface OverviewStats {
   learningsCount: number;
@@ -17,6 +21,14 @@ interface OverviewStats {
 
 export function registerStatsEndpoint(app: any, workspaceRoot: string) {
   app.get('/api/v1/stats/overview', async (req: Request, res: Response) => {
+    const cached = statsCache.get('stats');
+    if (cached) {
+      console.log('[stats] cache HIT');
+      res.set('Cache-Control', 'public, max-age=60, stale-while-revalidate=30');
+      return res.json(cached);
+    }
+    console.log('[stats] cache MISS');
+
     try {
       const stats: OverviewStats = {
         learningsCount: 0,
@@ -104,6 +116,8 @@ export function registerStatsEndpoint(app: any, workspaceRoot: string) {
         stats.gwsScansToday = 0;
       }
 
+      statsCache.set('stats', stats);
+      res.set('Cache-Control', 'public, max-age=60, stale-while-revalidate=30');
       res.json(stats);
     } catch (err: any) {
       console.error('Error in /api/v1/stats/overview:', err);

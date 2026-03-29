@@ -1,6 +1,9 @@
 import { readdir, readFile } from 'fs/promises';
 import { join } from 'path';
 import { Request, Response } from 'express';
+import { createCache } from '../cache/simpleCache';
+
+const learningsCache = createCache<any[]>(60_000); // 60s TTL
 
 interface LearningEntry {
   date: string;
@@ -11,6 +14,14 @@ interface LearningEntry {
 
 export function registerLearningsEndpoint(app: any, workspaceRoot: string) {
   app.get('/api/v1/learnings', async (req: Request, res: Response) => {
+    const cached = learningsCache.get('learnings');
+    if (cached) {
+      console.log('[learnings] cache HIT');
+      res.set('Cache-Control', 'public, max-age=60, stale-while-revalidate=30');
+      return res.json(cached);
+    }
+    console.log('[learnings] cache MISS');
+
     try {
       const learnings: LearningEntry[] = [];
 
@@ -50,6 +61,8 @@ export function registerLearningsEndpoint(app: any, workspaceRoot: string) {
       // Sort by date descending
       learnings.sort((a, b) => b.date.localeCompare(a.date));
 
+      learningsCache.set('learnings', learnings);
+      res.set('Cache-Control', 'public, max-age=60, stale-while-revalidate=30');
       res.json(learnings);
     } catch (err: any) {
       res.status(500).json({ error: err.message });
