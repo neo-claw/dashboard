@@ -24,7 +24,7 @@ test.describe('Control Center Integration', () => {
 
   test('chat sends message and receives response', async ({ page }) => {
     const chatInput = page.getByPlaceholder('Send a message...');
-    const sendButton = page.getByRole('button', { name: '' });
+    const sendButton = page.getByRole('button', { name: 'Send' });
 
     await chatInput.fill('hello from playwright');
     await sendButton.click();
