@@ -2,20 +2,16 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-  fullyParallel: false,
+  fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: 1,
-  reporter: 'html',
+  workers: process.env.CI ? 1 : undefined,
+  reporter: 'list',
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://neo-claw.vercel.app',
     trace: 'on-first-retry',
-    screenshot: 'on',
   },
   projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
   ],
 });

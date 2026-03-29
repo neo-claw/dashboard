@@ -2,6 +2,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
   CheckCircle2,
+  AlertCircle,
   GitCommit,
   Cpu,
   Scan,
@@ -9,43 +10,158 @@ import {
   Zap,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useEffect, useState } from 'react';
 
-const stats = [
-  {
-    label: 'Cron Health',
-    value: '5/5 succeeded',
-    icon: CheckCircle2,
-    gradient: 'from-emerald-400 to-green-500',
-    trend: 'up',
-  },
-  {
-    label: 'Brain Commits',
-    value: '12 today',
-    icon: GitCommit,
-    gradient: 'from-blue-400 to-cyan-500',
-    trend: 'up',
-  },
-  {
-    label: 'Trinity Cycles',
-    value: '8/32 runs',
-    icon: Cpu,
-    gradient: 'from-purple-400 to-pink-500',
-    trend: 'neutral',
-  },
-  {
-    label: 'GWS Scanned',
-    value: '3 new notes',
-    icon: Scan,
-    gradient: 'from-orange-400 to-amber-500',
-    trend: 'new',
-  },
-];
+interface StatsResponse {
+  learningsCount: number;
+  trinityCyclesToday: number;
+  kanbanTasks: { todo: number; inprogress: number; done: number };
+  cronHealth: 'ok' | 'degraded' | 'down' | 'unknown';
+  gatewayStatus: 'connected' | 'disconnected' | 'unknown';
+  lastBrainCommit: string | null;
+  gwsScansToday: number;
+}
+
+interface HealthResponse {
+  gateway: {
+    status: 'connected' | 'disconnected' | 'error' | 'unknown';
+    lastSeen?: string;
+    uptime?: number;
+  };
+  agents: Array<{
+    id: string;
+    name?: string;
+    status: 'online' | 'offline' | 'unknown';
+    lastActivity?: string;
+  }>;
+  workspace: {
+    path: string;
+    sizeBytes: number;
+    sizeReadable: string;
+    diskFree?: number;
+    diskFreeReadable?: string;
+  };
+}
 
 export default function Overview() {
+  const [stats, setStats] = useState<StatsResponse | null>(null);
+  const [health, setHealth] = useState<HealthResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [statsRes, healthRes] = await Promise.all([
+          fetch('/api/v1/stats/overview'),
+          fetch('/api/v1/system/health'),
+        ]);
+        const statsData = await statsRes.json();
+        const healthData = await healthRes.json();
+        setStats(statsData);
+        setHealth(healthData);
+      } catch (e) {
+        console.error('Failed to fetch overview data:', e);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="space-y-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {[...Array(4)].map((_, i) => (
+            <Card key={i} className="group relative overflow-hidden border border-border/50 bg-surface-card hover:bg-surface-hover transition-all duration-300 hover:shadow-glow hover:-translate-y-0.5 rounded-2xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <CardHeader className="p-6 relative">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="h-10 w-10 rounded-lg bg-accent/10 animate-pulse" />
+                  <div className="h-5 w-8 rounded bg-muted animate-pulse" />
+                </div>
+                <div className="h-10 w-3/4 rounded bg-muted animate-pulse" />
+                <div className="mt-2.5 h-4 w-1/2 rounded bg-muted animate-pulse" />
+              </CardHeader>
+            </Card>
+          ))}
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          <Card className="border border-border/50 bg-surface-card rounded-2xl overflow-hidden">
+            <CardHeader className="pb-4">
+              <div className="h-6 w-1/3 rounded bg-muted animate-pulse" />
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-4">
+                {[...Array(3)].map((_, i) => (
+                  <li key={i} className="flex items-center gap-3">
+                    <div className="h-2.5 w-2.5 rounded-full bg-muted animate-pulse" />
+                    <div className="h-4 w-2/3 rounded bg-muted animate-pulse" />
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card className="border border-border/50 bg-surface-card rounded-2xl overflow-hidden">
+            <CardHeader className="pb-4">
+              <div className="h-6 w-1/3 rounded bg-muted animate-pulse" />
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 gap-4">
+                {[...Array(4)].map((_, i) => (
+                  <div key={i} className="h-24 rounded-xl border border-border/50 bg-bg animate-pulse" />
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+
+  const dynamicStats = stats ? [
+    {
+      label: 'Cron Health',
+      value: stats.cronHealth.charAt(0).toUpperCase() + stats.cronHealth.slice(1),
+      icon: stats.cronHealth === 'ok' ? CheckCircle2 : AlertCircle,
+      gradient: stats.cronHealth === 'ok' ? 'from-emerald-400 to-green-500' : stats.cronHealth === 'down' ? 'from-red-400 to-rose-500' : 'from-yellow-400 to-amber-500',
+      trend: stats.cronHealth === 'ok' ? 'up' : 'neutral',
+    },
+    {
+      label: 'Last Brain Commit',
+      value: stats.lastBrainCommit ? new Date(stats.lastBrainCommit).toLocaleDateString() : 'Never',
+      icon: GitCommit,
+      gradient: 'from-blue-400 to-cyan-500',
+      trend: 'neutral',
+    },
+    {
+      label: 'Trinity Cycles',
+      value: `${stats.trinityCyclesToday} today`,
+      icon: Cpu,
+      gradient: 'from-purple-400 to-pink-500',
+      trend: 'neutral',
+    },
+    {
+      label: 'GWS Scanned',
+      value: `${stats.gwsScansToday} notes`,
+      icon: Scan,
+      gradient: 'from-orange-400 to-amber-500',
+      trend: stats.gwsScansToday > 0 ? 'new' : 'neutral',
+    },
+  ] : [];
+
+  const systemStatusItems = health ? [
+    <>Gateway: <span className="text-fg">{health.gateway.status}</span>{health.gateway.uptime && ` (uptime ${Math.round(health.gateway.uptime / 60)}m)`}</>,
+    <>Agents: <span className="text-fg">{health.agents.filter(a => a.status === 'online').length} online / {health.agents.length} total</span></>,
+    <>Workspace: <span className="text-fg">{health.workspace.sizeReadable}</span></>,
+  ] : [];
+
   return (
     <div className="space-y-12">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {stats.map((stat) => (
+        {dynamicStats.map((stat) => (
           <Card
             key={stat.label}
             className="group relative overflow-hidden border border-border/50 bg-surface-card hover:bg-surface-hover transition-all duration-300 hover:shadow-glow hover:-translate-y-0.5 rounded-2xl"
@@ -85,18 +201,12 @@ export default function Overview() {
           </CardHeader>
           <CardContent>
             <ul className="space-y-4 text-base">
-              <li className="flex items-center gap-3">
-                <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse shadow-[0_0_8px_rgba(0,255,157,0.6)]" />
-                <span className="text-fg">OpenClaw gateway running</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-2.5 h-2.5 rounded-full bg-accent" />
-                <span className="text-fg">All agents healthy</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-2.5 h-2.5 rounded-full bg-accent" />
-                <span className="text-fg">Morning digest scheduled for 07:30 PT</span>
-              </li>
+              {systemStatusItems.map((item, i) => (
+                <li key={i} className="flex items-center gap-3">
+                  <div className="w-2.5 h-2.5 rounded-full bg-accent" />
+                  <span className="text-fg">{item}</span>
+                </li>
+              ))}
             </ul>
           </CardContent>
         </Card>

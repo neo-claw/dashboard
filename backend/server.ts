@@ -7,6 +7,12 @@ import { join } from 'path';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import dotenv from 'dotenv';
+import { WebSocket } from 'ws';
+import { registerLearningsEndpoint } from './src/endpoints/learnings';
+import { registerTrinityEndpoint } from './src/endpoints/trinity';
+import { registerKanbanEndpoint } from './src/endpoints/kanban';
+import { registerStatsEndpoint } from './src/endpoints/stats';
+import { registerHealthEndpoint } from './src/endpoints/health';
 
 dotenv.config(); // Load .env file
 
@@ -52,6 +58,13 @@ app.use('/api/', async (req, res, next) => {
 
 // Workspace file access (sandboxed to workspace root)
 const WORKSPACE_ROOT = process.env.WORKSPACE_ROOT || '/home/ubuntu/.openclaw/workspace';
+
+// Register endpoints
+registerLearningsEndpoint(app, WORKSPACE_ROOT);
+registerTrinityEndpoint(app, WORKSPACE_ROOT);
+registerKanbanEndpoint(app, WORKSPACE_ROOT);
+registerStatsEndpoint(app, WORKSPACE_ROOT);
+registerHealthEndpoint(app, WORKSPACE_ROOT);
 
 // Gateway WebSocket helper
 const GATEWAY_WS = process.env.GATEWAY_WS || 'ws://localhost:18789';
@@ -151,6 +164,8 @@ app.get('/api/v1/calendar', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+
 
 // System status
 app.get('/api/v1/status', async (req, res) => {
