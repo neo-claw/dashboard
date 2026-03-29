@@ -117,7 +117,7 @@ export function registerStatsEndpoint(app: any, workspaceRoot: string) {
       }
 
       statsCache.set('stats', stats);
-      res.set('Cache-Control', 'public, max-age=60, stale-while-revalidate=30');
+      res.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=60');
       res.json(stats);
     } catch (err: any) {
       console.error('Error in /api/v1/stats/overview:', err);

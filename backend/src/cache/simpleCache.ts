@@ -3,7 +3,7 @@ interface CacheEntry<V> {
   expiresAt: number;
 }
 
-export function createCache<V>(ttlMs: number = 60_000, capacity: number = 10): {
+export function createCache<V>(ttlMs: number = 300_000, capacity: number = 10): {
   get: (key: string) => V | undefined;
   set: (key: string, value: V) => void;
   clear: () => void;

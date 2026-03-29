@@ -259,4 +259,19 @@ app.get('/api/v1/status', async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`[backend] Dashboard API listening on port ${PORT}`);
+  // Warm up caches after startup to avoid first-request latency
+  setTimeout(async () => {
+    try {
+      console.log('[warm-up] Pre-populating caches...');
+      const base = process.env.BACKEND_URL || `http://localhost:${PORT}`;
+      const key = process.env.BACKEND_API_KEY;
+      if (!key) throw new Error('BACKEND_API_KEY not set');
+      await (globalThis as any).fetch(`${base}/api/v1/stats/overview`, { headers: { Authorization: `Bearer ${key}` } }).catch(() => {});
+      await (globalThis as any).fetch(`${base}/api/v1/system/health`, { headers: { Authorization: `Bearer ${key}` } }).catch(() => {});
+      await (globalThis as any).fetch(`${base}/api/v1/learnings`, { headers: { Authorization: `Bearer ${key}` } }).catch(() => {});
+      console.log('[warm-up] Done');
+    } catch (e) {
+      console.warn('[warm-up] failed:', e);
+    }
+  }, 2000);
 });

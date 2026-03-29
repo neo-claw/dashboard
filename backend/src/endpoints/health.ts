@@ -88,7 +88,7 @@ export function registerHealthEndpoint(app: any, workspaceRoot: string) {
       }
 
       healthCache.set('health', health);
-      res.set('Cache-Control', 'public, max-age=60, stale-while-revalidate=30');
+      res.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=60');
       res.json(health);
     } catch (err: any) {
       console.error('Error in /api/v1/system/health:', err);

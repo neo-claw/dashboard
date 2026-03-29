@@ -62,7 +62,7 @@ export function registerLearningsEndpoint(app: any, workspaceRoot: string) {
       learnings.sort((a, b) => b.date.localeCompare(a.date));
 
       learningsCache.set('learnings', learnings);
-      res.set('Cache-Control', 'public, max-age=60, stale-while-revalidate=30');
+      res.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=60');
       res.json(learnings);
     } catch (err: any) {
       res.status(500).json({ error: err.message });
