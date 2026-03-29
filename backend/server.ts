@@ -7,6 +7,9 @@ import { readFile } from 'fs/promises';
 import { join } from 'path';
 import { exec } from 'child_process';
 import { promisify } from 'util';
+import dotenv from 'dotenv';
+
+dotenv.config(); // Load .env file
 
 const execAsync = promisify(exec);
 
@@ -95,9 +98,7 @@ app.get('/api/v1/trace', async (req, res) => {
 // Get calendar events via gws
 app.get('/api/v1/calendar', async (req, res) => {
   try {
-    // Query today's events from USC calendar
-    const cmd = "gws calendar query --source 'bonato@usc.edu' --today --json";
-    const { stdout } = await execAsync(cmd);
+    const { stdout } = await execAsync('gws calendar +agenda --today --calendar bonato@usc.edu --format json');
     res.json(JSON.parse(stdout));
   } catch (err: any) {
     res.status(500).json({ error: err.message });
@@ -108,7 +109,7 @@ app.get('/api/v1/calendar', async (req, res) => {
 app.get('/api/v1/status', async (req, res) => {
   try {
     const [cronOut, gatewayOut] = await Promise.all([
-      execAsync('openclaw cron runs --limit 2 --json'),
+      execAsync('openclaw cron status --json'),
       execAsync('openclaw gateway status --json'),
     ]);
     res.json({
