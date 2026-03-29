@@ -187,7 +187,19 @@ app.get('/api/v1/trace', async (req, res) => {
     const content = await readFile(sessionFilePath, 'utf-8');
     const lines = content.trim().split('\n').filter(Boolean);
     const max = parseInt(limit as string, 10) || 50;
-    const events = lines.slice(-max).map(line => JSON.parse(line));
+    const rawEvents = lines.slice(-max).map(line => JSON.parse(line));
+    // Flatten message events: { type: 'message', message: { role, content }, timestamp } -> { role, content, timestamp }
+    const events = rawEvents.map(ev => {
+      if (ev.type === 'message' && ev.message) {
+        return {
+          role: ev.message.role,
+          content: ev.message.content,
+          timestamp: ev.timestamp,
+          // Preserve any other top-level fields if needed (like tool)
+        };
+      }
+      return ev;
+    });
     res.json(events);
   } catch (err: any) {
     if (err.code === 'ENOENT') {
