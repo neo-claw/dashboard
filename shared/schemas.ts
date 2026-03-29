@@ -20,10 +20,7 @@ import type {
 } from './types';
 
 export const ChatRoleEnum = z.enum(['user', 'assistant'] as const);
-export type ChatRole = z.infer<typeof ChatRoleEnum>;
-
 export const TraceEventTypeEnum = z.enum(['message', 'tool_call', 'file_read', 'thinking', 'system'] as const);
-export type TraceEventType = z.infer<typeof TraceEventTypeEnum>;
 
 export const ToolCallSchema = z.object({
   name: z.string(),
