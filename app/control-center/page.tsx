@@ -75,7 +75,13 @@ export default function ControlCenter() {
         body: JSON.stringify({ message: userMsg.content, sessionKey: 'main' }),
       });
       const data = await res.json();
-      if (!data.success) {
+      if (data.success && data.reply) {
+        setMessages(prev => [...prev, {
+          role: 'assistant',
+          content: data.reply,
+          timestamp: new Date()
+        }]);
+      } else {
         setMessages(prev => [...prev, {
           role: 'assistant',
           content: `Error: ${data.error || 'Failed to send'}`,
