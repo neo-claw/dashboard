@@ -4,10 +4,13 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
+import { exec } from 'child_process';
+import { promisify } from 'util';
 import dotenv from 'dotenv';
-import { WebSocket } from 'ws';
 
 dotenv.config(); // Load .env file
+
+const execAsync = promisify(exec);
 
 const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3001;
@@ -112,10 +115,13 @@ app.post('/api/v1/chat/send', async (req, res) => {
     if (!message) {
       return res.status(400).json({ error: 'Missing message' });
     }
-    const result = await gatewayRequest('sessions_send', { sessionKey: sessionKey || 'main', message });
-    res.json({ success: true, result });
+    // Use openclaw CLI to send (works reliably)
+    const safeMessage = message.replace(/"/g, '\\"');
+    const cmd = `openclaw sessions send ${sessionKey || 'main'} "${safeMessage}"`;
+    const { stdout, stderr } = await execAsync(cmd, { maxBuffer: 1024 * 1024 });
+    res.json({ success: true, output: stdout });
   } catch (err: any) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message, stderr: err.stderr || '' });
   }
 });
 
@@ -123,9 +129,11 @@ app.post('/api/v1/chat/send', async (req, res) => {
 app.get('/api/v1/trace', async (req, res) => {
   try {
     const { sessionKey, limit = '50' } = req.query;
-    const result = await gatewayRequest('sessions_history', { sessionKey: sessionKey || 'main', limit: parseInt(limit as string) });
-    // The gateway may return { messages: [...] } or directly an array
-    res.json(result?.messages || result || []);
+    const cmd = `openclaw sessions history ${sessionKey || 'main'} --limit ${limit} --json`;
+    const { stdout } = await execAsync(cmd, { maxBuffer: 1024 * 1024 });
+    const parsed = JSON.parse(stdout);
+    // Expect array of messages
+    res.json(Array.isArray(parsed) ? parsed : parsed.messages || []);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
