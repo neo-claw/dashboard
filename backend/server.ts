@@ -2,19 +2,17 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
-import { createServer } from 'http';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
-import { exec } from 'child_process';
-import { promisify } from 'util';
 import dotenv from 'dotenv';
+import { WebSocket } from 'ws';
 
 dotenv.config(); // Load .env file
 
-const execAsync = promisify(exec);
-
 const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3001;
+
+app.use(express.json());
 
 // Security middleware
 app.use(helmet());
@@ -49,6 +47,46 @@ app.use('/api/', async (req, res, next) => {
 // Workspace file access (sandboxed to workspace root)
 const WORKSPACE_ROOT = process.env.WORKSPACE_ROOT || '/home/ubuntu/.openclaw/workspace';
 
+// Gateway WebSocket helper
+const GATEWAY_WS = process.env.GATEWAY_WS || 'ws://localhost:18789';
+
+function gatewayRequest(method: string, params: any): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const ws = new WebSocket(GATEWAY_WS);
+    const requestId = Date.now();
+    const timeout = setTimeout(() => {
+      reject(new Error('Gateway request timeout'));
+      ws.close();
+    }, 15000);
+
+    ws.on('open', () => {
+      ws.send(JSON.stringify({ id: requestId, method, params }));
+    });
+
+    ws.on('message', (data: Buffer) => {
+      try {
+        const msg = JSON.parse(data.toString());
+        if (msg.id === requestId) {
+          clearTimeout(timeout);
+          if (msg.error) {
+            reject(new Error(msg.error?.message || 'Gateway error'));
+          } else {
+            resolve(msg.result);
+          }
+          ws.close();
+        }
+      } catch (e) {
+        reject(e);
+      }
+    });
+
+    ws.on('error', (err) => {
+      clearTimeout(timeout);
+      reject(err);
+    });
+  });
+}
+
 app.get('/api/v1/files/*', async (req, res) => {
   try {
     const relPath = req.path.replace('/api/v1/files/', '');
@@ -74,12 +112,10 @@ app.post('/api/v1/chat/send', async (req, res) => {
     if (!message) {
       return res.status(400).json({ error: 'Missing message' });
     }
-    // Use openclaw CLI to send
-    const cmd = `openclaw sessions send ${sessionKey || 'main'} "${message.replace(/"/g, '\\"')}"`;
-    const { stdout, stderr } = await execAsync(cmd);
-    res.json({ success: true, output: stdout });
+    const result = await gatewayRequest('sessions_send', { sessionKey: sessionKey || 'main', message });
+    res.json({ success: true, result });
   } catch (err: any) {
-    res.status(500).json({ error: err.message, stderr: err.stderr || '' });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -87,9 +123,9 @@ app.post('/api/v1/chat/send', async (req, res) => {
 app.get('/api/v1/trace', async (req, res) => {
   try {
     const { sessionKey, limit = '50' } = req.query;
-    const cmd = `openclaw sessions history ${sessionKey || 'main'} --limit ${limit} --json`;
-    const { stdout } = await execAsync(cmd);
-    res.json(JSON.parse(stdout));
+    const result = await gatewayRequest('sessions_history', { sessionKey: sessionKey || 'main', limit: parseInt(limit as string) });
+    // The gateway may return { messages: [...] } or directly an array
+    res.json(result?.messages || result || []);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
