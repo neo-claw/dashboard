@@ -15,6 +15,9 @@ const execAsync = promisify(exec);
 const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3001;
 
+// Trust ngrok's X-Forwarded-* headers for rate limiting and IP determination
+app.set('trust proxy', 1);
+
 app.use(express.json());
 
 // Security middleware
@@ -117,7 +120,7 @@ app.post('/api/v1/chat/send', async (req, res) => {
     }
     // Use openclaw CLI to send (works reliably)
     const safeMessage = message.replace(/"/g, '\\"');
-    const cmd = `openclaw sessions send ${sessionKey || 'main'} "${safeMessage}"`;
+    const cmd = `openclaw chat send ${sessionKey || 'main'} "${safeMessage}"`;
     const { stdout, stderr } = await execAsync(cmd, { maxBuffer: 1024 * 1024 });
     res.json({ success: true, output: stdout });
   } catch (err: any) {
