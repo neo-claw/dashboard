@@ -6,7 +6,7 @@ test.describe('Realtime Sync Test', () => {
   test.describe.configure({ timeout: 45000 });
 
   test('Adding a learning updates dashboard within 15s', async ({ page }) => {
-    await page.goto('http://localhost:3000/', { waitUntil: 'networkidle' });
+    await page.goto('/', { waitUntil: 'networkidle' });
 
     // Switch to Learnings tab initially
     const learningsTab = page.locator('button:has-text("Learnings")');

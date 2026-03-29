@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Calendar Real Test', () => {
   test('Calendar shows today events or empty state', async ({ page }) => {
-    await page.goto('http://localhost:3000/', { waitUntil: 'networkidle' });
+    await page.goto('/', { waitUntil: 'networkidle' });
 
     // Navigate to Calendar tab
     const calendarTab = page.locator('button:has-text("Calendar")');

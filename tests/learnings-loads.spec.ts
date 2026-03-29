@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Learnings Loads Test', () => {
   test('Learnings timeline shows entries with dates', async ({ page }) => {
-    await page.goto('http://localhost:3000/', { waitUntil: 'networkidle' });
+    await page.goto('/', { waitUntil: 'networkidle' });
 
     // Switch to Learnings tab
     const learningsTab = page.locator('button:has-text("Learnings")');

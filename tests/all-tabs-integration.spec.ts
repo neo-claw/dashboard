@@ -4,7 +4,7 @@ test.describe('All Tabs Integration Test', () => {
   const tabs = ['Overview', 'Kanban', 'Learnings', 'Trinity', 'Calendar'];
 
   test('All tabs load without console errors', async ({ page }) => {
-    await page.goto('http://localhost:3000/', { waitUntil: 'networkidle' });
+    await page.goto('/', { waitUntil: 'networkidle' });
 
     // Collect console errors
     const errors: string[] = [];

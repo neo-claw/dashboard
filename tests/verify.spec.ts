@@ -24,7 +24,7 @@ test.describe('Dashboard Visual Verification', () => {
       { name: 'calendar', navText: 'Calendar' },
     ];
 
-    await page.goto('http://localhost:3000/', { waitUntil: 'networkidle' });
+    await page.goto('/', { waitUntil: 'networkidle' });
 
     for (const tab of tabs) {
       if (tab.name !== 'overview') {

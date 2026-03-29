@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Control Center Chat Test', () => {
   test('Sending "hello" receives assistant response within 30s', async ({ page }) => {
-    await page.goto('http://localhost:3000/control-center', { waitUntil: 'networkidle' });
+    await page.goto('/control-center', { waitUntil: 'networkidle' });
 
     // Wait for textarea in chat input
     const textarea = page.locator('textarea');

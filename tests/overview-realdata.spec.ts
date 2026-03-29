@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Overview Real Data Test', () => {
   test('Overview page loads with real stats (not placeholder)', async ({ page }) => {
     // Navigate to dashboard
-    await page.goto('http://localhost:3000/', { waitUntil: 'networkidle' });
+    await page.goto('/', { waitUntil: 'networkidle' });
 
     // Ensure Overview tab is active (should be default)
     const overviewTab = page.locator('button:has-text("Overview")');

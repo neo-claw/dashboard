@@ -232,6 +232,7 @@ export default function ControlCenter() {
                   onClick={sendMessage}
                   disabled={loading || !input.trim()}
                   className="px-5 py-2 bg-accent text-black font-medium rounded-xl hover:bg-accent/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed self-end flex items-center justify-center"
+                  aria-label="Send"
                 >
                   <Send size={18} />
                 </button>
@@ -241,7 +242,7 @@ export default function ControlCenter() {
 
           {/* Trace panel */}
           {showTrace && !fullscreenChat && (
-            <div className="hidden md:flex w-96 flex-col border-l border-border bg-bg">
+            <div data-testid="trace-panel" className="hidden md:flex w-96 flex-col border-l border-border bg-bg">
               <div className="p-3 border-b border-border flex items-center justify-between">
                 <h2 className="text-sm font-semibold text-fg flex items-center gap-2">
                   <Activity size={14} className="text-accent" />
