@@ -46,7 +46,7 @@ export default function ControlCenter() {
 
   // Convert trace events to chat messages (avoid duplicates)
   useEffect(() => {
-    const recentTrace = trace.slice(0, 5);
+    const recentTrace = trace.slice(-5);
     for (const event of recentTrace) {
       if (event.role === 'assistant' && event.content) {
         const exists = messages.some(m => m.content === event.content);
