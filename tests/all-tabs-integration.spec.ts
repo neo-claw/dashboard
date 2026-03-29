@@ -16,16 +16,19 @@ test.describe('All Tabs Integration Test', () => {
     for (const tabName of tabs) {
       const tab = page.locator(`button:has-text("${tabName}")`);
       await expect(tab).toBeVisible();
+
+      // Click tab
       await tab.click();
 
-      // Wait for tab to become active (shadcn Tabs sets data-state="active")
-      await expect(tab).toHaveAttribute('data-state', 'active', { timeout: 10000 });
+      // Wait for heading to update to this tab's label
+      const heading = page.locator('h2');
+      await expect(heading).toHaveText(tabName, { timeout: 15000 });
 
-      // Allow content to render
-      await page.waitForTimeout(1000);
+      // Allow content to render and any data to fetch
+      await page.waitForTimeout(2000);
     }
 
-    // Filter out benign errors
+    // Filter benign errors
     const criticalErrors = errors.filter(e =>
       !e.includes('404') &&
       !e.includes('favicon') &&
