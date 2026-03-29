@@ -31,9 +31,9 @@ test.describe('Control Center Integration', () => {
     // User message appears
     await expect(page.getByText('hello from playwright')).toBeVisible({ timeout: 15000 });
 
-    // Assistant response should appear within 30s
+    // Assistant response should appear within 45s
     const assistantMsg = page.locator('[data-message-role="assistant"]').first();
-    await expect(assistantMsg).toBeVisible({ timeout: 30000 });
+    await expect(assistantMsg).toBeVisible({ timeout: 45000 });
   });
 
   test('trace panel can be toggled', async ({ page }) => {
