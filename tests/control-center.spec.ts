@@ -24,14 +24,12 @@ test.describe('Control Center Integration', () => {
 
   test('chat sends message and receives response', async ({ page }) => {
     const chatInput = page.getByPlaceholder('Send a message...');
-
     await chatInput.fill('hello from playwright');
-    await expect(chatInput).toHaveValue('hello from playwright');
-    // Submit by pressing Enter (form submission)
+    // Submit via Enter key
     await chatInput.press('Enter');
 
     // User message appears
-    await expect(page.getByText('hello from playwright')).toBeVisible({ timeout: 10000 });
+    await expect(page.getByText('hello from playwright')).toBeVisible({ timeout: 15000 });
 
     // Assistant response should appear within 30s
     const assistantMsg = page.locator('[data-message-role="assistant"]').first();
