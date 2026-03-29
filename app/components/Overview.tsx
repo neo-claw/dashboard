@@ -43,8 +43,8 @@ const stats = [
 
 export default function Overview() {
   return (
-    <div className="space-y-8">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div className="space-y-10">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {stats.map((stat) => (
           <Card
             key={stat.label}
@@ -54,20 +54,20 @@ export default function Overview() {
               'absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity',
               stat.gradient
             )} />
-            <CardHeader className="p-5 relative">
-              <div className="flex items-center justify-between mb-3">
-                <div className="p-2 rounded-lg bg-accent/10">
-                  <stat.icon size={22} className="text-accent" />
+            <CardHeader className="p-6 relative">
+              <div className="flex items-center justify-between mb-4">
+                <div className="p-2.5 rounded-lg bg-accent/10">
+                  <stat.icon size={26} className="text-accent" />
                 </div>
                 <Badge
                   variant={stat.trend === 'up' ? 'default' : 'outline'}
-                  className="text-[10px] uppercase"
+                  className="text-sm"
                 >
                   {stat.trend === 'up' ? '↑' : stat.trend === 'new' ? '•' : '−'}
                 </Badge>
               </div>
-              <CardTitle className="text-3xl font-bold text-fg tracking-tight">{stat.value}</CardTitle>
-              <p className="text-xs uppercase tracking-wider text-muted mt-2">
+              <CardTitle className="text-4xl font-bold text-fg tracking-tight">{stat.value}</CardTitle>
+              <p className="text-sm uppercase tracking-wider text-muted mt-2.5">
                 {stat.label}
               </p>
             </CardHeader>
@@ -77,14 +77,14 @@ export default function Overview() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <Card className="border border-border/50 bg-surface-card rounded-2xl overflow-hidden">
-          <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-2 text-lg">
-              <Activity className="text-accent" size={20} />
+          <CardHeader className="pb-4">
+            <CardTitle className="flex items-center gap-2.5 text-xl">
+              <Activity className="text-accent" size={22} />
               System Status
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className="space-y-4 text-sm">
+            <ul className="space-y-4 text-base">
               <li className="flex items-center gap-3">
                 <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse shadow-[0_0_8px_rgba(0,255,157,0.6)]" />
                 <span className="text-fg">OpenClaw gateway running</span>
@@ -102,35 +102,35 @@ export default function Overview() {
         </Card>
 
         <Card className="border border-border/50 bg-surface-card rounded-2xl overflow-hidden">
-          <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-2 text-lg">
-              <Zap className="text-accent" size={20} />
+          <CardHeader className="pb-4">
+            <CardTitle className="flex items-center gap-2.5 text-xl">
+              <Zap className="text-accent" size={22} />
               Quick Actions
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 gap-3">
-              <button className="p-4 rounded-xl border border-border/50 bg-bg hover:bg-surface-hover hover:border-accent/50 hover:shadow-glow-sm transition-all text-sm font-medium text-fg group">
-                <span className="flex items-center justify-center gap-2">
-                  <Activity size={16} className="text-accent" />
+            <div className="grid grid-cols-2 gap-4">
+              <button className="p-5 rounded-xl border border-border/50 bg-bg hover:bg-surface-hover hover:border-accent/50 hover:shadow-glow-sm transition-all text-base font-medium text-fg group">
+                <span className="flex items-center justify-center gap-2.5">
+                  <Activity size={18} className="text-accent" />
                   Run Digest
                 </span>
               </button>
-              <button className="p-4 rounded-xl border border-border/50 bg-bg hover:bg-surface-hover hover:border-accent/50 hover:shadow-glow-sm transition-all text-sm font-medium text-fg">
-                <span className="flex items-center justify-center gap-2">
-                  <Cpu size={16} className="text-accent" />
+              <button className="p-5 rounded-xl border border-border/50 bg-bg hover:bg-surface-hover hover:border-accent/50 hover:shadow-glow-sm transition-all text-base font-medium text-fg">
+                <span className="flex items-center justify-center gap-2.5">
+                  <Cpu size={18} className="text-accent" />
                   Sync Brain
                 </span>
               </button>
-              <button className="p-4 rounded-xl border border-border/50 bg-bg hover:bg-surface-hover hover:border-accent/50 hover:shadow-glow-sm transition-all text-sm font-medium text-fg">
-                <span className="flex items-center justify-center gap-2">
-                  <GitCommit size={16} className="text-accent" />
+              <button className="p-5 rounded-xl border border-border/50 bg-bg hover:bg-surface-hover hover:border-accent/50 hover:shadow-glow-sm transition-all text-base font-medium text-fg">
+                <span className="flex items-center justify-center gap-2.5">
+                  <GitCommit size={18} className="text-accent" />
                   View Logs
                 </span>
               </button>
-              <button className="p-4 rounded-xl border border-border/50 bg-bg hover:bg-surface-hover hover:border-accent/50 hover:shadow-glow-sm transition-all text-sm font-medium text-fg">
-                <span className="flex items-center justify-center gap-2">
-                  <Activity size={16} className="text-accent" />
+              <button className="p-5 rounded-xl border border-border/50 bg-bg hover:bg-surface-hover hover:border-accent/50 hover:shadow-glow-sm transition-all text-base font-medium text-fg">
+                <span className="flex items-center justify-center gap-2.5">
+                  <Activity size={18} className="text-accent" />
                   Settings
                 </span>
               </button>
@@ -141,4 +141,3 @@ export default function Overview() {
     </div>
   );
 }
-

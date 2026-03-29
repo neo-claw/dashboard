@@ -22,86 +22,86 @@ export default function Trinity() {
 
   return (
     <Card className="border border-border/50 bg-surface-card rounded-2xl overflow-hidden">
-      <CardHeader className="pb-4">
+      <CardHeader className="pb-6">
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle className="flex items-center gap-2 text-lg">
-              <div className="p-2 rounded-lg bg-accent/10">
-                <Cpu className="text-accent" size={20} />
+            <CardTitle className="flex items-center gap-3 text-2xl">
+              <div className="p-2.5 rounded-lg bg-accent/10">
+                <Cpu className="text-accent" size={24} />
               </div>
               Trinity Activity
             </CardTitle>
-            <p className="text-xs text-muted mt-1">
+            <p className="text-base text-muted mt-2">
               Overnight agent cycles and builds
             </p>
           </div>
-          <Badge variant="outline" className="bg-accent/10 text-accent border-accent/30">
+          <Badge variant="outline" className="bg-accent/10 text-accent border-accent/30 text-sm">
             v0.1.0
           </Badge>
         </div>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-8">
         {/* Progress bar */}
-        <div className="p-5 bg-bg/50 rounded-xl border border-border/30">
-          <div className="flex items-center justify-between text-xs mb-3">
-            <span className="text-muted flex items-center gap-2">
-              <BarChart3 size={14} /> Cycle progress
+        <div className="p-6 bg-bg/50 rounded-2xl border border-border/30">
+          <div className="flex items-center justify-between text-sm mb-4">
+            <span className="text-muted flex items-center gap-2.5">
+              <BarChart3 size={18} /> Cycle progress
             </span>
-            <span className="text-accent font-mono text-sm font-bold">{cycleStats.completed}/{cycleStats.total}</span>
+            <span className="text-accent font-mono text-lg font-bold">{cycleStats.completed}/{cycleStats.total}</span>
           </div>
-          <div className="h-3 bg-surface rounded-full overflow-hidden relative">
+          <div className="h-4 bg-surface rounded-full overflow-hidden relative">
             <div
               className="h-full bg-gradient-to-r from-accent to-emerald-400 transition-all duration-700 ease-out"
               style={{ width: `${progress}%` }}
             />
           </div>
-          <div className="flex gap-6 text-xs text-muted mt-3">
-            <span className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" /> Avg: {cycleStats.avgTime}
+          <div className="flex gap-8 text-sm text-muted mt-4">
+            <span className="flex items-center gap-2.5">
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" /> Avg: {cycleStats.avgTime}
             </span>
-            <span className="flex items-center gap-2">
-              <CheckCircle2 size={12} className="text-green-500" /> {cycleStats.completed} runs
+            <span className="flex items-center gap-2.5">
+              <CheckCircle2 size={16} className="text-green-500" /> {cycleStats.completed} runs
             </span>
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-muted" /> {cycleStats.total} total
+            <span className="flex items-center gap-2.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-muted" /> {cycleStats.total} total
             </span>
           </div>
         </div>
 
         {/* Activity log */}
-        <div className="space-y-3">
-          <div className="flex items-center gap-2 text-sm font-semibold text-muted mb-2">
-            <Terminal size={16} />
+        <div className="space-y-4">
+          <div className="flex items-center gap-2.5 text-lg font-semibold text-muted mb-3">
+            <Terminal size={20} />
             Latest runs
           </div>
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {mockRuns.map((run, i) => (
               <li
                 key={i}
-                className="flex items-start gap-3 p-3 rounded-lg bg-bg border border-border hover:border-accent/40 hover:bg-surface-hover transition-all group"
+                className="flex items-start gap-4 p-4 rounded-xl bg-bg border border-border hover:border-accent/40 hover:bg-surface-hover transition-all group"
               >
-                <Clock size={14} className="text-muted mt-0.5 flex-shrink-0" />
+                <Clock size={18} className="text-muted mt-0.5 flex-shrink-0" />
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="font-mono text-accent text-sm">{run.time}</span>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="font-mono text-accent text-lg">{run.time}</span>
                     <Badge
                       variant="outline"
                       className={cn(
-                        'text-[10px] uppercase border-0 gap-1',
+                        'text-sm border-0 gap-2 px-3 py-1',
                         run.status === 'success'
                           ? 'bg-emerald-500/20 text-emerald-300'
                           : 'bg-red-500/20 text-red-300'
                       )}
                     >
                       {run.status === 'success' ? (
-                        <CheckCircle2 size={10} />
+                        <CheckCircle2 size={16} />
                       ) : (
-                        <AlertCircle size={10} />
+                        <AlertCircle size={16} />
                       )}
                       {run.status}
                     </Badge>
                   </div>
-                  <p className="text-sm text-fg truncate group-hover:text-accent transition-colors">
+                  <p className="text-lg text-fg truncate group-hover:text-accent transition-colors">
                     {run.msg}
                   </p>
                 </div>
@@ -110,10 +110,10 @@ export default function Trinity() {
           </ul>
         </div>
 
-        <div className="pt-3 border-t border-border/50">
-          <p className="text-xs text-muted flex items-center justify-between">
+        <div className="pt-4 border-t border-border/50">
+          <p className="text-base text-muted flex items-center justify-between">
             <span>
-              Latest log: <code className="bg-bg px-1.5 py-0.5 rounded text-accent border border-border/50">trinity/2026-03-28.md</code>
+              Latest log: <code className="bg-bg px-2.5 py-1.5 rounded text-accent border border-border/50">trinity/2026-03-28.md</code>
             </span>
             <button className="text-accent hover:underline">View all runs →</button>
           </p>
@@ -122,4 +122,3 @@ export default function Trinity() {
     </Card>
   );
 }
-

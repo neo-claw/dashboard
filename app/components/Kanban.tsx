@@ -1,7 +1,7 @@
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils';
 import { MoreHorizontal, GripVertical } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const mockKanban = {
   todo: [
@@ -40,36 +40,36 @@ export default function Kanban() {
   ] as const;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {columns.map(col => (
         <Card
           key={col.key}
           className="flex flex-col border border-border/50 bg-surface-card rounded-2xl overflow-hidden group"
         >
-          <CardHeader className="pb-3 relative">
+          <CardHeader className="pb-4 relative">
             <div className={cn('absolute inset-0 bg-gradient-to-b opacity-0 group-hover:opacity-100 transition-opacity', col.gradient)} />
-            <CardTitle className={cn('text-lg font-semibold relative z-10', col.color)}>
+            <CardTitle className={cn('text-xl font-semibold relative z-10', col.color)}>
               {col.title}
             </CardTitle>
-            <p className="text-xs text-muted mt-1 relative z-10">
+            <p className="text-sm text-muted mt-1.5 relative z-10">
               {mockKanban[col.key].length} tasks
             </p>
           </CardHeader>
-          <CardContent className="flex-1 space-y-3 relative z-10">
+          <CardContent className="flex-1 space-y-4 relative z-10">
             {mockKanban[col.key].map(task => (
               <div
                 key={task.id}
-                className="group p-4 rounded-xl border border-border/50 bg-bg hover:bg-surface-hover hover:border-accent/40 transition-all cursor-pointer shadow-sm hover:shadow-glow-sm relative"
+                className="group p-5 rounded-xl border border-border/50 bg-bg hover:bg-surface-hover hover:border-accent/40 transition-all cursor-pointer shadow-sm hover:shadow-glow-sm relative"
               >
                 <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button className="p-1 rounded hover:bg-border/50">
-                    <MoreHorizontal size={14} className="text-muted" />
+                  <button className="p-1.5 rounded hover:bg-border/50">
+                    <MoreHorizontal size={16} className="text-muted" />
                   </button>
                 </div>
-                <div className="flex items-start gap-2 mb-2">
+                <div className="flex items-start gap-3 mb-3">
                   <div
                     className={cn(
-                      'px-2 py-0.5 rounded text-[10px] uppercase font-semibold border',
+                      'px-3 py-1 rounded-full text-xs uppercase font-semibold border',
                       tagColors[task.tag]?.bg || 'bg-gray-500/20',
                       tagColors[task.tag]?.text || 'text-gray-300',
                       tagColors[task.tag]?.border || 'border-gray-500/30'
@@ -77,11 +77,11 @@ export default function Kanban() {
                   >
                     {task.tag}
                   </div>
-                  <div className="text-xs" title={task.priority}>
+                  <div className="text-sm" title={task.priority}>
                     {priorityIcons[task.priority]}
                   </div>
                 </div>
-                <p className="text-sm text-fg leading-relaxed">{task.title}</p>
+                <p className="text-base text-fg leading-relaxed">{task.title}</p>
               </div>
             ))}
           </CardContent>
@@ -90,4 +90,3 @@ export default function Kanban() {
     </div>
   );
 }
-
