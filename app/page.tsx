@@ -11,12 +11,14 @@ import {
   X,
   Activity,
   Zap,
+  MessageSquare,
 } from 'lucide-react';
 import Overview from '@/app/components/Overview';
 import Kanban from '@/app/components/Kanban';
 import Learnings from '@/app/components/Learnings';
 import Trinity from '@/app/components/Trinity';
 import CalendarComp from '@/app/components/Calendar';
+import ControlCenter from '@/app/control-center/page';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -24,6 +26,7 @@ const navItems = [
   { id: 'kanban', label: 'Kanban', icon: CheckSquare },
   { id: 'learnings', label: 'Learnings', icon: Brain },
   { id: 'trinity', label: 'Trinity', icon: Code },
+  { id: 'control-center', label: 'Control Center', icon: MessageSquare },
   { id: 'calendar', label: 'Calendar', icon: CalendarIcon },
 ];
 
@@ -147,6 +150,7 @@ export default function Home() {
               {activeTab === 'kanban' && <Kanban />}
               {activeTab === 'learnings' && <Learnings />}
               {activeTab === 'trinity' && <Trinity />}
+              {activeTab === 'control-center' && <ControlCenter />}
               {activeTab === 'calendar' && <CalendarComp />}
             </div>
 
