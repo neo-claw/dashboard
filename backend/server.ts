@@ -191,11 +191,14 @@ app.get('/api/v1/trace', async (req, res) => {
     // Flatten message events: { type: 'message', message: { role, content }, timestamp } -> { role, content, timestamp }
     const events = rawEvents.map(ev => {
       if (ev.type === 'message' && ev.message) {
+        let content = ev.message.content;
+        if (Array.isArray(content)) {
+          content = content.filter((p:any) => p.type === 'text').map((p:any) => p.text).join('\n');
+        }
         return {
           role: ev.message.role,
-          content: ev.message.content,
+          content,
           timestamp: ev.timestamp,
-          // Preserve any other top-level fields if needed (like tool)
         };
       }
       return ev;
