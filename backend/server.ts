@@ -9,6 +9,22 @@ import { promisify } from 'util';
 import dotenv from 'dotenv';
 import { WebSocket } from 'ws';
 import os from 'os';
+
+// Cache
+import { LRUCache } from './cache/LRUCache';
+
+// Types & validation
+import { ChatSessionSchema, LearningSchema, GatewayStatusSchema, CronStatusSchema, CreateChatSessionBodySchema, SendChatMessageBodySchema } from './schemas';
+
+// Utils
+import { sha1 } from './utils';
+
+// Parsers
+import { parseLearnings } from './parsers/learningsParser';
+
+// Session management
+import { createSession, getSessions, getSession, updateSession, deleteSession, type Registry } from './sessions/registry';
+import { spawnSession, sendMessage as openClawSendMessage, getSessionEvents as getOpenClawEvents } from './sessions/openClawSession';
 import { registerLearningsEndpoint } from './src/endpoints/learnings';
 import { registerTrinityEndpoint } from './src/endpoints/trinity';
 import { registerKanbanEndpoint } from './src/endpoints/kanban';
