@@ -127,15 +127,26 @@ app.get('/api/v1/files/*', async (req, res) => {
 // Send chat message to OpenClaw gateway
 app.post('/api/v1/chat/send', async (req, res) => {
   try {
-    const { message, sessionKey } = req.body;
+    const { message } = req.body;
     if (!message) {
       return res.status(400).json({ error: 'Missing message' });
     }
-    // Use openclaw CLI to send (works reliably)
+    // Use openclaw agent command to get a response
     const safeMessage = message.replace(/"/g, '\\"');
-    const cmd = `openclaw chat send ${sessionKey || 'main'} "${safeMessage}"`;
+    const cmd = `openclaw agent --agent main --message "${safeMessage}" --json`;
     const { stdout, stderr } = await execAsync(cmd, { maxBuffer: 1024 * 1024 });
-    res.json({ success: true, output: stdout });
+    // Parse the output to extract agent's reply
+    let reply = stdout.trim();
+    try {
+      const parsed = JSON.parse(stdout);
+      // Expect { messages: [{ role: 'assistant', content: '...' }] } or similar
+      if (parsed.messages && parsed.messages.length > 0) {
+        reply = parsed.messages[0].content;
+      }
+    } catch (e) {
+      // leave reply as raw stdout
+    }
+    res.json({ success: true, reply });
   } catch (err: any) {
     res.status(500).json({ error: err.message, stderr: err.stderr || '' });
   }
