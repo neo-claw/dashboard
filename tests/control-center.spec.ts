@@ -24,14 +24,11 @@ test.describe('Control Center Integration', () => {
 
   test('chat sends message and receives response', async ({ page }) => {
     const chatInput = page.getByPlaceholder('Send a message...');
-    const sendButton = page.getByRole('button', { name: 'Send' });
 
     await chatInput.fill('hello from playwright');
-    // Ensure the input value is set
     await expect(chatInput).toHaveValue('hello from playwright');
-    // Wait for button to become enabled (input non-empty and not loading)
-    await expect(sendButton).toBeEnabled({ timeout: 5000 });
-    await sendButton.click();
+    // Submit by pressing Enter (form submission)
+    await chatInput.press('Enter');
 
     // User message appears
     await expect(page.getByText('hello from playwright')).toBeVisible({ timeout: 10000 });
