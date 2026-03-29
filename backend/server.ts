@@ -8,6 +8,7 @@ import { exec } from 'child_process';
 import { promisify } from 'util';
 import dotenv from 'dotenv';
 import { WebSocket } from 'ws';
+import os from 'os';
 import { registerLearningsEndpoint } from './src/endpoints/learnings';
 import { registerTrinityEndpoint } from './src/endpoints/trinity';
 import { registerKanbanEndpoint } from './src/endpoints/kanban';
@@ -152,16 +153,46 @@ app.post('/api/v1/chat/send', async (req, res) => {
   }
 });
 
-// Get trace (session history)
+// Get trace (session history) by reading the session JSONL file
 app.get('/api/v1/trace', async (req, res) => {
   try {
-    const { sessionKey, limit = '50' } = req.query;
-    const cmd = `openclaw sessions history ${sessionKey || 'main'} --limit ${limit} --json`;
-    const { stdout } = await execAsync(cmd, { maxBuffer: 1024 * 1024 });
-    const parsed = JSON.parse(stdout);
-    // Expect array of messages
-    res.json(Array.isArray(parsed) ? parsed : parsed.messages || []);
+    const { sessionKey = 'main', limit = '50' } = req.query;
+    const sessionsDir = join(os.homedir(), '.openclaw', 'agents', 'main', 'sessions');
+    const sessionsMetaPath = join(sessionsDir, 'sessions.json');
+    const meta = JSON.parse(await readFile(sessionsMetaPath, 'utf-8'));
+
+    // meta is an object keyed by sessionKey
+    let session: any = null;
+    if (typeof sessionKey === 'string' && sessionKey === 'main') {
+      session = meta['agent:main:main'];
+    } else if (typeof sessionKey === 'string') {
+      // Look up by session key first
+      session = meta[sessionKey];
+      // If not found, maybe it's a sessionId; search values
+      if (!session) {
+        for (const key of Object.keys(meta)) {
+          if (meta[key].sessionId === sessionKey) {
+            session = meta[key];
+            break;
+          }
+        }
+      }
+    }
+    if (!session) {
+      return res.status(404).json({ error: 'Session not found' });
+    }
+
+    const sessionFilePath = session.sessionFile || join(sessionsDir, `${session.sessionId}.jsonl`);
+    console.log('[trace] sessionFilePath:', sessionFilePath);
+    const content = await readFile(sessionFilePath, 'utf-8');
+    const lines = content.trim().split('\n').filter(Boolean);
+    const max = parseInt(limit as string, 10) || 50;
+    const events = lines.slice(-max).map(line => JSON.parse(line));
+    res.json(events);
   } catch (err: any) {
+    if (err.code === 'ENOENT') {
+      return res.status(404).json({ error: 'Session file not found' });
+    }
     res.status(500).json({ error: err.message });
   }
 });
