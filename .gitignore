@@ -12,3 +12,7 @@ yarn-error.log
 .pnpm-debug.log
 tsconfig.tsbuildinfo
 .vercel
+playwright-report/
+test-results/
+playwright-screenshots/
+vercel-screenshots/
