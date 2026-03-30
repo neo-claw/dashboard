@@ -71,6 +71,7 @@ import { registerKanbanEndpoint } from './endpoints/kanban';
 import { registerStatsEndpoint } from './endpoints/stats';
 import { registerHealthEndpoint } from './endpoints/health';
 import { registerSessionsEndpoint } from './endpoints/sessions';
+import { registerCalendarEndpoint } from './endpoints/calendar';
 // import { extractReply } from './chat/replyExtractor'; // not used yet
 
 registerLearningsEndpoint(app, WORKSPACE_ROOT);
@@ -79,6 +80,7 @@ registerKanbanEndpoint(app, WORKSPACE_ROOT);
 registerStatsEndpoint(app, WORKSPACE_ROOT);
 registerHealthEndpoint(app, WORKSPACE_ROOT);
 registerSessionsEndpoint(app);
+registerCalendarEndpoint(app);
 
 // Chat endpoint
 app.post('/api/v1/chat', authenticate, async (req, res) => {
