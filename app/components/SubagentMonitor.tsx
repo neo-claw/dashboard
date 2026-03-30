@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, Fragment } from 'react';
 import { RefreshCw, ChevronDown, ChevronRight, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Panel from '@/components/ui/panel';
-import Button from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 
 interface Session {
   key: string;

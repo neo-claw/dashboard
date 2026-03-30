@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Panel from '@/components/ui/panel';
+import SubagentMonitor from './SubagentMonitor';
 
 interface StatsResponse {
   learningsCount: number;
@@ -120,6 +121,10 @@ export default async function Overview() {
             </div>
           ))}
         </div>
+      </Panel>
+
+      <Panel>
+        <SubagentMonitor />
       </Panel>
 
       <div className="grid gap-6 md:grid-cols-2">
