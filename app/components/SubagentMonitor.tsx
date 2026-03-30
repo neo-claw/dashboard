@@ -131,7 +131,28 @@ export default function SubagentMonitor() {
       // Use the Next.js API proxy route
       const res = await fetch(`/api/trace?sessionKey=${encodeURIComponent(key)}&limit=20`);
       const data = await res.json();
-      setTraces(prev => ({ ...prev, [key]: Array.isArray(data) ? data : [] }));
+      const traceEvents = Array.isArray(data) ? data : [];
+      setTraces(prev => ({ ...prev, [key]: traceEvents }));
+
+      // Auto-generate label and description from first user message if none exists
+      setLabels(prev => {
+        if (prev[key]) return prev; // already has custom label
+        const firstUser = traceEvents.find(ev => ev.role === 'user' && typeof ev.content === 'string' && ev.content.trim().length > 0);
+        if (firstUser) {
+          const content = firstUser.content.trim();
+          const autoLabel = content.length > 40 ? content.slice(0, 40) + '…' : content;
+          const autoDesc = content.length > 150 ? content.slice(0, 150) + '…' : content;
+          const newEntry = { label: autoLabel, description: autoDesc };
+          const newLabels = { ...prev, [key]: newEntry };
+          try {
+            localStorage.setItem('subagent_labels', JSON.stringify(newLabels));
+          } catch (e) {
+            console.error('Failed to save auto-label', e);
+          }
+          return newLabels;
+        }
+        return prev;
+      });
     } catch (err) {
       console.error('Failed to fetch trace:', err);
       setTraces(prev => ({ ...prev, [key]: [] }));
