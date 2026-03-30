@@ -1,0 +1,15 @@
+
+> dashboard@0.1.0 verify
+> playwright test tests/verify.spec.ts
+
+
+Running 1 test using 1 worker
+
+📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/overview-full.png
+📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/kanban-full.png
+📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/learnings-full.png
+📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/trinity-full.png
+📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/calendar-full.png
+  ✓  1 [chromium] › tests/verify.spec.ts:13:7 › Dashboard Visual Verification › capture all tabs with full page screenshots (17.8s)
+
+  1 passed (18.8s)

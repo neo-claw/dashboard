@@ -1,0 +1,108 @@
+
+Running 12 tests using 1 worker
+
+[1A[2K[1/12] [chromium] › tests/all-tabs-integration.spec.ts:6:7 › All Tabs Integration Test › All tabs load without console errors
+[1A[2K[2/12] [chromium] › tests/calendar-real.spec.ts:4:7 › Calendar Real Test › Calendar shows today events or empty state
+[1A[2K[3/12] [chromium] › tests/control-center.spec.ts:8:7 › Control Center Integration › page loads with expected UI
+[1A[2K[4/12] [chromium] › tests/control-center.spec.ts:17:7 › Control Center Integration › trace panel is present
+[1A[2K[5/12] [chromium] › tests/control-center.spec.ts:25:7 › Control Center Integration › chat sends message and receives response
+[1A[2K  1) [chromium] › tests/control-center.spec.ts:25:7 › Control Center Integration › chat sends message and receives response 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveValue[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator:  getByPlaceholder('Send a message...')
+    Expected: [32m"hello from playwright"[39m
+    Received: [31m""[39m
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toHaveValue" with timeout 5000ms[22m
+    [2m  - waiting for getByPlaceholder('Send a message...')[22m
+    [2m    8 × locator resolved to <textarea rows="2" placeholder="Send a message..." class="flex-1 bg-bg border border-border rounded-xl p-3 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent transition-shadow"></textarea>[22m
+    [2m      - unexpected value ""[22m
+
+
+      29 |     await chatInput.fill('hello from playwright');
+      30 |     // Ensure the input value is set
+    > 31 |     await expect(chatInput).toHaveValue('hello from playwright');
+         |                             ^
+      32 |     // Wait for button to become enabled (input non-empty and not loading)
+      33 |     await expect(sendButton).toBeEnabled({ timeout: 5000 });
+      34 |     await sendButton.click();
+        at /home/ubuntu/.openclaw/workspace/dashboard/tests/control-center.spec.ts:31:29
+
+    Error Context: test-results/control-center-Control-Cen-66dbb-ssage-and-receives-response-chromium/error-context.md
+
+
+[1A[2K[6/12] [chromium] › tests/control-center.spec.ts:44:7 › Control Center Integration › trace panel can be toggled
+[1A[2K[7/12] [chromium] › tests/controlcenter-chat.spec.ts:4:7 › Control Center Chat Test › Sending "hello" receives assistant response within 30s
+[1A[2K[8/12] [chromium] › tests/design-forensics.spec.ts:4:7 › Vercel Design Forensics › capture Vercel design tokens and layouts
+[1A[2K[chromium] › tests/design-forensics.spec.ts:4:7 › Vercel Design Forensics › capture Vercel design tokens and layouts
+Nav bounding box: {"x":236,"y":0,"width":1448,"height":64}
+
+[1A[2K  2) [chromium] › tests/design-forensics.spec.ts:4:7 › Vercel Design Forensics › capture Vercel design tokens and layouts 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.evaluate: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('nav, header').first()[22m
+    [2m    - locator resolved to visible <header data-cdp-scope="{"name":"header"}" class="header-module__6nzVrW__header">…</header>[22m
+
+
+      16 |       console.log('Nav bounding box:', JSON.stringify(navBox));
+      17 |
+    > 18 |       const navStyles = await nav.evaluate(el => {
+         |                                   ^
+      19 |         const cs = window.getComputedStyle(el);
+      20 |         return {
+      21 |           background: cs.backgroundColor,
+        at /home/ubuntu/.openclaw/workspace/dashboard/tests/design-forensics.spec.ts:18:35
+
+    Error Context: test-results/design-forensics-Vercel-De-bd2ab-l-design-tokens-and-layouts-chromium/error-context.md
+
+
+[1A[2K[9/12] [chromium] › tests/learnings-loads.spec.ts:4:7 › Learnings Loads Test › Learnings timeline shows entries with dates
+[1A[2K[10/12] [chromium] › tests/overview-realdata.spec.ts:4:7 › Overview Real Data Test › Overview page loads with real stats (not placeholder)
+[1A[2K[11/12] [chromium] › tests/realtime-sync.spec.ts:8:7 › Realtime Sync Test › Adding a learning updates dashboard within 15s
+[1A[2K  3) [chromium] › tests/realtime-sync.spec.ts:8:7 › Realtime Sync Test › Adding a learning updates dashboard within 15s 
+
+    [31mTest timeout of 45000ms exceeded.[39m
+
+    Error: page.reload: Test timeout of 45000ms exceeded.
+    Call log:
+    [2m  - waiting for navigation until "networkidle"[22m
+    [2m    - navigated to "https://neo-claw.vercel.app/"[22m
+
+
+      33 |     let increased = false;
+      34 |     while (Date.now() - start < timeoutMs) {
+    > 35 |       await page.reload({ waitUntil: 'networkidle' });
+         |                  ^
+      36 |       // After reload, need to click Learnings tab again to see timeline
+      37 |       await learningsTab.click();
+      38 |       await page.waitForLoadState('networkidle');
+        at /home/ubuntu/.openclaw/workspace/dashboard/tests/realtime-sync.spec.ts:35:18
+
+    Error Context: test-results/realtime-sync-Realtime-Syn-ca5ce-pdates-dashboard-within-15s-chromium/error-context.md
+
+
+[1A[2K[12/12] [chromium] › tests/verify.spec.ts:13:7 › Dashboard Visual Verification › capture all tabs with full page screenshots
+[1A[2K[chromium] › tests/verify.spec.ts:13:7 › Dashboard Visual Verification › capture all tabs with full page screenshots
+📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/overview-full.png
+
+[1A[2K📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/kanban-full.png
+
+[1A[2K  4) [chromium] › tests/verify.spec.ts:13:7 › Dashboard Visual Verification › capture all tabs with full page screenshots 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+
+[1A[2K📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/learnings-full.png
+
+[1A[2K  4 failed
+    [chromium] › tests/control-center.spec.ts:25:7 › Control Center Integration › chat sends message and receives response 
+    [chromium] › tests/design-forensics.spec.ts:4:7 › Vercel Design Forensics › capture Vercel design tokens and layouts 
+    [chromium] › tests/realtime-sync.spec.ts:8:7 › Realtime Sync Test › Adding a learning updates dashboard within 15s 
+    [chromium] › tests/verify.spec.ts:13:7 › Dashboard Visual Verification › capture all tabs with full page screenshots 
+  8 passed (4.3m)

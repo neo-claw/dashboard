@@ -1,0 +1,121 @@
+
+Running 12 tests using 1 worker
+
+[1A[2K[1/12] [chromium] › tests/all-tabs-integration.spec.ts:6:7 › All Tabs Integration Test › All tabs load without console errors
+[1A[2K[2/12] [chromium] › tests/calendar-real.spec.ts:4:7 › Calendar Real Test › Calendar shows today events or empty state
+[1A[2K[3/12] [chromium] › tests/control-center.spec.ts:8:7 › Control Center Integration › page loads with expected UI
+[1A[2K[4/12] [chromium] › tests/control-center.spec.ts:17:7 › Control Center Integration › trace panel is present
+[1A[2K[5/12] [chromium] › tests/control-center.spec.ts:25:7 › Control Center Integration › chat sends message and receives response
+[1A[2K  1) [chromium] › tests/control-center.spec.ts:25:7 › Control Center Integration › chat sends message and receives response 
+
+    Error: locator.click: Error: strict mode violation: getByRole('button', { name: '' }) resolved to 3 elements:
+        1) <button class="w-full px-3 py-2.5 rounded-lg text-sm font-medium transition-all bg-accent/15 text-accent border border-accent/30">…</button> aka getByRole('button', { name: 'Trace' })
+        2) <button class="w-full px-3 py-2.5 rounded-lg text-sm font-medium transition-all text-muted hover:bg-surface-hover hover:text-fg">…</button> aka getByRole('button', { name: 'Files' })
+        3) <button aria-label="Send" class="px-5 py-2 bg-accent text-black font-medium rounded-xl hover:bg-accent/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed self-end flex items-center justify-center">…</button> aka getByRole('button', { name: 'Send' })
+
+    Call log:
+    [2m  - waiting for getByRole('button', { name: '' })[22m
+
+
+      28 |
+      29 |     await chatInput.fill('hello from playwright');
+    > 30 |     await sendButton.click();
+         |                      ^
+      31 |
+      32 |     // User message appears
+      33 |     await expect(page.getByText('hello from playwright')).toBeVisible({ timeout: 10000 });
+        at /home/ubuntu/.openclaw/workspace/dashboard/tests/control-center.spec.ts:30:22
+
+    Error Context: test-results/control-center-Control-Cen-66dbb-ssage-and-receives-response-chromium/error-context.md
+
+
+[1A[2K[6/12] [chromium] › tests/control-center.spec.ts:40:7 › Control Center Integration › trace panel can be toggled
+[1A[2K[7/12] [chromium] › tests/controlcenter-chat.spec.ts:4:7 › Control Center Chat Test › Sending "hello" receives assistant response within 30s
+[1A[2K[8/12] [chromium] › tests/design-forensics.spec.ts:4:7 › Vercel Design Forensics › capture Vercel design tokens and layouts
+[1A[2K[chromium] › tests/design-forensics.spec.ts:4:7 › Vercel Design Forensics › capture Vercel design tokens and layouts
+Nav bounding box: {"x":236,"y":0,"width":1448,"height":64}
+
+[1A[2KNav styles: {
+  "background": "rgba(0, 0, 0, 0)",
+  "height": "64px",
+  "display": "flex",
+  "alignItems": "center",
+  "justifyContent": "space-between",
+  "padding": "0px 24px",
+  "borderBottom": "0px none rgb(23, 23, 23)"
+}
+
+[1A[2KButton styles: {
+  "background": "rgb(23, 23, 23)",
+  "color": "rgb(255, 255, 255)",
+  "padding": "0px 6px",
+  "borderRadius": "6px",
+  "fontSize": "14px",
+  "fontWeight": "500",
+  "fontFamily": "Geist, Arial, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\""
+}
+
+[1A[2KBody fontFamily: Geist, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+
+[1A[2KHas design font? [33mtrue[39m
+
+[1A[2K[9/12] [chromium] › tests/learnings-loads.spec.ts:4:7 › Learnings Loads Test › Learnings timeline shows entries with dates
+[1A[2K  2) [chromium] › tests/learnings-loads.spec.ts:4:7 › Learnings Loads Test › Learnings timeline shows entries with dates 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - navigating to "https://neo-claw.vercel.app/", waiting until "networkidle"[22m
+
+
+      3 | test.describe('Learnings Loads Test', () => {
+      4 |   test('Learnings timeline shows entries with dates', async ({ page }) => {
+    > 5 |     await page.goto('/', { waitUntil: 'networkidle' });
+        |                ^
+      6 |
+      7 |     // Switch to Learnings tab
+      8 |     const learningsTab = page.locator('button:has-text("Learnings")');
+        at /home/ubuntu/.openclaw/workspace/dashboard/tests/learnings-loads.spec.ts:5:16
+
+    Error Context: test-results/learnings-loads-Learnings--fc354-ne-shows-entries-with-dates-chromium/error-context.md
+
+
+[1A[2K[10/12] [chromium] › tests/overview-realdata.spec.ts:4:7 › Overview Real Data Test › Overview page loads with real stats (not placeholder)
+[1A[2K[11/12] [chromium] › tests/realtime-sync.spec.ts:8:7 › Realtime Sync Test › Adding a learning updates dashboard within 15s
+[1A[2K  3) [chromium] › tests/realtime-sync.spec.ts:8:7 › Realtime Sync Test › Adding a learning updates dashboard within 15s 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32mtrue[39m
+    Received: [31mfalse[39m
+
+      47 |     }
+      48 |
+    > 49 |     expect(increased).toBe(true);
+         |                       ^
+      50 |
+      51 |     // Cleanup: remove the test entry from LEARNINGS.md
+      52 |     try {
+        at /home/ubuntu/.openclaw/workspace/dashboard/tests/realtime-sync.spec.ts:49:23
+
+    Error Context: test-results/realtime-sync-Realtime-Syn-ca5ce-pdates-dashboard-within-15s-chromium/error-context.md
+
+
+[1A[2K[12/12] [chromium] › tests/verify.spec.ts:13:7 › Dashboard Visual Verification › capture all tabs with full page screenshots
+[1A[2K[chromium] › tests/verify.spec.ts:13:7 › Dashboard Visual Verification › capture all tabs with full page screenshots
+📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/overview-full.png
+
+[1A[2K📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/kanban-full.png
+
+[1A[2K📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/learnings-full.png
+
+[1A[2K📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/trinity-full.png
+
+[1A[2K📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/calendar-full.png
+
+[1A[2K  3 failed
+    [chromium] › tests/control-center.spec.ts:25:7 › Control Center Integration › chat sends message and receives response 
+    [chromium] › tests/learnings-loads.spec.ts:4:7 › Learnings Loads Test › Learnings timeline shows entries with dates 
+    [chromium] › tests/realtime-sync.spec.ts:8:7 › Realtime Sync Test › Adding a learning updates dashboard within 15s 
+  9 passed (2.9m)

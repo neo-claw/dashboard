@@ -1,0 +1,126 @@
+
+Running 12 tests using 1 worker
+
+[1A[2K[1/12] [chromium] › tests/all-tabs-integration.spec.ts:6:7 › All Tabs Integration Test › All tabs load without console errors
+[1A[2K  1) [chromium] › tests/all-tabs-integration.spec.ts:6:7 › All Tabs Integration Test › All tabs load without console errors 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('button:has-text("Overview")')[22m
+
+
+      19 |       const tab = page.locator(`button:has-text("${tabName}")`);
+      20 |       await expect(tab).toBeVisible();
+    > 21 |       await tab.click();
+         |                 ^
+      22 |       await page.waitForLoadState('networkidle');
+      23 |
+      24 |       // Wait for data to load (various components have different selectors)
+        at /home/ubuntu/.openclaw/workspace/dashboard/tests/all-tabs-integration.spec.ts:21:17
+
+    Error Context: test-results/all-tabs-integration-All-T-d50d0-load-without-console-errors-chromium/error-context.md
+
+
+[1A[2K[2/12] [chromium] › tests/calendar-real.spec.ts:4:7 › Calendar Real Test › Calendar shows today events or empty state
+[1A[2K[3/12] [chromium] › tests/control-center.spec.ts:8:7 › Control Center Integration › page loads with expected UI
+[1A[2K[4/12] [chromium] › tests/control-center.spec.ts:17:7 › Control Center Integration › trace panel is present
+[1A[2K[5/12] [chromium] › tests/control-center.spec.ts:25:7 › Control Center Integration › chat sends message and receives response
+[1A[2K  2) [chromium] › tests/control-center.spec.ts:25:7 › Control Center Integration › chat sends message and receives response 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveValue[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator:  getByPlaceholder('Send a message...')
+    Expected: [32m"hello from playwright"[39m
+    Received: [31m""[39m
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toHaveValue" with timeout 5000ms[22m
+    [2m  - waiting for getByPlaceholder('Send a message...')[22m
+    [2m    8 × locator resolved to <textarea rows="2" placeholder="Send a message..." class="flex-1 bg-bg border border-border rounded-xl p-3 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent transition-shadow"></textarea>[22m
+    [2m      - unexpected value ""[22m
+
+
+      27 |
+      28 |     await chatInput.fill('hello from playwright');
+    > 29 |     await expect(chatInput).toHaveValue('hello from playwright');
+         |                             ^
+      30 |     // Submit by pressing Enter (form submission)
+      31 |     await chatInput.press('Enter');
+      32 |
+        at /home/ubuntu/.openclaw/workspace/dashboard/tests/control-center.spec.ts:29:29
+
+    Error Context: test-results/control-center-Control-Cen-66dbb-ssage-and-receives-response-chromium/error-context.md
+
+
+[1A[2K[6/12] [chromium] › tests/control-center.spec.ts:41:7 › Control Center Integration › trace panel can be toggled
+[1A[2K[7/12] [chromium] › tests/controlcenter-chat.spec.ts:4:7 › Control Center Chat Test › Sending "hello" receives assistant response within 30s
+[1A[2K[8/12] [chromium] › tests/design-forensics.spec.ts:4:7 › Vercel Design Forensics › capture Vercel design tokens and layouts
+[1A[2K[chromium] › tests/design-forensics.spec.ts:4:7 › Vercel Design Forensics › capture Vercel design tokens and layouts
+Nav bounding box: {"x":236,"y":0,"width":1448,"height":64}
+
+[1A[2KNav styles: {
+  "background": "rgba(0, 0, 0, 0)",
+  "height": "64px",
+  "display": "flex",
+  "alignItems": "center",
+  "justifyContent": "space-between",
+  "padding": "0px 24px",
+  "borderBottom": "0px none rgb(23, 23, 23)"
+}
+
+[1A[2KButton styles: {
+  "background": "rgb(23, 23, 23)",
+  "color": "rgb(255, 255, 255)",
+  "padding": "0px 6px",
+  "borderRadius": "6px",
+  "fontSize": "14px",
+  "fontWeight": "500",
+  "fontFamily": "Geist, Arial, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\""
+}
+
+[1A[2KBody fontFamily: Geist, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+
+[1A[2KHas design font? [33mtrue[39m
+
+[1A[2K[9/12] [chromium] › tests/learnings-loads.spec.ts:4:7 › Learnings Loads Test › Learnings timeline shows entries with dates
+[1A[2K[10/12] [chromium] › tests/overview-realdata.spec.ts:4:7 › Overview Real Data Test › Overview page loads with real stats (not placeholder)
+[1A[2K[11/12] [chromium] › tests/realtime-sync.spec.ts:8:7 › Realtime Sync Test › Adding a learning updates dashboard within 15s
+[1A[2K  3) [chromium] › tests/realtime-sync.spec.ts:8:7 › Realtime Sync Test › Adding a learning updates dashboard within 15s 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32mtrue[39m
+    Received: [31mfalse[39m
+
+      47 |     }
+      48 |
+    > 49 |     expect(increased).toBe(true);
+         |                       ^
+      50 |
+      51 |     // Cleanup: remove the test entry from LEARNINGS.md
+      52 |     try {
+        at /home/ubuntu/.openclaw/workspace/dashboard/tests/realtime-sync.spec.ts:49:23
+
+    Error Context: test-results/realtime-sync-Realtime-Syn-ca5ce-pdates-dashboard-within-15s-chromium/error-context.md
+
+
+[1A[2K[12/12] [chromium] › tests/verify.spec.ts:13:7 › Dashboard Visual Verification › capture all tabs with full page screenshots
+[1A[2K[chromium] › tests/verify.spec.ts:13:7 › Dashboard Visual Verification › capture all tabs with full page screenshots
+📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/overview-full.png
+
+[1A[2K📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/kanban-full.png
+
+[1A[2K📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/learnings-full.png
+
+[1A[2K📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/trinity-full.png
+
+[1A[2K📸 Saved /home/ubuntu/.openclaw/workspace/dashboard/playwright-screenshots/calendar-full.png
+
+[1A[2K  3 failed
+    [chromium] › tests/all-tabs-integration.spec.ts:6:7 › All Tabs Integration Test › All tabs load without console errors 
+    [chromium] › tests/control-center.spec.ts:25:7 › Control Center Integration › chat sends message and receives response 
+    [chromium] › tests/realtime-sync.spec.ts:8:7 › Realtime Sync Test › Adding a learning updates dashboard within 15s 
+  9 passed (3.4m)
