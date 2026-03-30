@@ -22,7 +22,7 @@ export default function Header() {
       <div>
         <h2 className="text-4xl font-bold text-fg tracking-tight">{title}</h2>
         <p className="text-base text-muted mt-2">
-          Real-time overview of your brain and agents
+          System status and agent activity
         </p>
       </div>
       <div className="hidden md:flex items-center gap-2 text-sm text-muted">
