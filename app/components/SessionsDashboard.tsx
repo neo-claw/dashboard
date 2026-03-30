@@ -124,12 +124,12 @@ export default function SessionsDashboard() {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Sessions List */}
-          <Panel>
+          <Panel data-testid="sessions-list-panel">
             <div className="flex items-center gap-3 mb-4">
               <Cpu className="text-accent" size={22} />
               <h4 className="text-lg font-semibold text-fg">Sessions</h4>
             </div>
-            <div className="space-y-2 max-h-[600px] overflow-y-auto">
+            <div className="space-y-2 max-h-[600px] overflow-y-auto" data-testid="session-list">
               {sessions.map(s => (
                 <div
                   key={s.key}
@@ -140,6 +140,7 @@ export default function SessionsDashboard() {
                       ? 'border-accent bg-accent/5'
                       : 'border-transparent hover:border-accent/30 hover:bg-bg'
                   )}
+                  data-testid="session-item"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0 flex-1">
@@ -170,7 +171,7 @@ export default function SessionsDashboard() {
           </Panel>
 
           {/* Trace Panel */}
-          <Panel title="Trace">
+          <Panel title="Trace" data-testid="trace-panel">
             <div className="flex-1 overflow-y-auto max-h-[600px] space-y-2">
               {!selectedSession ? (
                 <div className="text-center py-12 text-muted text-sm">
