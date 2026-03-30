@@ -57,12 +57,7 @@ export default function SubagentMonitor() {
 
   const fetchSessions = useCallback(async () => {
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
-      const apiKey = process.env.NEXT_PUBLIC_BACKEND_API_KEY;
-      if (!baseUrl || !apiKey) throw new Error('Backend not configured (NEXT_PUBLIC_BACKEND_URL / NEXT_PUBLIC_BACKEND_API_KEY)');
-      const res = await fetch(`${baseUrl}/api/v1/sessions/active`, {
-        headers: { Authorization: `Bearer ${apiKey}` },
-      });
+      const res = await fetch('/api/sessions/active');
       if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
       const data = await res.json();
       // Filter to subagents and recent activity (within the last hour)
