@@ -67,7 +67,8 @@ export default function SubagentMonitor() {
       const data = await res.json();
       // Filter to subagents and recent activity (within the last hour)
       const raw = Array.isArray(data.sessions) ? data.sessions : [];
-      const subagents = raw.filter((s: Session) => s.metadata.kind === 'subagent');
+      // Identify subagents by session key pattern (contains ':subagent:') or metadata.kind === 'subagent'
+      const subagents = raw.filter((s: Session) => s.key.includes(':subagent:') || s.metadata.kind === 'subagent');
       const recent = subagents.filter((s: Session) => s.durationSec <= 3600);
       setSessions(recent);
       setError(null);

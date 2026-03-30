@@ -65,13 +65,13 @@ const statsCache = new SimpleCache<any>(300_000);
 const healthCache = new SimpleCache<any>(300_000);
 
 // Endpoints registration
-import { registerLearningsEndpoint } from './src/endpoints/learnings';
-import { registerTrinityEndpoint } from './src/endpoints/trinity';
-import { registerKanbanEndpoint } from './src/endpoints/kanban';
-import { registerStatsEndpoint } from './src/endpoints/stats';
-import { registerHealthEndpoint } from './src/endpoints/health';
-import { registerSessionsEndpoint } from './src/endpoints/sessions';
-import { extractReply } from './src/chat/replyExtractor';
+import { registerLearningsEndpoint } from './endpoints/learnings';
+import { registerTrinityEndpoint } from './endpoints/trinity';
+import { registerKanbanEndpoint } from './endpoints/kanban';
+import { registerStatsEndpoint } from './endpoints/stats';
+import { registerHealthEndpoint } from './endpoints/health';
+import { registerSessionsEndpoint } from './endpoints/sessions';
+// import { extractReply } from './chat/replyExtractor'; // not used yet
 
 registerLearningsEndpoint(app, WORKSPACE_ROOT);
 registerTrinityEndpoint(app, WORKSPACE_ROOT);
@@ -89,7 +89,7 @@ app.post('/api/v1/chat', authenticate, async (req, res) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${BACKEND_API_KEY}` },
       body: JSON.stringify({ message, sessionKey }),
-    }).then(r => r.json()).then(d => d.reply);
+    }).then((r: any) => r.json()).then((d: any) => d.reply);
     res.json({ success: true, reply });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
@@ -102,7 +102,7 @@ app.get('/api/v1/trace', authenticate, async (req, res) => {
     const { sessionKey, limit } = req.query;
     const raw = await (globalThis as any).fetch(`${BACKEND_URL}/api/v1/chat/trace?sessionKey=${encodeURIComponent(sessionKey as string)}&limit=${limit || 50}`, {
       headers: { Authorization: `Bearer ${BACKEND_API_KEY}` },
-    }).then(r => r.json());
+    }).then((r: any) => r.json());
     const events = (raw || []).map((ev: any) => ({
       role: ev.role,
       content: ev.content,
@@ -115,7 +115,7 @@ app.get('/api/v1/trace', authenticate, async (req, res) => {
   }
 });
 
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(Number(PORT), '0.0.0.0', () => {
   console.log(`[backend] Dashboard API listening on port ${PORT}`);
   // Warm up caches after startup to avoid first-request latency
   setTimeout(async () => {
