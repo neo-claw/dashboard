@@ -1,8 +1,7 @@
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Calendar as CalendarIcon, MapPin, Clock, Bell, Loader2, AlertCircle } from 'lucide-react';
+import { Calendar as CalendarIcon, MapPin, Clock, Bell } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useEffect, useState } from 'react';
 
 interface CalendarEvent {
   id: string;
@@ -54,70 +53,28 @@ function formatTime(iso: string): string {
   return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 }
 
-export default function Calendar() {
-  const [events, setEvents] = useState<CalendarEvent[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export default async function Calendar() {
+  const baseUrl = process.env.BACKEND_URL || 'http://localhost:3001';
+  const apiKey = process.env.BACKEND_API_KEY;
 
-  const fetchCalendar = async () => {
-    try {
-      setError(null);
-      const res = await fetch('/api/v1/calendar');
-      if (res.ok) {
-        const data: CalendarResponse = await res.json();
-        setEvents(data.events);
-      } else {
-        setError('Failed to load calendar');
-      }
-    } catch (e) {
-      console.error('Calendar fetch error:', e);
-      setError('Network error');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const calendarRes = await fetch(`${baseUrl}/api/v1/calendar`, {
+    headers: { Authorization: `Bearer ${apiKey}` },
+    next: { revalidate: 300 },
+  });
 
-  useEffect(() => {
-    fetchCalendar();
-    const interval = setInterval(fetchCalendar, 10 * 60 * 1000); // 10 minutes
-    return () => clearInterval(interval);
-  }, []);
+  let events: CalendarEvent[] = [];
+  let error: string | null = null;
+  if (calendarRes.ok) {
+    const data: CalendarResponse = await calendarRes.json();
+    events = data.events;
+  } else {
+    error = 'Failed to load calendar';
+  }
 
-  // Group events: Today (based on current date) and Upcoming
+  // Group events: Today and Upcoming
   const today = new Date().toISOString().split('T')[0];
   const todayEvents = events.filter(ev => new Date(ev.start.dateTime).toISOString().split('T')[0] === today);
   const upcomingEvents = events.filter(ev => new Date(ev.start.dateTime) > new Date());
-
-  if (loading) {
-    return (
-      <Card className="border border-border/50 bg-surface-card rounded-2xl overflow-hidden">
-        <CardHeader className="pb-6">
-          <div className="h-8 w-1/3 rounded bg-muted animate-pulse" />
-          <div className="mt-2 h-4 w-1/2 rounded bg-muted animate-pulse" />
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-8">
-            {[...Array(2)].map((_, i) => (
-              <div key={i}>
-                <div className="h-6 w-32 rounded bg-muted animate-pulse mb-4" />
-                <div className="space-y-4">
-                  {[...Array(2)].map((_, j) => (
-                    <div key={j} className="p-5 rounded-2xl border border-border/30 bg-bg/50">
-                      <div className="flex items-start justify-between gap-4 mb-3">
-                        <div className="h-6 w-20 rounded-full bg-muted animate-pulse" />
-                        <div className="h-5 w-16 rounded-full bg-muted animate-pulse" />
-                      </div>
-                      <div className="h-6 w-3/4 rounded bg-muted animate-pulse" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-    );
-  }
 
   const sections = [
     { day: `Today (${formatDate(new Date().toISOString())})`, items: todayEvents },
@@ -140,7 +97,6 @@ export default function Calendar() {
       <CardContent>
         {error && (
           <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 flex items-center gap-3">
-            <AlertCircle size={20} />
             <span>{error}</span>
           </div>
         )}

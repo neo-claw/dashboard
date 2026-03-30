@@ -10,7 +10,6 @@ import {
   Zap,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useEffect, useState } from 'react';
 
 interface StatsResponse {
   learningsCount: number;
@@ -43,82 +42,29 @@ interface HealthResponse {
   };
 }
 
-export default function Overview() {
-  const [stats, setStats] = useState<StatsResponse | null>(null);
-  const [health, setHealth] = useState<HealthResponse | null>(null);
-  const [loading, setLoading] = useState(true);
+export default async function Overview() {
+  const baseUrl = process.env.BACKEND_URL || 'http://localhost:3001';
+  const apiKey = process.env.BACKEND_API_KEY;
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const [statsRes, healthRes] = await Promise.all([
-          fetch('/api/v1/stats/overview'),
-          fetch('/api/v1/system/health'),
-        ]);
-        const statsData = await statsRes.json();
-        const healthData = await healthRes.json();
-        setStats(statsData);
-        setHealth(healthData);
-      } catch (e) {
-        console.error('Failed to fetch overview data:', e);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, []);
+  const [statsRes, healthRes] = await Promise.allSettled([
+    fetch(`${baseUrl}/api/v1/stats/overview`, {
+      headers: { Authorization: `Bearer ${apiKey}` },
+      next: { revalidate: 300 },
+    }),
+    fetch(`${baseUrl}/api/v1/system/health`, {
+      headers: { Authorization: `Bearer ${apiKey}` },
+      next: { revalidate: 300 },
+    }),
+  ]);
 
-  if (loading) {
-    return (
-      <div className="space-y-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[...Array(4)].map((_, i) => (
-            <Card key={i} className="group relative overflow-hidden border border-border/50 bg-surface-card hover:bg-surface-hover transition-all duration-300 hover:shadow-glow hover:-translate-y-0.5 rounded-2xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-              <CardHeader className="p-6 relative">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="h-10 w-10 rounded-lg bg-accent/10 animate-pulse" />
-                  <div className="h-5 w-8 rounded bg-muted animate-pulse" />
-                </div>
-                <div className="h-10 w-3/4 rounded bg-muted animate-pulse" />
-                <div className="mt-2.5 h-4 w-1/2 rounded bg-muted animate-pulse" />
-              </CardHeader>
-            </Card>
-          ))}
-        </div>
+  let stats: StatsResponse | null = null;
+  let health: HealthResponse | null = null;
 
-        <div className="grid gap-6 md:grid-cols-2">
-          <Card className="border border-border/50 bg-surface-card rounded-2xl overflow-hidden">
-            <CardHeader className="pb-4">
-              <div className="h-6 w-1/3 rounded bg-muted animate-pulse" />
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-4">
-                {[...Array(3)].map((_, i) => (
-                  <li key={i} className="flex items-center gap-3">
-                    <div className="h-2.5 w-2.5 rounded-full bg-muted animate-pulse" />
-                    <div className="h-4 w-2/3 rounded bg-muted animate-pulse" />
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="border border-border/50 bg-surface-card rounded-2xl overflow-hidden">
-            <CardHeader className="pb-4">
-              <div className="h-6 w-1/3 rounded bg-muted animate-pulse" />
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-2 gap-4">
-                {[...Array(4)].map((_, i) => (
-                  <div key={i} className="h-24 rounded-xl border border-border/50 bg-bg animate-pulse" />
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    );
+  if (statsRes.status === 'fulfilled' && statsRes.value.ok) {
+    stats = await statsRes.value.json();
+  }
+  if (healthRes.status === 'fulfilled' && healthRes.value.ok) {
+    health = await healthRes.value.json();
   }
 
   const dynamicStats = stats ? [
@@ -147,7 +93,7 @@ export default function Overview() {
       label: 'GWS Scanned',
       value: `${stats.gwsScansToday} notes`,
       icon: Scan,
-      gradient: 'from-orange-400 to-amber-500',
+      gradient: stats.gwsScansToday > 0 ? 'from-orange-400 to-amber-500' : 'from-slate-400 to-slate-500',
       trend: stats.gwsScansToday > 0 ? 'new' : 'neutral',
     },
   ] : [];

@@ -2,7 +2,6 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Lightbulb, ArrowRight, Sparkles, Zap, BookOpen, ListTodo, StickyNote } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useEffect, useState } from 'react';
 
 interface Learning {
   date: string;
@@ -44,49 +43,18 @@ const categoryConfig: Record<string, { icon: React.ReactNode; gradient: string; 
   },
 };
 
-export default function Learnings() {
-  const [learnings, setLearnings] = useState<Learning[]>([]);
-  const [loading, setLoading] = useState(true);
+export default async function Learnings() {
+  const baseUrl = process.env.BACKEND_URL || 'http://localhost:3001';
+  const apiKey = process.env.BACKEND_API_KEY;
 
-  useEffect(() => {
-    async function fetchLearnings() {
-      try {
-        const res = await fetch('/api/v1/learnings');
-        if (res.ok) {
-          const data = await res.json();
-          setLearnings(data);
-        }
-      } catch (e) {
-        console.error('Failed to fetch learnings:', e);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchLearnings();
-  }, []);
+  const learningsRes = await fetch(`${baseUrl}/api/v1/learnings`, {
+    headers: { Authorization: `Bearer ${apiKey}` },
+    next: { revalidate: 300 },
+  });
 
-  if (loading) {
-    return (
-      <Card className="border border-border/50 bg-surface-card rounded-2xl overflow-hidden">
-        <CardHeader className="pb-6">
-          <div className="h-8 w-1/3 rounded bg-muted animate-pulse" />
-          <div className="mt-2 h-4 w-1/2 rounded bg-muted animate-pulse" />
-        </CardHeader>
-        <CardContent>
-          <div className="relative pl-8">
-            <div className="absolute left-3 top-2 bottom-2 w-0.5 bg-gradient-to-b from-accent/30 via-border to-transparent" />
-            <div className="space-y-10">
-              {[...Array(5)].map((_, i) => (
-                <div key={i} className="relative">
-                  <div className="absolute -left-[21px] top-2 w-5 h-5 rounded-full bg-muted animate-pulse" />
-                  <div className="h-32 rounded-2xl bg-muted/50 animate-pulse border border-border/30" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    );
+  let learnings: Learning[] = [];
+  if (learningsRes.ok) {
+    learnings = await learningsRes.json();
   }
 
   if (learnings.length === 0) {

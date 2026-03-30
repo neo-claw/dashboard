@@ -2,7 +2,6 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Cpu, Terminal, Clock, CheckCircle2, AlertCircle, BarChart3 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useEffect, useState } from 'react';
 
 interface TrinityRun {
   date: string;
@@ -24,75 +23,18 @@ interface TrinityResponse {
   };
 }
 
-export default function Trinity() {
-  const [data, setData] = useState<TrinityResponse | null>(null);
-  const [loading, setLoading] = useState(true);
+export default async function Trinity() {
+  const baseUrl = process.env.BACKEND_URL || 'http://localhost:3001';
+  const apiKey = process.env.BACKEND_API_KEY;
 
-  useEffect(() => {
-    async function fetchRuns() {
-      try {
-        const res = await fetch('/api/v1/trinity/runs');
-        if (res.ok) {
-          const json = await res.json();
-          setData(json);
-        }
-      } catch (e) {
-        console.error('Failed to fetch Trinity runs:', e);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchRuns();
-  }, []);
+  const trinityRes = await fetch(`${baseUrl}/api/v1/trinity/runs`, {
+    headers: { Authorization: `Bearer ${apiKey}` },
+    next: { revalidate: 300 },
+  });
 
-  if (loading) {
-    return (
-      <Card className="border border-border/50 bg-surface-card rounded-2xl overflow-hidden">
-        <CardHeader className="pb-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="h-8 w-1/3 rounded bg-muted animate-pulse" />
-              <div className="mt-2 h-4 w-1/2 rounded bg-muted animate-pulse" />
-            </div>
-            <div className="h-6 w-16 rounded bg-muted animate-pulse" />
-          </div>
-        </CardHeader>
-        <CardContent className="space-y-8">
-          <div className="p-6 bg-bg/50 rounded-2xl border border-border/30">
-            <div className="flex items-center justify-between text-sm mb-4">
-              <div className="h-4 w-32 rounded bg-muted animate-pulse" />
-              <div className="h-6 w-16 rounded bg-muted animate-pulse" />
-            </div>
-            <div className="h-4 bg-surface rounded-full overflow-hidden">
-              <div className="h-full bg-accent/50 animate-pulse" style={{ width: '60%' }} />
-            </div>
-            <div className="flex gap-8 text-sm text-muted mt-4">
-              {[...Array(3)].map((_, i) => <div key={i} className="h-4 w-24 rounded bg-muted animate-pulse" />)}
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <div className="h-6 w-40 rounded bg-muted animate-pulse" />
-            <ul className="space-y-3">
-              {[...Array(3)].map((_, i) => (
-                <li key={i} className="p-4 rounded-xl bg-bg/50 border border-border/30">
-                  <div className="flex items-start gap-4">
-                    <div className="h-5 w-5 rounded bg-muted animate-pulse" />
-                    <div className="flex-1 space-y-2">
-                      <div className="flex items-center gap-3">
-                        <div className="h-6 w-20 rounded bg-muted animate-pulse" />
-                        <div className="h-5 w-16 rounded bg-muted animate-pulse" />
-                      </div>
-                      <div className="h-5 w-3/4 rounded bg-muted animate-pulse" />
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </CardContent>
-      </Card>
-    );
+  let data: TrinityResponse | null = null;
+  if (trinityRes.ok) {
+    data = await trinityRes.json();
   }
 
   if (!data) {
@@ -118,14 +60,10 @@ export default function Trinity() {
   const progress = stats.totalRuns > 0 ? (stats.successCount / stats.totalRuns) * 100 : 0;
   const avgSec = stats.avgDuration / 1000;
 
-  // Format time from date field (already a date string from runs)
-  const formatTime = (dateStr: string) => {
-    // dateStr is like "2026-03-29", we don't have exact time from the runs response; summary may contain hints
-    // For mock compatibility, we'll display the date or just "today"
+  const formatDate = (dateStr: string) => {
     return dateStr;
   };
 
-  // Extract short message from summary (first line or first 80 chars)
   const getShortMsg = (summary: string) => {
     const lines = summary.split('\n').filter(l => l.trim());
     return lines[0]?.substring(0, 80) || summary.substring(0, 80);
