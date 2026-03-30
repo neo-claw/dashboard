@@ -24,13 +24,16 @@ test.describe('Dashboard Visual Verification', () => {
       { name: 'calendar', navText: 'Calendar' },
     ];
 
-    await page.goto('/', { waitUntil: 'networkidle' });
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
 
     for (const tab of tabs) {
       if (tab.name !== 'overview') {
-        await page.click(`button:has-text("${tab.navText}")`);
-        await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(500);
+        // Click the sidebar link by its text
+        await page.click(`a:has-text("${tab.navText}")`);
+        // Wait for the main content to update; using DOM content loaded is sufficient for static pages
+        await page.waitForLoadState('domcontentloaded');
+        // Small settle time
+        await page.waitForTimeout(300);
       }
 
       const screenshotPath = path.join(screenshotsDir, `${tab.name}-full.png`);

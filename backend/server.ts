@@ -30,6 +30,7 @@ import { registerTrinityEndpoint } from './src/endpoints/trinity';
 import { registerKanbanEndpoint } from './src/endpoints/kanban';
 import { registerStatsEndpoint } from './src/endpoints/stats';
 import { registerHealthEndpoint } from './src/endpoints/health';
+import { registerSessionsEndpoint } from './src/endpoints/sessions';
 import { extractReply } from './src/chat/replyExtractor';
 
 dotenv.config(); // Load .env file
@@ -83,6 +84,7 @@ registerTrinityEndpoint(app, WORKSPACE_ROOT);
 registerKanbanEndpoint(app, WORKSPACE_ROOT);
 registerStatsEndpoint(app, WORKSPACE_ROOT);
 registerHealthEndpoint(app, WORKSPACE_ROOT);
+registerSessionsEndpoint(app);
 
 // Gateway WebSocket helper
 const GATEWAY_WS = process.env.GATEWAY_WS || 'ws://localhost:18789';

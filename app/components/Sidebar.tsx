@@ -12,15 +12,18 @@ import {
   Menu,
   X,
   Zap,
+  Activity,
+  MessageSquare,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navItems = [
   { id: '/', label: 'Overview', icon: LayoutDashboard },
+  { id: '/sessions', label: 'Sessions', icon: Activity },
   { id: '/kanban', label: 'Kanban', icon: CheckSquare },
   { id: '/learnings', label: 'Learnings', icon: Brain },
   { id: '/trinity', label: 'Trinity', icon: Code },
-  { id: '/control-center', label: 'Control Center', icon: Code }, // Will use different icon if needed
+  { id: '/control-center', label: 'Control Center', icon: MessageSquare },
   { id: '/calendar', label: 'Calendar', icon: CalendarIcon },
 ];
 

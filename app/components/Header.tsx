@@ -5,6 +5,7 @@ import { Activity } from 'lucide-react';
 
 const titles: Record<string, string> = {
   '/': 'Overview',
+  '/sessions': 'Sessions',
   '/kanban': 'Kanban',
   '/learnings': 'Learnings',
   '/trinity': 'Trinity',
