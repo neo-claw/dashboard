@@ -1,7 +1,7 @@
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Lightbulb, ArrowRight, Sparkles, Zap, BookOpen, ListTodo, StickyNote } from 'lucide-react';
+import { Lightbulb, Sparkles, Zap, BookOpen, ListTodo, StickyNote } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Panel from '@/components/ui/panel';
 
 interface Learning {
   date: string;
@@ -10,36 +10,36 @@ interface Learning {
   source: string;
 }
 
-const categoryConfig: Record<string, { icon: React.ReactNode; gradient: string; label: string }> = {
+const categoryConfig: Record<string, { icon: React.ReactNode; label: string; textClass: string }> = {
   improvement: {
     icon: <Sparkles size={14} />,
-    gradient: 'bg-gradient-to-r from-accent/30 to-emerald-500/30',
     label: 'Improvement',
+    textClass: 'text-emerald-300',
   },
   automation: {
     icon: <Zap size={14} />,
-    gradient: 'bg-gradient-to-r from-blue-500/30 to-cyan-500/30',
     label: 'Automation',
+    textClass: 'text-cyan-300',
   },
   discovery: {
     icon: <Lightbulb size={14} />,
-    gradient: 'bg-gradient-to-r from-purple-500/30 to-pink-500/30',
     label: 'Discovery',
+    textClass: 'text-purple-300',
   },
   general: {
     icon: <BookOpen size={14} />,
-    gradient: 'bg-gradient-to-r from-orange-500/30 to-amber-500/30',
     label: 'General',
+    textClass: 'text-orange-300',
   },
   tasks: {
     icon: <ListTodo size={14} />,
-    gradient: 'bg-gradient-to-r from-indigo-500/30 to-blue-500/30',
     label: 'Task',
+    textClass: 'text-indigo-300',
   },
   notes: {
     icon: <StickyNote size={14} />,
-    gradient: 'bg-gradient-to-r from-pink-500/30 to-rose-500/30',
     label: 'Note',
+    textClass: 'text-rose-300',
   },
 };
 
@@ -59,84 +59,50 @@ export default async function Learnings() {
 
   if (learnings.length === 0) {
     return (
-      <Card className="border border-border/50 bg-surface-card rounded-2xl overflow-hidden">
-        <CardHeader className="pb-6">
-          <CardTitle className="flex items-center gap-3 text-2xl">
-            <div className="p-2.5 rounded-lg bg-accent/10">
-              <Lightbulb className="text-accent" size={24} />
-            </div>
-            Recent Learnings
-          </CardTitle>
-          <p className="text-base text-muted mt-2">
-            Captured insights from brain repo
-          </p>
-        </CardHeader>
-        <CardContent>
-          <div className="text-center py-12 text-muted">
-            <Lightbulb size={48} className="mx-auto mb-4 opacity-30" />
-            <p className="text-lg">No learnings captured yet.</p>
-            <p className="text-sm mt-2">Start adding entries to LEARNINGS.md or memory files.</p>
-          </div>
-        </CardContent>
-      </Card>
+      <Panel>
+        <div className="text-center py-12 text-muted">
+          <Lightbulb size={48} className="mx-auto mb-4 opacity-30" />
+          <p className="text-lg">No learnings captured yet.</p>
+          <p className="text-sm mt-2">Start adding entries to LEARNINGS.md or memory files.</p>
+        </div>
+      </Panel>
     );
   }
 
   return (
-    <Card className="border border-border/50 bg-surface-card rounded-2xl overflow-hidden">
-      <CardHeader className="pb-6">
-        <CardTitle className="flex items-center gap-3 text-2xl">
-          <div className="p-2.5 rounded-lg bg-accent/10">
-            <Lightbulb className="text-accent" size={24} />
-          </div>
-          Recent Learnings
-        </CardTitle>
-        <p className="text-base text-muted mt-2">
-          Captured insights from brain repo
-        </p>
-      </CardHeader>
-      <CardContent>
-        <div className="relative pl-8">
-          {/* Timeline line */}
-          <div className="absolute left-3 top-2 bottom-2 w-0.5 bg-gradient-to-b from-accent/30 via-border to-transparent" />
+    <Panel>
+      <div className="relative pl-8">
+        {/* Timeline line */}
+        <div className="absolute left-3 top-2 bottom-2 w-px bg-border" />
 
-          <div className="space-y-10">
-            {learnings.map((l, i) => {
-              const categoryKey = l.category.toLowerCase().replace(/\s+/g, '_');
-              const config = categoryConfig[categoryKey] || categoryConfig.general;
-              return (
-                <div key={`${l.date}-${i}`} className="relative group">
-                  {/* Timeline dot */}
-                  <div className="absolute -left-[21px] top-2 w-5 h-5 rounded-full bg-accent shadow-glow flex items-center justify-center">
-                    <div className="w-2.5 h-2.5 rounded-full bg-bg" />
-                  </div>
+        <div className="space-y-16">
+          {learnings.map((l, i) => {
+            const categoryKey = l.category.toLowerCase().replace(/\s+/g, '_');
+            const config = categoryConfig[categoryKey] || categoryConfig.general;
+            return (
+              <div key={`${l.date}-${i}`} className="relative">
+                {/* Timeline dot */}
+                <div className="absolute -left-[21px] top-2 w-4 h-4 rounded-full bg-accent" />
 
-                  <div className="bg-bg/50 rounded-2xl p-6 border border-border/30 group-hover:border-accent/30 transition-all">
-                    <div className="flex items-center gap-3 mb-4 flex-wrap">
-                      <Badge variant="outline" className="text-sm bg-surface border-border/50">
-                        {l.date}
-                      </Badge>
-                      <Badge
-                        variant="outline"
-                        className={cn('text-sm border-0 gap-2 px-3 py-1', config.gradient, 'text-fg')}
-                      >
-                        {config.icon}
-                        {config.label}
-                      </Badge>
-                      <Badge variant="secondary" className="text-sm">
-                        {l.source}
-                      </Badge>
-                    </div>
-                    <p className="text-lg text-fg leading-relaxed">
-                      {l.text}
-                    </p>
+                <div className="bg-bg/40 rounded-2xl p-6 border border-border/20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Badge variant="outline" className="text-sm border-border/40 text-muted">
+                      {l.date}
+                    </Badge>
+                    <Badge variant="outline" className={cn('text-sm border-0 px-3 py-1 gap-2', config.textClass, 'bg-white/5')}>
+                      {config.icon}
+                      {config.label}
+                    </Badge>
                   </div>
+                  <p className="text-xl text-fg leading-relaxed">
+                    {l.text}
+                  </p>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </Panel>
   );
 }
