@@ -1,4 +1,3 @@
-import { Badge } from '@/components/ui/badge';
 import {
   CheckCircle2,
   AlertCircle,
@@ -72,29 +71,25 @@ export default async function Overview() {
       label: 'Cron Health',
       value: stats.cronHealth.charAt(0).toUpperCase() + stats.cronHealth.slice(1),
       icon: stats.cronHealth === 'ok' ? CheckCircle2 : AlertCircle,
-      gradient: stats.cronHealth === 'ok' ? 'from-emerald-400 to-green-500' : stats.cronHealth === 'down' ? 'from-red-400 to-rose-500' : 'from-yellow-400 to-amber-500',
-      trend: stats.cronHealth === 'ok' ? 'up' : 'neutral',
+      status: stats.cronHealth,
     },
     {
       label: 'Last Brain Commit',
       value: stats.lastBrainCommit ? new Date(stats.lastBrainCommit).toLocaleDateString() : 'Never',
       icon: GitCommit,
-      gradient: 'from-blue-400 to-cyan-500',
-      trend: 'neutral',
+      status: 'neutral',
     },
     {
       label: 'Trinity Cycles',
       value: `${stats.trinityCyclesToday} today`,
       icon: Cpu,
-      gradient: 'from-purple-400 to-pink-500',
-      trend: 'neutral',
+      status: 'neutral',
     },
     {
       label: 'GWS Scanned',
       value: `${stats.gwsScansToday} notes`,
       icon: Scan,
-      gradient: stats.gwsScansToday > 0 ? 'from-orange-400 to-amber-500' : 'from-slate-400 to-slate-500',
-      trend: stats.gwsScansToday > 0 ? 'new' : 'neutral',
+      status: stats.gwsScansToday > 0 ? 'active' : 'neutral',
     },
   ] : [];
 
@@ -106,36 +101,26 @@ export default async function Overview() {
 
   return (
     <div className="space-y-12">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {dynamicStats.map((stat) => (
-          <Panel
-            key={stat.label}
-            className="group relative overflow-hidden"
-          >
-            <div className={cn(
-              'absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity',
-              stat.gradient
-            )} />
-            <div className="relative p-6">
-              <div className="flex items-center justify-between mb-4">
-                <div className="p-2.5 rounded-lg bg-accent/10">
-                  <stat.icon size={26} className="text-accent" />
-                </div>
-                <Badge
-                  variant={stat.trend === 'up' ? 'default' : 'outline'}
-                  className="text-sm"
-                >
-                  {stat.trend === 'up' ? '↑' : stat.trend === 'new' ? '•' : '−'}
-                </Badge>
+      <Panel>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-6">
+          {dynamicStats.map((stat) => (
+            <div key={stat.label} className="space-y-2">
+              <div className="flex items-center gap-2 text-muted">
+                <stat.icon size={18} className={cn(
+                  'text-accent',
+                  stat.status === 'ok' && 'text-emerald-400',
+                  stat.status === 'down' && 'text-red-400',
+                  stat.status === 'active' && 'text-orange-400'
+                )} />
+                <span className="text-sm uppercase tracking-wider">{stat.label}</span>
               </div>
-              <div className="text-4xl font-bold text-fg tracking-tight">{stat.value}</div>
-              <p className="text-sm uppercase tracking-wider text-muted mt-2.5">
-                {stat.label}
-              </p>
+              <div className="text-display font-bold text-fg tracking-tight">
+                {stat.value}
+              </div>
             </div>
-          </Panel>
-        ))}
-      </div>
+          ))}
+        </div>
+      </Panel>
 
       <div className="grid gap-6 md:grid-cols-2">
         <Panel title="System Status">
