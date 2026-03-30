@@ -8,6 +8,20 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)', 'sans-serif'],
+        display: ['var(--font-space)', 'sans-serif'],
+        mono: ['var(--font-mono)', 'monospace'],
+      },
+      spacing: {
+        '18': '4.5rem',
+        '22': '5.5rem',
+        '26': '6.5rem',
+      },
+      fontSize: {
+        'display': ['2.5rem', { lineHeight: '1.1', fontWeight: '600' }],
+        'hero': ['3.5rem', { lineHeight: '1.1', fontWeight: '700' }],
+      },
       colors: {
         accent: {
           DEFAULT: '#00ff9d',

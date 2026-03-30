@@ -3,6 +3,21 @@ import './globals.css';
 import Sidebar from '@/app/components/Sidebar';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
+import { Space_Grotesk, Inter } from 'next/font/google';
+
+const spaceGrotesk = Space_Grotesk({
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-space',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const inter = Inter({
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-inter',
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Neo & Trinity Dashboard',
@@ -15,8 +30,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-bg text-fg antialiased min-h-screen">
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+      <body className="bg-bg text-fg antialiased min-h-screen font-sans">
         <div className="min-h-screen flex relative">
           {/* Animated mesh gradient background */}
           <div className="fixed inset-0 z-0 opacity-20 pointer-events-none">
