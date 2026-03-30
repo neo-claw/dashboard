@@ -24,7 +24,16 @@ interface Stats {
 }
 
 export function registerTrinityEndpoint(app: any, workspaceRoot: string) {
+  const cache = new Map<string, { data: any; timestamp: number }>();
+  const CACHE_TTL = 10 * 60 * 1000; // 10 minutes
+
   app.get('/api/v1/trinity/runs', async (req: Request, res: Response) => {
+    const cacheKey = '/api/v1/trinity/runs';
+    const cached = cache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+      return res.json(cached.data);
+    }
+
     try {
       // Find Trinity cron job ID
       const { stdout: cronListOut } = await execAsync('openclaw cron list --json');
@@ -40,44 +49,32 @@ export function registerTrinityEndpoint(app: any, workspaceRoot: string) {
       const runsData = JSON.parse(runsOut);
       const runs = runsData.entries || [];
 
-      // Enrich runs with memory entries from same date
-      const enrichedRuns: TrinityRun[] = [];
-      let totalMemoryEntries = 0;
-
+      // Collect unique dates to batch file reads
+      const uniqueDates = new Set<string>();
       for (const run of runs) {
         const runDate = new Date(Number(run.runAtMs)).toISOString().split('T')[0];
-        const memoryPath = join(workspaceRoot, 'memory', `${runDate}.md`);
-        let memoryEntries: Array<{ text: string; category: string }> = [];
-
-        try {
-          const content = await readFile(memoryPath, 'utf-8');
-          const allEntries = parseMemoryDay(content);
-          memoryEntries = allEntries.filter(entry => 
-            entry.text.toLowerCase().includes('trinity')
-          );
-          totalMemoryEntries += memoryEntries.length;
-        } catch (err: any) {
-          if (err.code !== 'ENOENT') {
-            console.error(`Error reading memory file ${memoryPath}:`, err.message);
-          }
-        }
-
-        enrichedRuns.push({
-          date: runDate,
-          runId: run.sessionId,
-          status: run.status,
-          durationMs: run.durationMs,
-          summary: run.summary || '',
-          memoryEntries,
-        });
+        uniqueDates.add(runDate);
       }
 
+      // For each unique date, read memory file once and count trinity entries
+      const totalMemoryEntries = await countTrinityMemoryEntries(workspaceRoot, uniqueDates);
+
+      // Build simplified runs without memoryEntries to reduce payload
+      const simplifiedRuns: TrinityRun[] = runs.map(run => ({
+        date: new Date(Number(run.runAtMs)).toISOString().split('T')[0],
+        runId: run.sessionId,
+        status: run.status,
+        durationMs: run.durationMs,
+        summary: run.summary || '',
+        memoryEntries: [], // Not needed in UI; keep empty for backward compatibility
+      }));
+
       // Compute stats
-      const totalRuns = enrichedRuns.length;
-      const successCount = enrichedRuns.filter(r => r.status === 'ok').length;
-      const failureCount = enrichedRuns.filter(r => r.status === 'error').length;
+      const totalRuns = simplifiedRuns.length;
+      const successCount = simplifiedRuns.filter(r => r.status === 'ok').length;
+      const failureCount = totalRuns - successCount;
       const avgDuration = totalRuns > 0
-        ? Math.round(enrichedRuns.reduce((sum, r) => sum + r.durationMs, 0) / totalRuns)
+        ? Math.round(simplifiedRuns.reduce((sum, r) => sum + r.durationMs, 0) / totalRuns)
         : 0;
 
       const stats: Stats = {
@@ -88,12 +85,40 @@ export function registerTrinityEndpoint(app: any, workspaceRoot: string) {
         memoryEntriesTotal: totalMemoryEntries,
       };
 
-      res.json({ runs: enrichedRuns, stats });
+      const responseData = { runs: simplifiedRuns, stats };
+      cache.set(cacheKey, { data: responseData, timestamp: Date.now() });
+      res.json(responseData);
     } catch (err: any) {
       console.error('Error in /api/v1/trinity/runs:', err);
       res.status(500).json({ error: err.message });
     }
   });
+}
+
+async function countTrinityMemoryEntries(
+  workspaceRoot: string,
+  dates: Set<string>
+): Promise<number> {
+  let total = 0;
+
+  for (const date of dates) {
+    const memoryPath = join(workspaceRoot, 'memory', `${date}.md`);
+    try {
+      const content = await readFile(memoryPath, 'utf-8');
+      const allEntries = parseMemoryDay(content);
+      const trinityEntries = allEntries.filter(entry =>
+        entry.text.toLowerCase().includes('trinity')
+      );
+      total += trinityEntries.length;
+    } catch (err: any) {
+      if (err.code !== 'ENOENT') {
+        console.error(`Error reading memory file ${memoryPath}:`, err.message);
+      }
+      // If file doesn't exist, count stays unchanged
+    }
+  }
+
+  return total;
 }
 
 function parseMemoryDay(content: string): Array<{ text: string; category: string }> {

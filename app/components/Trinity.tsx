@@ -9,7 +9,7 @@ interface TrinityRun {
   status: string;
   durationMs: number;
   summary: string;
-  memoryEntries: Array<{ text: string; category: string }>;
+  memoryEntries?: Array<{ text: string; category: string }>; // Optional, not used in UI
 }
 
 interface TrinityResponse {
