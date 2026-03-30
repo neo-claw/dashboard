@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Activity, Clock, Cpu, Zap, Terminal, MoreVertical } from 'lucide-react';
+import { Activity, Clock, Cpu, Terminal } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import Panel from '@/components/ui/panel';
 
 interface Session {
   key: string;
@@ -124,23 +124,21 @@ export default function SessionsDashboard() {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Sessions List */}
-          <Card className="border border-border/50 bg-surface-card rounded-2xl overflow-hidden">
-            <CardHeader className="pb-4">
-              <CardTitle className="flex items-center gap-2.5 text-xl">
-                <Cpu className="text-accent" size={22} />
-                Sessions
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2 max-h-[600px] overflow-y-auto">
+          <Panel>
+            <div className="flex items-center gap-3 mb-4">
+              <Cpu className="text-accent" size={22} />
+              <h4 className="text-lg font-semibold text-fg">Sessions</h4>
+            </div>
+            <div className="space-y-2 max-h-[600px] overflow-y-auto">
               {sessions.map(s => (
                 <div
                   key={s.key}
                   onClick={() => setSelectedSession(selectedSession?.key === s.key ? null : s)}
                   className={cn(
-                    'p-4 rounded-xl border transition-all cursor-pointer group',
+                    'p-4 border-l-2 transition-all cursor-pointer',
                     selectedSession?.key === s.key
-                      ? 'border-accent/50 bg-accent/5'
-                      : 'border-border/50 bg-bg hover:border-accent/30'
+                      ? 'border-accent bg-accent/5'
+                      : 'border-transparent hover:border-accent/30 hover:bg-bg'
                   )}
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -165,27 +163,15 @@ export default function SessionsDashboard() {
                         )}
                       </div>
                     </div>
-                    <button
-                      className="p-1.5 rounded hover:bg-border/50 opacity-0 group-hover:opacity-100 transition-opacity"
-                      title="More"
-                    >
-                      <MoreVertical size={16} className="text-muted" />
-                    </button>
                   </div>
                 </div>
               ))}
-            </CardContent>
-          </Card>
+            </div>
+          </Panel>
 
           {/* Trace Panel */}
-          <Card className="border border-border/50 bg-surface-card rounded-2xl overflow-hidden flex flex-col">
-            <CardHeader className="pb-4">
-              <CardTitle className="flex items-center gap-2.5 text-xl">
-                <Terminal className="text-accent" size={22} />
-                {selectedSession ? `Trace: ${selectedSession.key.split(':').pop()}` : 'Trace'}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex-1 overflow-y-auto max-h-[600px] space-y-2">
+          <Panel title="Trace">
+            <div className="flex-1 overflow-y-auto max-h-[600px] space-y-2">
               {!selectedSession ? (
                 <div className="text-center py-12 text-muted text-sm">
                   Select a session to view its trace
@@ -194,7 +180,7 @@ export default function SessionsDashboard() {
                 <div className="text-center py-12 text-muted text-sm">No trace events yet</div>
               ) : (
                 trace.map((ev, i) => (
-                  <div key={i} className="text-xs p-3 rounded-lg bg-bg border border-border/50 font-mono">
+                  <div key={i} className="text-xs p-3 bg-bg border border-border/30 font-mono">
                     <div className="flex items-center gap-2 mb-1.5">
                       <span className={cn(
                         'px-1.5 py-0.5 rounded text-[10px] uppercase font-mono',
@@ -218,8 +204,8 @@ export default function SessionsDashboard() {
                   </div>
                 ))
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </Panel>
         </div>
       )}
     </div>
