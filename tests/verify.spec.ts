@@ -3,11 +3,13 @@ import * as path from 'path';
 import { promises as fs } from 'fs';
 
 const screenshotsDir = path.join(process.cwd(), 'playwright-screenshots');
+const actualDir = path.join(screenshotsDir, 'actual');
 
 test.describe('Dashboard Visual Verification', () => {
   test.beforeAll(async () => {
-    // Ensure screenshots directory exists
+    // Ensure screenshots and actual directories exist
     await fs.mkdir(screenshotsDir, { recursive: true });
+    await fs.mkdir(actualDir, { recursive: true });
   });
 
   test('capture all tabs with full page screenshots', async () => {
@@ -18,6 +20,7 @@ test.describe('Dashboard Visual Verification', () => {
 
     const tabs = [
       { name: 'overview', navText: 'Overview' },
+      { name: 'sessions', navText: 'Sessions' },
       { name: 'kanban', navText: 'Kanban' },
       { name: 'learnings', navText: 'Learnings' },
       { name: 'trinity', navText: 'Trinity' },
@@ -36,7 +39,7 @@ test.describe('Dashboard Visual Verification', () => {
         await page.waitForTimeout(300);
       }
 
-      const screenshotPath = path.join(screenshotsDir, `${tab.name}-full.png`);
+      const screenshotPath = path.join(actualDir, `${tab.name}-full.png`);
       await page.screenshot({ path: screenshotPath, fullPage: true });
       console.log(`📸 Saved ${screenshotPath}`);
     }
