@@ -43,7 +43,12 @@ export default function SessionsDashboard() {
     let mounted = true;
     const fetchSessions = async () => {
       try {
-        const res = await fetch('/api/v1/sessions/active');
+        const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+        const apiKey = process.env.NEXT_PUBLIC_BACKEND_API_KEY;
+        if (!baseUrl || !apiKey) throw new Error('Backend URL or API key not configured');
+        const res = await fetch(`${baseUrl}/api/v1/sessions/active`, {
+          headers: { Authorization: `Bearer ${apiKey}` },
+        });
         const data = await res.json();
         if (mounted) {
           setSessions(data.sessions || []);
@@ -69,7 +74,12 @@ export default function SessionsDashboard() {
     let mounted = true;
     const fetchTrace = async () => {
       try {
-        const res = await fetch(`/api/v1/trace?sessionKey=${encodeURIComponent(selectedSession.key)}&limit=50`);
+        const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+        const apiKey = process.env.NEXT_PUBLIC_BACKEND_API_KEY;
+        if (!baseUrl || !apiKey) throw new Error('Backend URL or API key not configured');
+        const res = await fetch(`${baseUrl}/api/v1/trace?sessionKey=${encodeURIComponent(selectedSession.key)}&limit=50`, {
+          headers: { Authorization: `Bearer ${apiKey}` },
+        });
         const data = await res.json();
         if (mounted) setTrace(Array.isArray(data) ? data : []);
       } catch (err) {
