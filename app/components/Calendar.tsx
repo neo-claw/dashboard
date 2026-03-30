@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import Panel from '@/components/ui/panel';
-import { Calendar as CalendarIcon, MapPin, Clock } from 'lucide-react';
+import { Calendar as CalendarIcon, MapPin, Clock, FileText, Video, Link } from 'lucide-react';
 
 interface CalendarEvent {
   id: string;
@@ -8,6 +8,13 @@ interface CalendarEvent {
   start: { dateTime: string; timeZone?: string };
   end: { dateTime: string; timeZone?: string };
   location?: string;
+  meetNotes?: Array<{
+    id: string;
+    name: string;
+    mimeType: string;
+    createdTime: string;
+    webViewLink?: string;
+  }>;
 }
 
 function getEventType(ev: CalendarEvent): string {
@@ -17,29 +24,35 @@ function getEventType(ev: CalendarEvent): string {
   return 'meeting';
 }
 
-function formatDate(iso: string): string {
+function formatDate(iso: string, timeZone?: string): string {
   const d = new Date(iso);
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  const options: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric' };
+  if (timeZone) options.timeZone = timeZone;
+  return d.toLocaleDateString('en-US', options);
 }
 
-function formatTime(iso: string): string {
+function formatTime(iso: string, timeZone?: string): string {
   const d = new Date(iso);
-  return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+  const options: Intl.DateTimeFormatOptions = { hour: 'numeric', minute: '2-digit' };
+  if (timeZone) options.timeZone = timeZone;
+  return d.toLocaleTimeString('en-US', options);
 }
 
 export default async function Calendar() {
-  const baseUrl = process.env.BACKEND_URL || 'http://localhost:3001';
-  const apiKey = process.env.BACKEND_API_KEY;
-
-  const calendarRes = await fetch(`${baseUrl}/api/v1/calendar`, {
-    headers: { Authorization: `Bearer ${apiKey}` },
-    next: { revalidate: 300 },
-  });
-
   let events: CalendarEvent[] = [];
-  if (calendarRes.ok) {
-    const data = await calendarRes.json();
-    events = data.events;
+  try {
+    const calendarRes = await fetch('/api/calendar', {
+      next: { revalidate: 300 },
+    });
+
+    if (calendarRes.ok) {
+      const data = await calendarRes.json();
+      events = data.events;
+    } else {
+      console.error('Failed to load calendar events:', calendarRes.status, calendarRes.statusText);
+    }
+  } catch (err) {
+    console.error('Error fetching calendar:', err);
   }
 
   const today = new Date().toISOString().split('T')[0];
@@ -80,14 +93,14 @@ export default async function Calendar() {
                     <div className="flex items-start justify-between gap-4 mb-3">
                       <div className="flex items-center gap-3">
                         <span className="px-3 py-1 rounded-full text-sm font-mono bg-accent/10 text-accent border border-accent/30">
-                          {formatDate(ev.start.dateTime)}
+                          {formatDate(ev.start.dateTime, ev.start.timeZone)}
                         </span>
                         <span className={cn('px-3 py-1 rounded-full text-sm uppercase', config.class)}>
                           {config.label}
                         </span>
                       </div>
                       <span className="text-sm text-muted flex items-center gap-2 shrink-0">
-                        <Clock size={16} /> {formatTime(ev.start.dateTime)}
+                        <Clock size={16} /> {formatTime(ev.start.dateTime, ev.start.timeZone)}
                       </span>
                     </div>
                     <p className="text-xl text-fg font-medium">{ev.summary}</p>
@@ -95,6 +108,43 @@ export default async function Calendar() {
                       <div className="mt-3 flex items-center gap-2.5 text-base text-muted">
                         <MapPin size={18} />
                         <span>{ev.location}</span>
+                      </div>
+                    )}
+                    
+                    {/* Meet Notes Section */}
+                    {ev.meetNotes && ev.meetNotes.length > 0 && (
+                      <div className="mt-4 pt-4 border-t border-border/30">
+                        <p className="text-sm font-semibold text-accent mb-2 flex items-center gap-2">
+                          <FileText size={16} data-testid="FileTextIcon" />
+                          Meeting Notes & Recordings
+                        </p>
+                        <div className="space-y-2">
+                          {ev.meetNotes.map(note => {
+                            const isVideo = note.mimeType.includes('video');
+                            const Icon = isVideo ? Video : FileText;
+                            return (
+                              <a
+                                key={note.id}
+                                href={note.webViewLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2.5 p-2.5 rounded-lg bg-bg/60 border border-border/30 hover:border-accent/50 hover:bg-bg transition-all group"
+                                data-testid={isVideo ? "video-note-link" : "doc-note-link"}
+                              >
+                                <Icon size={18} className="text-accent shrink-0" data-testid={isVideo ? "Video" : "FileText"} />
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-sm font-medium text-fg truncate group-hover:text-accent transition-colors">
+                                    {note.name}
+                                  </p>
+                                  <p className="text-xs text-muted truncate">
+                                    {new Date(note.createdTime).toLocaleDateString()}
+                                  </p>
+                                </div>
+                                <Link size={14} className="text-muted group-hover:text-accent transition-colors" />
+                              </a>
+                            );
+                          })}
+                        </div>
                       </div>
                     )}
                   </div>

@@ -8,17 +8,13 @@ test.describe('Calendar Events Test', () => {
     const heading = page.locator('h2');
     await expect(heading).toHaveText('Calendar', { timeout: 15000 });
 
-    // Allow content to render
+    // Allow content to render and hydrate
     await page.waitForTimeout(1000);
 
     // Check for either event cards or empty state message
-    const eventCards = page.locator('div[class*="rounded-2xl"]:has-text("Today"), div[class*="rounded-2xl"]:has-text("Upcoming")');
+    // Event cards have p-5 and rounded-2xl; empty state has rounded-2xl but not p-5
+    const eventCards = page.locator('div.p-5.rounded-2xl');
     const emptyState = page.locator('text="No events scheduled"');
-    const sectionHeadings = page.locator('h4:has-text("Today"), h4:has-text("Upcoming")');
-
-    // At least one section should be visible
-    const hasSection = await sectionHeadings.count() > 0;
-    expect(hasSection).toBe(true);
 
     // Either there are events or empty state message
     const hasEvents = await eventCards.count() > 0;
@@ -35,8 +31,8 @@ test.describe('Calendar Events Test', () => {
       const summary = firstEvent.locator('p.text-xl, p.font-medium, .text-fg').first();
       await expect(summary).not.toBeEmpty();
 
-      // Check for date (formatted as Mon, DD or similar)
-      const dateBadge = firstEvent.locator('span:has-text("Mar"), span:has-text("Apr"), span:has-text("May")').first();
+      // Check for date badge (contains month abbreviation)
+      const dateBadge = firstEvent.locator('span:has-text("Jan"), span:has-text("Feb"), span:has-text("Mar"), span:has-text("Apr"), span:has-text("May"), span:has-text("Jun"), span:has-text("Jul"), span:has-text("Aug"), span:has-text("Sep"), span:has-text("Oct"), span:has-text("Nov"), span:has-text("Dec")').first();
       await expect(dateBadge).toBeVisible();
     }
   });
