@@ -68,64 +68,68 @@ The task CLI provides convenient command-line access:
 ### Create a Task
 
 ```bash
-npm run task create --title "Implement feature X" --status todo --priority high --tags "backend,api" --project my-project
+# Using npm (note the `--` separator)
+npm run task -- create --title "Implement feature X" --status todo --priority high --tags "backend,api" --project my-project
+
+# Or run the script directly
+node scripts/task.cjs create --title "Implement feature X" --status todo --priority high --tags "backend,api" --project my-project
 ```
 
 ### List Tasks
 
 ```bash
 # List all tasks
-npm run task list
+npm run task -- list
 
 # Filter by status
-npm run task list --status todo
+npm run task -- list --status todo
 
 # Filter by project
-npm run task list --project dashboard
+npm run task -- list --project dashboard
 
 # Filter by tag
-npm run task list --tag backend
+npm run task -- list --tag backend
 ```
 
 ### Show Task Details
 
 ```bash
-npm run task show 2024-03-30T22-30-fix-bug-in-api
+npm run task -- show 2024-03-30T22-30-fix-bug-in-api
 ```
 
 ### Update a Task
 
 ```bash
 # Change status
-npm run task update 2024-03-30T22-30-fix-bug-in-api --status inprogress
+npm run task -- update 2024-03-30T22-30-fix-bug-in-api --status inprogress
 
 # Change priority
-npm run task update 2024-03-30T22-30-fix-bug-in-api --priority high
+npm run task -- update 2024-03-30T22-30-fix-bug-in-api --priority high
 
 # Add tags
-npm run task update 2024-03-30T22-30-fix-bug-in-api --tags "backend,api,critical"
+npm run task -- update 2024-03-30T22-30-fix-bug-in-api --tags "backend,api,critical"
 
 # Change project
-npm run task update 2024-03-30T22-30-fix-bug-in-api --project dashboard
+npm run task -- update 2024-03-30T22-30-fix-bug-in-api --project dashboard
 
 # Update multiple fields
-npm run task update 2024-03-30T22-30-fix-bug-in-api --status done --priority low
+npm run task -- update 2024-03-30T22-30-fix-bug-in-api --status done --priority low
 ```
 
 ### Delete a Task
 
 ```bash
-npm run task delete 2024-03-30T22-30-fix-bug-in-api
+npm run task -- delete 2024-03-30T22-30-fix-bug-in-api
 ```
 
 ### Validate Task Format
 
 ```bash
 # Validate all tasks in tasks/
-npm run task validate
+npm run task -- validate
 
 # Validate a specific file
-npm run task validate tasks/2024-03-30T22-30-fix-bug-in-api.md
+npm run task -- validate tasks/2024-03-30T22-30-fix-bug-in-api.md
 ```
 
 ## Git Integration
@@ -198,12 +202,12 @@ Access the kanban board at `/kanban` in the Next.js app. Features:
 
 ## CI/CD Validation
 
-Task files are automatically validated on commit via `husky` + `lint-staged`. The pre-commit hook runs `npm run task validate` on any `tasks/*.md` files being committed.
+Task files are automatically validated on commit via `husky` + `lint-staged`. The pre-commit hook runs `npm run task -- validate` on any `tasks/*.md` files being committed.
 
 To manually validate in CI:
 
 ```bash
-npm run task validate
+npm run task -- validate
 ```
 
 The command exits with code 0 if all tasks are valid, or code 1 if there are errors.
@@ -223,7 +227,17 @@ The command exits with code 0 if all tasks are valid, or code 1 if there are err
 ### Creating a task from the command line
 
 ```bash
-npm run task create \
+# Using npm (note the `--` separator)
+npm run task -- create \
+  --title "Add authentication to dashboard" \
+  --status todo \
+  --priority high \
+  --tags "frontend,auth,security" \
+  --project dashboard \
+  --description "Implement OAuth2 flow and protect admin routes"
+
+# Or run the script directly
+node scripts/task.cjs create \
   --title "Add authentication to dashboard" \
   --status todo \
   --priority high \
@@ -236,21 +250,21 @@ npm run task create \
 
 ```bash
 # Find all todo tasks in the dashboard project and move them to inprogress
-for id in $(npm run task list --project dashboard --status todo | grep -oE '[0-9T-]+' | head -n 10); do
-  npm run task update $id --status inprogress
+for id in $(npm run task -- list --project dashboard --status todo | grep -oE '[0-9T-]+' | head -n 10); do
+  npm run task -- update $id --status inprogress
 done
 ```
 
 ### Exporting tasks to CSV
 
 ```bash
-npm run task list --project dashboard | awk -F'|' '{print $1","$2","$3}' > tasks-dashboard.csv
+npm run task -- list --project dashboard | awk -F'|' '{print $1","$2","$3}' > tasks-dashboard.csv
 ```
 
 ## Troubleshooting
 
 ### "Error: Task not found"
-Verify the task ID is correct. Use `npm run task list` to see all task IDs.
+Verify the task ID is correct. Use `npm run task -- list` to see all task IDs.
 
 ### "Git commit failed"
 Git may not be configured in this environment. The task operation will still create the file but won't commit. Ensure you're in a git repository.
@@ -261,7 +275,7 @@ Common issues:
 - Invalid enum values (use `todo`, `inprogress`, `done`; `low`, `medium`, `high`)
 - Malformed YAML frontmatter
 
-Use `npm run task validate` to check all tasks.
+Use `npm run task -- validate` to check all tasks.
 
 ### Task not appearing in Kanban
 The kanban API caches for up to 5 minutes. Use `{ next: { revalidate: 0 } }` in fetch or restart the dev server.
@@ -270,7 +284,7 @@ The kanban API caches for up to 5 minutes. Use `{ next: { revalidate: 0 } }` in 
 
 The task system is designed to be extensible:
 
-- Add new CLI commands in `scripts/task.js`
+- Add new CLI commands in `scripts/task.cjs`
 - Extend the API in `backend/src/endpoints/kanban.ts`
 - Customize the UI in `app/components/Kanban.tsx`
 - Add automation (e.g., auto-assign based on tags) via GitHub Actions
