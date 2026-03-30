@@ -11,13 +11,15 @@
     "test": "playwright test",
     "verify": "playwright test tests/verify.spec.ts",
     "prepare": "husky install",
-    "postinstall": "husky install || true"
+    "postinstall": "husky install || true",
+    "task": "node scripts/task.cjs"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.1.13",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "js-yaml": "^4.1.1",
     "lucide-react": "^0.378.0",
     "next": "^16.2.0",
     "react": "^18.3.1",
@@ -44,6 +46,9 @@
   "lint-staged": {
     "*.{ts,tsx}": [
       "next lint"
+    ],
+    "tasks/*.md": [
+      "npm run task -- validate"
     ]
   }
 }
