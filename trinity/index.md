@@ -1,1 +1,1 @@
-- 2026-03-30: Deployed LobsterBoard (Utility 10/10) in experiments; running on :8080; ready to enhance dashboard [[2026-03-30](2026-03-30.md)].
+- 2026-03-30: Built Pheromone Memory prototype (Utility 8.75) — distributed decaying context for Neo [[2026-03-30](2026-03-30.md)].
