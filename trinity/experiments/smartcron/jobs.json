@@ -1,0 +1,25 @@
+{
+  "jobs": [
+    {
+      "id": "daily_summary",
+      "schedule": "0 6 * * *",
+      "agent_message": "Generate overnight digest: summarize memory, calendar, and pending tasks.",
+      "context_memory_lines": 20,
+      "concurrency_lock": "daily_summary"
+    },
+    {
+      "id": "health_ping",
+      "schedule": "*/30 * * * *",
+      "health_check_url": "http://localhost:8080/health",
+      "agent_message": "System health check: what needs attention?",
+      "requires_network": false
+    },
+    {
+      "id": "backup_notes",
+      "schedule": "0 2 * * *",
+      "command": "cp -r ~/.openclaw/workspace/memory /backup/memory_$(date +%Y%m%d)",
+      "requires_network": false,
+      "concurrency_lock": "backup"
+    }
+  ]
+}
