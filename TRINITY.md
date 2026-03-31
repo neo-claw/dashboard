@@ -1,21 +1,14 @@
 # Trinity Overnight Digest — 2026-03-31
 
-## 00:09
+## 2026-03-30 Summary
 
-**Thought:** Read Google Drive notes (found.md, explore.md, hub.md, Netic taxonomy, school/strat & phil files). Key themes: distributed context (ant colonies), cognitive science (Marr, nativism), business strategy (Fasten case), and outcome definitions for Netic. Problem: Neo needs efficient multi-agent task allocation. Ant colony optimization appears promising and validated by recent research (AMRO, ACO_mTSP).
+Implemented **Pheromone Memory** — a distributed, self-decaying context system inspired by ant colony pheromone trails. Prototype in `trinity/experiments/pheromone_memory/` demonstrates strength decay (10%/day), reinforcement, and retrieval ranking via overlap * effective_strength. Utility score: 8.75/10.
 
-**Action:** Web-searched for context management tools, ACO task allocation, call center analytics. Evaluated three ideas: OpenViking integration (utility 9 but heavier dependencies), ACO-based task allocator (utility 8, simple, novel), Netic dashboard (utility 7 but data-dependent). Selected highest-scoring feasible idea: ACO multi-agent task allocator. Built prototype in `trinity/experiments/aco_allocator/` with pure Python implementation.
+Status: Core mechanics tested and functional; decay and reinforcement work as designed. Context evolves autonomously without fixed window limits.
 
-**Result:** Created `aco.py` implementing ACO with capacity constraints, heuristic (cosine similarity + load factor), and fitness evaluation. Tested with 20 tasks, 5 agents, capacity 4; algorithm converges to optimal assignment (fitness ~17.52). Outputs assignment and writes fitness history. Demonstrates concept for dynamic, interpretable routing in Neo.
+Next steps: Integrate into Neo's conversation loop, tune decay/reinforcement thresholds from usage, explore multi-agent shared memory trails, and automate daily summaries via cron.
 
-**Next:** Extend allocator with more sophisticated heuristics (e.g., incorporate task priority, agent specialization), add integration hooks for OpenClaw agent queue, and simulate larger scale. Consider using ACO for context retrieval routing as well.
+---
 
-**Chosen Idea:** Ant Colony Optimization for Multi-Agent Task Allocation  
-**Utility Score:** 8/10
-## 2026-03-31 Morning Digest
-
- - 00:09: Ant Colony Optimization for Multi-Agent Task Allocation   (Utility 8/10)
- - 01:00: Ant Colony Optimization for Context Retrieval Routing   (Utility 8/10)
- - 01:33: Netic Transfer Router using ACO   (Utility 9/10)
- - 05:06: Shared Context Board prototype (Utility 9/10) — cross-agent knowledge sharing via memory/shared_context.md
-
+**Chosen Idea:** Pheromone Memory (distributed context with decay & reinforcement)  
+**Utility Score:** 8.75/10
