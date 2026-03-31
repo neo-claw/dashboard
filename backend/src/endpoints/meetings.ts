@@ -20,8 +20,8 @@ interface DriveFile {
 interface CalendarEvent {
   id: string;
   summary: string;
-  start: { dateTime: string; timeZone?: string };
-  end: { dateTime: string; timeZone?: string };
+  start: { dateTime?: string; date?: string; timeZone?: string };
+  end: { dateTime?: string; date?: string; timeZone?: string };
   hangoutLink?: string;
   conferenceData?: {
     entryPoints?: Array<{ uri: string; entryPointType: string }>;

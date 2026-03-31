@@ -9,6 +9,7 @@ import { promisify } from 'util';
 import dotenv from 'dotenv';
 import { WebSocket } from 'ws';
 import os from 'os';
+import { activityBroadcaster } from './activity-broadcaster';
 
 dotenv.config();
 
@@ -72,6 +73,8 @@ import { registerStatsEndpoint } from './endpoints/stats';
 import { registerHealthEndpoint } from './endpoints/health';
 import { registerSessionsEndpoint } from './endpoints/sessions';
 import { registerCalendarEndpoint } from './endpoints/calendar';
+import { registerSubagentsEndpoint } from './endpoints/subagents';
+import { registerCronEndpoint } from './endpoints/cron';
 // import { extractReply } from './chat/replyExtractor'; // not used yet
 
 registerLearningsEndpoint(app, WORKSPACE_ROOT);
@@ -81,6 +84,48 @@ registerStatsEndpoint(app, WORKSPACE_ROOT);
 registerHealthEndpoint(app, WORKSPACE_ROOT);
 registerSessionsEndpoint(app);
 registerCalendarEndpoint(app);
+registerSubagentsEndpoint(app);
+registerCronEndpoint(app, WORKSPACE_ROOT);
+
+// Activity Stream endpoints
+app.get('/api/v1/activity/events', authenticate, (req: any, res: any) => {
+  const { limit, since, type, severity } = req.query;
+  let events = activityBroadcaster.getRecentEvents(1000);
+  if (type) {
+    const t = type as string;
+    events = events.filter(e => e.type === t);
+  }
+  if (severity) {
+    const s = severity as string;
+    events = events.filter(e => e.severity === s);
+  }
+  if (since) {
+    const sinceDate = new Date(since as string);
+    events = events.filter(e => e.timestamp >= sinceDate);
+  }
+  if (limit) {
+    const l = Math.min(Number(limit), 500);
+    events = events.slice(-l);
+  }
+  res.json(events.reverse());
+});
+
+app.post('/api/v1/activity/read', authenticate, (req: any, res: any) => {
+  const { eventIds } = req.body;
+  if (Array.isArray(eventIds)) {
+    activityBroadcaster.markAsRead(eventIds);
+  }
+  res.json({ success: true });
+});
+
+app.post('/api/v1/activity/clear-read', authenticate, (req: any, res: any) => {
+  activityBroadcaster.clearRead();
+  res.json({ success: true });
+});
+
+app.get('/api/v1/activity/unread-count', authenticate, (req: any, res: any) => {
+  res.json({ count: activityBroadcaster.getUnreadCount() });
+});
 
 // Chat endpoint
 app.post('/api/v1/chat', authenticate, async (req, res) => {
@@ -117,7 +162,7 @@ app.get('/api/v1/trace', authenticate, async (req, res) => {
   }
 });
 
-app.listen(Number(PORT), '0.0.0.0', () => {
+const server = app.listen(Number(PORT), '0.0.0.0', () => {
   console.log(`[backend] Dashboard API listening on port ${PORT}`);
   // Warm up caches after startup to avoid first-request latency
   setTimeout(async () => {
@@ -127,9 +172,15 @@ app.listen(Number(PORT), '0.0.0.0', () => {
       await (globalThis as any).fetch(`${BACKEND_URL}/api/v1/stats/overview`, { headers: { Authorization: `Bearer ${key}` } }).catch(() => {});
       await (globalThis as any).fetch(`${BACKEND_URL}/api/v1/system/health`, { headers: { Authorization: `Bearer ${key}` } }).catch(() => {});
       await (globalThis as any).fetch(`${BACKEND_URL}/api/v1/learnings`, { headers: { Authorization: `Bearer ${key}` } }).catch(() => {});
+      await (globalThis as any).fetch(`${BACKEND_URL}/api/v1/sessions/active`, { headers: { Authorization: `Bearer ${key}` } }).catch(() => {});
       console.log('[warm-up] Done');
     } catch (e) {
       console.warn('[warm-up] failed:', e);
     }
   }, 2000);
 });
+
+// Attach WebSocket and start polling
+activityBroadcaster.attach(server, '/ws');
+activityBroadcaster.startPolling(2000);
+console.log('[server] Activity broadcaster attached to /ws');

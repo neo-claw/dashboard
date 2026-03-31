@@ -14,15 +14,19 @@ import {
   Zap,
   Activity,
   MessageSquare,
+  Bell,
+  Clock,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navItems = [
   { id: '/', label: 'Overview', icon: LayoutDashboard },
   { id: '/sessions', label: 'Sessions', icon: Activity },
+  { id: '/activity', label: 'Activity', icon: Bell },
   { id: '/kanban', label: 'Kanban', icon: CheckSquare },
   { id: '/learnings', label: 'Learnings', icon: Brain },
   { id: '/trinity', label: 'Trinity', icon: Code },
+  { id: '/cron', label: 'Cron', icon: Clock },
   { id: '/control-center', label: 'Control Center', icon: MessageSquare },
   { id: '/calendar', label: 'Calendar', icon: CalendarIcon },
 ];

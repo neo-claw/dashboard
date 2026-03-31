@@ -1,3 +1,4 @@
+- 2026-03-31: Built Unified Memory API prototype (Utility 9) — unified interface for multi-backend memory with adapters [[2026-03-31](2026-03-31.md)].
 - 2026-03-31: Shared Context Board prototype (Utility 9) — cross-agent knowledge sharing via memory/shared_context.md [[2026-03-31](2026-03-31.md)].
 - 2026-03-31: Overnight-summary CLI (Utility 9) — unified digest of logs, research picks, and notes for morning review [[2026-03-31](2026-03-31.md)].
 - 2026-03-31: Built Netic Transfer Router prototype (Utility 9) — ACO-based CSR assignment for transferred calls, respecting capacity and specialty [[2026-03-31](2026-03-31.md)].

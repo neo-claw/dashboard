@@ -3,23 +3,63 @@ import { promisify } from 'util';
 import { readFile } from 'fs/promises';
 import path from 'path';
 import os from 'os';
+import yaml from 'js-yaml';
 import { extractReply } from '../chat/replyExtractor';
 
 const execAsync = promisify(exec);
 
+const WORKSPACE_ROOT = process.env.WORKSPACE_ROOT || '/home/ubuntu/.openclaw/workspace';
+const CONFIG_PATH = path.join(WORKSPACE_ROOT, 'config/subagent-models.yaml');
+
+interface SubagentModelsConfig {
+  allowed_models: string[];
+  default_model: string;
+  restricted: boolean;
+}
+
+async function loadConfig(): Promise<SubagentModelsConfig> {
+  try {
+    const content = await readFile(CONFIG_PATH, 'utf-8');
+    const parsed = yaml.load(content) as any;
+    return {
+      allowed_models: Array.isArray(parsed.allowed_models) ? parsed.allowed_models : [],
+      default_model: parsed.default_model || '',
+      restricted: !!parsed.restricted,
+    };
+  } catch (err: any) {
+    if (err.code === 'ENOENT') {
+      return { allowed_models: [], default_model: '', restricted: false };
+    }
+    throw err;
+  }
+}
+
 /**
  * Spawn a new OpenClaw agent session via CLI.
+ * Optionally specify the model to use for the subagent.
  * Returns the sessionKey (e.g., "agent:main:chat-<id>")
  */
-export async function spawnSession(sessionKey?: string): Promise<string> {
-  // Use openclaw agent --agent main with a custom session key? Check CLI help.
-  // We'll try: openclaw agent --agent main --session-key <key> --timeout 0
-  // But simpler: start a new session automatically and capture its key from output.
-  // Actually, openclaw agent runs one turn only and exits. For persistent session, we need to use `openclaw sessions spawn`.
-  // Let's check: openclaw sessions spawn --agent main
-  const cmd = sessionKey
+export async function spawnSession(sessionKey?: string, options?: { model?: string }): Promise<string> {
+  const config = await loadConfig();
+  // Determine which model to use: requested model or default from config
+  const requestedModel = options?.model;
+  const modelToUse = requestedModel || config.default_model;
+  // If restricted is true, enforce that a model is specified (or default set) and it is in the allowed list
+  if (config.restricted) {
+    if (!modelToUse) {
+      throw new Error('Cannot spawn subagent: no model specified and no default configured. Provide a model or set a default_model in config.');
+    }
+    if (!config.allowed_models.includes(modelToUse)) {
+      throw new Error(`Model '${modelToUse}' is not in the allowed subagent models list. Allowed: ${config.allowed_models.join(', ')}`);
+    }
+  }
+  // Build command with model flag if we have a model to set
+  let cmd = sessionKey
     ? `openclaw sessions spawn --agent main --session-key ${sessionKey}`
     : 'openclaw sessions spawn --agent main';
+  if (modelToUse) {
+    cmd += ` --model ${modelToUse}`;
+  }
   const { stdout } = await execAsync(cmd, { maxBuffer: 1024 * 1024 });
   // Expected output: "Session started: agent:main:xxxxx"
   const match = stdout.match(/Session\s+started:\s+([^\s]+)/);

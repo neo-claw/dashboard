@@ -60,7 +60,7 @@ export function registerTrinityEndpoint(app: any, workspaceRoot: string) {
       const totalMemoryEntries = await countTrinityMemoryEntries(workspaceRoot, uniqueDates);
 
       // Build simplified runs without memoryEntries to reduce payload
-      const simplifiedRuns: TrinityRun[] = runs.map(run => ({
+      const simplifiedRuns: TrinityRun[] = runs.map((run: any) => ({
         date: new Date(Number(run.runAtMs)).toISOString().split('T')[0],
         runId: run.sessionId,
         status: run.status,

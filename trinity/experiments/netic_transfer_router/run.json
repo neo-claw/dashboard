@@ -1,0 +1,199 @@
+{
+  "timestamp": "2026-03-31T01:33:21.916058Z",
+  "params": {
+    "agents": 5,
+    "tasks": 15,
+    "capacity": 4,
+    "alpha": 1.0,
+    "beta": 2.0,
+    "evap": 0.5,
+    "iterations": 50
+  },
+  "agents": [
+    {
+      "id": 0,
+      "name": "CSR-1",
+      "specialty": "Electrical",
+      "capacity": 4,
+      "load": 4,
+      "success_rate": 0.8306617742484727
+    },
+    {
+      "id": 1,
+      "name": "CSR-2",
+      "specialty": "General",
+      "capacity": 4,
+      "load": 2,
+      "success_rate": 0.6518542158366577
+    },
+    {
+      "id": 2,
+      "name": "CSR-3",
+      "specialty": "Plumbing",
+      "capacity": 4,
+      "load": 3,
+      "success_rate": 0.8921482304895139
+    },
+    {
+      "id": 3,
+      "name": "CSR-4",
+      "specialty": "General",
+      "capacity": 4,
+      "load": 3,
+      "success_rate": 0.7869924386380567
+    },
+    {
+      "id": 4,
+      "name": "CSR-5",
+      "specialty": "Electrical",
+      "capacity": 4,
+      "load": 3,
+      "success_rate": 0.7532928961123858
+    }
+  ],
+  "tasks": [
+    {
+      "id": 0,
+      "job_type": "HVAC",
+      "priority": 2,
+      "assigned_to": 2
+    },
+    {
+      "id": 1,
+      "job_type": "Electrical",
+      "priority": 2,
+      "assigned_to": 4
+    },
+    {
+      "id": 2,
+      "job_type": "Appliance",
+      "priority": 3,
+      "assigned_to": 2
+    },
+    {
+      "id": 3,
+      "job_type": "Electrical",
+      "priority": 1,
+      "assigned_to": 4
+    },
+    {
+      "id": 4,
+      "job_type": "HVAC",
+      "priority": 2,
+      "assigned_to": 3
+    },
+    {
+      "id": 5,
+      "job_type": "General",
+      "priority": 3,
+      "assigned_to": 3
+    },
+    {
+      "id": 6,
+      "job_type": "Appliance",
+      "priority": 1,
+      "assigned_to": 0
+    },
+    {
+      "id": 7,
+      "job_type": "Electrical",
+      "priority": 3,
+      "assigned_to": 3
+    },
+    {
+      "id": 8,
+      "job_type": "Plumbing",
+      "priority": 3,
+      "assigned_to": 2
+    },
+    {
+      "id": 9,
+      "job_type": "General",
+      "priority": 1,
+      "assigned_to": 1
+    },
+    {
+      "id": 10,
+      "job_type": "Appliance",
+      "priority": 2,
+      "assigned_to": 0
+    },
+    {
+      "id": 11,
+      "job_type": "Electrical",
+      "priority": 1,
+      "assigned_to": 0
+    },
+    {
+      "id": 12,
+      "job_type": "Plumbing",
+      "priority": 2,
+      "assigned_to": 1
+    },
+    {
+      "id": 13,
+      "job_type": "General",
+      "priority": 3,
+      "assigned_to": 0
+    },
+    {
+      "id": 14,
+      "job_type": "General",
+      "priority": 1,
+      "assigned_to": 4
+    }
+  ],
+  "best_fitness": 5.96,
+  "fitness_history": [
+    4.92,
+    4.88,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96,
+    5.96
+  ]
+}

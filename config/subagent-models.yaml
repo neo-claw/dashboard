@@ -1,0 +1,5 @@
+allowed_models:
+  - openrouter/stepfun/step-3.5-flash:free
+  - openrouter/minimax/minimax-m2.5:free
+default_model: openrouter/stepfun/step-3.5-flash:free
+restricted: true

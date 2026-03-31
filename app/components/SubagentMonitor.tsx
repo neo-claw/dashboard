@@ -1,10 +1,17 @@
 'use client';
 
-import { useState, useEffect, useCallback, Fragment } from 'react';
-import { RefreshCw, ChevronDown, ChevronRight, Clock, Edit2, Send, MessageSquare } from 'lucide-react';
+import { useState, useEffect, useCallback, useRef, Fragment } from 'react';
+import { RefreshCw, ChevronRight, ChevronDown, Clock, Edit2, Send, MessageSquare, Eye, CheckSquare, Square } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Panel from '@/components/ui/panel';
 import { Button } from '@/components/ui/button';
+import SubagentProfileModal from '@/components/SubagentProfileModal';
+import SparklineChart from '@/components/SparklineChart';
+
+interface StatusHistoryItem {
+  status: string;
+  timestamp: number;
+}
 
 interface Session {
   key: string;
@@ -15,6 +22,9 @@ interface Session {
   lastActivity: string;
   createdAt: string;
   durationSec: number;
+  label?: string;
+  labelOverride?: string;
+  descriptionOverride?: string;
   metadata: {
     model?: string;
     kind?: string;
@@ -29,11 +39,6 @@ interface TraceEvent {
   content: string;
   tool?: string;
   timestamp?: string;
-}
-
-interface LabelOverride {
-  label: string;
-  description: string;
 }
 
 function formatDuration(seconds: number): string {
@@ -51,66 +56,101 @@ function computeEstimatedCost(session: Session): string {
   return `$${cost.toFixed(4)}`;
 }
 
-function getDefaultLabel(session: Session): string {
-  // For subagents, use a readable default
-  if (session.key.includes(':subagent:')) {
-    return `Subagent ${session.sessionId.slice(0, 8)}`;
+function getDisplayLabel(session: Session): string {
+  if (session.labelOverride) return session.labelOverride;
+  if (session.label) return session.label;
+  return `Subagent ${session.sessionId.slice(0, 8)}`;
+}
+
+function getDescription(session: Session, trace?: TraceEvent[]): string {
+  if (session.descriptionOverride) return session.descriptionOverride;
+  const firstUser = trace?.find(ev => ev.role === 'user' && typeof ev.content === 'string' && ev.content.trim().length > 0);
+  if (firstUser) {
+    const content = firstUser.content.trim();
+    return content.length > 150 ? content.slice(0, 150) + '…' : content;
   }
-  // Fallback to agentId or sessionId
-  return session.agentId || `Session ${session.sessionId.slice(0, 8)}`;
+  return '';
+}
+
+function getStatusTooltip(history: StatusHistoryItem[], currentActive: boolean): string {
+  const lines: string[] = [];
+  if (currentActive) {
+    lines.push('Currently: Running');
+  } else {
+    lines.push('Currently: Completed');
+  }
+  if (history.length > 0) {
+    lines.push('');
+    lines.push('Recent changes:');
+    history.forEach(h => {
+      const date = new Date(h.timestamp);
+      lines.push(`  • ${h.status} (${date.toLocaleString()})`);
+    });
+  }
+  return lines.join('\n');
 }
 
 export default function SubagentMonitor() {
   const [sessions, setSessions] = useState<Session[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedKeys, setSelectedKeys] = useState<Set<string>>(new Set());
+  const [deletingActions, setDeletingActions] = useState<Record<string, { action: string }>>({});
+  const [undoQueue, setUndoQueue] = useState<Array<{ keys: string[]; action: string }>>([]);
   const [expandedKey, setExpandedKey] = useState<string | null>(null);
   const [traces, setTraces] = useState<Record<string, TraceEvent[]>>({});
   const [loadingTrace, setLoadingTrace] = useState<Record<string, boolean>>({});
-
-  // Label management
-  const [labels, setLabels] = useState<Record<string, LabelOverride>>({});
-  const [editingKey, setEditingKey] = useState<string | null>(null);
-  const [editForm, setEditForm] = useState<{ label: string; description: string }>({ label: '', description: '' });
-
-  // Send message management
   const [sendingKey, setSendingKey] = useState<string | null>(null);
   const [sendMessage, setSendMessage] = useState('');
   const [sendStatus, setSendStatus] = useState<Record<string, 'idle' | 'sending' | 'sent' | 'error'>>({});
+  const [statusHistories, setStatusHistories] = useState<Record<string, StatusHistoryItem[]>>({});
+  const loadedHistoriesRef = useRef<Set<string>>(new Set());
 
-  // Load label overrides from localStorage on mount
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem('subagent_labels');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        setLabels(parsed);
-      }
-    } catch (e) {
-      console.error('Failed to load subagent labels', e);
-    }
-  }, []);
+  // Profile modal
+  const [profileSession, setProfileSession] = useState<Session | null>(null);
+  const [profileOpen, setProfileOpen] = useState(false);
 
-  const saveLabels = (newLabels: Record<string, LabelOverride>) => {
-    setLabels(newLabels);
-    try {
-      localStorage.setItem('subagent_labels', JSON.stringify(newLabels));
-    } catch (e) {
-      console.error('Failed to save subagent labels', e);
-    }
-  };
+  // Bulk action confirmation
+  const [bulkActionState, setBulkActionState] = useState<{ open: boolean; action: string | null }>({ open: false, action: null });
+
+  // Undo snackbar
+  const [undoSnackbar, setUndoSnackbar] = useState<{ show: boolean; action: string; keys: string[] }>({ show: false, action: '', keys: [] });
 
   const fetchSessions = useCallback(async () => {
     try {
       const res = await fetch('/api/sessions/active');
       if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
       const data = await res.json();
-      const raw = Array.isArray(data.sessions) ? data.sessions : [];
-      // Identify subagents by session key pattern or metadata.kind === 'subagent'
-      const subagents = raw.filter((s: Session) => s.key.includes(':subagent:') || s.metadata.kind === 'subagent');
-      const recent = subagents.filter((s: Session) => s.durationSec <= 3600);
-      setSessions(recent);
+      const raw: any[] = Array.isArray(data.sessions) ? data.sessions : [];
+      // Filter to subagents only (kind === 'subagent' or key includes subagent)
+      const subagents: Session[] = raw.filter((s: any): s is Session => s.key.includes(':subagent:') || s.metadata?.kind === 'subagent');
+      setSessions(subagents);
       setError(null);
+
+      // Load status histories for any new subagents we haven't loaded yet
+      const newKeys = subagents.filter((s: Session) => !loadedHistoriesRef.current.has(s.key)).map(s => s.key);
+      if (newKeys.length > 0) {
+        const histories = await Promise.all(
+          newKeys.map(async (key: string) => {
+            try {
+              const res = await fetch(`/api/subagents/${encodeURIComponent(key)}/status-history`);
+              if (!res.ok) return { key, history: [] as StatusHistoryItem[] };
+              const data = await res.json();
+              return { key, history: data.history || [] };
+            } catch {
+              return { key, history: [] as StatusHistoryItem[] };
+            }
+          })
+        );
+        setStatusHistories(prev => {
+          const next = { ...prev };
+          for (const h of histories) {
+            next[h.key] = h.history;
+          }
+          return next;
+        });
+        newKeys.forEach((k: string) => loadedHistoriesRef.current.add(k));
+      }
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -120,39 +160,37 @@ export default function SubagentMonitor() {
 
   useEffect(() => {
     fetchSessions();
-    const interval = setInterval(fetchSessions, 10000); // 10s as requested
+    const interval = setInterval(fetchSessions, 10000); // 10s refresh
     return () => clearInterval(interval);
   }, [fetchSessions]);
 
   const fetchTrace = async (key: string) => {
-    if (traces[key]) return; // already loaded
+    if (traces[key]) return;
     setLoadingTrace(prev => ({ ...prev, [key]: true }));
     try {
-      // Use the Next.js API proxy route
       const res = await fetch(`/api/trace?sessionKey=${encodeURIComponent(key)}&limit=20`);
       const data = await res.json();
       const traceEvents = Array.isArray(data) ? data : [];
       setTraces(prev => ({ ...prev, [key]: traceEvents }));
 
-      // Auto-generate label and description from first user message if none exists
-      setLabels(prev => {
-        if (prev[key]) return prev; // already has custom label
-        const firstUser = traceEvents.find(ev => ev.role === 'user' && typeof ev.content === 'string' && ev.content.trim().length > 0);
+      // Auto-generate label from first user message if none exists (from server)
+      const currentSession = sessions.find(s => s.key === key);
+      if (currentSession && !currentSession.labelOverride && !currentSession.label) {
+        const firstUser = traceEvents.find((ev: any) => ev.role === 'user' && typeof ev.content === 'string' && ev.content.trim().length > 0);
         if (firstUser) {
           const content = firstUser.content.trim();
           const autoLabel = content.length > 40 ? content.slice(0, 40) + '…' : content;
           const autoDesc = content.length > 150 ? content.slice(0, 150) + '…' : content;
-          const newEntry = { label: autoLabel, description: autoDesc };
-          const newLabels = { ...prev, [key]: newEntry };
-          try {
-            localStorage.setItem('subagent_labels', JSON.stringify(newLabels));
-          } catch (e) {
-            console.error('Failed to save auto-label', e);
-          }
-          return newLabels;
+          fetch('/api/subagents/labels', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ sessionKey: key, label: autoLabel, description: autoDesc }),
+          }).catch(console.error).finally(() => {
+            // Refresh sessions to pick up new label
+            fetchSessions();
+          });
         }
-        return prev;
-      });
+      }
     } catch (err) {
       console.error('Failed to fetch trace:', err);
       setTraces(prev => ({ ...prev, [key]: [] }));
@@ -161,38 +199,86 @@ export default function SubagentMonitor() {
     }
   };
 
-  const toggleExpand = (key: string) => {
-    if (expandedKey === key) {
-      setExpandedKey(null);
+  const toggleSelect = (key: string) => {
+    const newSet = new Set(selectedKeys);
+    if (newSet.has(key)) newSet.delete(key);
+    else newSet.add(key);
+    setSelectedKeys(newSet);
+  };
+
+  const selectAll = () => {
+    if (selectedKeys.size === sessions.length) {
+      setSelectedKeys(new Set());
     } else {
-      setExpandedKey(key);
-      if (!traces[key]) {
-        fetchTrace(key);
-      }
+      setSelectedKeys(new Set(sessions.map(s => s.key)));
     }
   };
 
-  // Editing
-  const startEdit = (session: Session) => {
-    setEditingKey(session.key);
-    setEditForm({
-      label: labels[session.key]?.label || getDefaultLabel(session),
-      description: labels[session.key]?.description || '',
+  const clearSelection = () => setSelectedKeys(new Set());
+
+  const performBulkAction = async (action: string) => {
+    const keys = Array.from(selectedKeys);
+    if (keys.length === 0) return;
+    setBulkActionState({ open: false, action: null });
+    try {
+      const res = await fetch('/api/subagents/actions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionKeys: keys, action }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Action failed');
+      }
+      // Record for undo
+      setUndoQueue(prev => [...prev, { keys, action }]);
+      setUndoSnackbar({ show: true, action, keys });
+      clearSelection();
+      // Refresh list
+      fetchSessions();
+    } catch (err: any) {
+      alert(`Failed to perform action: ${err.message}`);
+    }
+  };
+
+  const undoLastAction = () => {
+    if (undoQueue.length === 0) return;
+    const last = undoQueue[undoQueue.length - 1];
+    fetch('/api/subagents/undo', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sessionKeys: last.keys }),
+    }).then(res => res.json()).then(data => {
+      if (data.success) {
+        setUndoQueue(prev => prev.slice(0, -1));
+        setUndoSnackbar(prev => ({ ...prev, show: false }));
+        fetchSessions();
+      } else {
+        alert('Undo failed');
+      }
+    }).catch(err => {
+      alert(`Undo failed: ${err.message}`);
     });
   };
 
-  const cancelEdit = () => {
-    setEditingKey(null);
-    setEditForm({ label: '', description: '' });
+  const openProfile = (session: Session) => {
+    setProfileSession(session);
+    setProfileOpen(true);
   };
 
-  const saveEdit = (key: string) => {
-    const newLabels = { ...labels, [key]: { label: editForm.label, description: editForm.description } };
-    saveLabels(newLabels);
-    setEditingKey(null);
+  const handleLabelSaved = () => {
+    // Refresh sessions to get updated label overrides
+    fetchSessions();
   };
 
-  // Sending messages
+  const toggleExpand = (key: string) => {
+    setExpandedKey(expandedKey === key ? null : key);
+    if (expandedKey !== key) {
+      fetchTrace(key);
+    }
+  };
+
+  // Send message
   const startSend = (key: string) => {
     setSendingKey(key);
     setSendMessage('');
@@ -216,19 +302,13 @@ export default function SubagentMonitor() {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setSendStatus(prev => ({ ...prev, [session.key]: 'sent' }));
       setSendMessage('');
-      // Optionally refresh trace to see new messages
-      if (traces[session.key]) {
-        // Append the sent message as a user role to trace state for immediate display
-        const newEvent: TraceEvent = {
-          role: 'user',
-          content: sendMessage,
-          timestamp: new Date().toISOString(),
-        };
-        setTraces(prev => ({ ...prev, [session.key]: [...(prev[session.key] || []), newEvent] }));
-      } else {
-        // If trace not loaded yet, fetch it to include new message
-        fetchTrace(session.key);
-      }
+      // Append to trace
+      const newEvent: TraceEvent = {
+        role: 'user',
+        content: sendMessage,
+        timestamp: new Date().toISOString(),
+      };
+      setTraces(prev => ({ ...prev, [session.key]: [...(prev[session.key] || []), newEvent] }));
       setTimeout(() => {
         setSendStatus(prev => ({ ...prev, [session.key]: 'idle' }));
         setSendingKey(null);
@@ -239,36 +319,44 @@ export default function SubagentMonitor() {
     }
   };
 
-  const manualRefresh = () => {
-    if (loading) return;
-    setLoading(true);
-    fetchSessions();
-  };
-
-  // Get display label for a session
-  const getLabel = (session: Session): string => {
-    const override = labels[session.key];
-    if (override?.label) return override.label;
-    return getDefaultLabel(session);
-  };
-
-  // Get description for expanded view
-  const getDescription = (session: Session): string => {
-    const override = labels[session.key];
-    if (override?.description) return override.description;
-    // Try to derive from trace: first user message
-    const trace = traces[session.key];
-    if (trace) {
-      const firstUser = trace.find(ev => ev.role === 'user');
-      if (firstUser && typeof firstUser.content === 'string') {
-        return firstUser.content.slice(0, 150);
-      }
+  // Helper to get status history tooltip content (last 10)
+  const getStatusHistory = async (key: string): Promise<StatusHistoryItem[]> => {
+    try {
+      const res = await fetch(`/api/v1/subagents/${encodeURIComponent(key)}/status-history`);
+      const data = await res.json();
+      return data.history || [];
+    } catch {
+      return [];
     }
-    return '';
   };
 
   return (
     <Panel className="relative">
+      {/* Bulk action bar */}
+      {selectedKeys.size > 0 && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-surface-card border border-border/40 shadow-2xl rounded-xl px-4 py-3 flex items-center gap-4 animate-slide-up">
+          <span className="text-sm text-fg font-medium">{selectedKeys.size} selected</span>
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm" onClick={() => setBulkActionState({ open: true, action: 'stop' })}>Stop</Button>
+            <Button variant="outline" size="sm" onClick={() => setBulkActionState({ open: true, action: 'restart' })}>Restart</Button>
+            <Button variant="outline" size="sm" onClick={() => setBulkActionState({ open: true, action: 'kill' })}>Kill</Button>
+          </div>
+          <Button variant="ghost" size="sm" onClick={clearSelection}>Cancel</Button>
+        </div>
+      )}
+
+      {/* Undo snackbar */}
+      {undoSnackbar.show && (
+        <div className="fixed bottom-6 right-6 z-50 bg-emerald-900/90 border border-emerald-500/30 text-emerald-100 px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 animate-fade-in">
+          <div>
+            <p className="text-sm font-medium">{undoSnackbar.action} {undoSnackbar.keys.length} subagent(s)</p>
+            <p className="text-xs text-emerald-200/70">Action completed</p>
+          </div>
+          <Button variant="ghost" size="sm" className="text-emerald-100 hover:text-white" onClick={undoLastAction}>Undo</Button>
+          <Button variant="ghost" size="sm" className="text-emerald-100/70 hover:text-white" onClick={() => setUndoSnackbar(prev => ({ ...prev, show: false }))}>Dismiss</Button>
+        </div>
+      )}
+
       <div className="flex items-center justify-between mb-6">
         <div>
           <h3 className="text-lg font-semibold text-fg">Subagent Monitor</h3>
@@ -276,13 +364,7 @@ export default function SubagentMonitor() {
             {sessions.length} subagent{sessions.length !== 1 ? 's' : ''} (last 60m) · auto-refresh 10s
           </p>
         </div>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={manualRefresh}
-          disabled={loading}
-          className="gap-2"
-        >
+        <Button variant="outline" size="sm" onClick={fetchSessions} disabled={loading} className="gap-2">
           <RefreshCw size={14} className={cn(loading && 'animate-spin')} />
           Refresh
         </Button>
@@ -303,6 +385,11 @@ export default function SubagentMonitor() {
           <table className="w-full text-sm text-left">
             <thead>
               <tr className="text-xs text-muted border-b border-border/30">
+                <th className="pb-3 font-medium w-10 text-center">
+                  <button onClick={selectAll} className="focus:outline-none">
+                    {selectedKeys.size === sessions.length ? <CheckSquare size={16} /> : <Square size={16} />}
+                  </button>
+                </th>
                 <th className="pb-3 font-medium">ID</th>
                 <th className="pb-3 font-medium">Label</th>
                 <th className="pb-3 font-medium">Status</th>
@@ -317,19 +404,25 @@ export default function SubagentMonitor() {
               {sessions.map(session => {
                 const totalTokens = session.metadata.totalTokens ?? (session.metadata.inputTokens ?? 0) + (session.metadata.outputTokens ?? 0);
                 const cost = computeEstimatedCost(session);
+                const displayLabel = getDisplayLabel(session);
                 const isExpanded = expandedKey === session.key;
-                const displayLabel = getLabel(session);
-                const description = getDescription(session);
+                const isSelected = selectedKeys.has(session.key);
                 return (
                   <Fragment key={session.key}>
                     <tr
                       data-key={session.key}
                       className={cn(
                         'cursor-pointer transition-colors hover:bg-accent/5',
-                        isExpanded && 'bg-accent/10'
+                        isExpanded && 'bg-accent/10',
+                        isSelected && 'bg-accent/20'
                       )}
                       onClick={() => toggleExpand(session.key)}
                     >
+                      <td className="py-3 text-center" onClick={e => e.stopPropagation()}>
+                        <button onClick={() => toggleSelect(session.key)} className="focus:outline-none">
+                          {isSelected ? <CheckSquare size={16} className="text-accent" /> : <Square size={16} />}
+                        </button>
+                      </td>
                       <td className="py-3 font-mono text-accent">
                         {session.sessionId.slice(0, 8)}…
                       </td>
@@ -337,12 +430,15 @@ export default function SubagentMonitor() {
                         {displayLabel}
                       </td>
                       <td className="py-3">
-                        <span className={cn(
-                          'inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium',
-                          session.active
-                            ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
-                            : 'bg-gray-500/20 text-gray-300 border border-gray-500/30'
-                        )}>
+                        <span
+                          className={cn(
+                            'inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium',
+                            session.active
+                              ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                              : 'bg-gray-500/20 text-gray-300 border border-gray-500/30'
+                          )}
+                          title={getStatusTooltip(statusHistories[session.key] || [], session.active)}
+                        >
                           {session.active ? 'Running' : 'Completed'}
                         </span>
                       </td>
@@ -364,10 +460,10 @@ export default function SubagentMonitor() {
                           variant="ghost"
                           size="icon"
                           className="h-8 w-8"
-                          onClick={(e) => { e.stopPropagation(); startEdit(session); }}
-                          title="Edit label/description"
+                          onClick={(e) => { e.stopPropagation(); openProfile(session); }}
+                          title="View Profile"
                         >
-                          <Edit2 size={14} />
+                          <Eye size={14} />
                         </Button>
                         <Button
                           variant="ghost"
@@ -383,51 +479,23 @@ export default function SubagentMonitor() {
                     </tr>
                     {isExpanded && (
                       <tr>
-                        <td colSpan={8} className="p-0 bg-bg">
+                        <td colSpan={10} className="p-0 bg-bg">
                           <div className="p-4 border-t border-border/30">
                             <div className="space-y-4">
-                              {/* Description and edit form */}
+                              {/* Description */}
                               <div>
-                                <div className="flex items-center justify-between mb-1">
-                                  <h4 className="text-sm font-medium text-fg">Purpose</h4>
-                                  {editingKey !== session.key && (
-                                    <Button variant="ghost" size="sm" className="h-7 text-xs gap-1" onClick={() => startEdit(session)}>
-                                      <Edit2 size={12} /> Edit
-                                    </Button>
-                                  )}
+                                <h4 className="text-sm font-medium text-fg mb-1">Purpose</h4>
+                                <p className="text-sm text-muted italic">
+                                  {getDescription(session, traces[session.key]) || 'No description set.'}
+                                </p>
+                              </div>
+
+                              {/* Resource Usage - view in profile */}
+                              <div>
+                                <h4 className="text-sm font-medium text-fg mb-2">Resource Usage</h4>
+                                <div className="h-20 bg-bg/50 rounded border border-border/20 p-2 flex items-center justify-center text-sm text-muted">
+                                  Open profile for detailed metrics chart
                                 </div>
-                                {editingKey === session.key ? (
-                                  <div className="space-y-2 bg-bg/50 p-3 rounded-lg border border-border/30">
-                                    <div>
-                                      <label className="text-xs text-muted block mb-1">Label</label>
-                                      <input
-                                        type="text"
-                                        value={editForm.label}
-                                        onChange={(e) => setEditForm(prev => ({ ...prev, label: e.target.value }))}
-                                        className="w-full p-2 text-sm rounded border border-border bg-bg text-fg"
-                                        placeholder="Enter label..."
-                                      />
-                                    </div>
-                                    <div>
-                                      <label className="text-xs text-muted block mb-1">Description</label>
-                                      <textarea
-                                        value={editForm.description}
-                                        onChange={(e) => setEditForm(prev => ({ ...prev, description: e.target.value }))}
-                                        className="w-full p-2 text-sm rounded border border-border bg-bg text-fg"
-                                        rows={2}
-                                        placeholder="Enter description of this subagent's purpose..."
-                                      />
-                                    </div>
-                                    <div className="flex gap-2 justify-end">
-                                      <Button variant="outline" size="sm" onClick={cancelEdit}>Cancel</Button>
-                                      <Button variant="default" size="sm" onClick={() => saveEdit(session.key)}>Save</Button>
-                                    </div>
-                                  </div>
-                                ) : (
-                                  <p className="text-sm text-muted italic">
-                                    {description || 'No description set.'}
-                                  </p>
-                                )}
                               </div>
 
                               {/* Recent Messages */}
@@ -438,7 +506,7 @@ export default function SubagentMonitor() {
                                 ) : traces[session.key]?.length === 0 ? (
                                   <div className="text-sm text-muted">No messages</div>
                                 ) : (
-                                  <div className="space-y-2 max-h-64 overflow-y-auto">
+                                  <div className="space-y-2 max-h-64 overflow-y-auto pr-2">
                                     {traces[session.key]?.map((ev, idx) => (
                                       <div key={idx} className="text-xs p-3 bg-bg border border-border/30 rounded-lg font-mono">
                                         <div className="flex items-center gap-2 mb-1.5">
@@ -458,7 +526,7 @@ export default function SubagentMonitor() {
                                             </span>
                                           )}
                                         </div>
-                                        <p className="text-fg line-clamp-4 leading-relaxed whitespace-pre-wrap">
+                                        <p className="text-fg line-clamp-4 leading-relaxed whitespace-pre-wrap break-words">
                                           {typeof ev.content === 'string' ? ev.content : JSON.stringify(ev.content).slice(0, 500)}
                                         </p>
                                       </div>
@@ -517,6 +585,32 @@ export default function SubagentMonitor() {
               })}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {/* Profile Modal */}
+      <SubagentProfileModal
+        session={profileSession}
+        open={profileOpen}
+        onClose={() => setProfileOpen(false)}
+        onLabelSaved={handleLabelSaved}
+      />
+
+      {/* Bulk action confirmation modal */}
+      {bulkActionState.open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onClick={() => setBulkActionState({ open: false, action: null })}>
+          <div className="bg-surface-card border border-border/30 rounded-xl shadow-2xl p-6 max-w-md w-full" onClick={e => e.stopPropagation()}>
+            <h3 className="text-lg font-semibold text-fg mb-2">Confirm Action</h3>
+            <p className="text-sm text-muted mb-4">
+              Are you sure you want to <span className="text-accent font-medium">{bulkActionState.action}</span> {selectedKeys.size} selected subagent{selectedKeys.size !== 1 ? 's' : ''}?
+            </p>
+            <div className="flex justify-end gap-2">
+              <Button variant="outline" onClick={() => setBulkActionState({ open: false, action: null })}>Cancel</Button>
+              <Button variant="default" onClick={() => performBulkAction(bulkActionState.action!)}>
+                {bulkActionState.action === 'stop' ? 'Stop' : bulkActionState.action === 'restart' ? 'Restart' : 'Kill'}
+              </Button>
+            </div>
+          </div>
         </div>
       )}
     </Panel>

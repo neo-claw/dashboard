@@ -40,7 +40,7 @@ test.describe('Subagent Monitor', () => {
     });
 
     // Also mock trace endpoint for expand
-    await page.route('/api/v1/trace*', async (route) => {
+    await page.route('/api/trace*', async (route) => {
       await route.fulfill({
         json: [
           {
@@ -128,7 +128,7 @@ test.describe('Subagent Monitor', () => {
     });
 
     // Mock trace for both
-    await page.route('/api/v1/trace*', async (route) => {
+    await page.route('/api/trace*', async (route) => {
       await route.fulfill({
         json: [
           {
@@ -187,7 +187,7 @@ test.describe('Subagent Monitor', () => {
     });
 
     // Mock trace with a user message
-    await page.route('/api/v1/trace*', async (route) => {
+    await page.route('/api/trace*', async (route) => {
       await route.fulfill({
         json: [
           {
@@ -256,7 +256,7 @@ test.describe('Subagent Monitor', () => {
     });
 
     // Mock trace initial (could be empty)
-    await page.route('/api/v1/trace*', async (route) => {
+    await page.route('/api/trace*', async (route) => {
       await route.fulfill({
         json: [
           {
@@ -304,6 +304,197 @@ test.describe('Subagent Monitor', () => {
       message: 'Hello subagent!',
       sessionKey: 'agent:main:subagent:test123',
     });
+
+    await browser.close();
+  });
+
+  test('opens profile modal and displays metrics', async () => {
+    const browser = await chromium.launch({ headless: true });
+    const context = await browser.newContext();
+    const page = await context.newPage();
+
+    // Mock sessions
+    await page.route('/api/sessions/active', async (route) => {
+      await route.fulfill({
+        json: {
+          sessions: [
+            {
+              key: 'agent:main:subagent:profile123',
+              sessionId: 'profilesess-12345678',
+              agentId: 'main',
+              active: true,
+              lastHeartbeat: new Date().toISOString(),
+              lastActivity: new Date().toISOString(),
+              createdAt: new Date(Date.now() - 600000).toISOString(),
+              durationSec: 600,
+              label: 'Test subagent',
+              descriptionOverride: 'A test subagent for profiling',
+              metadata: {
+                model: 'stepfun/step-3.5-flash:free',
+                kind: 'subagent',
+                inputTokens: 5000,
+                outputTokens: 200,
+                totalTokens: 5200,
+              },
+            },
+          ],
+          count: 1,
+        },
+      });
+    });
+
+    // Mock trace
+    await page.route('/api/trace*', async (route) => {
+      await route.fulfill({
+        json: [
+          {
+            role: 'user',
+            content: 'First user message',
+            timestamp: new Date().toISOString(),
+          },
+        ],
+      });
+    });
+
+    // Mock metrics
+    await page.route('/api/subagents/*/metrics', async (route) => {
+      await route.fulfill({
+        json: {
+          sessionKey: 'agent:main:subagent:profile123',
+          metrics: Array.from({ length: 30 }, (_, i) => ({
+            timestamp: new Date(Date.now() - (30 - i) * 5000).toISOString(),
+            cpu: 10 + Math.random() * 20,
+            memory: 100 + Math.random() * 50,
+          })),
+          current: { cpu: 15.5, memory: 128 },
+        },
+      });
+    });
+
+    // Mock status history
+    await page.route('/api/subagents/*/status-history', async (route) => {
+      await route.fulfill({
+        json: {
+          history: [
+            { status: 'started', timestamp: Date.now() - 120000 },
+            { status: 'running', timestamp: Date.now() - 60000 },
+          ],
+        },
+      });
+    });
+
+    await page.goto('http://localhost:3000/', { waitUntil: 'networkidle' });
+    await expect(page.locator('text=Subagent Monitor')).toBeVisible({ timeout: 10000 });
+
+    // Click the View Profile button (eye icon)
+    await page.locator('button[title="View Profile"]').click();
+
+    // Modal should open with title containing label
+    await expect(page.locator('text=Profile: Test subagent')).toBeVisible({ timeout: 5000 });
+
+    // Verify metrics section shows current CPU and memory
+    await expect(page.locator('text=/Current: CPU 15\\.5% · Mem 128 MB/')).toBeVisible({ timeout: 5000 });
+
+    // Verify status history section
+    await expect(page.locator('text=Status History (last 10)')).toBeVisible();
+    await expect(page.locator('text=/started|running/')).toBeVisible();
+
+    await browser.close();
+  });
+
+  test('performs bulk action and undo', async () => {
+    const browser = await chromium.launch({ headless: true });
+    const context = await browser.newContext();
+    const page = await context.newPage();
+
+    await page.route('/api/sessions/active', async (route) => {
+      await route.fulfill({
+        json: {
+          sessions: [
+            {
+              key: 'agent:main:subagent:bulk1',
+              sessionId: 'bulk1-11111111',
+              agentId: 'main',
+              active: true,
+              lastHeartbeat: new Date().toISOString(),
+              lastActivity: new Date().toISOString(),
+              createdAt: new Date(Date.now() - 600000).toISOString(),
+              durationSec: 600,
+              metadata: { model: 'stepfun', kind: 'subagent' },
+            },
+            {
+              key: 'agent:main:subagent:bulk2',
+              sessionId: 'bulk2-22222222',
+              agentId: 'main',
+              active: true,
+              lastHeartbeat: new Date().toISOString(),
+              lastActivity: new Date().toISOString(),
+              createdAt: new Date(Date.now() - 600000).toISOString(),
+              durationSec: 600,
+              metadata: { model: 'stepfun', kind: 'subagent' },
+            },
+          ],
+          count: 2,
+        },
+      });
+    });
+
+    await page.route('/api/trace*', async (route) => {
+      await route.fulfill({ json: [] });
+    });
+
+    // Mock actions endpoint (stop)
+    await page.route('/api/subagents/actions', async (route) => {
+      const body = JSON.parse(route.request().postBodyAsJson || '{}');
+      // Simulate success
+      await route.fulfill({
+        json: {
+          success: true,
+          results: (body.sessionKeys || []).map((key: string) => ({ key, success: true })),
+        },
+      });
+    });
+
+    // Mock undo endpoint
+    await page.route('/api/subagents/undo', async (route) => {
+      await route.fulfill({ json: { success: true } });
+    });
+
+    await page.goto('http://localhost:3000/', { waitUntil: 'networkidle' });
+    await expect(page.locator('text=Subagent Monitor')).toBeVisible({ timeout: 10000 });
+
+    // Select two subagents via checkboxes
+    await page.locator('button[aria-label="Select row"]').first().click();
+    // The checkbox button is inside first row; better to locate by data-key?
+    // Simpler: click the first checkbox
+    const checkboxes = page.locator('button:has(svg)').filter({ hasText: '' }); // not reliable
+    // Instead, within table rows, there is a button with CheckSquare or Square icon. Let's click the first one.
+    // Use the first row's button (which has an svg). We'll click the button in first data row.
+    const firstRowCheckbox = page.locator('tbody tr').first().locator('button');
+    await firstRowCheckbox.click();
+    // Ensure it's selected (icon changes to CheckSquare)
+    // Then select second row
+    const secondRowCheckbox = page.locator('tbody tr').nth(1).locator('button');
+    await secondRowCheckbox.click();
+
+    // Bulk action bar should appear
+    await expect(page.locator('text="2 selected"')).toBeVisible();
+
+    // Click Stop button
+    await page.locator('button:has-text("Stop")').click();
+
+    // Confirmation modal should open
+    await expect(page.locator('text="Confirm Action"')).toBeVisible();
+    await page.locator('button:has-text("Stop")').last().click(); // confirm
+
+    // Snackbar should appear with Undo
+    await expect(page.locator('text=Undo')).toBeVisible({ timeout: 5000 });
+
+    // Click Undo
+    await page.locator('button:has-text("Undo")').click();
+
+    // Snackbar should disappear and subagents should be back
+    await expect(page.locator('text=Undo')).not.toBeVisible({ timeout: 5000 });
 
     await browser.close();
   });

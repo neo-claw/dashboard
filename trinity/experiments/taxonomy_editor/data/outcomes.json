@@ -1,0 +1,345 @@
+[
+  {
+    "Outcome": "Booked",
+    "Reason": "Booked",
+    "Subreason": "Booked",
+    "Definition": "Appointment was successfully scheduled. Job type breakdown (HVAC, plumbing, etc.) is a separate dimension and not part of reason/sub-reason.",
+    "Technical": "New job created in CRM by the Netic Agent"
+  },
+  {
+    "Outcome": "Unbooked",
+    "Reason": "Timing objection",
+    "Subreason": "Too Late",
+    "Definition": "Earliest available appointment is too far out for the customer",
+    "Technical": "Timing objection classifier"
+  },
+  {
+    "Outcome": "Unbooked",
+    "Reason": "Timing objection",
+    "Subreason": "Emergency Service Unavailable",
+    "Definition": "Customer needed emergency service but none was available",
+    "Technical": "Timing objection classifier"
+  },
+  {
+    "Outcome": "Unbooked",
+    "Reason": "Timing objection",
+    "Subreason": "Customer Timing Conflict",
+    "Definition": "Other scheduling conflicts — e.g. customer can only do weekends or late afternoons",
+    "Technical": "Timing objection classifier"
+  },
+  {
+    "Outcome": "Unbooked",
+    "Reason": "Price objection",
+    "Subreason": "Price objection",
+    "Definition": "Customer abandoned the call after learning the price",
+    "Technical": "Price objection classifier"
+  },
+  {
+    "Outcome": "Unbooked",
+    "Reason": "Need to speak to third party",
+    "Subreason": "Family Member",
+    "Definition": "Customer wants to check with a family member before committing",
+    "Technical": "Service objection classifier"
+  },
+  {
+    "Outcome": "Unbooked",
+    "Reason": "Went with Other",
+    "Subreason": "Went with Competitor (Pricing)",
+    "Definition": "Customer decided to go to a competitor due to pricing",
+    "Technical": "Competitor objection classifier"
+  },
+  {
+    "Outcome": "Unbooked",
+    "Reason": "Went with Other",
+    "Subreason": "Went with Competitor (Timing)",
+    "Definition": "Customer decided to go to a competitor due to timing",
+    "Technical": "Competitor objection classifier"
+  },
+  {
+    "Outcome": "Unbooked",
+    "Reason": "Went with Other",
+    "Subreason": "Went with Competitor (Other)",
+    "Definition": "Customer decided to go to a competitor for other/unclear reasons",
+    "Technical": "Competitor objection classifier"
+  },
+  {
+    "Outcome": "Unbooked",
+    "Reason": "Went with Other",
+    "Subreason": "Will Try to Solve on Their Own",
+    "Definition": "Customer decided to solve the problem DIY or via friend, family, or neighbor",
+    "Technical": "Competitor objection classifier"
+  },
+  {
+    "Outcome": "Unbooked",
+    "Reason": "AI objection",
+    "Subreason": "AI objection",
+    "Definition": "Customer refused to continue with AI and no transfer was completed",
+    "Technical": "Sentiment classifier (negative) + AI frustration signal"
+  },
+  {
+    "Outcome": "Unbooked",
+    "Reason": "Friction",
+    "Subreason": "Information Confirmation Issues",
+    "Definition": "Booking failed due to trouble confirming the customer's details (address, name, etc.)",
+    "Technical": "Sentiment classifier (negative) + confirmation failure signal"
+  },
+  {
+    "Outcome": "Unbooked",
+    "Reason": "Friction",
+    "Subreason": "Too Many Questions",
+    "Definition": "Customer dropped off citing frustration with the number of questions",
+    "Technical": "Sentiment classifier (negative) + excessive questions signal"
+  },
+  {
+    "Outcome": "Unbooked",
+    "Reason": "Friction",
+    "Subreason": "General Frustration in Conversation",
+    "Definition": "Customer showed general frustration",
+    "Technical": "Sentiment classifier (negative) + general frustration signal"
+  },
+  {
+    "Outcome": "Unbooked",
+    "Reason": "Disconnected",
+    "Subreason": "Other",
+    "Definition": "Call ended without a clear reason — no objection signal identified",
+    "Technical": "No objection classifier fired on an unbooked call"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Price shopping",
+    "Subreason": "Price shopping",
+    "Definition": "Caller's goal was to gather pricing info with no intent to book",
+    "Technical": "Intent classifier (price shopping sub-intent)"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Need to speak to third party",
+    "Subreason": "Need to speak to Landlord",
+    "Definition": "Caller needs landlord sign-off; treated as Handled since it's a service-blocking constraint, not just a timing issue",
+    "Technical": "Service objection classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Need to speak to third party",
+    "Subreason": "No Authority to Book - Other",
+    "Definition": "Caller cannot authorize the booking themselves",
+    "Technical": "Service objection classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Service not offered",
+    "Subreason": "Outside Service Area",
+    "Definition": "Customer intended to book but is outside the service area",
+    "Technical": "Service objection classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Service not offered",
+    "Subreason": "Unsupported Job or Trade",
+    "Definition": "Customer intended to book but the job or trade is not supported",
+    "Technical": "Service objection classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Appointment confirmed",
+    "Subreason": "Appointment confirmed",
+    "Definition": "Customer confirmed their upcoming appointment time",
+    "Technical": "Intent + outcome classifiers"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Appointment rescheduled",
+    "Subreason": "Appointment rescheduled",
+    "Definition": "Agent successfully moved an existing appointment to a new date or time",
+    "Technical": "Intent + outcome classifiers"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Appointment checked",
+    "Subreason": "Appointment checked",
+    "Definition": "Customer checked on their appointment and asked about its details",
+    "Technical": "Intent + outcome classifiers"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Appointment updated",
+    "Subreason": "Appointment updated",
+    "Definition": "Customer added additional info for their upcoming appointment",
+    "Technical": "Intent + outcome classifiers"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Appointment cancellation",
+    "Subreason": "Scheduling Conflicts",
+    "Definition": "Cancelled existing appointment due to scheduling conflicts (e.g. sick, family emergency, other appointment)",
+    "Technical": "Intent classifier + timing objection classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Appointment cancellation",
+    "Subreason": "Went with Competitor (Pricing)",
+    "Definition": "Cancelled existing appointment and went with a competitor for pricing reasons",
+    "Technical": "Intent classifier + competitor objection classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Appointment cancellation",
+    "Subreason": "Went with Competitor (Timing)",
+    "Definition": "Cancelled existing appointment and went with a competitor for timing reasons",
+    "Technical": "Intent classifier + competitor objection classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Appointment cancellation",
+    "Subreason": "Went with Competitor (Other)",
+    "Definition": "Cancelled existing appointment and went with a competitor for other/unclear reasons",
+    "Technical": "Intent classifier + competitor objection classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Appointment cancellation",
+    "Subreason": "DIY Solve",
+    "Definition": "Cancelled existing appointment because the customer solved it themselves",
+    "Technical": "Intent classifier + competitor objection classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Appointment cancellation",
+    "Subreason": "Problem Fixed Itself",
+    "Definition": "Cancelled existing appointment because the problem fixed itself",
+    "Technical": "Intent classifier + competitor objection classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Appointment cancellation",
+    "Subreason": "Cannot Afford",
+    "Definition": "Cancelled existing appointment because they could not afford it (cost too high, financing declined, insurance issues, etc.)",
+    "Technical": "Intent classifier + price objection classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Appointment cancellation",
+    "Subreason": "Other Cancel Reason",
+    "Definition": "Cancelled for other/unknown reason",
+    "Technical": "Intent classifier (no specific objection signal on cancellation)"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "General inquiry",
+    "Subreason": "Business Hours or Location Serviced",
+    "Definition": "Customer inquired about business hours or locations served",
+    "Technical": "Intent classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "General inquiry",
+    "Subreason": "Trades or Technician Qualifications",
+    "Definition": "Customer inquired about technician qualifications or trades serviced",
+    "Technical": "Intent classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "General inquiry",
+    "Subreason": "Partnerships inquiry",
+    "Definition": "Caller inquired about business partnerships or referral arrangements",
+    "Technical": "Intent classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "General inquiry",
+    "Subreason": "Insurance or Payment Options",
+    "Definition": "Customer inquired about insurance or payment options",
+    "Technical": "Intent classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Admin Questions",
+    "Subreason": "Billing",
+    "Definition": "Customer asked billing questions",
+    "Technical": "Intent classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Admin Questions",
+    "Subreason": "Membership",
+    "Definition": "Customer asked membership questions. Modifying membership is live transfer; getting membership details is TAKE A NOTE",
+    "Technical": "Intent classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Admin Questions",
+    "Subreason": "Warranty",
+    "Definition": "Customer asked warranty questions",
+    "Technical": "Intent classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Admin Questions",
+    "Subreason": "Permits, Certifications, and Government Inspections",
+    "Definition": "Customer asked about permits, certifications, or other government-related questions",
+    "Technical": "Intent classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Admin Questions",
+    "Subreason": "Career inquiry",
+    "Definition": "Caller inquiring about a career opportunity",
+    "Technical": "Intent classifier"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Spam call",
+    "Subreason": "Spam call",
+    "Definition": "The call is spam or irrelevant — gibberish, prank calls, sales/telemarketing, auto-reply, or unrelated to the business",
+    "Technical": "Intent classifier (excused — spam)"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Excused",
+    "Subreason": "Wrong Number",
+    "Definition": "Caller called the wrong number",
+    "Technical": "Intent classifier (excused)"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Excused",
+    "Subreason": "Telemarketer",
+    "Definition": "Caller is a salesperson / telemarketer",
+    "Technical": "Intent classifier (excused)"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Excused",
+    "Subreason": "Internal Call",
+    "Definition": "Call between two internal phone numbers (employees or technicians)",
+    "Technical": "Intent classifier (excused)"
+  },
+  {
+    "Outcome": "Handled",
+    "Reason": "Excused",
+    "Subreason": "Other",
+    "Definition": "Call had no significant interaction but doesn't fit the above",
+    "Technical": "Intent classifier (excused)"
+  },
+  {
+    "Outcome": "Not enough info",
+    "Reason": "No Response",
+    "Subreason": "No Response",
+    "Definition": "No meaningful interaction occurred — the call had no transcript or the caller provided no substantive response",
+    "Technical": "No transcript recorded, or intent classifier returns no meaningful interaction"
+  },
+  {
+    "Outcome": "Not enough info",
+    "Reason": "Requested call back",
+    "Subreason": "Requested call back",
+    "Definition": "Caller hung up quickly after indicating they would call back",
+    "Technical": "Intent classifier (excused — callback) with no transfer completed"
+  },
+  {
+    "Outcome": "Not enough info",
+    "Reason": "Requested human",
+    "Subreason": "Preference for Human",
+    "Definition": "Caller immediately asked for a human with no booking context, and no transfer was completed",
+    "Technical": "Intent classifier (excused — requested representative) with no transfer completed"
+  }
+]

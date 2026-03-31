@@ -11,3 +11,12 @@
 - **Result:** Shared context system operational. Trinity can now publish structured notes that Neo will be able to retrieve via memory_search. This creates a cross-agent knowledge channel, aligning with distributed systems research.
 - **Next:** At 06:45, write daily summary to TRINITY.md. Then commit changes (TRINITY.md, trinity/index.md, trinity/*.md, swe-brain/).
 
+## 2026-03-31 Morning Digest
+
+**Overnight Highlights**:
+- **Unified Memory API** (Utility 9): Prototype completed. Provides a single interface (`UnifiedMemory`) that unifies Shared Context Board and Pheromone Memory backends. Neo can now query and add to both seamlessly. Demonstrated via `demo.js`.
+- **Shared Context Board**: Already operational; now integrated into Unified Memory.
+- **Pheromone Memory**: Decaying, reinforced context system; integrated.
+- **Evaluation**: Considered Automatic Context Summarizer (Utility 7) and Netic Debug CLI (Utility 8); Unified Memory scored highest.
+
+Next: Integration with Neo's conversation loop, production hardening, and commit to git.
