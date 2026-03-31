@@ -70,19 +70,35 @@ export function registerStatsEndpoint(app: any, workspaceRoot: string) {
         console.warn('Could not fetch Kanban tasks:', e);
       }
 
-      // Cron health
+      // Cron health - check recent successful runs from cron list
       try {
-        const { stdout } = await execAsync('openclaw cron status --json');
-        const cronStatus = JSON.parse(stdout);
+        const { stdout: listOut } = await execAsync('openclaw cron list --json');
+        const cronList = JSON.parse(listOut);
+        const jobs = cronList.jobs || [];
         const now = Date.now();
-        const lastSuccess = cronStatus.lastSuccessMs || 0;
-        const diffHours = (now - lastSuccess) / (1000 * 60 * 60);
-        if (diffHours < 2) {
-          stats.cronHealth = 'ok';
-        } else if (diffHours < 6) {
-          stats.cronHealth = 'degraded';
-        } else {
+        let lastSuccessMs = 0;
+
+        for (const job of jobs) {
+          // Consider only enabled jobs that have a successful recent run
+          if (job.enabled && job.state && job.state.lastRunStatus === 'ok' && job.state.lastRunAtMs) {
+            if (job.state.lastRunAtMs > lastSuccessMs) {
+              lastSuccessMs = job.state.lastRunAtMs;
+            }
+          }
+        }
+
+        if (lastSuccessMs === 0) {
+          // No successful runs found among enabled jobs
           stats.cronHealth = 'down';
+        } else {
+          const diffHours = (now - lastSuccessMs) / (1000 * 60 * 60);
+          if (diffHours < 2) {
+            stats.cronHealth = 'ok';
+          } else if (diffHours < 6) {
+            stats.cronHealth = 'degraded';
+          } else {
+            stats.cronHealth = 'down';
+          }
         }
       } catch (e: any) {
         stats.cronHealth = 'down';
