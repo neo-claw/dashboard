@@ -1,2 +1,2 @@
-- 2026-03-31: Implemented ACO Task Allocator prototype (Utility 8) — efficient multi-agent routing for Neo [[2026-03-31](2026-03-31.md)].
+- 2026-03-31: Built Taxonomy Editor prototype (Utility 9) — CRUD tool for Netic inbound definitions [[2026-03-31](2026-03-31.md)].
 - 2026-03-30: Built Pheromone Memory prototype (Utility 8.75) — distributed decaying context for Neo [[2026-03-30](2026-03-30.md)].
