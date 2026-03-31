@@ -27,7 +27,7 @@
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
 
-  /* Colors (Vercel-inspired dark theme) */
+  /* Colors (default dark theme) */
   --color-bg: #0a0a0a;
   --color-fg: #f5f5f5;
   --color-muted: #6b7280;
@@ -39,10 +39,58 @@
   --color-border: #262626;
   --color-border-light: rgba(255, 255, 255, 0.08);
 
+  /* Semantic Colors - Primary */
+  --color-primary: #3b82f6;
+  --color-primary-foreground: #ffffff;
+  
+  /* Semantic Colors - Secondary */
+  --color-secondary: #6b7280;
+  --color-secondary-foreground: #f5f5f5;
+  
+  /* Semantic Colors - Success */
+  --color-success: #10b981;
+  --color-success-foreground: #ffffff;
+  
+  /* Semantic Colors - Warning */
+  --color-warning: #f59e0b;
+  --color-warning-foreground: #ffffff;
+  
+  /* Semantic Colors - Error */
+  --color-error: #ef4444;
+  --color-error-foreground: #ffffff;
+
+  /* Glassmorphism Tokens */
+  --glass-backdrop-blur: blur(12px);
+  --glass-backdrop-blur-sm: blur(8px);
+  --glass-backdrop-blur-lg: blur(16px);
+  --glass-opacity: 0.7;
+  --glass-opacity-sm: 0.5;
+  --glass-opacity-lg: 0.85;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-light: rgba(255, 255, 255, 0.05);
+  --glass-bg: rgba(17, 17, 17, var(--glass-opacity));
+
   /* Shadows */
   --shadow-glow: 0 0 20px var(--color-accent-glow);
   --shadow-glow-sm: 0 0 10px rgba(0, 255, 157, 0.1);
   --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--color-border-light);
+}
+
+/* Light theme overrides */
+[data-theme="light"] {
+  --color-bg: #ffffff;
+  --color-fg: #0a0a0a;
+  --color-muted: #6b7280;
+  --color-surface: #f5f5f5;
+  --color-surface-card: #ffffff;
+  --color-surface-hover: #f0f0f0;
+  --color-border: #e5e5e5;
+  --color-border-light: rgba(0, 0, 0, 0.08);
+  --color-accent-glow: rgba(0, 255, 157, 0.25);
+  
+  --glass-bg: rgba(255, 255, 255, var(--glass-opacity));
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --glass-border-light: rgba(0, 0, 0, 0.05);
 }
 
 @layer base {
@@ -52,6 +100,7 @@
     font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 }
 
@@ -68,6 +117,38 @@
   .border-token { border: 1px solid var(--color-border); }
   .shadow-glow { box-shadow: var(--shadow-glow); }
   .shadow-glow-sm { box-shadow: var(--shadow-glow-sm); }
+  
+  /* Glassmorphism utilities */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop-blur);
+    -webkit-backdrop-filter: var(--glass-backdrop-blur);
+    border: 1px solid var(--glass-border);
+  }
+  .glass-sm {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop-blur-sm);
+    -webkit-backdrop-filter: var(--glass-backdrop-blur-sm);
+    border: 1px solid var(--glass-border-light);
+    opacity: var(--glass-opacity-sm);
+  }
+  .glass-lg {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop-blur-lg);
+    -webkit-backdrop-filter: var(--glass-backdrop-blur-lg);
+    border: 1px solid var(--glass-border);
+    opacity: var(--glass-opacity-lg);
+  }
+  
+  /* Semantic color utilities */
+  .text-primary { color: var(--color-primary); }
+  .bg-primary { background-color: var(--color-primary); }
+  .text-success { color: var(--color-success); }
+  .bg-success { background-color: var(--color-success); }
+  .text-warning { color: var(--color-warning); }
+  .bg-warning { background-color: var(--color-warning); }
+  .text-error { color: var(--color-error); }
+  .bg-error { background-color: var(--color-error); }
 }
 
 /* shadcn component overrides (if needed) */

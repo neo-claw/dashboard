@@ -28,6 +28,26 @@ export default {
           glow: 'rgba(0, 255, 157, 0.25)',
           dim: 'rgba(0, 255, 157, 0.1)',
         },
+        primary: {
+          DEFAULT: 'var(--color-primary)',
+          foreground: 'var(--color-primary-foreground)',
+        },
+        secondary: {
+          DEFAULT: 'var(--color-secondary)',
+          foreground: 'var(--color-secondary-foreground)',
+        },
+        success: {
+          DEFAULT: 'var(--color-success)',
+          foreground: 'var(--color-success-foreground)',
+        },
+        warning: {
+          DEFAULT: 'var(--color-warning)',
+          foreground: 'var(--color-warning-foreground)',
+        },
+        error: {
+          DEFAULT: 'var(--color-error)',
+          foreground: 'var(--color-error-foreground)',
+        },
         bg: {
           DEFAULT: '#050505',
           card: '#0a0a0a',
