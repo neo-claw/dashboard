@@ -17,4 +17,5 @@
  - 00:09: Ant Colony Optimization for Multi-Agent Task Allocation   (Utility 8/10)
  - 01:00: Ant Colony Optimization for Context Retrieval Routing   (Utility 8/10)
  - 01:33: Netic Transfer Router using ACO   (Utility 9/10)
+ - 05:06: Shared Context Board prototype (Utility 9/10) — cross-agent knowledge sharing via memory/shared_context.md
 
