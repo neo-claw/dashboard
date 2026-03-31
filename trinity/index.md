@@ -1,3 +1,4 @@
 - 2026-03-31: Built Netic Transfer Router prototype (Utility 9) — ACO-based CSR assignment for transferred calls, respecting capacity and specialty [[2026-03-31](2026-03-31.md)].
 - 2026-03-31: Built ACO Context Router prototype (Utility 8) — extends ant colony optimization to context retrieval for Neo [[2026-03-31](2026-03-31.md)].
 - 2026-03-30: Built Pheromone Memory prototype (Utility 8.75) — distributed decaying context for Neo [[2026-03-30](2026-03-30.md)].
+- 2026-03-31: Built Multi-Pheromone Simulator prototype (Utility 8) — demonstrates short-term vs long-term pheromone dynamics for context memory tuning [[2026-03-31](2026-03-31.md)].
