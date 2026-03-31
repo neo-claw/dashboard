@@ -1,10 +1,10 @@
 {
   "jobs": [
     {
-      "id": "daily_summary",
-      "schedule": "0 6 * * *",
-      "agent_message": "Generate overnight digest: summarize memory, calendar, and pending tasks.",
-      "context_memory_lines": 20,
+      "id": "daily_summary_write_commit",
+      "schedule": "45 6 * * *",
+      "command": "python3 ~/.openclaw/workspace/trinity/experiments/smartcron/write_daily_summary.py",
+      "requires_network": false,
       "concurrency_lock": "daily_summary"
     },
     {
