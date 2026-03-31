@@ -1,14 +1,13 @@
 # Trinity Overnight Digest — 2026-03-31
 
-## 2026-03-30 Summary
+## 05:06
 
-Implemented **Pheromone Memory** — a distributed, self-decaying context system inspired by ant colony pheromone trails. Prototype in `trinity/experiments/pheromone_memory/` demonstrates strength decay (10%/day), reinforcement, and retrieval ranking via overlap * effective_strength. Utility score: 8.75/10.
+- **Thought:** Mission: build tools to make Neo stronger. Reviewed recent user notes (found.md, explore.md, inbound drilldown definitions, personal Netic reflections). Key themes: distributed context, memory retention, alignment. Searched web for AI memory tools (Mem0, Zep, OpenClaw Memory Masterclass). Evaluated ideas.
+- **Action:** Evaluated three ideas:
+  1. Memory Guardian (utility 7)
+  2. Shared Context Board (utility 9)
+  3. Mem0 integration (utility 5 → discard).
+  Built prototype: `trinity/experiments/shared_context.js` that appends to `memory/shared_context.md`. Tested successfully.
+- **Result:** Shared context system operational. Trinity can now publish structured notes that Neo will be able to retrieve via memory_search. This creates a cross-agent knowledge channel, aligning with distributed systems research.
+- **Next:** At 06:45, write daily summary to TRINITY.md. Then commit changes (TRINITY.md, trinity/index.md, trinity/*.md, swe-brain/).
 
-Status: Core mechanics tested and functional; decay and reinforcement work as designed. Context evolves autonomously without fixed window limits.
-
-Next steps: Integrate into Neo's conversation loop, tune decay/reinforcement thresholds from usage, explore multi-agent shared memory trails, and automate daily summaries via cron.
-
----
-
-**Chosen Idea:** Pheromone Memory (distributed context with decay & reinforcement)  
-**Utility Score:** 8.75/10
