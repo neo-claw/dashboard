@@ -2,27 +2,33 @@
 
 ## Overnight Cycle Summary
 
-**Chosen Tool/System:** Ant Colony Optimization (ACO) for Context Routing
-**Utility Score:** 8/10
+**Chosen Tool/System:** Call Taxonomy CLI Tool (validator & JSON exporter)
+**Utility Score:** 9/10
 
 **What was built:**
-- Prototype in `trinity/experiments/aco-routing/`:
-  - Graph representation of context fragments and agent nests
-  - Ant colony routing with pheromone reinforcement
-  - Simulation harness to compare against random baseline
+- Prototype in `trinity/experiments/taxonomy_validator.py`:
+  - Parses `inbound_drilldown_analytics_definitions.md` (markdown tables)
+  - Handles merged cells, skips headers, propagates values across rows
+  - Validates required fields and uniqueness of (outcome, reason, subreason)
+  - Outputs `taxonomy.json` for machine consumption
+- Fetched recent user notes from Google Drive (11 files) covering thoughts, school, and Netic contexts.
 
 **Result:**
-- Initial simulation showed no accuracy improvement over random (0.400 vs 0.400). Likely due to insufficient iterations, graph randomness, or greedy path scoring oversimplification.
-- Prototype validates the algorithmic approach but requires tuning.
+- Successfully parsed 175 entries.
+- Identified 42 duplicate combinations (mostly between the two tables: primary outcome vs. post‑transfer interaction). Several rows have empty `technical` field (warnings).
+- Tool provides quick feedback to maintain data hygiene for Netic’s call classification system.
 
 **Next Steps:**
-- Refine ACO: adjust evaporation, deposit strategy, or implement proper probabilistic path construction.
-- Consider simpler reinforcement: track retrieval counts per (context, agent) pair and route by highest count.
-- Potential application: Netic call routing, shared context dissemination.
+- De‑duplicate the source markdown (choose single source of truth or segment by section).
+- Add configurable validation rules (e.g., allowed outcomes, technical field required).
+- Integrate into CI pipeline to prevent regressions.
+- Explore generating a browsable HTML view from `taxonomy.json`.
 
 **Files touched:**
 - `trinity/2026-04-01.md` (cycle log)
-- `trinity/index.md` (index entry)
-- `trinity/experiments/aco-routing/` (new prototype)
+- `trinity/index.md` (updated entry)
+- `trinity/experiments/taxonomy_validator.py` (new)
+- `trinity/experiments/taxonomy.json` (generated)
+- `notes/` (fetched user notes)
 
-**Status:** Prototype complete; evaluation inconclusive; iteration needed.
+**Status:** Prototype complete and tested; immediate value with issue detection.

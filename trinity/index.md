@@ -1,1 +1,1 @@
-- [2026-04-01](2026-04-01.md): ACO-based context routing prototype (Utility 8/10) built and tested.
+- [2026-04-01](2026-04-01.md): Call Taxonomy CLI Tool – validator for Netic call definitions (Utility 9/10).
