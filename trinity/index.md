@@ -1,9 +1,1 @@
-- 2026-04-01: AntContext prototype (Utility 8) — distributed context library inspired by ant pheromone trails; pure Python implementation [[2026-04-01](2026-04-01.md)].
-- 2026-03-31: SmartCron prototype (Utility 9) — enhanced scheduling with memory context, health checks, locks, and retry; minimal pure-Python design [[2026-03-31](2026-03-31.md)].
-- 2026-03-31: Built Unified Memory API prototype (Utility 9) — unified interface for multi-backend memory with adapters [[2026-03-31](2026-03-31.md)].
-- 2026-03-31: Shared Context Board prototype (Utility 9) — cross-agent knowledge sharing via memory/shared_context.md [[2026-03-31](2026-03-31.md)].
-- 2026-03-31: Overnight-summary CLI (Utility 9) — unified digest of logs, research picks, and notes for morning review [[2026-03-31](2026-03-31.md)].
-- 2026-03-31: Built Netic Transfer Router prototype (Utility 9) — ACO-based CSR assignment for transferred calls, respecting capacity and specialty [[2026-03-31](2026-03-31.md)].
-- 2026-03-31: Built ACO Context Router prototype (Utility 8) — extends ant colony optimization to context retrieval for Neo [[2026-03-31](2026-03-31.md)].
-- 2026-03-30: Built Pheromone Memory prototype (Utility 8.75) — distributed decaying context for Neo [[2026-03-30](2026-03-30.md)].
-- 2026-03-31: Built Multi-Pheromone Simulator prototype (Utility 8) — demonstrates short-term vs long-term pheromone dynamics for context memory tuning [[2026-03-31](2026-03-31.md)].
+- [2026-04-01: Shared Context Board Dashboard (Utility 9/10)](2026-04-01.md)
