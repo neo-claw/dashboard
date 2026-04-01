@@ -4,3 +4,4 @@
 - [2026-04-01](2026-04-01.md): MCP Graph Query Tool – added graph_query to MCP server to expose knowledge graph as queryable tool (Utility 9/10).
 - [2026-04-01](2026-04-01.md): Fuzzy Search for MCP Notes – added `search_notes` tool to search note contents (Utility 9/10).
 - [2026-04-01](2026-04-01.md): MOSS integration prototype – tested openai-moss-agents for code-driven context management in agents (Utility 8/10).
+- [2026-04-01](2026-04-01.md): Distributed Context Library (DCL) – pheromone-inspired context manager prototype (Utility 8/10).
