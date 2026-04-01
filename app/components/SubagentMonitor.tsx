@@ -526,9 +526,23 @@ export default function SubagentMonitor() {
                                             </span>
                                           )}
                                         </div>
+                                        {/* Show tool input params if available */}
+                                        {ev.tool && ev.params && (
+                                          <div className="mb-2 text-xs text-muted">
+                                            <span className="font-medium">Input:</span>
+                                            <pre className="inline bg-bg border border-border/30 p-1 rounded mt-1 overflow-auto max-h-24">
+                                              {JSON.stringify(ev.params, null, 2)}
+                                            </pre>
+                                          </div>
+                                        )}
                                         <p className="text-fg line-clamp-4 leading-relaxed whitespace-pre-wrap break-words">
                                           {typeof ev.content === 'string' ? ev.content : JSON.stringify(ev.content).slice(0, 500)}
                                         </p>
+                                        {ev.error && (
+                                          <div className="mt-2 text-xs text-red-400">
+                                            <span className="font-medium">Error:</span> {ev.error}
+                                          </div>
+                                        )}
                                       </div>
                                     ))}
                                   </div>

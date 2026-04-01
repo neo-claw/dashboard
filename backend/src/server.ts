@@ -10,6 +10,7 @@ import dotenv from 'dotenv';
 import { WebSocket } from 'ws';
 import os from 'os';
 import { activityBroadcaster } from './activity-broadcaster';
+import { toolRegistry } from './lib/toolRegistry';
 
 dotenv.config();
 
@@ -155,8 +156,22 @@ app.get('/api/v1/trace', authenticate, async (req, res) => {
       content: ev.content,
       tool: ev.tool,
       timestamp: ev.timestamp,
+      // Include additional tool-related fields if present
+      params: ev.params ?? undefined,
+      result: ev.result ?? undefined,
+      error: ev.error ?? undefined,
     }));
     res.json(events);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Tools endpoint - returns available tools from skills
+app.get('/api/v1/tools', authenticate, async (req, res) => {
+  try {
+    const tools = await toolRegistry.scanSkills();
+    res.json({ tools });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
