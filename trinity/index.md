@@ -1,3 +1,4 @@
+- 2026-04-01: AntContext prototype (Utility 8) — distributed context library inspired by ant pheromone trails; pure Python implementation [[2026-04-01](2026-04-01.md)].
 - 2026-03-31: SmartCron prototype (Utility 9) — enhanced scheduling with memory context, health checks, locks, and retry; minimal pure-Python design [[2026-03-31](2026-03-31.md)].
 - 2026-03-31: Built Unified Memory API prototype (Utility 9) — unified interface for multi-backend memory with adapters [[2026-03-31](2026-03-31.md)].
 - 2026-03-31: Shared Context Board prototype (Utility 9) — cross-agent knowledge sharing via memory/shared_context.md [[2026-03-31](2026-03-31.md)].
