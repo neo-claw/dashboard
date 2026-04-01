@@ -1,1 +1,2 @@
 - [2026-04-01](2026-04-01.md): Call Taxonomy CLI Tool – validator for Netic call definitions (Utility 9/10).
+- [2026-04-01](2026-04-01.md): MCP Notes Server – exposes local markdown notes to AI assistants via Model Context Protocol (Utility 9/10).
