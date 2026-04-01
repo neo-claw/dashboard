@@ -1,0 +1,31 @@
+{
+  "tools": [
+    {
+      "name": "read",
+      "description": "Read a file's contents, with optional streaming for large files.",
+      "skill": "agent-read",
+      "permissions": ["file_read"],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "stream": { "type": "boolean", "default": false }
+        },
+        "required": ["path"]
+      }
+    },
+    {
+      "name": "list_dir",
+      "description": "List files and directories in a given path.",
+      "skill": "agent-read",
+      "permissions": ["file_read"],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" }
+        },
+        "required": ["path"]
+      }
+    }
+  ]
+}

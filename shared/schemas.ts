@@ -158,3 +158,20 @@ export const CronStatusSchema: z.ZodType<CronStatus> = z.object({
     })
   ),
 });
+
+// Tool Contract Schemas
+export const ToolChunkSchema = z.object({
+  type: z.enum(['progress', 'partial', 'complete']),
+  data: z.any().optional(),
+  error: z.string().optional(),
+});
+
+export const ToolDefinitionSchema = z.object({
+  name: z.string(),
+  description: z.string(),
+  skill: z.string(),
+  permissions: z.array(z.string()),
+  // inputSchema is stored as JSON Schema object; we won't validate here for flexibility
+  inputSchema: z.any(),
+  outputSchema: z.any().optional(),
+});

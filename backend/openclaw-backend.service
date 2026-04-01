@@ -1,0 +1,17 @@
+[Unit]
+Description=OpenClaw Dashboard Backend
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ubuntu/.openclaw/workspace/backend
+Environment=OPENCLAW_HOME=/home/ubuntu/.openclaw
+Environment=WORKSPACE_ROOT=/home/ubuntu/.openclaw/workspace
+ExecStart=/usr/bin/node /home/ubuntu/.openclaw/workspace/backend/dist/src/server.js
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,20 @@
+{
+  "facts": {
+    "1": {
+      "text": "User is interested in ant colony distributed context systems.",
+      "strength": 1.5999999999999999,
+      "last_updated": 1774951571.875
+    },
+    "2": {
+      "text": "Netic call classification taxonomy defines outcomes like Booked, Unbooked, Handled.",
+      "strength": 2.0999999999999996,
+      "last_updated": 1774951571.88
+    },
+    "3": {
+      "text": "Shared Context Board allows cross-agent knowledge sharing via markdown.",
+      "strength": 1.5999999999999999,
+      "last_updated": 1774951571.876
+    }
+  },
+  "next_id": 4
+}

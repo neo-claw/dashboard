@@ -126,3 +126,27 @@ export interface CronStatus {
   nextRun?: string;
   jobs: { name: string; lastExit: number }[];
 }
+
+// Tool Contract
+export interface OpenClawTool {
+  name: string;
+  description: string;
+  inputSchema: any; // Zod schema (but stored as JSON Schema or raw)
+  outputSchema?: any;
+  permissions: string[];
+  skill: string;
+  execute: (params: any, ctx: ToolContext) => Promise<any | AsyncIterable<ToolChunk>>;
+}
+
+export interface ToolContext {
+  sessionKey: string;
+  // future: userId, approvals, etc.
+}
+
+export type ToolResult = { success: boolean; result?: any; error?: string };
+
+export interface ToolChunk {
+  type: 'progress' | 'partial' | 'complete';
+  data?: any;
+  error?: string;
+}
