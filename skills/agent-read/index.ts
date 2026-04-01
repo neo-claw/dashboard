@@ -1,6 +1,8 @@
 import { z } from 'zod';
-import { createReadStream, readdir, stat } from 'fs/promises';
+import { createReadStream } from 'fs';
+import { readdir, stat, readFile } from 'fs/promises';
 import { join, resolve } from 'path';
+import type { ToolChunk } from '@/shared/types';
 
 // Helper to ensure path is within workspace? For safety, restrict to allowed dirs.
 const WORKSPACE_ROOT = process.env.WORKSPACE_ROOT || process.cwd();

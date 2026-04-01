@@ -1,0 +1,211 @@
+### Feb 11, 2026 - Lab exam review
+- innateness != present at birth or present in genes
+	- innateness means **cannot be explained in psychological terms**
+- empiricist vs nativist are disagreeing over how much psychology can do or explain
+	- Chomsky believes psychology cant explain our understanding for language
+- Should know main names (chomsky, Baillargeon, piaget, etc. from readings)
+- Behaviorism is an extreme version of empiricism--> idea that behaviors are reinforced through ...
+	- Classical vs operant conditioning
+		- operant is some kind of action or response
+- Nativist proposal that many psychological capacities are result of specialized *instincts* and why is it troublesome for behaviorist
+	- Specialized instincts: biologically prepared capacities 
+		- Imprinting
+		- Goose egg rolling is a good example, naturally starts up when they hatch an egg
+	- Troublesome:
+		- Instincts seem to be innate, not learned
+		- Just kind of happen naturally, poverty of stimulus
+- Chomsky and poverty of stim ulus argument
+	- Linear vs structure dependent rule example
+	- Abstract category a word fits into, and you need to understand that to turn a statement into a question
+		- Although, most adults don't know those rules but they also don't make the mistake of linear rules
+	- Linear rule is like counting number of "is" and moving some number in front
+	- This means there must be something innate about it
+- Fallible signs of innate abilities are other ways beyond poverty of stimulus case
+- Representations and processes
+	- Process is an algorithm telling you how to manipulate symbols
+	- Representation is a way to attach meaning to symbols
+### Feb 4, 2026 - Lab Marr’s 3 levels
+- Computational level: tells you what the thing does, general task
+- Need to understand what problem is being solved, why that problem is important for the system’s goals
+- Calculator: take the sum between two real numbers
+- Inputs to outputs
+- Algorithmic level: what algorithms and representations are used to complete this task
+- What algorithms are used to complete this task?
+- Focus on two things:
+- Representation: formal system that tells us how to use symbols to represent certain information
+- Algorithms: route set of rules for symbol manipulation
+- Algos + representations enable us to compute a function
+- Lots of different combinations of representations and algorithms
+- Calculator: how the calculator is summing the two numbers
+- Representation: Arabic numerals, gives you a rule for using those symbols
+- Algorithm: put symbols above each other and perform digit level addition while carrying one
+- Lots of diff combinations of reps and algos can be used to compute the same function
+- Some functions cant be computed by any algo
+- Functions are like a task, and algorithms are general ways to solve the function
+- Implementation level: how algorithms are implemented in the wetware of our brain
+- E.g. hardware of the calculator
+- Silicon chips | bean cans
+- Clusters of neurons | firing rates
+- Identify the physical mechanisms
+- Each higher level is somewhat independent of lower level
+- Understanding comp level doesn’t tell u about algo level
+- You can learna bit about the other levels though
+- Significance
+	- 1) We need to understand computational tasks and the algos implemented in our brain to understand how our brain works
+	- 2) cog sci doesn’t need to proceed strictly from direct study of our brain
+
+### Jan 28, 2026 - Lab Chomsky vs. Skinner
+- Criticisms: lack of predictions
+- Skinner’s theory does not give us any general way to tell what the relevant stimulus is, so Skinner’s theory doesn’t generate any predictions
+- Therefore, unfalsifiable
+- Only geneates predictions in rat experiment
+- Same concerns apply to “response” as well as “reinforcement.”
+- Why do we latch on to particular stimuli tho?
+- Predicting verbal behavior typically seems to require rationalizing explanations
+- Do you say “pencil” every time you see a pencil?
+### Jan 27, 2026 - 
+
+### Jan 22, 2026 - Nativism vs. Empiricism Part III
+- A lot of people lie in the middle, saying some things are nature while others are nurture
+- Empiricists: Aristotle, Locke
+- Nativists: Plato, Descartes
+- BF Skinner
+- Reduces learning to complex patterns of conditioned responses
+- AKA children learn to associate words with correct things because they get praise when they say the right thing, but then punished when they say the wrong things
+- Chomsky thinks psychological behaviorism is a hopeless approach to understanding human language
+- Nativists often regard complex behaviors + cognitive capacities as instincts
+- Goose egg rolling behavior
+- BF skinner would say the goose has associated rolling his egg to surviving
+- Factors in the egg-rolling behavior:
+- Sign stimuli: any convex object
+- Motor program: displayed “egg”-rolling behavior
+- Drive: appears two weeks before goose lays eggs, persists until two weeks after eggs hatch
+- Another example: imprinting
+- Chick’s mother following response
+- Sign stimuli: any receding object X
+- Motor program: follow X (mother) and avoid others
+- Drive: best uptake within 13-16 hours of life, if it doesnt’t happen within the first 48 hours, the resulting attachment is either very weak or doesn’t develop at all
+- Chomsky: some knowledge of language needs to be innate because first language learners face a poverty of the stimulus: their understanding of language far outstrips the info that is available to them from the environment
+- Not everything, only some
+### Jan 21, 2026 Lab - Object Permanence
+- Format of research paper:
+- Intro
+- Broad question, prior work on that question
+- Specific question and how current study will answer this question
+- Methods
+- Participants, procedure, materials + apparatus
+- Results
+- Organized by topic/question
+- Every analysis should address a question
+- Discussion
+- Answer to specific question, comparing against other work, limitations, implications of broader question
+- Distilling info from paper:
+- QAALMRI: questions, answers (from past work), alternatives, logic, methods, results, inference
+- QAALMRI on Baillargeon:
+- Question:
+- Broad: do infants develop object permanence, is object permanence innate?
+- Specific: whether or not 5-month-old infants display object permanence, and why infants don’t search for hidden objects? Are they surprised when the test violates a hidden object?
+- Answers: existing answers from prev. work
+- Piaget claims we learn how they work after different stages
+- Lack of motor skills
+- Confused about how blankets work
+- Bower et. al seems to suggest that obj permanence is innate, why not: alternative explanations
+- Alternatives: what diff things that could happen in this study, 
+- Prefer one bc they understand object permanence, or prefer another bc they don’t
+- They’ll look longer at the impossible test
+- Logic: what is the line of reasoning behind the test?
+- If babies understand object permanence, then we expect them to be surprised when we break this rule
+- If they are surprised, will they actually look longer for that reason, or will they be confused with perceptual novelty?
+- Methods:
+- Habituation
+- Control: possible event of a screen stopping at a hidden box
+- Test: impossible event of the screen passing through the box’s location
+- Results:
+- Infants stared longer
+- Inference:
+- Claim this shows object permanence earlier than piaget
+- Want you to believe that other alternatives are the reason for piaget’s findings
+### Jan 20, 2026 - Nativism vs. Empiricism Part II
+- For thousands of years, Western philosophy has been cast as a never-ending debate between rationalists (nature) and empiricists (nurture)
+- Plato (rationalist) <—————> Aristotle (empricism)
+- Rationalist
+- 20th century: Fodor, concept learning is impossible
+- 20th century: Chomsky, 
+- Empiricism
+- Locke: babies are a tabula rasa (blank slate), everything they come to be is from the experience of their world
+- Hume: all ideas learned from sensory experience
+- What does it mean for something to be innate?
+- Innateness in cognitive science, by Richard Samuels: you need to appeal to lots of innate stuff to explain theory of mind, arithmetic, folk physics, and language
+- An account that identifies too much stuff as innate is too liberal, too little stuff is too conservative
+- Samuels notes a lot of popular ideas fall foul of one or another of these points
+- Common sense idea: to be innate is to be present at birth
+- Two problems: 1) a lot of stuff that’s surely innate is not present at birth
+- Teeth, armpit hair
+- 2) a lot of stuff is learned before birth
+- Newborns prefer mother’s voice
+- Another idea: written in our genes?
+- Genes code for proteins, not the complex psychological traits that nativists talk about
+- Another idea: caused by our genes?
+- On a causal account, something is innate if its emergence is the result of our genetics
+- Problem: all our traits are the result of both our genetics and environment
+- Another idea by Richard Samuels: something is innate if its emergence cannot be explained in psychological terms
+- Bodily hair does not come from thinking or feeling certain things
+- Learning about history: hear the professor, understand what is said, hold background beliefs = psychological terms
+- Chomsky nativist proposal: certain knowledge is acquired in the same way as teeth/body hair – its innate
+- Empiricists want to minimize the amount of innate stuff in the human mind and to appeal to domain general mechanisms
+- Psychological behaviorism: dominant approach to psychology inthe early half of 20th century
+- General skepticism about hidden mental goings on
+- Tried to explain all behavior in terms of general tendency to produce coinditioned response
+- Pavlov’s Dog = example of conditioned response
+- General tendency to form learned associations between stimuli and conditioned responses
+- Hardcore empiricism
+- Operant Conditioning
+- Learning incrementally, forming between involuntary behaviors and rewards
+- Rat in a box → first reward close to lever, then close to touching, then pulling lever  
+### Jan 15, 2026 - Nativism vs. Empiricism Part I
+What is cognition?
+Some useful questions
+1. What counts as thinking?
+2. Good example of thinking?
+Doing math in your head
+3. Not thinking?
+Throwing a ball after you have developed that ability. Reflexes too.
+4. Unsure about?
+Subconscious, instinctual-level reactions that we have. 
+- Types of cognition
+- Conservative cognition = “relating to concepts of reasoning” (or propositional attitudes)
+- Expansive cognition = “activities and processes concerned with acquisition, storage, retrieval, and processing of information”
+- Acquisition has to do with perception
+- Storage and retrieval has to do with behavior / memory
+- Processing of information is like conservative cognition
+- Common problem cases
+- Classifcal conditioning – dog learns to salivate at ringing of a bell that is usually followed by food, counts as expansive and plausibly conservative
+- Reflexes – part of cognition
+- Emotion – counts as expansive, may not be conservative cognition
+- Useful questions
+- Consider a few “good” or “unsure” examples of cognitive tasks. Can you imagine different strategies for completing those tasks?
+- How would you know
+- When did you start doing that kind of thinking (infancy? Childhood? adolescence? ) Did you learn to do it or did it just happen?
+- Thinking example: reasoning abt social goals & relation
+- Adults use lots of social cues for judgement (eye contact, tone of voice, touch, imitation, etc.)
+- Infants also use these but not as much as adults
+- Thinking example: Trolley problem & moral reasoning
+	- Trolley problem
+	- Footbridge problem
+- 2 systems of thinking from Thinking Fast & Slow by Daniel Kahneman
+	- Fast, effortless, auto
+	- Slow, effortful, deliberative
+- View one: Empiricism
+- Plato’s student Aristotle said that experience in this life causes ideas to be implanted in the mind
+- John Locke agrees that
+- We receive simple ideas through the senses (visual, auditory, olfactory), providing raw materials for conception
+- We form complex ideas by reasoning about those raw materials
+- He argues that innate principles can only be innate if babies are doing the same thing as parents
+- Bad argument tho: teeth, armpit hair, etc. are not present at birth but they are features of our innate endowment 
+- View two: Nativism
+- Alternative: much of knowlerdge comes from nature
+- Plato was one of the earliest and most extrem nativists
+- Must have been present at birth
+- Socrates shows Meno’s servant knows geometric truths without having been taught of them
+- Common thread: significant portion of the world mustbe innately endowed because our experience with world is not rich enough to provide all
+- Noam Chosky makes this argument

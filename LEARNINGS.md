@@ -1,1 +1,2 @@
 Evening digest 2026-03-28: Insights: gws CLI usage (quoted folder IDs, alt=media), stale notes (update Feb/Mar), need PROJECTS.md/tasks-done.md initialization, news source noisy, optimization via config-driven folders and structured ontology.
+Evening digest 2026-03-28: Learned gws CLI folder queries, content download via alt=media, news extraction from dynamic pages, and need for structured project files.

@@ -47,6 +47,7 @@ export default function ActivityStream() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [showFilters, setShowFilters] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
+  const wsRef = useRef<WebSocket | null>(null);
 
   // Load filter presets from localStorage
   useEffect(() => {

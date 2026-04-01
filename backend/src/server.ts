@@ -76,6 +76,7 @@ import { registerSessionsEndpoint } from './endpoints/sessions';
 import { registerCalendarEndpoint } from './endpoints/calendar';
 import { registerSubagentsEndpoint } from './endpoints/subagents';
 import { registerCronEndpoint } from './endpoints/cron';
+import { registerQueryConfigEndpoint } from './endpoints/query-config';
 // import { extractReply } from './chat/replyExtractor'; // not used yet
 
 registerLearningsEndpoint(app, WORKSPACE_ROOT);
@@ -87,6 +88,7 @@ registerSessionsEndpoint(app);
 registerCalendarEndpoint(app);
 registerSubagentsEndpoint(app);
 registerCronEndpoint(app, WORKSPACE_ROOT);
+registerQueryConfigEndpoint(app, WORKSPACE_ROOT);
 
 // Activity Stream endpoints
 app.get('/api/v1/activity/events', authenticate, (req: any, res: any) => {

@@ -1,4 +1,6 @@
-import ActivityStream from '@/components/ActivityStream';
+'use client';
+
+import ActivityStream from '@/app/components/ActivityStream';
 
 export default function ActivityPage() {
   return (

@@ -5,9 +5,9 @@ const BACKEND_API_KEY = process.env.BACKEND_API_KEY;
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = params;
+  const { id } = await params;
   const { searchParams } = new URL(request.url);
   const limit = searchParams.get('limit') || '30';
 

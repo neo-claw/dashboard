@@ -340,6 +340,7 @@ export default function CronPage() {
             );
           })}
         </div>
+        )}
       </section>
 
       {/* Edit Schedule Modal */}

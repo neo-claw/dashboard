@@ -1,0 +1,211 @@
+Netic Taxonomy Validation Summary
+Source: /home/ubuntu/.openclaw/workspace/netic_definitions.md
+Generated: 2026-04-01T04:43:22.130726
+
+Outcomes: 49
+Transfers: 66
+Total entries: 115
+Duplicate combinations: 1
+
+Errors:
+- Missing Outcome in record: {'': 'Definition'}
+- Missing Reason in record: {'': 'Definition'}
+- Missing Subreason in record: {'': 'Definition'}
+- Missing Outcome in record: {'': 'Customer requested a human because they explicitly prefer humans, or do so immediately before significant conversation occurs'}
+- Missing Reason in record: {'': 'Customer requested a human because they explicitly prefer humans, or do so immediately before significant conversation occurs'}
+- Missing Subreason in record: {'': 'Customer requested a human because they explicitly prefer humans, or do so immediately before significant conversation occurs'}
+- Missing Outcome in record: {'': 'Customer requested a supervisor, manager, or someone higher up to talk to'}
+- Missing Reason in record: {'': 'Customer requested a supervisor, manager, or someone higher up to talk to'}
+- Missing Subreason in record: {'': 'Customer requested a supervisor, manager, or someone higher up to talk to'}
+- Missing Outcome in record: {'': 'Customer requested a human because they were getting frustrated with AI'}
+- Missing Reason in record: {'': 'Customer requested a human because they were getting frustrated with AI'}
+- Missing Subreason in record: {'': 'Customer requested a human because they were getting frustrated with AI'}
+- Missing Outcome in record: {'': 'Customer requested a human for an unknown reason'}
+- Missing Reason in record: {'': 'Customer requested a human for an unknown reason'}
+- Missing Subreason in record: {'': 'Customer requested a human for an unknown reason'}
+- Missing Outcome in record: {'': 'Caller missed a call from CXR / technician and is following up'}
+- Missing Reason in record: {'': 'Caller missed a call from CXR / technician and is following up'}
+- Missing Subreason in record: {'': 'Caller missed a call from CXR / technician and is following up'}
+- Missing Outcome in record: {'': 'Caller specifically missed a call for rescheduling a job  <br>- Generic rescheduling outbound  <br>- Maintenance rescheduling outbound, if configured  <br>- Maintenance rescheduling outbound with an offer for credit, if configured'}
+- Missing Reason in record: {'': 'Caller specifically missed a call for rescheduling a job  <br>- Generic rescheduling outbound  <br>- Maintenance rescheduling outbound, if configured  <br>- Maintenance rescheduling outbound with an offer for credit, if configured'}
+- Missing Subreason in record: {'': 'Caller specifically missed a call for rescheduling a job  <br>- Generic rescheduling outbound  <br>- Maintenance rescheduling outbound, if configured  <br>- Maintenance rescheduling outbound with an offer for credit, if configured'}
+- Missing Outcome in record: {'': 'Customer asked billing questions'}
+- Missing Reason in record: {'': 'Customer asked billing questions'}
+- Missing Subreason in record: {'': 'Customer asked billing questions'}
+- Missing Outcome in record: {'': 'Customer asked membership questions. Modifying membership is live transfer, getting membership details is TAKE A NOTE'}
+- Missing Reason in record: {'': 'Customer asked membership questions. Modifying membership is live transfer, getting membership details is TAKE A NOTE'}
+- Missing Subreason in record: {'': 'Customer asked membership questions. Modifying membership is live transfer, getting membership details is TAKE A NOTE'}
+- Missing Outcome in record: {'': 'Customer asked warranty questions'}
+- Missing Reason in record: {'': 'Customer asked warranty questions'}
+- Missing Subreason in record: {'': 'Customer asked warranty questions'}
+- Missing Outcome in record: {'': 'Customer asked permits, certifications, and other government related questions'}
+- Missing Reason in record: {'': 'Customer asked permits, certifications, and other government related questions'}
+- Missing Subreason in record: {'': 'Customer asked permits, certifications, and other government related questions'}
+- Missing Outcome in record: {'': 'Customer asked insurance questions'}
+- Missing Reason in record: {'': 'Customer asked insurance questions'}
+- Missing Subreason in record: {'': 'Customer asked insurance questions'}
+- Missing Outcome in record: {'': 'Customer needs to share sensitive info'}
+- Missing Reason in record: {'': 'Customer needs to share sensitive info'}
+- Missing Subreason in record: {'': 'Customer needs to share sensitive info'}
+- Missing Outcome in record: {'': 'Process is defined to escalate inquired job type'}
+- Missing Reason in record: {'': 'Process is defined to escalate inquired job type'}
+- Missing Subreason in record: {'': 'Process is defined to escalate inquired job type'}
+- Missing Outcome in record: {'': 'Job type not handled by Netic'}
+- Missing Reason in record: {'': 'Job type not handled by Netic'}
+- Missing Subreason in record: {'': 'Job type not handled by Netic'}
+- Missing Outcome in record: {'': 'Custom rules, e.g.  <br>- fireplace service  <br>- geothermal service  <br>- appliance service  <br>- duct work  <br>- etc.'}
+- Missing Reason in record: {'': 'Custom rules, e.g.  <br>- fireplace service  <br>- geothermal service  <br>- appliance service  <br>- duct work  <br>- etc.'}
+- Missing Subreason in record: {'': 'Custom rules, e.g.  <br>- fireplace service  <br>- geothermal service  <br>- appliance service  <br>- duct work  <br>- etc.'}
+- Missing Outcome in record: {'': 'Caller requested service for a commercial property or location'}
+- Missing Reason in record: {'': 'Caller requested service for a commercial property or location'}
+- Missing Subreason in record: {'': 'Caller requested service for a commercial property or location'}
+- Missing Outcome in record: {'': 'Postal codes that require escalation zones'}
+- Missing Reason in record: {'': 'Postal codes that require escalation zones'}
+- Missing Subreason in record: {'': 'Postal codes that require escalation zones'}
+- Missing Outcome in record: {'': 'Caller mentioned a mobile home or other non-serviceable property type  <br>- mobile home  <br>- stacked / side-by-side condo'}
+- Missing Reason in record: {'': 'Caller mentioned a mobile home or other non-serviceable property type  <br>- mobile home  <br>- stacked / side-by-side condo'}
+- Missing Subreason in record: {'': 'Caller mentioned a mobile home or other non-serviceable property type  <br>- mobile home  <br>- stacked / side-by-side condo'}
+- Missing Outcome in record: {'': "AI agent faced issues validating the customer's address against the database"}
+- Missing Reason in record: {'': "AI agent faced issues validating the customer's address against the database"}
+- Missing Subreason in record: {'': "AI agent faced issues validating the customer's address against the database"}
+- Missing Outcome in record: {'': 'Customer is calling for a rental inspection'}
+- Missing Reason in record: {'': 'Customer is calling for a rental inspection'}
+- Missing Subreason in record: {'': 'Customer is calling for a rental inspection'}
+- Missing Outcome in record: {'': 'Custom rules: e.g.  <br>- Meant to call other branch'}
+- Missing Reason in record: {'': 'Custom rules: e.g.  <br>- Meant to call other branch'}
+- Missing Subreason in record: {'': 'Custom rules: e.g.  <br>- Meant to call other branch'}
+- Missing Outcome in record: {'': 'No availabilities were found'}
+- Missing Reason in record: {'': 'No availabilities were found'}
+- Missing Subreason in record: {'': 'No availabilities were found'}
+- Missing Outcome in record: {'': 'Appointment had transfer criteria, e.g. attached to a dummy technician'}
+- Missing Reason in record: {'': 'Appointment had transfer criteria, e.g. attached to a dummy technician'}
+- Missing Subreason in record: {'': 'Appointment had transfer criteria, e.g. attached to a dummy technician'}
+- Missing Outcome in record: {'': 'Appointment confirmation requires transfer'}
+- Missing Reason in record: {'': 'Appointment confirmation requires transfer'}
+- Missing Subreason in record: {'': 'Appointment confirmation requires transfer'}
+- Missing Outcome in record: {'': 'Other custom rules, e.g. specific third party leads, etc'}
+- Missing Reason in record: {'': 'Other custom rules, e.g. specific third party leads, etc'}
+- Missing Subreason in record: {'': 'Other custom rules, e.g. specific third party leads, etc'}
+- Missing Outcome in record: {'': 'Customer has "Do Not Service" tag'}
+- Missing Reason in record: {'': 'Customer has "Do Not Service" tag'}
+- Missing Subreason in record: {'': 'Customer has "Do Not Service" tag'}
+- Missing Outcome in record: {'': 'Customer has escalation tag'}
+- Missing Reason in record: {'': 'Customer has escalation tag'}
+- Missing Subreason in record: {'': 'Customer has escalation tag'}
+- Missing Outcome in record: {'': 'Other custom rules, e.g. HOA'}
+- Missing Reason in record: {'': 'Other custom rules, e.g. HOA'}
+- Missing Subreason in record: {'': 'Other custom rules, e.g. HOA'}
+- Missing Outcome in record: {'': 'Customer has an inquiry about parts  <br>- If customized, we may break out certain types of parts orders, e.g. filter changes and refrigerant recharges'}
+- Missing Reason in record: {'': 'Customer has an inquiry about parts  <br>- If customized, we may break out certain types of parts orders, e.g. filter changes and refrigerant recharges'}
+- Missing Subreason in record: {'': 'Customer has an inquiry about parts  <br>- If customized, we may break out certain types of parts orders, e.g. filter changes and refrigerant recharges'}
+- Missing Outcome in record: {'': 'Caller following up on an open estimate'}
+- Missing Reason in record: {'': 'Caller following up on an open estimate'}
+- Missing Subreason in record: {'': 'Caller following up on an open estimate'}
+- Missing Outcome in record: {'': 'Caller following up regarding in-progress work'}
+- Missing Reason in record: {'': 'Caller following up regarding in-progress work'}
+- Missing Subreason in record: {'': 'Caller following up regarding in-progress work'}
+- Missing Outcome in record: {'': 'Caller following up on recent install'}
+- Missing Reason in record: {'': 'Caller following up on recent install'}
+- Missing Subreason in record: {'': 'Caller following up on recent install'}
+- Missing Outcome in record: {'': 'TAKE A NOTE. Caller is reporting forgotten tools and equipment by technician.'}
+- Missing Reason in record: {'': 'TAKE A NOTE. Caller is reporting forgotten tools and equipment by technician.'}
+- Missing Subreason in record: {'': 'TAKE A NOTE. Caller is reporting forgotten tools and equipment by technician.'}
+- Missing Outcome in record: {'': "AI agent faced issues validating the customer's name against the database"}
+- Missing Reason in record: {'': "AI agent faced issues validating the customer's name against the database"}
+- Missing Subreason in record: {'': "AI agent faced issues validating the customer's name against the database"}
+- Missing Outcome in record: {'': 'AI agent found no appointments for a customer who claimed they had an appointment scheduled'}
+- Missing Reason in record: {'': 'AI agent found no appointments for a customer who claimed they had an appointment scheduled'}
+- Missing Subreason in record: {'': 'AI agent found no appointments for a customer who claimed they had an appointment scheduled'}
+- Missing Outcome in record: {'': 'AI agent found an appointment booked for the past, but not in-progress/completed'}
+- Missing Reason in record: {'': 'AI agent found an appointment booked for the past, but not in-progress/completed'}
+- Missing Subreason in record: {'': 'AI agent found an appointment booked for the past, but not in-progress/completed'}
+- Missing Outcome in record: {'': 'Customer is trying to modify an appointment where a tech has already been dispatched'}
+- Missing Reason in record: {'': 'Customer is trying to modify an appointment where a tech has already been dispatched'}
+- Missing Subreason in record: {'': 'Customer is trying to modify an appointment where a tech has already been dispatched'}
+- Missing Outcome in record: {'': 'Customer is trying to book a duplicate booking'}
+- Missing Reason in record: {'': 'Customer is trying to book a duplicate booking'}
+- Missing Subreason in record: {'': 'Customer is trying to book a duplicate booking'}
+- Missing Outcome in record: {'': 'Customer is trying to modify an appointment, but is a new address or customer'}
+- Missing Reason in record: {'': 'Customer is trying to modify an appointment, but is a new address or customer'}
+- Missing Subreason in record: {'': 'Customer is trying to modify an appointment, but is a new address or customer'}
+- Missing Outcome in record: {'': 'Issue with mismatched info for reschedule request'}
+- Missing Reason in record: {'': 'Issue with mismatched info for reschedule request'}
+- Missing Subreason in record: {'': 'Issue with mismatched info for reschedule request'}
+- Missing Outcome in record: {'': 'Customer requested two appointments to be booked'}
+- Missing Reason in record: {'': 'Customer requested two appointments to be booked'}
+- Missing Subreason in record: {'': 'Customer requested two appointments to be booked'}
+- Missing Outcome in record: {'': 'Customer is asking to reinstate their already cancelled appointment'}
+- Missing Reason in record: {'': 'Customer is asking to reinstate their already cancelled appointment'}
+- Missing Subreason in record: {'': 'Customer is asking to reinstate their already cancelled appointment'}
+- Missing Outcome in record: {'': 'Customer requests to make a significant change to existing appointment. E.g. entirely new trade or entirely new address.'}
+- Missing Reason in record: {'': 'Customer requests to make a significant change to existing appointment. E.g. entirely new trade or entirely new address.'}
+- Missing Subreason in record: {'': 'Customer requests to make a significant change to existing appointment. E.g. entirely new trade or entirely new address.'}
+- Missing Outcome in record: {'': 'Customer is a non-owner/occupant of their service location'}
+- Missing Reason in record: {'': 'Customer is a non-owner/occupant of their service location'}
+- Missing Subreason in record: {'': 'Customer is a non-owner/occupant of their service location'}
+- Missing Outcome in record: {'': 'Customer requests to be contacted via different modality (call, text, email, etc.)'}
+- Missing Reason in record: {'': 'Customer requests to be contacted via different modality (call, text, email, etc.)'}
+- Missing Subreason in record: {'': 'Customer requests to be contacted via different modality (call, text, email, etc.)'}
+- Missing Outcome in record: {'': 'Customer explicitly asks for a follow up'}
+- Missing Reason in record: {'': 'Customer explicitly asks for a follow up'}
+- Missing Subreason in record: {'': 'Customer explicitly asks for a follow up'}
+- Missing Outcome in record: {'': 'Customer previously had a bad experience with business including injury or damage.'}
+- Missing Reason in record: {'': 'Customer previously had a bad experience with business including injury or damage.'}
+- Missing Subreason in record: {'': 'Customer previously had a bad experience with business including injury or damage.'}
+- Missing Outcome in record: {'': 'Customer previously had a bad experience with business during a past appointment or interaction. Can include more specific custom rules like "threatening to end relationship" if configured'}
+- Missing Reason in record: {'': 'Customer previously had a bad experience with business during a past appointment or interaction. Can include more specific custom rules like "threatening to end relationship" if configured'}
+- Missing Subreason in record: {'': 'Customer previously had a bad experience with business during a past appointment or interaction. Can include more specific custom rules like "threatening to end relationship" if configured'}
+- Missing Outcome in record: {'': 'Customer exhibits repeated frustration during conversation'}
+- Missing Reason in record: {'': 'Customer exhibits repeated frustration during conversation'}
+- Missing Subreason in record: {'': 'Customer exhibits repeated frustration during conversation'}
+- Missing Outcome in record: {'': 'Caller wants to report a driver/truck related to the company'}
+- Missing Reason in record: {'': 'Caller wants to report a driver/truck related to the company'}
+- Missing Subreason in record: {'': 'Caller wants to report a driver/truck related to the company'}
+- Missing Outcome in record: {'': 'Customer wants to be contacted via call'}
+- Missing Reason in record: {'': 'Customer wants to be contacted via call'}
+- Missing Subreason in record: {'': 'Customer wants to be contacted via call'}
+- Missing Outcome in record: {'': 'Customer wants to be contacted via email'}
+- Missing Reason in record: {'': 'Customer wants to be contacted via email'}
+- Missing Subreason in record: {'': 'Customer wants to be contacted via email'}
+- Missing Outcome in record: {'': 'Customer wants to be contacted via text'}
+- Missing Reason in record: {'': 'Customer wants to be contacted via text'}
+- Missing Subreason in record: {'': 'Customer wants to be contacted via text'}
+- Missing Outcome in record: {'': 'Customer requests Spanish'}
+- Missing Reason in record: {'': 'Customer requests Spanish'}
+- Missing Subreason in record: {'': 'Customer requests Spanish'}
+- Missing Outcome in record: {'': 'Customer booked but wanted a sooner appt if one becomes available'}
+- Missing Reason in record: {'': 'Customer booked but wanted a sooner appt if one becomes available'}
+- Missing Subreason in record: {'': 'Customer booked but wanted a sooner appt if one becomes available'}
+- Missing Outcome in record: {'': 'Caller inquiring about a career opportunity.'}
+- Missing Reason in record: {'': 'Caller inquiring about a career opportunity.'}
+- Missing Subreason in record: {'': 'Caller inquiring about a career opportunity.'}
+- Missing Outcome in record: {'': 'Technician or other existing employee calls CSR agent.'}
+- Missing Reason in record: {'': 'Technician or other existing employee calls CSR agent.'}
+- Missing Subreason in record: {'': 'Technician or other existing employee calls CSR agent.'}
+- Missing Outcome in record: {'': 'Caller is at the office.'}
+- Missing Reason in record: {'': 'Caller is at the office.'}
+- Missing Subreason in record: {'': 'Caller is at the office.'}
+- Missing Outcome in record: {'': 'TAKE A NOTE. Customer asks for guidance on using equipment.'}
+- Missing Reason in record: {'': 'TAKE A NOTE. Customer asks for guidance on using equipment.'}
+- Missing Subreason in record: {'': 'TAKE A NOTE. Customer asks for guidance on using equipment.'}
+- Missing Outcome in record: {'': 'Customer wants all unbooked calls to be flagged. Was noted as "transfer" for a while, but then we stopped doing so by setting mark_transfer = false'}
+- Missing Reason in record: {'': 'Customer wants all unbooked calls to be flagged. Was noted as "transfer" for a while, but then we stopped doing so by setting mark_transfer = false'}
+- Missing Subreason in record: {'': 'Customer wants all unbooked calls to be flagged. Was noted as "transfer" for a while, but then we stopped doing so by setting mark_transfer = false'}
+- Missing Outcome in record: {'': 'Custom high value job flag. Similar to Unbooked, was marked as a transfer for a while'}
+- Missing Reason in record: {'': 'Custom high value job flag. Similar to Unbooked, was marked as a transfer for a while'}
+- Missing Subreason in record: {'': 'Custom high value job flag. Similar to Unbooked, was marked as a transfer for a while'}
+- Missing Outcome in record: {'': 'Custom rule to transfer any no interaction calls'}
+- Missing Reason in record: {'': 'Custom rule to transfer any no interaction calls'}
+- Missing Subreason in record: {'': 'Custom rule to transfer any no interaction calls'}
+- Missing Outcome in record: {'': 'Technical issue, e.g. max API tries for most routes, RR 500s, etc. We track more specific reasons, but bucket them together when showing to the customer'}
+- Missing Reason in record: {'': 'Technical issue, e.g. max API tries for most routes, RR 500s, etc. We track more specific reasons, but bucket them together when showing to the customer'}
+- Missing Subreason in record: {'': 'Technical issue, e.g. max API tries for most routes, RR 500s, etc. We track more specific reasons, but bucket them together when showing to the customer'}
+- Missing Outcome in record: {'': 'Custom escalation rule. This should be dead and broken out, but is here for historic reasons'}
+- Missing Reason in record: {'': 'Custom escalation rule. This should be dead and broken out, but is here for historic reasons'}
+- Missing Subreason in record: {'': 'Custom escalation rule. This should be dead and broken out, but is here for historic reasons'}
+- Missing Outcome in record: {'': 'Did not fit any other category'}
+- Missing Reason in record: {'': 'Did not fit any other category'}
+- Missing Subreason in record: {'': 'Did not fit any other category'}
+
+Warnings (first 20):
+- Duplicate (None, None, None) appears 66 times

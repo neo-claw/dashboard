@@ -39,6 +39,8 @@ interface TraceEvent {
   content: string;
   tool?: string;
   timestamp?: string;
+  params?: any;
+  error?: any;
 }
 
 function formatDuration(seconds: number): string {

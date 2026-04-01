@@ -5,9 +5,9 @@ const BACKEND_API_KEY = process.env.BACKEND_API_KEY;
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = params;
+  const { id } = await params;
   const body = await request.json();
   const { schedule } = body;
 

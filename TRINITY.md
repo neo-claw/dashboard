@@ -32,3 +32,11 @@
 - `notes/` (fetched user notes)
 
 **Status:** Prototype complete and tested; immediate value with issue detection.
+
+## 2026-04-01 04:40
+### Changes detected in notes
+- **explore.md**: # context is everything | 1. intelligence we have today is enough
+- **found.md**: cofounders: | - ashwin
+- **running_notes.md**: ### Feb 11, 2026 - Lab exam review | - innateness != present at birth or present in genes
+- **netic_definitions.md**: | Outcome         | Reason                       | Subreason                                           | Definition                                                                                                                                   | Technical                                                                         | | | --------------- | ---------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+- **hub.md**: [/found](obsidian://open?vault=obby&file=thoughts%2Ffound) | [/explore](obsidian://open?vault=obby&file=thoughts%2Fexplore)
