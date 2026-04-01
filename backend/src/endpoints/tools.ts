@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { toolRegistry } from '@/lib/toolRegistry';
+import { toolRegistry } from '../lib/toolRegistry';
 
 export async function GET(request: NextRequest) {
   try {
@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     const tools = await toolRegistry.scanSkills();
 
     const filtered = skill
-      ? tools.filter(t => t.skill === skill)
+      ? tools.filter((t: any) => t.skill === skill)
       : tools;
 
     return NextResponse.json({ tools: filtered });
