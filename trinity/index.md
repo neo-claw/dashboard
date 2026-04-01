@@ -1,1 +1,2 @@
 - [2026-04-01: Shared Context Board Dashboard (Utility 9/10)](2026-04-01.md)
+- [2026-04-01: Skill Radar (Utility 8/10)](2026-04-01.md)
