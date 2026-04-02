@@ -1,3 +1,4 @@
+- [2026-04-02](2026-04-02.md): Netic Utilization Dashboard – dashboard and CSV export for capacity utilization (Utility 9/10).
 - [2026-04-01](2026-04-01.md): Call Taxonomy CLI Tool – validator for Netic call definitions (Utility 9/10).
 - [2026-04-01](2026-04-01.md): MCP Notes Server – exposes local markdown notes to AI assistants via Model Context Protocol (Utility 9/10).
 - [2026-04-01](2026-04-01.md): Markdown Knowledge Graph Builder – D3 interactive visualization of all workspace markdown notes (Utility 9/10).
