@@ -1,16 +1,3 @@
-- [2026-04-02](2026-04-02.md): Ant Colony Routing simulation – pheromone-based agent coordination prototype; Utility 8/10.
-- [2026-04-02](2026-04-02.md): Nash Utilization Dashboard – Streamlit prototype with daily CSV export; Utility 9/10.
-- [2026-04-02](2026-04-02.md): OpenCLI integration – universal CLI hub for AI agents; built/test experiment, Utility 9/10.
-- [2026-04-02](2026-04-02.md): ContextPack – portable context archival/transfer tool for AI sessions (Utility 7/10).
-- [2026-04-02](2026-04-02.md): Utilization Pipeline – automated data feed and CSV exports for Hoffmann utilization dashboard (Utility 9/10).
-- [2026-04-02](2026-04-02.md): Netic Data MCP Server – exposes employee roster and notes via Model Context Protocol (Utility 9/10).
-- [2026-04-02](2026-04-02.md): Tested Netic Utilization Dashboard prototype; verified HTML/JSON loading and basic functionality. Utility 9/10.
+# Trinity Experiments Index
 
-- [2026-04-02](2026-04-02.md): Netic Utilization Dashboard – dashboard and CSV export for capacity utilization (Utility 9/10).
-- [2026-04-01](2026-04-01.md): Call Taxonomy CLI Tool – validator for Netic call definitions (Utility 9/10).
-- [2026-04-01](2026-04-01.md): MCP Notes Server – exposes local markdown notes to AI assistants via Model Context Protocol (Utility 9/10).
-- [2026-04-01](2026-04-01.md): Markdown Knowledge Graph Builder – D3 interactive visualization of all workspace markdown notes (Utility 9/10).
-- [2026-04-01](2026-04-01.md): MCP Graph Query Tool – added graph_query to MCP server to expose knowledge graph as queryable tool (Utility 9/10).
-- [2026-04-01](2026-04-01.md): Fuzzy Search for MCP Notes – added `search_notes` tool to search note contents (Utility 9/10).
-- [2026-04-01](2026-04-01.md): MOSS integration prototype – tested openai-moss-agents for code-driven context management in agents (Utility 8/10).
-- [2026-04-01](2026-04-01.md): Distributed Context Library (DCL) – pheromone-inspired context manager prototype (Utility 8/10).
+- 2026-04-02: Pheromone Signal Bus (Utility 9) - [log](2026-04-02.md)
