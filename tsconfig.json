@@ -39,6 +39,7 @@
     "node_modules",
     "tests",
     "backend",
-    "dashboard-vite"
+    "dashboard-vite",
+    "trinity"
   ]
 }
