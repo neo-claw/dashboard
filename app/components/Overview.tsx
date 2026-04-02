@@ -15,6 +15,7 @@ import { cn } from '@/lib/utils';
 import Panel from '@/components/ui/panel';
 import { Badge } from '@/components/ui/badge';
 import SubagentMonitor from './SubagentMonitor';
+import RecreationCheckWidget from './RecreationCheckWidget';
 
 interface StatsResponse {
   learningsCount: number;
@@ -287,6 +288,9 @@ export default async function Overview() {
           {dynamicStats.map((stat) => (
             <StatCard key={stat.label} {...stat} />
           ))}
+          <div className="md:col-span-2 md:row-span-1">
+            <RecreationCheckWidget />
+          </div>
         </section>
 
         <div className="grid gap-6 lg:grid-cols-3">

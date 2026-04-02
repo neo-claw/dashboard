@@ -1,0 +1,380 @@
+#!/usr/bin/env python3
+import sys
+import json
+import os
+import time
+import subprocess
+import smtplib
+from email.mime.text import MIMEText
+from datetime import datetime, timedelta
+from urllib.parse import quote
+
+# Constants
+LOG_FILE = os.path.expanduser("~/.openclaw/workspace/logs/recreation-check-notifications.log")
+HEARTBEAT_FILE = os.path.expanduser("~/.openclaw/workspace/cache/recreation-check-heartbeat.json")
+USER_AGENT = "OpenClaw-Recreation-Checker/1.0"
+
+def log(msg):
+    print(f"[{datetime.utcnow().isoformat()}Z] {msg}", file=sys.stderr)
+
+# Preset definitions
+PRESETS = {
+    "yosemite-valley": [
+        {"id": 232447, "name": "Upper Pines"},
+        {"id": 232450, "name": "North Pines"},
+        {"id": 232448, "name": "Lower Pines"}
+    ],
+    "yosemite-all": [
+        {"id": 232447, "name": "Upper Pines"},
+        {"id": 232450, "name": "North Pines"},
+        {"id": 232448, "name": "Lower Pines"},
+        {"id": 232449, "name": "Yosemite Creek"},
+        {"id": 232446, "name": "Camp 4"}
+    ]
+}
+
+def send_email(subject, body, to_addr=None):
+    """Send email via SMTP if configured."""
+    smtp_host = os.environ.get('OPENCLAW_SMTP_HOST')
+    smtp_port = os.environ.get('OPENCLAW_SMTP_PORT', '587')
+    smtp_user = os.environ.get('OPENCLAW_SMTP_USER')
+    smtp_pass = os.environ.get('OPENCLAW_SMTP_PASS')
+    from_addr = os.environ.get('OPENCLAW_EMAIL_FROM', smtp_user)
+    to_addr = to_addr or os.environ.get('OPENCLAW_EMAIL_TO', from_addr)
+
+    if not all([smtp_host, smtp_port, smtp_user, smtp_pass]):
+        log("SMTP not fully configured, skipping email")
+        return False
+
+    try:
+        msg = MIMEText(body)
+        msg['Subject'] = subject
+        msg['From'] = from_addr
+        msg['To'] = to_addr
+
+        with smtplib.SMTP(smtp_host, int(smtp_port)) as server:
+            server.starttls()
+            server.login(smtp_user, smtp_pass)
+            server.send_message(msg)
+        log(f"Email sent to {to_addr}")
+        return True
+    except Exception as e:
+        log(f"Email send failed: {e}")
+        return False
+
+def generate_booking_url(campground_id, site_id, start_date, end_date):
+    """Generate a direct Recreation.gov link to book the specific site."""
+    arrive = start_date[:10]
+    depart = end_date[:10]
+    return f"https://www.recreation.gov/camping/campsites/{site_id}?arrive={arrive}&depart={depart}"
+
+def update_heartbeat(success=True):
+    """Update the heartbeat file with the current timestamp and status."""
+    try:
+        data = {
+            'last_run': datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            'success': success
+        }
+        heartbeat_dir = os.path.dirname(HEARTBEAT_FILE)
+        if heartbeat_dir:
+            os.makedirs(heartbeat_dir, exist_ok=True)
+        with open(HEARTBEAT_FILE, 'w') as f:
+            json.dump(data, f)
+    except Exception as e:
+        log(f"Failed to update heartbeat: {e}")
+
+def get_campground_list(params):
+    """Resolve the list of campgrounds to check from parameters."""
+    if 'preset' in params:
+        preset_name = params['preset']
+        if preset_name in PRESETS:
+            return PRESETS[preset_name]
+        else:
+            log(f"Error: Unknown preset '{preset_name}'")
+            sys.exit(1)
+    elif 'campgroundIds' in params:
+        ids = params['campgroundIds']
+        if not isinstance(ids, list):
+            log("Error: campgroundIds must be an array")
+            sys.exit(1)
+        return [{"id": cid, "name": str(cid)} for cid in ids]
+    elif 'campgroundId' in params:
+        cid = params['campgroundId']
+        return [{"id": cid, "name": str(cid)}]
+    else:
+        log("Error: Missing required parameter (preset, campgroundIds, or campgroundId)")
+        sys.exit(1)
+
+def check_campground_availability(campground_id, start_date, end_date):
+    """Query API for a single campground and return list of available sites."""
+    start_norm = start_date[:10]
+    end_norm = end_date[:10]
+
+    log(f"Checking campground {campground_id} from {start_norm} to {end_norm}")
+
+    start_year = int(start_norm[:4])
+    start_month = int(start_norm[5:7])
+    end_year = int(end_norm[:4])
+    end_month = int(end_norm[5:7])
+
+    months = []
+    if start_year * 100 + start_month <= end_year * 100 + end_month:
+        year, month = start_year, start_month
+        while True:
+            months.append(f"{year}-{month:02d}")
+            if year == end_year and month == end_month:
+                break
+            month += 1
+            if month > 12:
+                month = 1
+                year += 1
+    else:
+        raise ValueError("startDate is after endDate")
+
+    log(f"Querying months: {', '.join(months)}")
+
+    all_campsites = {}
+    for month in months:
+        query_date = f"{month}-01T00:00:00.000Z"
+        encoded = quote(query_date, safe='')
+        url = f"https://www.recreation.gov/api/camps/availability/campground/{campground_id}/month?start_date={encoded}"
+        retries = 3
+        delay = 1
+        for attempt in range(1, retries+1):
+            log(f"Fetching {url} (attempt {attempt})")
+            try:
+                resp = subprocess.run(['curl', '-s', '-A', USER_AGENT, url], capture_output=True, text=True, timeout=30)
+                response = resp.stdout
+                if resp.returncode != 0:
+                    raise Exception(f"curl failed with code {resp.returncode}")
+                data = json.loads(response)
+                if 'error' in data:
+                    err_msg = data.get('error', '')
+                    log(f"API error: {err_msg}")
+                    if attempt < retries:
+                        time.sleep(delay)
+                        delay *= 2
+                        continue
+                    else:
+                        raise Exception(f"API error: {err_msg}")
+                break
+            except Exception as e:
+                log(f"Request failed: {e}")
+                if attempt < retries:
+                    time.sleep(delay)
+                    delay *= 2
+                    continue
+                else:
+                    raise
+
+        campsites = data.get('campsites', {})
+        for site_id, site_data in campsites.items():
+            if site_id not in all_campsites:
+                all_campsites[site_id] = site_data
+            else:
+                existing = all_campsites[site_id]
+                existing_avail = existing.get('availabilities', {})
+                new_avail = site_data.get('availabilities', {})
+                existing_avail.update(new_avail)
+                existing['availabilities'] = existing_avail
+                existing_quant = existing.get('quantities', {})
+                new_quant = site_data.get('quantities', {})
+                existing_quant.update(new_quant)
+                existing['quantities'] = existing_quant
+
+        if len(months) > 1 and month != months[-1]:
+            time.sleep(2)
+
+    available_sites = []
+    start_dt = datetime.strptime(start_norm, "%Y-%m-%d")
+    end_dt = datetime.strptime(end_norm, "%Y-%m-%d")
+    for site_id, site in all_campsites.items():
+        avail_dict = site.get('availabilities', {})
+        site_avail_dates = []
+        for ts, status in avail_dict.items():
+            date_part = ts.split('T')[0]
+            try:
+                dt = datetime.strptime(date_part, "%Y-%m-%d")
+            except ValueError:
+                continue
+            if start_dt <= dt <= end_dt and status == "Available":
+                site_avail_dates.append(date_part)
+        if site_avail_dates:
+            available_sites.append({
+                'campsite_id': int(site.get('campsite_id', site_id)),
+                'site': site.get('site', ''),
+                'loop': site.get('loop', ''),
+                'campsite_type': site.get('campsite_type', ''),
+                'available_dates': sorted(site_avail_dates)
+            })
+
+    return available_sites
+
+def main():
+    try:
+        params = json.load(sys.stdin)
+    except json.JSONDecodeError:
+        print("Error: Invalid JSON parameters", file=sys.stderr)
+        sys.exit(1)
+
+    start_date = params.get('startDate')
+    end_date = params.get('endDate')
+    if not start_date or not end_date:
+        print("Error: Missing required parameters (startDate, endDate)", file=sys.stderr)
+        sys.exit(1)
+
+    campgrounds = get_campground_list(params)
+    if not campgrounds:
+        print("Error: No campgrounds to check", file=sys.stderr)
+        sys.exit(1)
+
+    all_available = []
+    errors = []
+    for idx, cg in enumerate(campgrounds):
+        cid = cg['id']
+        cname = cg['name']
+        try:
+            avail_sites = check_campground_availability(cid, start_date, end_date)
+            for site in avail_sites:
+                site['campground_id'] = cid
+                site['campground_name'] = cname
+                all_available.append(site)
+        except Exception as e:
+            err_msg = f"Failed to check campground {cid} ({cname}): {e}"
+            log(err_msg)
+            errors.append(err_msg)
+        # Politeness delay between campgrounds to manage rate limits
+        if idx < len(campgrounds) - 1:
+            time.sleep(1)
+
+    count = len(all_available)
+
+    current_timestamp = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    checked_ids = [str(cg['id']) for cg in campgrounds]
+    checked_names = {str(cg['id']): cg['name'] for cg in campgrounds}
+
+    current_result = {
+        'campgroundIds': checked_ids,
+        'campgroundNames': checked_names,
+        'startDate': start_date[:10],
+        'endDate': end_date[:10],
+        'timestamp': current_timestamp,
+        'availableSites': all_available,
+        'hadAvailability': count > 0
+    }
+
+    cache_dir = os.path.expanduser("~/.openclaw/workspace/cache")
+    os.makedirs(cache_dir, exist_ok=True)
+    cache_file = os.path.join(cache_dir, "recreation-check-last-result.json")
+
+    has_change = False
+    if os.path.exists(cache_file):
+        try:
+            with open(cache_file, 'r') as f:
+                prev_cache = json.load(f)
+            prev_ids = set(prev_cache.get('campgroundIds', []))
+            curr_ids = set(checked_ids)
+            if prev_ids != curr_ids:
+                if count > 0:
+                    has_change = True
+            else:
+                prev_sites = prev_cache.get('availableSites', [])
+                prev_set = set()
+                for s in prev_sites:
+                    key = (s['campsite_id'], s['campground_id'], tuple(sorted(s['available_dates'])))
+                    prev_set.add(key)
+                curr_set = set()
+                for s in all_available:
+                    key = (s['campsite_id'], s['campground_id'], tuple(sorted(s['available_dates'])))
+                    curr_set.add(key)
+                if prev_set != curr_set:
+                    has_change = True
+        except Exception as e:
+            log(f"Failed to read cache: {e}, will treat as change if availability")
+            if count > 0:
+                has_change = True
+    else:
+        if count > 0:
+            has_change = True
+
+    with open(cache_file, 'w') as f:
+        json.dump(current_result, f)
+
+    if count > 0:
+        print(f"Found {count} available site(s) from {start_date[:10]} to {end_date[:10]} across monitored campgrounds:")
+        by_campground = {}
+        for site in all_available:
+            cg_name = site['campground_name']
+            if cg_name not in by_campground:
+                by_campground[cg_name] = []
+            by_campground[cg_name].append(site)
+        for cg_name, sites in sorted(by_campground.items()):
+            print(f"\n{cg_name}:")
+            for site in sites:
+                dates_str = ", ".join(site['available_dates'])
+                print(f"- Site {site['site']} ({site['loop']}), {site['campsite_type']}: {dates_str}")
+    else:
+        print(f"No campsites available for any monitored campgrounds from {start_date[:10]} to {end_date[:10]}.")
+
+    if has_change and count > 0:
+        msg_lines = [f"AVAILABILITY FOUND: {count} site(s) available from {start_date[:10]} to {end_date[:10]}"]
+        by_campground = {}
+        for site in all_available:
+            cg_name = site['campground_name']
+            if cg_name not in by_campground:
+                by_campground[cg_name] = []
+            by_campground[cg_name].append(site)
+
+        for cg_name, sites in sorted(by_campground.items()):
+            msg_lines.append(f"\n{cg_name}:")
+            for site in sites[:10]:
+                dates_str = ", ".join(site['available_dates'])
+                booking_url = generate_booking_url(site['campground_id'], site['campsite_id'], start_date, end_date)
+                msg_lines.append(f"- Site {site['site']} ({site['loop']}): {dates_str}")
+                msg_lines.append(f"  Book: {booking_url}")
+            remaining = len(sites) - 10
+            if remaining > 0:
+                msg_lines.append(f"... and {remaining} more in {cg_name}")
+
+        msg = "\n".join(msg_lines).strip()
+
+        log_dir = os.path.dirname(LOG_FILE)
+        os.makedirs(log_dir, exist_ok=True)
+        with open(LOG_FILE, 'a') as f:
+            f.write(f"[{datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC] {msg}\n")
+        log(f"Notification sent: {msg.replace(chr(10), ' ')}")
+
+        telegram_chat_id = os.environ.get('OPENCLAW_TELEGRAM_CHAT_ID') or '8755267864'
+        telegram_bot_token = os.environ.get('OPENCLAW_TELEGRAM_BOT_TOKEN')
+        if telegram_bot_token:
+            try:
+                # Direct Telegram API call as fallback (no python libs needed)
+                subprocess.run([
+                    'curl', '-s', '-X', 'POST',
+                    f'https://api.telegram.org/bot{telegram_bot_token}/sendMessage',
+                    '-d', f'chat_id={telegram_chat_id}',
+                    '-d', f'text={msg}',
+                    '-d', 'parse_mode=plain'
+                ], check=False)
+                log("Telegram notification sent")
+            except Exception as e:
+                log(f"Telegram send failed: {e}")
+        else:
+            log("Telegram bot token not configured, skipping Telegram notification")
+
+        if os.environ.get('OPENCLAW_SMTP_HOST'):
+            email_subject = f"Campsite Availability Found: {count} site(s) in {', '.join(checked_names.values())}"
+            send_email(email_subject, msg)
+
+        update_heartbeat(success=True)
+    else:
+        # Even if no availability or no change, we still update heartbeat to indicate the check ran
+        update_heartbeat(success=not bool(errors))
+
+    if errors:
+        sys.exit(1)
+    else:
+        sys.exit(0)
+
+if __name__ == '__main__':
+    main()
