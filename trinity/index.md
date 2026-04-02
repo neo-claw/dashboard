@@ -1,3 +1,4 @@
+- [2026-04-02](2026-04-02.md): Ant Colony Routing simulation – pheromone-based agent coordination prototype; Utility 8/10.
 - [2026-04-02](2026-04-02.md): Nash Utilization Dashboard – Streamlit prototype with daily CSV export; Utility 9/10.
 - [2026-04-02](2026-04-02.md): OpenCLI integration – universal CLI hub for AI agents; built/test experiment, Utility 9/10.
 - [2026-04-02](2026-04-02.md): ContextPack – portable context archival/transfer tool for AI sessions (Utility 7/10).
