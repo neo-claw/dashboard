@@ -1,83 +1,85 @@
-# Trinity Overnight Digest — 2026-04-01
+# Trinity Overnight Digest — 2026-04-02
 
-# Trinity Cycle Log - 2026-04-01
+# Trinity Experiments Log
 
-## 04:24
-- **Thought:** Starting overnight cycle. Need to read user notes from Google Drive to understand current focus: thoughts, school, Netic.
-- **Action:** Used gws to list Drive files, identified relevant files: thoughts folder (found.md, explore.md, hub.md), school folder (running_notes.md), netic definitions (inbound drilldown analytics definitions.md). Fetched content.
-- **Result:** Acquired recent notes: explore.md (ant colony distributed context), found.md (contacts), running_notes.md (cognitive science class notes), netic_definitions.md (call outcome taxonomy). Context captured.
-- **Next:** Search web for new tools/opportunities, shortlist 2-3 ideas, evaluate, build prototype.
+## Cycle: 2026-04-02 02:30 UTC
 
+### Context
+- User interests: ant colony distributed context systems, Netic call classification taxonomy (Booked/Unbooked/Handled), Shared Context Board
+- Previous work: Shared context system prototype ready
 
-## 04:30
-- **Thought:** After reviewing notes, need to search web for tools and research to find promising ideas.
-- **Action:** Performed three web searches: (1) "distributed context systems for AI agents 2026 open source tools", (2) "swarm intelligence distributed memory AI systems 2026", (3) "markdown based shared context board for AI agents open source". Gathered results on agent frameworks, swarm intelligence projects, and markdown-based coordination tools (agents-md, mdplane, etc).
-- **Result:** Shortlist of ideas:
-  1. Netic Taxonomy Validator/Exporter (parse markdown tables, validate, export JSON for Netic call definitions)
-  2. Agent Context Query CLI (fuzzy search over markdown notes)
-  3. Ant Colony Context Distribution Simulator (educational demo)
-- **Next:** Evaluate each on Problem Fit, Simplicity, Maintenance, Bloat; pick highest-scoring to build.
+### Shortlist (Pre-Evaluation)
 
-## 04:35
-- **Thought:** Evaluate shortlist against criteria.
-- **Action:** Evaluated:
-  - Netic Validator: Problem Fit 9/10 (validated need for clean taxonomy), Simplicity 9/10 (short Python script, standard lib), Maintenance 9/10 (low), Bloat 9/10 (no new deps) → Utility 9/10.
-  - Query CLI: Problem Fit 8/10, Simplicity 8/10, Maintenance 8/10, Bloat 8/10 → Utility 8/10.
-  - Ant Simulator: Problem Fit 6/10, Simplicity 6/10, Maintenance 6/10, Bloat 6/10 → Utility 6/10.
-- **Result:** Chosen: Netic Taxonomy CLI Tool (validator & JSON exporter) with Utility Score 9/10.
-- **Next:** Build prototype in trinity/experiments/, test on netic_definitions.md.
+1. **Lightweight CRDT Context Board**
+   - Problem: Multiple agents writing to shared markdown can cause conflicts; no merge resolution.
+   - Solution: Use CRDT (e.g., Yjs or similar) for automatic merging.
+   - Tools: Could embed Yjs via WASM or use Node.js library.
 
-## 04:40
-- **Thought:** Build the validator.
-- **Action:** Created `trinity/experiments/taxonomy_validator.py`. Designed to: parse all markdown table blocks in `netic_definitions.md`, detect header rows, propagate empty cells (merged cell handling), validate required fields (Outcome, Reason, Subreason) for tables that have Outcome column, detect duplicate (Outcome, Reason, Subreason) combos across all tables, and export JSON with metadata. Also produced `validation_summary.txt` human-readable output.
-- **Result:** Test run on `netic_definitions.md`:
-  - Parsed 174 total records across 3 table blocks (first table 49, second 65, third 60). Headers: first table: ['Outcome','Reason','Subreason','Definition','Technical']; second: ['Outcome','Reason','Subreason','Definition']; third: ['Category','Reason','Sub-reason','Definition','Technical'].
-  - Duplicate combinations detected: 11.
-  - Errors: 60 records missing required fields (mostly third table where Outcome is absent, as expected).
-  - Warnings: 76 (empty Technical fields, duplicates).
-  - JSON output written to `trinity/experiments/taxonomy.json`.
-- **Next:** Ensure daily summary at 06:45, update index.md if needed, commit changes.
+2. **Ant Colony Task Delegation**
+   - Problem: Work distribution across agents is manual or inefficient.
+   - Solution: Agents leave "pheromone trails" (task metadata) that guide assignment.
+   - Tools: Custom algorithm; no external framework needed.
 
-## 04:45
-- **Thought:** The daily summary script `write_summary.sh` uses yesterday's date, which would omit today's work from the morning digest.
-- **Action:** Modified `write_summary.sh` to use today's date (`date +%Y-%m-%d`) instead of yesterday. This ensures that at 06:45 cron run, the summary for today's cycle is appended to `TRINITY.md`.
-- **Result:** Cron job unchanged; script corrected.
-- **Next:** Verify log file is ready for summary generation.
+3. **Netic Outcome Predictor**
+   - Problem: Netic calls need classification but likely manual or rule-based.
+   - Solution: Train a tiny model (e.g., logistic regression) on call features to predict outcome.
+   - Tools: Need dataset; could use scikit-learn or even a simple Node.js Bayes classifier.
 
-## 04:50
-- **Thought:** All major steps complete. Need to commit relevant changes as per step 8.
-- **Action:** Verified that git status shows modifications under trinity/ (log file, maybe index.md) and swe-brain/. Will use provided commit command to add TRINITY.md, trinity/index.md, trinity/*.md, swe-brain/ and commit if changes exist.
-- **Result:** Ready to commit.
-- **Next:** Execute commit.
+---
 
-## 05:17
-- **Thought:** Neo needs a tool to expose local notes (explore.md, inbound.md, etc.) to AI assistants for richer context, aligning with the goal of context engineering.
-- **Action:** Built a minimal MCP (Model Context Protocol) server: `trinity/experiments/mcp_notes_server.py`. Serves notes as resources (`notes://<file>`) and provides a `list_notes` tool. Implemented in pure Python stdlib; tested all core methods.
-- **Result:** Server successfully initialized, lists 6 resources (inbound.md, hub.md, running_notes.md, explore.md, found.md, uber_vs_lyft.md), reads content correctly, and returns comma‑separated note list via tool. No external dependencies. Utility Score: 9/10.
-- **Next:** Test integration with Claude Desktop, add fuzzy search over note contents, and write a short README.
+### Evaluator Loop
 
-Summary generated at Wed Apr  1 04:53:23 UTC 2026
+#### Idea 1: Lightweight CRDT Context Board
 
-## 05:30
-- **Thought:** After evaluating the shortlist, the Knowledge Graph Builder offers the highest utility by visualizing connections across all workspace notes, directly supporting Neo's context engineering goals. It is simple, maintainable, and bloat-free.
-- **Action:** Created `markdown_graph.py` (no external deps). Scanned entire workspace, extracted 491 note files and 81 internal link edges. Generated interactive D3 force-directed graph at `trinity/experiments/notes_graph.html`.
-- **Result:** Graph successfully rendered; nodes represent all markdown documents (including SOUL.md, USER.md, notes from thoughts/school/netic). Edges reflect explicit internal links (wiki, markdown, Obsidian URIs). The tool allows exploration of the knowledge base in a browser with drag-and-drop.
-- **Next:** Could add filtering by folder, search, or color-coding by tag. Deploy as a local web server for continuous access. Integrate with MCP server to serve graph data as a resource.
+- **Problem Fit**: High — shared context writes conflict; real issue if agents work concurrently. Validated by existing shared_context.md usage.
+- **Simplicity**: Medium — CRDT concepts are non-trivial; Yjs is robust but WASM adds build complexity. Could use a simpler operational transform?
+- **Maintenance Cost**: Low to medium — Yjs is well-maintained; if self-built, higher cost.
+- **Bloat Signals**: Medium risk — bringing in a CRDT library is justified for concurrency, but if overkill for low-frequency writes, it's bloat.
+- **Utility Score**: 8/10 — solves a real problem with solid tech, but may be premature if write conflicts are rare.
 
-## 06:00
-- **Thought:** Overnight notes unchanged; need to leverage existing assets. Web search indicates MCP is gaining traction; using official SDK could be beneficial but adds dependency. Highest utility: integrate existing knowledge graph with MCP to expose graph_query tool (Utility 9/10).
-- **Action:** Modified `markdown_graph.py` to export `notes_graph.json` alongside HTML. Extended `mcp_notes_server.py` with new tool `graph_query` supporting actions: list, neighbors, search. Graph data loaded at server start; tool returns plain-text results.
-- **Result:** Prototype tested: `graph_query list` returns 497 nodes; neighbors and search work as expected. MCP server now provides AI assistants with structured access to note relationships, completing the graph integration.
-- **Next:** Test with Claude Desktop, add more query options (e.g., graph traversal depth), consider performance for large graphs.
+#### Idea 2: Ant Colony Task Delegation
 
+- **Problem Fit**: Medium — unclear if task delegation is currently a bottleneck. Needs validation. Could be interesting research toy.
+- **Simplicity**: High — can implement with simple data structures (graph, pheromone decay). No new dependencies.
+- **Maintenance Cost**: Low — self-contained algorithm; easy to tweak.
+- **Bloat Signals**: Low — no new language/framework; adds novel behavior without over-engineering.
+- **Utility Score**: 6/10 — might be low immediate utility but aligns with user's research interest; could evolve into useful scheduler.
 
+#### Idea 3: Netic Outcome Predictor
 
-## 06:45
-- **Thought:** After evaluating shortlist (MCP SDK migration, fuzzy search, Drive sync), fuzzy search tool scored highest (Utility 9/10). It directly addresses the need to find information in notes without leaving the MCP interface.
-- **Action:** Added `search_notes` tool to `mcp_notes_server.py`. Implemented case-insensitive substring search across all markdown notes, returning filenames and occurrence counts.
-- **Result:** Tool tested successfully: searching for "ant" returned matches from inbound.md, running_notes.md, explore.md, uber_vs_lyft.md. Syntax validated, server operates correctly.
-- **Next:** Update index.md, ensure daily summary written to TRINITY.md, commit changes as per step 8.
-## 2026-04-01 Morning Digest
+- **Problem Fit**: High — if Netic call outcomes are classified, prediction could speed up routing. Validated by taxonomy presence.
+- **Simplicity**: Low to medium — needs data. Without labeled data, it's just an unsupervised pattern finder. Could start with keyword rules.
+- **Maintenance Cost**: Medium — model needs retraining as data drifts.
+- **Bloat Signals**: Medium — introducing ML for a classification task may be heavy if simple heuristics work.
+- **Utility Score**: 5/10 — without data access, it's speculative. Might be overkill.
 
- - 05:17:  (Utility - **Result:** Server successfully initialized, lists 6 resources (inbound.md, hub.md, running_notes.md, explore.md, found.md, uber_vs_lyft.md), reads content correctly, and returns comma‑separated note list via tool. No external dependencies. Utility Score: 9/10.)
+---
 
+### Selected Idea
+
+**Idea 2: Ant Colony Task Delegation** — Utility 6, highest that doesn't require external data or heavy libs. Simple to prototype, aligns with user's interest in ant colony systems, and could be extended later.
+
+---
+
+### Plan
+
+Build a proof-of-concept in `workspace/trinity/experiments/ant-delegation/`:
+- `simulation.js` — Simulates agents, tasks, pheromone trails
+- `delegator.js` — Core algorithm: assign tasks based on pheromone strength and agent expertise
+- `README.md` — Explanation and how to run
+
+Metrics: convergence time, load balance, task completion rate in simulation.
+
+---
+
+### Next Steps
+1. Implement simulation
+2. Run multiple trials
+3. Log results in this file
+4. Update `trinity/index.md` with summary
+5. At 06:45, ensure daily summary in TRINITY.md
+## 03:10
+- **Thought**: Reviewed recent Google Drive notes (thoughts, school, Netic). Spotted opportunities: distributed context (ants), business models, cognitive science, AI call analytics.
+- **Action**: Searched for new AI tools (via GitHub API fallback due to web_search block). Evaluated 5 candidates: cc-switch (6), ruflo (7), Skill_Seekers (8), ARIS (8), opencli (9). Chose opencli.
+- **Result**: Cloned and installed opencli; verified it lists many built-in commands and works via `npx`. It provides a universal CLI hub for AI agents to discover and execute tools, aligning with Netic's need for seamless integrations.
+- **Next**: Explore creating a custom AGENT.md integration for one of Netic's internal tools; measure token savings and reliability; document pattern for team.
