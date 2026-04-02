@@ -1,3 +1,4 @@
+- [2026-04-02](2026-04-02.md): ContextPack – portable context archival/transfer tool for AI sessions (Utility 7/10).
 - [2026-04-02](2026-04-02.md): Utilization Pipeline – automated data feed and CSV exports for Hoffmann utilization dashboard (Utility 9/10).
 - [2026-04-02](2026-04-02.md): Netic Data MCP Server – exposes employee roster and notes via Model Context Protocol (Utility 9/10).
 - [2026-04-02](2026-04-02.md): Tested Netic Utilization Dashboard prototype; verified HTML/JSON loading and basic functionality. Utility 9/10.
