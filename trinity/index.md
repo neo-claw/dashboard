@@ -9,3 +9,4 @@
 - 2026-04-03: Knowledge Graph Visualizer (Utility 9) - [log](2026-04-03.md)
 - 2026-04-03: Generic Opportunity Change History Store (analytics-infra) - [log](2026-04-03.md)
 - 2026-04-03: Entity Knowledge Graph prototype (Utility 9) - [log](2026-04-03.md)
+- 2026-04-03: Loom framework for multi-agent context management (Utility 8) - [log](2026-04-03.md)
