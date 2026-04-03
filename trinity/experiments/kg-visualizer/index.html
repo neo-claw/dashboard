@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Knowledge Graph Visualization</title>
+  <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <style type="text/css">
+    #mynetwork {
+      width: 100%;
+      height: 100vh;
+      border: 1px solid lightgray;
+    }
+  </style>
+</head>
+<body>
+  <div id="mynetwork"></div>
+  <script type="text/javascript">
+    var nodes = new vis.DataSet([
+  {
+    "id": 3,
+    "label": "Agent",
+    "title": "{\n  \"name\": \"Neo\",\n  \"role\": \"primary\",\n  \"capabilities\": [\n    \"reasoning\",\n    \"tool_use\"\n  ]\n}",
+    "group": "Agent"
+  },
+  {
+    "id": 4,
+    "label": "Tool",
+    "title": "{\n  \"name\": \"web_search\",\n  \"description\": \"Search internet\",\n  \"version\": \"1.0\"\n}",
+    "group": "Tool"
+  }
+]);
+    var edges = new vis.DataSet([
+  {
+    "id": 2,
+    "from": 3,
+    "to": 4,
+    "label": "HAS_TOOL",
+    "title": "{\n  \"confidence\": 1.0\n}"
+  }
+]);
+    var container = document.getElementById('mynetwork');
+    var data = { nodes: nodes, edges: edges };
+    var options = {
+      nodes: {
+        shape: 'dot',
+        size: 20,
+        font: { size: 14 }
+      },
+      edges: {
+        arrows: 'to',
+        smooth: { type: 'continuous' }
+      },
+      physics: {
+        enabled: true,
+        barnesHut: { gravitationalConstant: -2000, springConstant: 0.04, springLength: 95 }
+      }
+    };
+    var network = new vis.Network(container, data, options);
+  </script>
+</body>
+</html>

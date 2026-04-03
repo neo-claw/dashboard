@@ -4,6 +4,7 @@
 
 **Tools Built (2026-04-03):**
 - **Interactive Taxonomy Editor for Netic Call Classification** (Utility: 9/10) - Web-based UI for safely editing the large markdown taxonomy table used by the Netic Agent.
+- **Knowledge Graph Visualizer** (Utility: 9/10) - Standalone HTML visualization of the Neo knowledge graph using vis-network; generates interactive graph from SQLite.
 
 **Key Results:**
 - Developed taxonomy-parser.js with robust markdown table parsing and generation.
@@ -20,3 +21,4 @@
 
 **Utility Scores (Sorted):**
 - Interactive Taxonomy Editor: 9/10
+- Knowledge Graph Visualizer: 9/10
