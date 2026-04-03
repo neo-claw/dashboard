@@ -5,11 +5,13 @@
 **Tools Built (2026-04-03):**
 - **Loom framework for multi-agent context management** (Utility: 8/10) - Adopted Loom v0.9.0 for orchestrated multi-step LLM workflows; created proof-of-concept pipeline with extractor and classifier workers; validated configs.
 - **Google Drive Daily Digest** (Utility: 9/10) - Automated daily consolidation of notes from Google Drive folders (thoughts, school, netic) using gws CLI; outputs a markdown digest with recent content.
+- **Research Opportunity Aggregator (ROA)** (Utility: 8/10) - Automated retrieval and summarization of research fellowship opportunities from key university and foundation sites; reduces manual browsing.
 
 **Key Results:**
 - Implemented LoomRuntime in Node.js with YAML config loading, context mapping via dot-paths, and staged worker execution. Successful PoC: context flows through pipeline stages.
 - Built digest.sh script; successfully fetched and consolidated notes from Drive, handling markdown and Google Docs. Digest generated for 2026-04-03 with content from people.md and runnig notes.md.
 - Ensured robustness: Added error handling, cleanup, and content extraction without metadata artifacts.
+- Built research opportunity aggregator (`aggregate.py`); successfully fetched and summarized 4 out of 5 target URLs, extracting titles and 500-char snippets. Deadline extraction needs refinement but already useful.
 
 **Next Steps:**
 1. Deploy Loom PoC with real model calls and measure performance; explore persistence options.
@@ -20,3 +22,4 @@
 **Utility Scores (Sorted):**
 - Google Drive Daily Digest: 9/10
 - Loom framework adoption: 8/10
+- Research Opportunity Aggregator: 8/10
