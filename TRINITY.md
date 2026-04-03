@@ -39,4 +39,16 @@
 - **Thought:** Re-evaluating immediate needs: Netic team has many members (people.md, found.md) and numerous scattered opportunities (netic-inbound.md, school_strat_uber_lyft.md, running notes). Manually matching people to relevant opportunities is inefficient and opportunities may be missed. This directly impacts Neo's ability to delegate and advance Netic projects.
 - **Action:** Shortlisted 3 ideas: (1) Netic Team-Opportunity Matcher, (2) Convention Learning Sandbox, (3) Decaying Context Store. Evaluated with criteria. Team-Opportunity Matcher: Problem Fit 9, Simplicity 9, Maintenance low, Bloat none, Utility 8. Selected. Built `team-opportunity-matcher/` with Node.js script that parses roster and opportunity notes, computes role/skill/interest matches, and outputs a markdown report.
 - **Result:** Successful test run produced matches: operations people for netic-inbound (business), engineers for research notes, designers for strategy case. Script handles both colon-header and plain-header formats. Output saved as `matches_2026-04-03.md`. Provides immediate actionable list for Neo.
+**Chosen Idea:** Netic Team-Opportunity Matcher
+**Utility Score:** 8
 - **Next:** At 06:45, prepare daily summary in TRINITY.md. Update trinity/index.md with this entry. Then run git commit if changes detected. Follow-up: integrate with email or add simple web UI; consider adding semantic similarity with embeddings.
+
+## 2026-04-03 Morning Digest
+
+ - 01:35: Loom framework (Utility 8)
+ - 02:45: Loom framework implementation (proof-of-concept) (Utility 8)
+ - 04:40: Drive daily digest (gws-based) (Utility 9)
+ - 05:37: Research Opportunity Aggregator (Utility 8)
+ - 06:09: Auto-notes-analyzer (task extraction) (Utility 8)
+ - 06:35: Netic Team-Opportunity Matcher (Utility 8)
+
