@@ -26,3 +26,4 @@
 - 2026-04-03: Netic Team-Opportunity Matcher (Utility 8) - [log](2026-04-03.md)
 - 2026-04-03: Backfill Orchestrator (Utility 9) - [log](2026-04-03.md)
 - 2026-04-03: Salesforce Lead-Appointment Matcher (Utility 9) - [log](2026-04-03.md)
+- 2026-04-04: Neo Network Assistant (NNA) – CLI contact manager with AI suggestions (Utility 8) - [log](2026-04-04.md)
