@@ -16,6 +16,7 @@
 - 2026-04-02: Benchmark suite for Netic router (Utility 8) - [log](2026-04-02.md)
 - 2026-04-02: Interactive Taxonomy Editor for Netic Call Classification (Utility 9) - [log](2026-04-02.md)
 - 2026-04-04: gws-wrapper (Python library to simplify Google Workspace CLI) (Utility 8) - [log](2026-04-04.md)
+- 2026-04-04: Dev Environment Bootstrap (automated machine setup script) (Utility 8) - [log](2026-04-04.md)
 - 2026-04-04: Drive-Based Daily Digest Orchestrator (Utility 9) - [log](2026-04-04.md)
 - 2026-04-04: Integrated Digest with Task Extraction (fetch + analyzer combined) (Utility 9) - [log](2026-04-04.md)
 - 2026-04-04: Morning Digest Summarizer (concise triage from integrated digest) (Utility 9) - [log](2026-04-04.md)
