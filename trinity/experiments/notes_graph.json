@@ -1,0 +1,2815 @@
+{
+  "nodes": [
+    {
+      "id": "soul",
+      "title": "SOUL.md - Who You Are",
+      "file": "SOUL.md"
+    },
+    {
+      "id": "user",
+      "title": "USER.md - About Your Human",
+      "file": "USER.md"
+    },
+    {
+      "id": "thoughts hub",
+      "title": "thoughts_hub",
+      "file": "thoughts_hub.md"
+    },
+    {
+      "id": "heartbeat",
+      "title": "HEARTBEAT.md Template",
+      "file": "HEARTBEAT.md"
+    },
+    {
+      "id": "verification report",
+      "title": "Dashboard Verification Report",
+      "file": "VERIFICATION_REPORT.md"
+    },
+    {
+      "id": "identity",
+      "title": "IDENTITY.md - Who Am I?",
+      "file": "IDENTITY.md"
+    },
+    {
+      "id": "running notes download",
+      "title": "running_notes_download",
+      "file": "running_notes_download.md"
+    },
+    {
+      "id": "hub",
+      "title": "hub",
+      "file": "hub.md"
+    },
+    {
+      "id": "test push",
+      "title": "test",
+      "file": "TEST_PUSH.md"
+    },
+    {
+      "id": "agents",
+      "title": "AGENTS.md - Your Workspace",
+      "file": "AGENTS.md"
+    },
+    {
+      "id": "claude code research",
+      "title": "Claude Code Architecture Research - Mapping to OpenClaw",
+      "file": "CLAUDE_CODE_RESEARCH.md"
+    },
+    {
+      "id": "tasks",
+      "title": "Task Tracking System",
+      "file": "TASKS.md"
+    },
+    {
+      "id": "inbound download",
+      "title": "inbound_download",
+      "file": "inbound_download.md"
+    },
+    {
+      "id": "running notes",
+      "title": "running_notes",
+      "file": "running_notes.md"
+    },
+    {
+      "id": "readme",
+      "title": "Neo Dashboard",
+      "file": "README.md"
+    },
+    {
+      "id": "netic definitions",
+      "title": "netic_definitions",
+      "file": "netic_definitions.md"
+    },
+    {
+      "id": "explore",
+      "title": "context is everything",
+      "file": "explore.md"
+    },
+    {
+      "id": "thoughts explore",
+      "title": "context is everything",
+      "file": "thoughts_explore.md"
+    },
+    {
+      "id": "explore download",
+      "title": "context is everything",
+      "file": "explore_download.md"
+    },
+    {
+      "id": "found",
+      "title": "found",
+      "file": "found.md"
+    },
+    {
+      "id": "memory",
+      "title": "Long-term Memory",
+      "file": "MEMORY.md"
+    },
+    {
+      "id": "school phil running",
+      "title": "school_phil_running",
+      "file": "school_phil_running.md"
+    },
+    {
+      "id": "hub download",
+      "title": "hub_download",
+      "file": "hub_download.md"
+    },
+    {
+      "id": "inbound definitions new",
+      "title": "inbound_definitions_new",
+      "file": "inbound_definitions_new.md"
+    },
+    {
+      "id": "tools",
+      "title": "TOOLS.md - Local Notes",
+      "file": "TOOLS.md"
+    },
+    {
+      "id": "plan",
+      "title": "Frontend Improvement Plan (20min sprint)",
+      "file": "PLAN.md"
+    },
+    {
+      "id": "trinity",
+      "title": "Trinity Daily Digest - 2026-04-01",
+      "file": "TRINITY.md"
+    },
+    {
+      "id": "learnings",
+      "title": "LEARNINGS",
+      "file": "LEARNINGS.md"
+    },
+    {
+      "id": "school strat uber lyft",
+      "title": "school_strat_uber_lyft",
+      "file": "school_strat_uber_lyft.md"
+    },
+    {
+      "id": "inbound drilldown analytics definitions download",
+      "title": "inbound_drilldown_analytics_definitions_download",
+      "file": "inbound_drilldown_analytics_definitions_download.md"
+    },
+    {
+      "id": "found download",
+      "title": "found_download",
+      "file": "found_download.md"
+    },
+    {
+      "id": "found tmp",
+      "title": "found_tmp",
+      "file": "found_tmp.md"
+    },
+    {
+      "id": "thoughts found",
+      "title": "thoughts_found",
+      "file": "thoughts_found.md"
+    },
+    {
+      "id": "changelog",
+      "title": "@dnd-kit/utilities",
+      "file": "dashboard-vite/node_modules/@dnd-kit/utilities/CHANGELOG.md"
+    },
+    {
+      "id": "license",
+      "title": "LICENSE",
+      "file": "dashboard-vite/node_modules/esbuild/LICENSE.md"
+    },
+    {
+      "id": "developing",
+      "title": "Setup development environment",
+      "file": "dashboard-vite/node_modules/recharts/DEVELOPING.md"
+    },
+    {
+      "id": "contributing",
+      "title": "Contributing to Recharts",
+      "file": "dashboard-vite/node_modules/recharts/CONTRIBUTING.md"
+    },
+    {
+      "id": "security",
+      "title": "SECURITY",
+      "file": "dashboard-vite/node_modules/typescript/SECURITY.md"
+    },
+    {
+      "id": "licence",
+      "title": "LICENCE",
+      "file": "dashboard-vite/node_modules/decimal.js-light/LICENCE.md"
+    },
+    {
+      "id": "email ask",
+      "title": "email_ask",
+      "file": "notes/email_ask.md"
+    },
+    {
+      "id": "export v1 design",
+      "title": "Utilization Export v1 \u2014 Design & Tradeoffs",
+      "file": "notes/export_v1_design.md"
+    },
+    {
+      "id": "export prd",
+      "title": "Utilization Export & Capacity Dashboard",
+      "file": "notes/export_prd.md"
+    },
+    {
+      "id": "inbound drilldown analytics definitions",
+      "title": "inbound_drilldown_analytics_definitions",
+      "file": "notes/inbound_drilldown_analytics_definitions.md"
+    },
+    {
+      "id": "uber vs lyft",
+      "title": "uber_vs_lyft",
+      "file": "notes/uber_vs_lyft.md"
+    },
+    {
+      "id": "meeting hoffmann 02-27-26",
+      "title": "meeting_hoffmann_02-27-26",
+      "file": "notes/meeting_hoffmann_02-27-26.md"
+    },
+    {
+      "id": "bigquery overview",
+      "title": "BigQuery Overview & Migration Context",
+      "file": "notes/bigquery_overview.md"
+    },
+    {
+      "id": "2026-04-01",
+      "title": "Trinity Cycle Log - 2026-04-01",
+      "file": "trinity/2026-04-01.md"
+    },
+    {
+      "id": "2026-03-30",
+      "title": "2026-03-30",
+      "file": "trinity/2026-03-30.md"
+    },
+    {
+      "id": "2026-03-31",
+      "title": "2026-03-31",
+      "file": "trinity/2026-03-31.md"
+    },
+    {
+      "id": "index",
+      "title": "index",
+      "file": "trinity/index.md"
+    },
+    {
+      "id": "inbound",
+      "title": "inbound",
+      "file": "trinity/notes_tmp/inbound.md"
+    },
+    {
+      "id": "all-decisions",
+      "title": "all-decisions",
+      "file": "trinity/experiments/decision-journal/entries/all-decisions.md"
+    },
+    {
+      "id": "porting-buffer",
+      "title": "Porting to the Buffer.from/Buffer.alloc API",
+      "file": "trinity/experiments/tves/node_modules/safer-buffer/Porting-Buffer.md"
+    },
+    {
+      "id": "history",
+      "title": "HISTORY",
+      "file": "trinity/experiments/tves/node_modules/parseurl/HISTORY.md"
+    },
+    {
+      "id": "04-glossary",
+      "title": "A",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/04-glossary.md"
+    },
+    {
+      "id": "08-turbopack",
+      "title": "08-turbopack",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/08-turbopack.md"
+    },
+    {
+      "id": "07-edge",
+      "title": "07-edge",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/07-edge.md"
+    },
+    {
+      "id": "use-server",
+      "title": "use-server",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/01-directives/use-server.md"
+    },
+    {
+      "id": "use-cache",
+      "title": "or for production",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/01-directives/use-cache.md"
+    },
+    {
+      "id": "use-cache-remote",
+      "title": "use-cache-remote",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/01-directives/use-cache-remote.md"
+    },
+    {
+      "id": "use-client",
+      "title": "use-client",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/01-directives/use-client.md"
+    },
+    {
+      "id": "use-cache-private",
+      "title": "use-cache-private",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/01-directives/use-cache-private.md"
+    },
+    {
+      "id": "not-found",
+      "title": "not-found",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/not-found.md"
+    },
+    {
+      "id": "generate-static-params",
+      "title": "generate-static-params",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/generate-static-params.md"
+    },
+    {
+      "id": "cookies",
+      "title": "cookies",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/cookies.md"
+    },
+    {
+      "id": "generate-image-metadata",
+      "title": "generate-image-metadata",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/generate-image-metadata.md"
+    },
+    {
+      "id": "catcherror",
+      "title": "catchError",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/catchError.md"
+    },
+    {
+      "id": "revalidatepath",
+      "title": "revalidatePath",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/revalidatePath.md"
+    },
+    {
+      "id": "next-request",
+      "title": "next-request",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/next-request.md"
+    },
+    {
+      "id": "unstable nostore",
+      "title": "unstable_noStore",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/unstable_noStore.md"
+    },
+    {
+      "id": "updatetag",
+      "title": "updateTag",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/updateTag.md"
+    },
+    {
+      "id": "use-report-web-vitals",
+      "title": "use-report-web-vitals",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/use-report-web-vitals.md"
+    },
+    {
+      "id": "connection",
+      "title": "connection",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/connection.md"
+    },
+    {
+      "id": "generate-viewport",
+      "title": "generate-viewport",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/generate-viewport.md"
+    },
+    {
+      "id": "use-selected-layout-segment",
+      "title": "use-selected-layout-segment",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/use-selected-layout-segment.md"
+    },
+    {
+      "id": "permanentredirect",
+      "title": "permanentRedirect",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/permanentRedirect.md"
+    },
+    {
+      "id": "generate-metadata",
+      "title": "generate-metadata",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/generate-metadata.md"
+    },
+    {
+      "id": "refresh",
+      "title": "refresh",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/refresh.md"
+    },
+    {
+      "id": "unstable cache",
+      "title": "unstable_cache",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/unstable_cache.md"
+    },
+    {
+      "id": "use-link-status",
+      "title": "use-link-status",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/use-link-status.md"
+    },
+    {
+      "id": "use-params",
+      "title": "use-params",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/use-params.md"
+    },
+    {
+      "id": "fetch",
+      "title": "fetch",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/fetch.md"
+    },
+    {
+      "id": "next-response",
+      "title": "next-response",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/next-response.md"
+    },
+    {
+      "id": "use-router",
+      "title": "use-router",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/use-router.md"
+    },
+    {
+      "id": "draft-mode",
+      "title": "draft-mode",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/draft-mode.md"
+    },
+    {
+      "id": "headers",
+      "title": "headers",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/headers.md"
+    },
+    {
+      "id": "revalidatetag",
+      "title": "revalidateTag",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/revalidateTag.md"
+    },
+    {
+      "id": "after",
+      "title": "after",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/after.md"
+    },
+    {
+      "id": "redirect",
+      "title": "redirect",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/redirect.md"
+    },
+    {
+      "id": "forbidden",
+      "title": "forbidden",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/forbidden.md"
+    },
+    {
+      "id": "unauthorized",
+      "title": "unauthorized",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/unauthorized.md"
+    },
+    {
+      "id": "useragent",
+      "title": "userAgent",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/userAgent.md"
+    },
+    {
+      "id": "unstable rethrow",
+      "title": "unstable_rethrow",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/unstable_rethrow.md"
+    },
+    {
+      "id": "use-search-params",
+      "title": "use-search-params",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/use-search-params.md"
+    },
+    {
+      "id": "generate-sitemaps",
+      "title": "generate-sitemaps",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/generate-sitemaps.md"
+    },
+    {
+      "id": "cachelife",
+      "title": "cacheLife",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/cacheLife.md"
+    },
+    {
+      "id": "use-pathname",
+      "title": "use-pathname",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/use-pathname.md"
+    },
+    {
+      "id": "image-response",
+      "title": "image-response",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/image-response.md"
+    },
+    {
+      "id": "cachetag",
+      "title": "cacheTag",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/cacheTag.md"
+    },
+    {
+      "id": "use-selected-layout-segments",
+      "title": "use-selected-layout-segments",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/use-selected-layout-segments.md"
+    },
+    {
+      "id": "error",
+      "title": "error",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/error.md"
+    },
+    {
+      "id": "route",
+      "title": "route",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/route.md"
+    },
+    {
+      "id": "src-folder",
+      "title": "src-folder",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/src-folder.md"
+    },
+    {
+      "id": "intercepting-routes",
+      "title": "intercepting-routes",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/intercepting-routes.md"
+    },
+    {
+      "id": "proxy",
+      "title": "proxy",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/proxy.md"
+    },
+    {
+      "id": "dynamic-routes",
+      "title": "dynamic-routes",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/dynamic-routes.md"
+    },
+    {
+      "id": "instrumentation-client",
+      "title": "instrumentation-client",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/instrumentation-client.md"
+    },
+    {
+      "id": "page",
+      "title": "page",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/page.md"
+    },
+    {
+      "id": "parallel-routes",
+      "title": "parallel-routes",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/parallel-routes.md"
+    },
+    {
+      "id": "route-groups",
+      "title": "route-groups",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/route-groups.md"
+    },
+    {
+      "id": "template",
+      "title": "template",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/template.md"
+    },
+    {
+      "id": "layout",
+      "title": "layout",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/layout.md"
+    },
+    {
+      "id": "public-folder",
+      "title": "public-folder",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/public-folder.md"
+    },
+    {
+      "id": "default",
+      "title": "default",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/default.md"
+    },
+    {
+      "id": "instrumentation",
+      "title": "instrumentation",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/instrumentation.md"
+    },
+    {
+      "id": "loading",
+      "title": "loading",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/loading.md"
+    },
+    {
+      "id": "mdx-components",
+      "title": "mdx-components",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/mdx-components.md"
+    },
+    {
+      "id": "manifest",
+      "title": "manifest",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/01-metadata/manifest.md"
+    },
+    {
+      "id": "sitemap",
+      "title": "sitemap",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/01-metadata/sitemap.md"
+    },
+    {
+      "id": "opengraph-image",
+      "title": "opengraph-image",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/01-metadata/opengraph-image.md"
+    },
+    {
+      "id": "robots",
+      "title": "robots",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/01-metadata/robots.md"
+    },
+    {
+      "id": "app-icons",
+      "title": "app-icons",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/01-metadata/app-icons.md"
+    },
+    {
+      "id": "instant",
+      "title": "instant",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/02-route-segment-config/instant.md"
+    },
+    {
+      "id": "maxduration",
+      "title": "maxDuration",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/02-route-segment-config/maxDuration.md"
+    },
+    {
+      "id": "dynamicparams",
+      "title": "dynamicParams",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/02-route-segment-config/dynamicParams.md"
+    },
+    {
+      "id": "preferredregion",
+      "title": "preferredRegion",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/02-route-segment-config/preferredRegion.md"
+    },
+    {
+      "id": "runtime",
+      "title": "runtime",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/02-route-segment-config/runtime.md"
+    },
+    {
+      "id": "02-typescript",
+      "title": "02-typescript",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/02-typescript.md"
+    },
+    {
+      "id": "03-eslint",
+      "title": "03-eslint",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/03-eslint.md"
+    },
+    {
+      "id": "mdxrs",
+      "title": "mdxRs",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/mdxRs.md"
+    },
+    {
+      "id": "staticgeneration",
+      "title": "staticGeneration",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/staticGeneration.md"
+    },
+    {
+      "id": "reactstrictmode",
+      "title": "reactStrictMode",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/reactStrictMode.md"
+    },
+    {
+      "id": "redirects",
+      "title": "redirects",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/redirects.md"
+    },
+    {
+      "id": "incrementalcachehandlerpath",
+      "title": "incrementalCacheHandlerPath",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/incrementalCacheHandlerPath.md"
+    },
+    {
+      "id": "output",
+      "title": "output",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/output.md"
+    },
+    {
+      "id": "htmllimitedbots",
+      "title": "htmlLimitedBots",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/htmlLimitedBots.md"
+    },
+    {
+      "id": "servercomponentshmrcache",
+      "title": "serverComponentsHmrCache",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/serverComponentsHmrCache.md"
+    },
+    {
+      "id": "proxyclientmaxbodysize",
+      "title": "proxyClientMaxBodySize",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/proxyClientMaxBodySize.md"
+    },
+    {
+      "id": "assetprefix",
+      "title": "assetPrefix",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/assetPrefix.md"
+    },
+    {
+      "id": "staletimes",
+      "title": "staleTimes",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/staleTimes.md"
+    },
+    {
+      "id": "webvitalsattribution",
+      "title": "webVitalsAttribution",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/webVitalsAttribution.md"
+    },
+    {
+      "id": "taint",
+      "title": "taint",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/taint.md"
+    },
+    {
+      "id": "deploymentid",
+      "title": "deploymentId",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/deploymentId.md"
+    },
+    {
+      "id": "uselightningcss",
+      "title": "useLightningcss",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/useLightningcss.md"
+    },
+    {
+      "id": "compress",
+      "title": "compress",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/compress.md"
+    },
+    {
+      "id": "reactmaxheaderslength",
+      "title": "reactMaxHeadersLength",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/reactMaxHeadersLength.md"
+    },
+    {
+      "id": "trailingslash",
+      "title": "trailingSlash",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/trailingSlash.md"
+    },
+    {
+      "id": "urlimports",
+      "title": "urlImports",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/urlImports.md"
+    },
+    {
+      "id": "images",
+      "title": "images",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/images.md"
+    },
+    {
+      "id": "inlinecss",
+      "title": "inlineCss",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/inlineCss.md"
+    },
+    {
+      "id": "logging",
+      "title": "logging",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/logging.md"
+    },
+    {
+      "id": "generateetags",
+      "title": "generateEtags",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/generateEtags.md"
+    },
+    {
+      "id": "appdir",
+      "title": "appDir",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/appDir.md"
+    },
+    {
+      "id": "optimizepackageimports",
+      "title": "optimizePackageImports",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/optimizePackageImports.md"
+    },
+    {
+      "id": "typescript",
+      "title": "typescript",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/typescript.md"
+    },
+    {
+      "id": "ondemandentries",
+      "title": "onDemandEntries",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/onDemandEntries.md"
+    },
+    {
+      "id": "distdir",
+      "title": "distDir",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/distDir.md"
+    },
+    {
+      "id": "reactcompiler",
+      "title": "reactCompiler",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/reactCompiler.md"
+    },
+    {
+      "id": "typedroutes",
+      "title": "typedRoutes",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/typedRoutes.md"
+    },
+    {
+      "id": "sassoptions",
+      "title": "sassOptions",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/sassOptions.md"
+    },
+    {
+      "id": "turbopackfilesystemcache",
+      "title": "turbopackFileSystemCache",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/turbopackFileSystemCache.md"
+    },
+    {
+      "id": "poweredbyheader",
+      "title": "poweredByHeader",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/poweredByHeader.md"
+    },
+    {
+      "id": "authinterrupts",
+      "title": "authInterrupts",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/authInterrupts.md"
+    },
+    {
+      "id": "exportpathmap",
+      "title": "exportPathMap",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/exportPathMap.md"
+    },
+    {
+      "id": "pageextensions",
+      "title": "pageExtensions",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/pageExtensions.md"
+    },
+    {
+      "id": "rewrites",
+      "title": "rewrites",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/rewrites.md"
+    },
+    {
+      "id": "serveractions",
+      "title": "serverActions",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/serverActions.md"
+    },
+    {
+      "id": "adapterpath",
+      "title": "schedule:",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/adapterPath.md"
+    },
+    {
+      "id": "httpagentoptions",
+      "title": "httpAgentOptions",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/httpAgentOptions.md"
+    },
+    {
+      "id": "serverexternalpackages",
+      "title": "serverExternalPackages",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/serverExternalPackages.md"
+    },
+    {
+      "id": "crossorigin",
+      "title": "crossOrigin",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/crossOrigin.md"
+    },
+    {
+      "id": "basepath",
+      "title": "basePath",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/basePath.md"
+    },
+    {
+      "id": "cachecomponents",
+      "title": "cacheComponents",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/cacheComponents.md"
+    },
+    {
+      "id": "webpack",
+      "title": "webpack",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/webpack.md"
+    },
+    {
+      "id": "csschunking",
+      "title": "cssChunking",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/cssChunking.md"
+    },
+    {
+      "id": "productionbrowsersourcemaps",
+      "title": "productionBrowserSourceMaps",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/productionBrowserSourceMaps.md"
+    },
+    {
+      "id": "transpilepackages",
+      "title": "transpilePackages",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/transpilePackages.md"
+    },
+    {
+      "id": "generatebuildid",
+      "title": "generateBuildId",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/generateBuildId.md"
+    },
+    {
+      "id": "expiretime",
+      "title": "expireTime",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/expireTime.md"
+    },
+    {
+      "id": "turbopackignoreissue",
+      "title": "turbopackIgnoreIssue",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/turbopackIgnoreIssue.md"
+    },
+    {
+      "id": "env",
+      "title": "env",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/env.md"
+    },
+    {
+      "id": "viewtransition",
+      "title": "viewTransition",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/viewTransition.md"
+    },
+    {
+      "id": "turbopack",
+      "title": "turbopack",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/turbopack.md"
+    },
+    {
+      "id": "devindicators",
+      "title": "devIndicators",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/devIndicators.md"
+    },
+    {
+      "id": "cachehandlers",
+      "title": "cacheHandlers",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/cacheHandlers.md"
+    },
+    {
+      "id": "alloweddevorigins",
+      "title": "allowedDevOrigins",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/allowedDevOrigins.md"
+    },
+    {
+      "id": "next",
+      "title": "Generate route types first, then validate with TypeScript",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/06-cli/next.md"
+    },
+    {
+      "id": "create-next-app",
+      "title": "create-next-app",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/06-cli/create-next-app.md"
+    },
+    {
+      "id": "image",
+      "title": "image",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/02-components/image.md"
+    },
+    {
+      "id": "font",
+      "title": "font",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/02-components/font.md"
+    },
+    {
+      "id": "script",
+      "title": "script",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/02-components/script.md"
+    },
+    {
+      "id": "form",
+      "title": "form",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/02-components/form.md"
+    },
+    {
+      "id": "link",
+      "title": "link",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/03-api-reference/02-components/link.md"
+    },
+    {
+      "id": "12-images",
+      "title": "12-images",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/12-images.md"
+    },
+    {
+      "id": "13-fonts",
+      "title": "13-fonts",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/13-fonts.md"
+    },
+    {
+      "id": "08-caching",
+      "title": "08-caching",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/08-caching.md"
+    },
+    {
+      "id": "07-mutating-data",
+      "title": "07-mutating-data",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/07-mutating-data.md"
+    },
+    {
+      "id": "09-revalidating",
+      "title": "09-revalidating",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/09-revalidating.md"
+    },
+    {
+      "id": "03-layouts-and-pages",
+      "title": "03-layouts-and-pages",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/03-layouts-and-pages.md"
+    },
+    {
+      "id": "17-deploying",
+      "title": "17-deploying",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/17-deploying.md"
+    },
+    {
+      "id": "04-linking-and-navigating",
+      "title": "04-linking-and-navigating",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/04-linking-and-navigating.md"
+    },
+    {
+      "id": "11-css",
+      "title": "11-css",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/11-css.md"
+    },
+    {
+      "id": "14-metadata-and-og-images",
+      "title": "14-metadata-and-og-images",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/14-metadata-and-og-images.md"
+    },
+    {
+      "id": "01-installation",
+      "title": "01-installation",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/01-installation.md"
+    },
+    {
+      "id": "06-fetching-data",
+      "title": "06-fetching-data",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/06-fetching-data.md"
+    },
+    {
+      "id": "15-route-handlers",
+      "title": "15-route-handlers",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/15-route-handlers.md"
+    },
+    {
+      "id": "16-proxy",
+      "title": "16-proxy",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/16-proxy.md"
+    },
+    {
+      "id": "02-project-structure",
+      "title": "02-project-structure",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md"
+    },
+    {
+      "id": "10-error-handling",
+      "title": "10-error-handling",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/10-error-handling.md"
+    },
+    {
+      "id": "18-upgrading",
+      "title": "18-upgrading",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/18-upgrading.md"
+    },
+    {
+      "id": "05-server-and-client-components",
+      "title": "05-server-and-client-components",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/01-getting-started/05-server-and-client-components.md"
+    },
+    {
+      "id": "public-static-pages",
+      "title": "public-static-pages",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/public-static-pages.md"
+    },
+    {
+      "id": "mcp",
+      "title": "mcp",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/mcp.md"
+    },
+    {
+      "id": "single-page-applications",
+      "title": "single-page-applications",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/single-page-applications.md"
+    },
+    {
+      "id": "debugging",
+      "title": "debugging",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/debugging.md"
+    },
+    {
+      "id": "backend-for-frontend",
+      "title": "Returns Markdown",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/backend-for-frontend.md"
+    },
+    {
+      "id": "incremental-static-regeneration",
+      "title": "incremental-static-regeneration",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/incremental-static-regeneration.md"
+    },
+    {
+      "id": "content-security-policy",
+      "title": "content-security-policy",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/content-security-policy.md"
+    },
+    {
+      "id": "multi-zones",
+      "title": "multi-zones",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/multi-zones.md"
+    },
+    {
+      "id": "progressive-web-apps",
+      "title": "progressive-web-apps",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/progressive-web-apps.md"
+    },
+    {
+      "id": "json-ld",
+      "title": "json-ld",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/json-ld.md"
+    },
+    {
+      "id": "lazy-loading",
+      "title": "lazy-loading",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/lazy-loading.md"
+    },
+    {
+      "id": "analytics",
+      "title": "analytics",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/analytics.md"
+    },
+    {
+      "id": "forms",
+      "title": "forms",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/forms.md"
+    },
+    {
+      "id": "self-hosting",
+      "title": "self-hosting",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/self-hosting.md"
+    },
+    {
+      "id": "custom-server",
+      "title": "custom-server",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/custom-server.md"
+    },
+    {
+      "id": "internationalization",
+      "title": "internationalization",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/internationalization.md"
+    },
+    {
+      "id": "redirecting",
+      "title": "redirecting",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/redirecting.md"
+    },
+    {
+      "id": "multi-tenant",
+      "title": "multi-tenant",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/multi-tenant.md"
+    },
+    {
+      "id": "preserving-ui-state",
+      "title": "preserving-ui-state",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/preserving-ui-state.md"
+    },
+    {
+      "id": "environment-variables",
+      "title": "environment-variables",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/environment-variables.md"
+    },
+    {
+      "id": "videos",
+      "title": "videos",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/videos.md"
+    },
+    {
+      "id": "open-telemetry",
+      "title": "open-telemetry",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/open-telemetry.md"
+    },
+    {
+      "id": "caching-without-cache-components",
+      "title": "caching-without-cache-components",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/caching-without-cache-components.md"
+    },
+    {
+      "id": "local-development",
+      "title": "local-development",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/local-development.md"
+    },
+    {
+      "id": "prefetching",
+      "title": "prefetching",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/prefetching.md"
+    },
+    {
+      "id": "data-security",
+      "title": "data-security",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/data-security.md"
+    },
+    {
+      "id": "production-checklist",
+      "title": "production-checklist",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/production-checklist.md"
+    },
+    {
+      "id": "static-exports",
+      "title": "This is necessary when `trailingSlash: false`.",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/static-exports.md"
+    },
+    {
+      "id": "scripts",
+      "title": "scripts",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/scripts.md"
+    },
+    {
+      "id": "streaming",
+      "title": "<template id=\"B:0\"> and <template id=\"B:1\"> placeholders,",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/streaming.md"
+    },
+    {
+      "id": "ci-build-caching",
+      "title": "See here for caching with `yarn`, `bun` or other package managers https://github.com/actions/cache/blob/main/examples.md or you can leverage caching with actions/setup-node https://github.com/actions/setup-node",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/ci-build-caching.md"
+    },
+    {
+      "id": "tailwind-v3-css",
+      "title": "tailwind-v3-css",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/tailwind-v3-css.md"
+    },
+    {
+      "id": "mdx",
+      "title": "Welcome to my MDX page!",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/mdx.md"
+    },
+    {
+      "id": "authentication",
+      "title": "authentication",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/authentication.md"
+    },
+    {
+      "id": "ai-agents",
+      "title": "Next.js: ALWAYS read docs before coding",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/ai-agents.md"
+    },
+    {
+      "id": "memory-usage",
+      "title": "memory-usage",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/memory-usage.md"
+    },
+    {
+      "id": "migrating-to-cache-components",
+      "title": "migrating-to-cache-components",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/migrating-to-cache-components.md"
+    },
+    {
+      "id": "package-bundling",
+      "title": "or",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/package-bundling.md"
+    },
+    {
+      "id": "third-party-libraries",
+      "title": "third-party-libraries",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/third-party-libraries.md"
+    },
+    {
+      "id": "css-in-js",
+      "title": "css-in-js",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/css-in-js.md"
+    },
+    {
+      "id": "instant-navigation",
+      "title": "instant-navigation",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/instant-navigation.md"
+    },
+    {
+      "id": "sass",
+      "title": "sass",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/sass.md"
+    },
+    {
+      "id": "app-router-migration",
+      "title": "app-router-migration",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/migrating/app-router-migration.md"
+    },
+    {
+      "id": "from-create-react-app",
+      "title": "...",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/migrating/from-create-react-app.md"
+    },
+    {
+      "id": "from-vite",
+      "title": "...",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/migrating/from-vite.md"
+    },
+    {
+      "id": "vitest",
+      "title": "Using TypeScript",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/testing/vitest.md"
+    },
+    {
+      "id": "jest",
+      "title": "jest",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/testing/jest.md"
+    },
+    {
+      "id": "cypress",
+      "title": "cypress",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/testing/cypress.md"
+    },
+    {
+      "id": "playwright",
+      "title": "playwright",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/testing/playwright.md"
+    },
+    {
+      "id": "version-15",
+      "title": "version-15",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/upgrading/version-15.md"
+    },
+    {
+      "id": "codemods",
+      "title": "Upgrade to the latest patch (e.g. 16.0.7 -> 16.0.8)",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/upgrading/codemods.md"
+    },
+    {
+      "id": "version-16",
+      "title": "Rename your middleware file",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/upgrading/version-16.md"
+    },
+    {
+      "id": "version-14",
+      "title": "version-14",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/01-app/02-guides/upgrading/version-14.md"
+    },
+    {
+      "id": "supported-browsers",
+      "title": "supported-browsers",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/03-architecture/supported-browsers.md"
+    },
+    {
+      "id": "fast-refresh",
+      "title": "fast-refresh",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/03-architecture/fast-refresh.md"
+    },
+    {
+      "id": "nextjs-compiler",
+      "title": "nextjs-compiler",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/03-architecture/nextjs-compiler.md"
+    },
+    {
+      "id": "accessibility",
+      "title": "accessibility",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/03-architecture/accessibility.md"
+    },
+    {
+      "id": "06-edge",
+      "title": "06-edge",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/04-api-reference/06-edge.md"
+    },
+    {
+      "id": "get-server-side-props",
+      "title": "get-server-side-props",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/04-api-reference/03-functions/get-server-side-props.md"
+    },
+    {
+      "id": "get-static-paths",
+      "title": "get-static-paths",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/04-api-reference/03-functions/get-static-paths.md"
+    },
+    {
+      "id": "get-initial-props",
+      "title": "get-initial-props",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/04-api-reference/03-functions/get-initial-props.md"
+    },
+    {
+      "id": "get-static-props",
+      "title": "get-static-props",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/04-api-reference/03-functions/get-static-props.md"
+    },
+    {
+      "id": "01-typescript",
+      "title": "01-typescript",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/04-api-reference/04-config/01-typescript.md"
+    },
+    {
+      "id": "02-eslint",
+      "title": "02-eslint",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/04-api-reference/04-config/02-eslint.md"
+    },
+    {
+      "id": "bundlepagesrouterdependencies",
+      "title": "bundlePagesRouterDependencies",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/04-api-reference/04-config/01-next-config-js/bundlePagesRouterDependencies.md"
+    },
+    {
+      "id": "head",
+      "title": "head",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/04-api-reference/01-components/head.md"
+    },
+    {
+      "id": "image-legacy",
+      "title": "image-legacy",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/04-api-reference/01-components/image-legacy.md"
+    },
+    {
+      "id": "06-css",
+      "title": "06-css",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/01-getting-started/06-css.md"
+    },
+    {
+      "id": "11-deploying",
+      "title": "11-deploying",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/01-getting-started/11-deploying.md"
+    },
+    {
+      "id": "05-fonts",
+      "title": "05-fonts",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/01-getting-started/05-fonts.md"
+    },
+    {
+      "id": "04-images",
+      "title": "04-images",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/01-getting-started/04-images.md"
+    },
+    {
+      "id": "post-css",
+      "title": "post-css",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/02-guides/post-css.md"
+    },
+    {
+      "id": "preview-mode",
+      "title": "preview-mode",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/02-guides/preview-mode.md"
+    },
+    {
+      "id": "babel",
+      "title": "babel",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/02-guides/babel.md"
+    },
+    {
+      "id": "version-12",
+      "title": "ServerName yourwebsite.local",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/02-guides/upgrading/version-12.md"
+    },
+    {
+      "id": "version-13",
+      "title": "version-13",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/02-guides/upgrading/version-13.md"
+    },
+    {
+      "id": "version-10",
+      "title": "version-10",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/02-guides/upgrading/version-10.md"
+    },
+    {
+      "id": "version-11",
+      "title": "version-11",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/02-guides/upgrading/version-11.md"
+    },
+    {
+      "id": "version-9",
+      "title": "version-9",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/02-guides/upgrading/version-9.md"
+    },
+    {
+      "id": "08-custom-error",
+      "title": "08-custom-error",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/08-custom-error.md"
+    },
+    {
+      "id": "02-dynamic-routes",
+      "title": "02-dynamic-routes",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/02-dynamic-routes.md"
+    },
+    {
+      "id": "01-pages-and-layouts",
+      "title": "01-pages-and-layouts",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/01-pages-and-layouts.md"
+    },
+    {
+      "id": "07-api-routes",
+      "title": "07-api-routes",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/07-api-routes.md"
+    },
+    {
+      "id": "05-custom-app",
+      "title": "05-custom-app",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/05-custom-app.md"
+    },
+    {
+      "id": "06-custom-document",
+      "title": "06-custom-document",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/06-custom-document.md"
+    },
+    {
+      "id": "03-linking-and-navigating",
+      "title": "03-linking-and-navigating",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/01-routing/03-linking-and-navigating.md"
+    },
+    {
+      "id": "02-static-site-generation",
+      "title": "02-static-site-generation",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/02-rendering/02-static-site-generation.md"
+    },
+    {
+      "id": "01-server-side-rendering",
+      "title": "01-server-side-rendering",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/02-rendering/01-server-side-rendering.md"
+    },
+    {
+      "id": "05-client-side-rendering",
+      "title": "05-client-side-rendering",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/02-rendering/05-client-side-rendering.md"
+    },
+    {
+      "id": "04-automatic-static-optimization",
+      "title": "04-automatic-static-optimization",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/02-rendering/04-automatic-static-optimization.md"
+    },
+    {
+      "id": "12-error-handling",
+      "title": "12-error-handling",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/06-configuring/12-error-handling.md"
+    },
+    {
+      "id": "02-get-static-paths",
+      "title": "02-get-static-paths",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/03-data-fetching/02-get-static-paths.md"
+    },
+    {
+      "id": "01-get-static-props",
+      "title": "01-get-static-props",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/03-data-fetching/01-get-static-props.md"
+    },
+    {
+      "id": "05-client-side",
+      "title": "05-client-side",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/03-data-fetching/05-client-side.md"
+    },
+    {
+      "id": "03-forms-and-mutations",
+      "title": "03-forms-and-mutations",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/03-data-fetching/03-forms-and-mutations.md"
+    },
+    {
+      "id": "03-get-server-side-props",
+      "title": "03-get-server-side-props",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/02-pages/03-building-your-application/03-data-fetching/03-get-server-side-props.md"
+    },
+    {
+      "id": "02-rspack",
+      "title": "02-rspack",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/04-community/02-rspack.md"
+    },
+    {
+      "id": "01-contribution-guide",
+      "title": "01-contribution-guide",
+      "file": "trinity/experiments/tves/node_modules/next/dist/docs/04-community/01-contribution-guide.md"
+    },
+    {
+      "id": "playwright-test-coverage.prompt",
+      "title": "playwright-test-coverage.prompt",
+      "file": "trinity/experiments/tves/node_modules/playwright/lib/agents/playwright-test-coverage.prompt.md"
+    },
+    {
+      "id": "playwright-test-plan.prompt",
+      "title": "playwright-test-plan.prompt",
+      "file": "trinity/experiments/tves/node_modules/playwright/lib/agents/playwright-test-plan.prompt.md"
+    },
+    {
+      "id": "playwright-test-heal.prompt",
+      "title": "playwright-test-heal.prompt",
+      "file": "trinity/experiments/tves/node_modules/playwright/lib/agents/playwright-test-heal.prompt.md"
+    },
+    {
+      "id": "playwright-test-healer.agent",
+      "title": "playwright-test-healer.agent",
+      "file": "trinity/experiments/tves/node_modules/playwright/lib/agents/playwright-test-healer.agent.md"
+    },
+    {
+      "id": "playwright-test-planner.agent",
+      "title": "playwright-test-planner.agent",
+      "file": "trinity/experiments/tves/node_modules/playwright/lib/agents/playwright-test-planner.agent.md"
+    },
+    {
+      "id": "playwright-test-generator.agent",
+      "title": "For each test you generate",
+      "file": "trinity/experiments/tves/node_modules/playwright/lib/agents/playwright-test-generator.agent.md"
+    },
+    {
+      "id": "playwright-test-generate.prompt",
+      "title": "playwright-test-generate.prompt",
+      "file": "trinity/experiments/tves/node_modules/playwright/lib/agents/playwright-test-generate.prompt.md"
+    },
+    {
+      "id": "skill-original",
+      "title": "last30days: Research Any Topic from the Last 30 Days",
+      "file": "trinity/experiments/last30days-skill/SKILL-original.md"
+    },
+    {
+      "id": "release-notes",
+      "title": "Claude Code",
+      "file": "trinity/experiments/last30days-skill/release-notes.md"
+    },
+    {
+      "id": "claude",
+      "title": "last30days Skill",
+      "file": "trinity/experiments/last30days-skill/CLAUDE.md"
+    },
+    {
+      "id": "spec",
+      "title": "last30days Skill Specification",
+      "file": "trinity/experiments/last30days-skill/SPEC.md"
+    },
+    {
+      "id": "skill",
+      "title": "last30days v2.9.5: Research Any Topic from the Last 30 Days",
+      "file": "trinity/experiments/last30days-skill/SKILL.md"
+    },
+    {
+      "id": "context",
+      "title": "last30days Context",
+      "file": "trinity/experiments/last30days-skill/variants/open/context.md"
+    },
+    {
+      "id": "watchlist",
+      "title": "Watchlist Management",
+      "file": "trinity/experiments/last30days-skill/variants/open/references/watchlist.md"
+    },
+    {
+      "id": "research",
+      "title": "One-Shot Research Mode",
+      "file": "trinity/experiments/last30days-skill/variants/open/references/research.md"
+    },
+    {
+      "id": "briefing",
+      "title": "Morning Briefing",
+      "file": "trinity/experiments/last30days-skill/variants/open/references/briefing.md"
+    },
+    {
+      "id": "how-search-works",
+      "title": "How Reddit & X Search Work in last30days",
+      "file": "trinity/experiments/last30days-skill/docs/how-search-works.md"
+    },
+    {
+      "id": "pr-credits",
+      "title": "PR Credits \u2014 Thank After V2 Goes Live",
+      "file": "trinity/experiments/last30days-skill/docs/pr-credits.md"
+    },
+    {
+      "id": "v2.1-tweets",
+      "title": "v2.1 Launch Posts - WORKING DRAFT",
+      "file": "trinity/experiments/last30days-skill/docs/v2.1-tweets.md"
+    },
+    {
+      "id": "v2.1-launch-copy",
+      "title": "v2.1 Launch Copy (DRAFT \u2014 do not publish)",
+      "file": "trinity/experiments/last30days-skill/docs/v2.1-launch-copy.md"
+    },
+    {
+      "id": "v2.5-launch-tweets",
+      "title": "last30days v2.5 Launch Thread",
+      "file": "trinity/experiments/last30days-skill/docs/v2.5-launch-tweets.md"
+    },
+    {
+      "id": "search-quality-eval",
+      "title": "Search Quality Eval",
+      "file": "trinity/experiments/last30days-skill/docs/search-quality-eval.md"
+    },
+    {
+      "id": "summary",
+      "title": "GOAT Synthesis Comparison: Final Results",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/summary.md"
+    },
+    {
+      "id": "eval-3-macbook",
+      "title": "Evaluation: M4 MacBook Pro review",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/evaluation/eval-3-macbook.md"
+    },
+    {
+      "id": "eval-4-rap",
+      "title": "Evaluation: best rap songs 2026",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/evaluation/eval-4-rap.md"
+    },
+    {
+      "id": "eval-1-claude-code",
+      "title": "Evaluation: Claude Code skills and MCP servers",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/evaluation/eval-1-claude-code.md"
+    },
+    {
+      "id": "eval-2-seedance",
+      "title": "Evaluation: Seedance AI video generation",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/evaluation/eval-2-seedance.md"
+    },
+    {
+      "id": "eval-5-react-svelte",
+      "title": "Evaluation: React vs Svelte 2026",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/evaluation/eval-5-react-svelte.md"
+    },
+    {
+      "id": "cross-synthesis-prompt",
+      "title": "Synthesis Instructions (HN version - with Hacker News)",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/prompts/cross-synthesis-prompt.md"
+    },
+    {
+      "id": "base-synthesis-prompt",
+      "title": "Synthesis Instructions (Base version - no Hacker News)",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/prompts/base-synthesis-prompt.md"
+    },
+    {
+      "id": "hn-synthesis-prompt",
+      "title": "Synthesis Instructions (HN version - with Hacker News)",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/prompts/hn-synthesis-prompt.md"
+    },
+    {
+      "id": "base-2-seedance",
+      "title": "base-2-seedance",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/base-2-seedance.md"
+    },
+    {
+      "id": "hn-4-rap",
+      "title": "hn-4-rap",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/hn-4-rap.md"
+    },
+    {
+      "id": "cross-2-seedance-improved",
+      "title": "cross-2-seedance-improved",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/cross-2-seedance-improved.md"
+    },
+    {
+      "id": "cross-5-react-svelte-improved",
+      "title": "cross-5-react-svelte-improved",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/cross-5-react-svelte-improved.md"
+    },
+    {
+      "id": "base-3-macbook",
+      "title": "base-3-macbook",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/base-3-macbook.md"
+    },
+    {
+      "id": "cross-2-seedance",
+      "title": "cross-2-seedance",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/cross-2-seedance.md"
+    },
+    {
+      "id": "cross-1-claude-code-improved",
+      "title": "cross-1-claude-code-improved",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/cross-1-claude-code-improved.md"
+    },
+    {
+      "id": "cross-1-claude-code",
+      "title": "cross-1-claude-code",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/cross-1-claude-code.md"
+    },
+    {
+      "id": "hn-5-react-svelte",
+      "title": "hn-5-react-svelte",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/hn-5-react-svelte.md"
+    },
+    {
+      "id": "hn-1-claude-code",
+      "title": "hn-1-claude-code",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/hn-1-claude-code.md"
+    },
+    {
+      "id": "base-1-claude-code",
+      "title": "base-1-claude-code",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/base-1-claude-code.md"
+    },
+    {
+      "id": "cross-4-rap",
+      "title": "cross-4-rap",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/cross-4-rap.md"
+    },
+    {
+      "id": "base-5-react-svelte",
+      "title": "base-5-react-svelte",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/base-5-react-svelte.md"
+    },
+    {
+      "id": "cross-4-rap-improved",
+      "title": "cross-4-rap-improved",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/cross-4-rap-improved.md"
+    },
+    {
+      "id": "hn-2-seedance",
+      "title": "hn-2-seedance",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/hn-2-seedance.md"
+    },
+    {
+      "id": "cross-3-macbook-improved",
+      "title": "cross-3-macbook-improved",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/cross-3-macbook-improved.md"
+    },
+    {
+      "id": "cross-5-react-svelte",
+      "title": "cross-5-react-svelte",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/cross-5-react-svelte.md"
+    },
+    {
+      "id": "cross-3-macbook",
+      "title": "cross-3-macbook",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/cross-3-macbook.md"
+    },
+    {
+      "id": "hn-3-macbook",
+      "title": "hn-3-macbook",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/hn-3-macbook.md"
+    },
+    {
+      "id": "base-4-rap",
+      "title": "base-4-rap",
+      "file": "trinity/experiments/last30days-skill/docs/comparison-results/compact/base-4-rap.md"
+    },
+    {
+      "id": "analysis",
+      "title": "V1 vs V2 Comparison Analysis",
+      "file": "trinity/experiments/last30days-skill/docs/test-results/v1-vs-v2-quick/analysis.md"
+    },
+    {
+      "id": "v2-skill",
+      "title": "last30days: Research Any Topic from the Last 30 Days",
+      "file": "trinity/experiments/last30days-skill/docs/test-results/v1-vs-v2-quick/v2-SKILL.md"
+    },
+    {
+      "id": "v1-skill",
+      "title": "last30days: Research Any Topic from the Last 30 Days",
+      "file": "trinity/experiments/last30days-skill/docs/test-results/v1-vs-v2-quick/v1-SKILL.md"
+    },
+    {
+      "id": "2026-02-15-fix-youtube-timeout-and-reddit-resilience-plan",
+      "title": "Fix YouTube Timeout and Reddit Resilience",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-15-fix-youtube-timeout-and-reddit-resilience-plan.md"
+    },
+    {
+      "id": "2026-02-06-feat-last30days-bird-cli-release-plan",
+      "title": "Release last30days v2 (Bird CLI) to GitHub",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-06-feat-last30days-bird-cli-release-plan.md"
+    },
+    {
+      "id": "2026-02-25-feat-goat-synthesis-output-comparison-plan",
+      "title": "GOAT Synthesis Output - 15-Test Comparison and CROSS Improvement",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-25-feat-goat-synthesis-output-comparison-plan.md"
+    },
+    {
+      "id": "2026-02-07-fix-x-search-query-construction-plan",
+      "title": "fix: X search query too restrictive, returns 0 results on popular topics",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-07-fix-x-search-query-construction-plan.md"
+    },
+    {
+      "id": "2026-03-07-review-open-issues-and-prs-triage-plan",
+      "title": "Triage Open Issues and PRs - last30days-skill",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-07-review-open-issues-and-prs-triage-plan.md"
+    },
+    {
+      "id": "2026-03-03-fix-triage-all-open-github-issues-plan",
+      "title": "Triage All Open GitHub Issues \u2014 Proposed Actions",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-03-fix-triage-all-open-github-issues-plan.md"
+    },
+    {
+      "id": "2026-03-02-feat-close-pr37-codex-auth-finalization-plan",
+      "title": "feat: Close PR #37 - Codex Auth Finalization",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-02-feat-close-pr37-codex-auth-finalization-plan.md"
+    },
+    {
+      "id": "2026-02-24-feat-hacker-news-source-plan",
+      "title": "feat: Add Hacker News as a 5th Research Source",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-24-feat-hacker-news-source-plan.md"
+    },
+    {
+      "id": "2026-02-15-feat-clawhub-scanner-compliance-plan",
+      "title": "ClawHub Scanner Compliance for last30days-official",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-15-feat-clawhub-scanner-compliance-plan.md"
+    },
+    {
+      "id": "2026-03-03-fix-skill-md-argument-flag-forwarding-plan",
+      "title": "Fix SKILL.md Argument Flag Forwarding",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-03-fix-skill-md-argument-flag-forwarding-plan.md"
+    },
+    {
+      "id": "2026-03-05-feat-reddit-scrapecreators-v2-improvements-plan",
+      "title": "feat: Reddit ScrapeCreators v2 \u2014 Improvements from Beta Testing",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-05-feat-reddit-scrapecreators-v2-improvements-plan.md"
+    },
+    {
+      "id": "2026-03-08-feat-gemini-cli-support-implementation-plan",
+      "title": "feat: Add Gemini CLI Extension Support",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-08-feat-gemini-cli-support-implementation-plan.md"
+    },
+    {
+      "id": "2026-03-09-fix-bluesky-auth-opt-in-plan",
+      "title": "fix: Make Bluesky opt-in with auth (searchPosts now requires authentication)",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-09-fix-bluesky-auth-opt-in-plan.md"
+    },
+    {
+      "id": "2026-03-02-chore-open-pr-triage-plan",
+      "title": "Open PR Triage",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-02-chore-open-pr-triage-plan.md"
+    },
+    {
+      "id": "2026-02-06-test-v1-vs-v2-comparison-plan",
+      "title": "test: V1 vs V2 Comparison Test Plan",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-06-test-v1-vs-v2-comparison-plan.md"
+    },
+    {
+      "id": "2026-02-07-feat-smart-supplemental-search-plan",
+      "title": "feat: Smart Supplemental Search \u2014 Entity-Aware Secondary Passes for Reddit & X",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-07-feat-smart-supplemental-search-plan.md"
+    },
+    {
+      "id": "2026-03-08-feat-perpetual-monitoring-mode-plan",
+      "title": "Perpetual Monitoring Mode",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-08-feat-perpetual-monitoring-mode-plan.md"
+    },
+    {
+      "id": "2026-02-25-analysis-cross-source-comparison-plan",
+      "title": "15-Test Side-by-Side Comparison: Base vs HN vs CROSS",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-25-analysis-cross-source-comparison-plan.md"
+    },
+    {
+      "id": "2026-02-26-fix-polymarket-query-expansion-data-availability-plan",
+      "title": "fix: Polymarket Query Expansion & Data Availability",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-26-fix-polymarket-query-expansion-data-availability-plan.md"
+    },
+    {
+      "id": "2026-02-03-bird-cli-implementation",
+      "title": "Bird CLI Integration Implementation Plan",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-03-bird-cli-implementation.md"
+    },
+    {
+      "id": "2026-03-04-fix-web-sources-url-regression-plan",
+      "title": "fix: Web Sources Showing Full URLs Instead of Plain Domain Names",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-04-fix-web-sources-url-regression-plan.md"
+    },
+    {
+      "id": "2026-02-15-fix-watchlist-engagement-null-crash-plan",
+      "title": "fix: Watchlist crashes on `engagement: null` from X posts",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-15-fix-watchlist-engagement-null-crash-plan.md"
+    },
+    {
+      "id": "2026-02-06-feat-visible-query-parsing-display-plan",
+      "title": "feat: Add Visible Query Parsing Display",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-06-feat-visible-query-parsing-display-plan.md"
+    },
+    {
+      "id": "2026-03-05-feat-auto-save-results-to-documents-plan",
+      "title": "feat: Auto-save research results to ~/Documents/Last30Days/",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-05-feat-auto-save-results-to-documents-plan.md"
+    },
+    {
+      "id": "2026-03-04-feat-instagram-facebook-source-plan",
+      "title": "feat: Add Instagram and Facebook Sources via ScrapeCreators API",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-04-feat-instagram-facebook-source-plan.md"
+    },
+    {
+      "id": "2026-02-15-fix-youtube-display-and-search-quality-plan",
+      "title": "Fix YouTube Display and Search Quality",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-15-fix-youtube-display-and-search-quality-plan.md"
+    },
+    {
+      "id": "2026-02-06-fix-skill-execution-fork-mode-plan",
+      "title": "fix: Skill Execution Broken in Fork Mode",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-06-fix-skill-execution-fork-mode-plan.md"
+    },
+    {
+      "id": "2026-03-02-feat-last30days-v2.6-agent-native-invocation-plan",
+      "title": "feat: last30days v2.6 - Agent-Native Invocation",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-02-feat-last30days-v2.6-agent-native-invocation-plan.md"
+    },
+    {
+      "id": "2026-03-03-refactor-tiktok-apify-alternative-plan",
+      "title": "refactor: Replace Apify with pay-as-you-go TikTok API",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-03-refactor-tiktok-apify-alternative-plan.md"
+    },
+    {
+      "id": "2026-02-25-feat-youtube-relevance-and-cross-source-linking-plan",
+      "title": "feat: YouTube Relevance Scoring and Cross-Source Linking",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-25-feat-youtube-relevance-and-cross-source-linking-plan.md"
+    },
+    {
+      "id": "2026-02-25-feat-15-test-comparison-make-cross-goat-plan",
+      "title": "15-Test Side-by-Side Comparison - Make CROSS the GOAT",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-25-feat-15-test-comparison-make-cross-goat-plan.md"
+    },
+    {
+      "id": "2026-02-07-release-v2-public-launch-plan",
+      "title": "release: Push V2 to public repo and launch",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-07-release-v2-public-launch-plan.md"
+    },
+    {
+      "id": "2026-02-26-feat-polymarket-smarter-synthesis-plan",
+      "title": "feat: Smarter Polymarket Synthesis",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-26-feat-polymarket-smarter-synthesis-plan.md"
+    },
+    {
+      "id": "2026-03-02-fix-websearch-sources-trailing-block-plan",
+      "title": "fix: Suppress Trailing Sources: Block from WebSearch Tool Mandate",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-02-fix-websearch-sources-trailing-block-plan.md"
+    },
+    {
+      "id": "2026-02-20-feat-last30days-com-trending-topics-plan",
+      "title": "Last30Days.com - Automated Trending Topic Research",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-20-feat-last30days-com-trending-topics-plan.md"
+    },
+    {
+      "id": "2026-03-06-fix-save-output-noise-plan",
+      "title": "fix: Eliminate save-related output noise after research",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-06-fix-save-output-noise-plan.md"
+    },
+    {
+      "id": "2026-03-03-feat-tiktok-apify-source-plan",
+      "title": "feat: Add TikTok Signal via Apify",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-03-feat-tiktok-apify-source-plan.md"
+    },
+    {
+      "id": "2026-03-09-docs-v295-readme-and-plugin-fix-plan",
+      "title": "docs: v2.9.5 README update, plugin.json fix, Claude Code install above fold",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-09-docs-v295-readme-and-plugin-fix-plan.md"
+    },
+    {
+      "id": "2026-03-03-fix-close-commented-github-issues-plan",
+      "title": "Close Commented GitHub Issues and PRs",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-03-fix-close-commented-github-issues-plan.md"
+    },
+    {
+      "id": "2026-03-08-fix-skill-md-save-section-regression-plan",
+      "title": "fix: Remove re-introduced Save Research to Documents section from SKILL.md",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-08-fix-skill-md-save-section-regression-plan.md"
+    },
+    {
+      "id": "2026-02-14-feat-codex-skill-compatibility-plan",
+      "title": "feat: Add Codex CLI Compatibility",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-14-feat-codex-skill-compatibility-plan.md"
+    },
+    {
+      "id": "2026-02-14-feat-merge-openclaw-variant-plan",
+      "title": "feat: Merge OpenClaw Variant into Main Repo",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-14-feat-merge-openclaw-variant-plan.md"
+    },
+    {
+      "id": "2026-03-08-feat-claude-code-plugin-marketplace-plan",
+      "title": "feat: Publish last30days as Claude Code Marketplace Plugin",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-08-feat-claude-code-plugin-marketplace-plan.md"
+    },
+    {
+      "id": "2026-03-03-feat-skip-native-web-in-claude-code-plan",
+      "title": "feat: Skip native web search when running in Claude Code",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-03-feat-skip-native-web-in-claude-code-plan.md"
+    },
+    {
+      "id": "2026-02-14-feat-youtube-transcript-search-plan",
+      "title": "feat: Add YouTube Transcript Search",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-14-feat-youtube-transcript-search-plan.md"
+    },
+    {
+      "id": "2026-02-25-feat-polymarket-quality-ranking-plan",
+      "title": "feat: Improve Polymarket Result Ranking with Quality Signals",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-25-feat-polymarket-quality-ranking-plan.md"
+    },
+    {
+      "id": "2026-03-04-feat-v2.8-tiktok-instagram-release-plan",
+      "title": "feat: v2.8 Release \u2014 Instagram Reels + TikTok ScrapeCreators Migration",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-04-feat-v2.8-tiktok-instagram-release-plan.md"
+    },
+    {
+      "id": "2026-03-08-review-pr-53-gemini-cli-support-plan",
+      "title": "Review: PR #53 - Gemini CLI Support (alexferrari88)",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-08-review-pr-53-gemini-cli-support-plan.md"
+    },
+    {
+      "id": "2026-03-07-feat-paperclip-marketing-automation-plan",
+      "title": "Paperclip Marketing Automation for last30days",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-07-feat-paperclip-marketing-automation-plan.md"
+    },
+    {
+      "id": "2026-02-07-feat-bundle-bird-x-search-plan",
+      "title": "feat: Bundle Bird X search client to eliminate npm dependency",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-07-feat-bundle-bird-x-search-plan.md"
+    },
+    {
+      "id": "2026-02-06-feat-automated-v1-v2-test-harness-plan",
+      "title": "feat: Automated V1 vs V2 Test Harness",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-06-feat-automated-v1-v2-test-harness-plan.md"
+    },
+    {
+      "id": "2026-02-03-bird-cli-integration-design",
+      "title": "Bird CLI Integration Design",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-03-bird-cli-integration-design.md"
+    },
+    {
+      "id": "2026-02-25-feat-polymarket-prediction-market-source-plan",
+      "title": "feat: Add Polymarket Prediction Market Search",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-25-feat-polymarket-prediction-market-source-plan.md"
+    },
+    {
+      "id": "2026-03-09-feat-truth-social-source-plan",
+      "title": "feat: Add Truth Social as opt-in source",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-03-09-feat-truth-social-source-plan.md"
+    },
+    {
+      "id": "2026-02-06-feat-free-reddit-mcp-integration-plan",
+      "title": "feat: Free Reddit via MCP \u2014 Remove OpenAI Key Requirement",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-06-feat-free-reddit-mcp-integration-plan.md"
+    },
+    {
+      "id": "2026-02-17-feat-github-release-v2.1-plan",
+      "title": "Create GitHub Release for v2.1",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-17-feat-github-release-v2.1-plan.md"
+    },
+    {
+      "id": "2026-02-06-fix-last30days-v2-formatting-reddit-citations-plan",
+      "title": "fix: last30days v2 Formatting, Reddit Results, and Citation Verbosity",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-06-fix-last30days-v2-formatting-reddit-citations-plan.md"
+    },
+    {
+      "id": "2026-02-24-fix-hn-ordering-and-emoji-plan",
+      "title": "fix: HN Ordering and Stats Block Emoji Formatting",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-24-fix-hn-ordering-and-emoji-plan.md"
+    },
+    {
+      "id": "2026-02-25-feat-x-handle-resolution-plan",
+      "title": "feat: Resolve X handles for topic entities",
+      "file": "trinity/experiments/last30days-skill/docs/plans/2026-02-25-feat-x-handle-resolution-plan.md"
+    },
+    {
+      "id": "feat-add-websearch-source",
+      "title": "feat: Add WebSearch as Third Source (Zero-Config Fallback)",
+      "file": "trinity/experiments/last30days-skill/plans/feat-add-websearch-source.md"
+    },
+    {
+      "id": "fix-strict-date-filtering",
+      "title": "fix: Enforce Strict 30-Day Date Filtering",
+      "file": "trinity/experiments/last30days-skill/plans/fix-strict-date-filtering.md"
+    },
+    {
+      "id": "outcomes table",
+      "title": "outcomes_table",
+      "file": "trinity/experiments/taxonomy_editor/outcomes_table.md"
+    },
+    {
+      "id": "inbound original",
+      "title": "inbound_original",
+      "file": "trinity/experiments/taxonomy_editor/inbound_original.md"
+    },
+    {
+      "id": "contributors",
+      "title": "Contributors",
+      "file": "trinity/experiments/LobsterBoard/CONTRIBUTORS.md"
+    },
+    {
+      "id": "devjarvis workflow",
+      "title": "DevJarvis PR Workflow - MANDATORY PROCESS",
+      "file": "trinity/experiments/LobsterBoard/DEVJARVIS_WORKFLOW.md"
+    },
+    {
+      "id": "todo",
+      "title": "LobsterBoard TODO",
+      "file": "trinity/experiments/LobsterBoard/TODO.md"
+    },
+    {
+      "id": "widgets-status",
+      "title": "LobsterBoard Widget Status",
+      "file": "trinity/experiments/LobsterBoard/WIDGETS-STATUS.md"
+    },
+    {
+      "id": "client-certificate",
+      "title": "Client certificate",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/best-practices/client-certificate.md"
+    },
+    {
+      "id": "crawling",
+      "title": "Crawling",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/best-practices/crawling.md"
+    },
+    {
+      "id": "mocking-request",
+      "title": "Mocking Request",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/best-practices/mocking-request.md"
+    },
+    {
+      "id": "undici-vs-builtin-fetch",
+      "title": "Undici Module vs. Node.js Built-in Fetch",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/best-practices/undici-vs-builtin-fetch.md"
+    },
+    {
+      "id": "writing-tests",
+      "title": "Writing tests",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/best-practices/writing-tests.md"
+    },
+    {
+      "id": "envhttpproxyagent",
+      "title": "Class: EnvHttpProxyAgent",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/EnvHttpProxyAgent.md"
+    },
+    {
+      "id": "eventsource",
+      "title": "EventSource",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/EventSource.md"
+    },
+    {
+      "id": "roundrobinpool",
+      "title": "Class: RoundRobinPool",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/RoundRobinPool.md"
+    },
+    {
+      "id": "retryhandler",
+      "title": "Class: RetryHandler",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/RetryHandler.md"
+    },
+    {
+      "id": "mockcallhistorylog",
+      "title": "Class: MockCallHistoryLog",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/MockCallHistoryLog.md"
+    },
+    {
+      "id": "clientstats",
+      "title": "Class: ClientStats",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/ClientStats.md"
+    },
+    {
+      "id": "poolstats",
+      "title": "Class: PoolStats",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/PoolStats.md"
+    },
+    {
+      "id": "util",
+      "title": "Util",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/Util.md"
+    },
+    {
+      "id": "api-lifecycle",
+      "title": "Client Lifecycle",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/api-lifecycle.md"
+    },
+    {
+      "id": "client",
+      "title": "Class: Client",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/Client.md"
+    },
+    {
+      "id": "mockclient",
+      "title": "Class: MockClient",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/MockClient.md"
+    },
+    {
+      "id": "mockagent",
+      "title": "Class: MockAgent",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/MockAgent.md"
+    },
+    {
+      "id": "globalinstallation",
+      "title": "Global Installation",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/GlobalInstallation.md"
+    },
+    {
+      "id": "mockerrors",
+      "title": "MockErrors",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/MockErrors.md"
+    },
+    {
+      "id": "debug",
+      "title": "Debug",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/Debug.md"
+    },
+    {
+      "id": "errors",
+      "title": "Errors",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/Errors.md"
+    },
+    {
+      "id": "mockcallhistory",
+      "title": "Class: MockCallHistory",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/MockCallHistory.md"
+    },
+    {
+      "id": "pool",
+      "title": "Class: Pool",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/Pool.md"
+    },
+    {
+      "id": "mockpool",
+      "title": "Class: MockPool",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/MockPool.md"
+    },
+    {
+      "id": "retryagent",
+      "title": "Class: RetryAgent",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/RetryAgent.md"
+    },
+    {
+      "id": "diagnosticschannel",
+      "title": "Diagnostics Channel Support",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/DiagnosticsChannel.md"
+    },
+    {
+      "id": "redirecthandler",
+      "title": "Class: RedirectHandler",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/RedirectHandler.md"
+    },
+    {
+      "id": "h2cclient",
+      "title": "Class: H2CClient",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/H2CClient.md"
+    },
+    {
+      "id": "snapshotagent",
+      "title": "SnapshotAgent",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/SnapshotAgent.md"
+    },
+    {
+      "id": "balancedpool",
+      "title": "Class: BalancedPool",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/BalancedPool.md"
+    },
+    {
+      "id": "cachestore",
+      "title": "Cache Store",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/CacheStore.md"
+    },
+    {
+      "id": "socks5proxyagent",
+      "title": "Class: Socks5ProxyAgent",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/Socks5ProxyAgent.md"
+    },
+    {
+      "id": "connector",
+      "title": "Connector",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/Connector.md"
+    },
+    {
+      "id": "contenttype",
+      "title": "MIME Type Parsing",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/ContentType.md"
+    },
+    {
+      "id": "websocket",
+      "title": "Class: WebSocket",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/WebSocket.md"
+    },
+    {
+      "id": "dispatcher",
+      "title": "Dispatcher",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/Dispatcher.md"
+    },
+    {
+      "id": "proxyagent",
+      "title": "Class: ProxyAgent",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/ProxyAgent.md"
+    },
+    {
+      "id": "cachestorage",
+      "title": "CacheStorage",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/CacheStorage.md"
+    },
+    {
+      "id": "agent",
+      "title": "Agent",
+      "file": "trinity/experiments/LobsterBoard/node_modules/undici/docs/docs/api/Agent.md"
+    },
+    {
+      "id": "patrons",
+      "title": "Our patrons",
+      "file": "trinity/experiments/LobsterBoard/node_modules/terser/PATRONS.md"
+    },
+    {
+      "id": "2026-03-05",
+      "title": "2026-03-05 \u2014 CackalackyCon MUD Build Session",
+      "file": "trinity/experiments/LobsterBoard/memory/2026-03-05.md"
+    },
+    {
+      "id": "graphical-widgets-roadmap",
+      "title": "Graphical Widgets Roadmap",
+      "file": "trinity/experiments/LobsterBoard/docs/graphical-widgets-roadmap.md"
+    },
+    {
+      "id": "2026-03-30t22-53-08-cli-test-task",
+      "title": "CLI Test Task",
+      "file": "tasks/2026-03-30T22-53-08-cli-test-task.md"
+    },
+    {
+      "id": "2026-03-30t22-54-18-api-test-task",
+      "title": "API test task",
+      "file": "tasks/2026-03-30T22-54-18-api-test-task.md"
+    },
+    {
+      "id": "api",
+      "title": "API Documentation",
+      "file": "node_modules/postcss-selector-parser/API.md"
+    },
+    {
+      "id": "i18n",
+      "title": "Internationalization",
+      "file": "node_modules/date-fns/docs/i18n.md"
+    },
+    {
+      "id": "gettingstarted",
+      "title": "Getting Started",
+      "file": "node_modules/date-fns/docs/gettingStarted.md"
+    },
+    {
+      "id": "i18ncontributionguide",
+      "title": "I18n Contribution Guide",
+      "file": "node_modules/date-fns/docs/i18nContributionGuide.md"
+    },
+    {
+      "id": "timezones",
+      "title": "Time Zones",
+      "file": "node_modules/date-fns/docs/timeZones.md"
+    },
+    {
+      "id": "unicodetokens",
+      "title": "Unicode Tokens",
+      "file": "node_modules/date-fns/docs/unicodeTokens.md"
+    },
+    {
+      "id": "cdn",
+      "title": "CDN",
+      "file": "node_modules/date-fns/docs/cdn.md"
+    },
+    {
+      "id": "release",
+      "title": "Releasing date-fns",
+      "file": "node_modules/date-fns/docs/release.md"
+    },
+    {
+      "id": "fp",
+      "title": "FP Guide",
+      "file": "node_modules/date-fns/docs/fp.md"
+    },
+    {
+      "id": "cloudflare tunnel",
+      "title": "Cloudflare Tunnel Setup (Recommended)",
+      "file": "backend/CLOUDFLARE_TUNNEL.md"
+    },
+    {
+      "id": "readme-es",
+      "title": "dotenv [![NPM version](https://img.shields.io/npm/v/dotenv.svg?style=flat-square)](https://www.npmjs.com/package/dotenv) [![downloads](https://img.shields.io/npm/dw/dotenv)](https://www.npmjs.com/package/dotenv)",
+      "file": "backend/node_modules/dotenv/README-es.md"
+    },
+    {
+      "id": "readme pt br",
+      "title": "formidable [![npm version][npmv-img]][npmv-url] [![MIT license][license-img]][license-url] [![Libera Manifesto][libera-manifesto-img]][libera-manifesto-url] [![Twitter][twitter-img]][twitter-url]",
+      "file": "backend/node_modules/formidable/README_pt_BR.md"
+    },
+    {
+      "id": "changes",
+      "title": "CHANGES",
+      "file": "backend/node_modules/asap/CHANGES.md"
+    },
+    {
+      "id": "troubleshooting",
+      "title": "Troubleshooting",
+      "file": "backend/node_modules/ts-jest/TROUBLESHOOTING.md"
+    },
+    {
+      "id": "node-license",
+      "title": "NODE-LICENSE",
+      "file": "backend/node_modules/ts-node/dist-raw/NODE-LICENSE.md"
+    },
+    {
+      "id": "error-context",
+      "title": "Page snapshot",
+      "file": "test-results/quick-prod-check-overview-page-loads-without-500-chromium/error-context.md"
+    },
+    {
+      "id": "code of conduct",
+      "title": "Contributor Covenant Code of Conduct",
+      "file": "dashboard/node_modules/detect-secrets/CODE_OF_CONDUCT.md"
+    },
+    {
+      "id": "project",
+      "title": "Control Center Project",
+      "file": "code/control-center/PROJECT.md"
+    },
+    {
+      "id": "shared context",
+      "title": "shared_context",
+      "file": "memory/shared_context.md"
+    },
+    {
+      "id": "tokens",
+      "title": "Design Tokens",
+      "file": "docs/tokens.md"
+    },
+    {
+      "id": "structured-tools",
+      "title": "Structured Tools",
+      "file": "docs/structured-tools.md"
+    },
+    {
+      "id": "subagent-monitor-usage",
+      "title": "Subagent Activity Feed \u2014 Usage Guide",
+      "file": "docs/subagent-monitor-usage.md"
+    },
+    {
+      "id": "query-engine",
+      "title": "Query Engine",
+      "file": "docs/query-engine.md"
+    }
+  ],
+  "links": [
+    {
+      "source": "verification report",
+      "target": "learnings"
+    },
+    {
+      "source": "verification report",
+      "target": "trinity"
+    },
+    {
+      "source": "readme",
+      "target": "license"
+    },
+    {
+      "source": "readme",
+      "target": "security"
+    },
+    {
+      "source": "readme",
+      "target": "contributing"
+    },
+    {
+      "source": "readme",
+      "target": "developing"
+    },
+    {
+      "source": "developing",
+      "target": "contributing"
+    },
+    {
+      "source": "meeting hoffmann 02-27-26",
+      "target": "email ask"
+    },
+    {
+      "source": "index",
+      "target": "2026-04-01"
+    },
+    {
+      "source": "readme",
+      "target": "code of conduct"
+    },
+    {
+      "source": "readme",
+      "target": "client"
+    },
+    {
+      "source": "2026-02-25-feat-goat-synthesis-output-comparison-plan",
+      "target": "2026-02-25-analysis-cross-source-comparison-plan"
+    },
+    {
+      "source": "2026-02-25-feat-goat-synthesis-output-comparison-plan",
+      "target": "2026-02-25-feat-15-test-comparison-make-cross-goat-plan"
+    },
+    {
+      "source": "2026-03-02-feat-last30days-v2.6-agent-native-invocation-plan",
+      "target": "2026-02-06-fix-skill-execution-fork-mode-plan"
+    },
+    {
+      "source": "2026-02-25-feat-15-test-comparison-make-cross-goat-plan",
+      "target": "2026-02-25-analysis-cross-source-comparison-plan"
+    },
+    {
+      "source": "2026-02-25-feat-15-test-comparison-make-cross-goat-plan",
+      "target": "2026-02-25-feat-youtube-relevance-and-cross-source-linking-plan"
+    },
+    {
+      "source": "2026-03-03-fix-close-commented-github-issues-plan",
+      "target": "2026-03-03-fix-triage-all-open-github-issues-plan"
+    },
+    {
+      "source": "readme",
+      "target": "dispatcher"
+    },
+    {
+      "source": "proxy",
+      "target": "proxyagent"
+    },
+    {
+      "source": "mocking-request",
+      "target": "mockagent"
+    },
+    {
+      "source": "mocking-request",
+      "target": "mockcallhistory"
+    },
+    {
+      "source": "mocking-request",
+      "target": "mockcallhistorylog"
+    },
+    {
+      "source": "undici-vs-builtin-fetch",
+      "target": "globalinstallation"
+    },
+    {
+      "source": "undici-vs-builtin-fetch",
+      "target": "fetch"
+    },
+    {
+      "source": "undici-vs-builtin-fetch",
+      "target": "client"
+    },
+    {
+      "source": "undici-vs-builtin-fetch",
+      "target": "pool"
+    },
+    {
+      "source": "undici-vs-builtin-fetch",
+      "target": "proxyagent"
+    },
+    {
+      "source": "undici-vs-builtin-fetch",
+      "target": "mockagent"
+    },
+    {
+      "source": "envhttpproxyagent",
+      "target": "agent"
+    },
+    {
+      "source": "envhttpproxyagent",
+      "target": "dispatcher"
+    },
+    {
+      "source": "roundrobinpool",
+      "target": "client"
+    },
+    {
+      "source": "roundrobinpool",
+      "target": "pool"
+    },
+    {
+      "source": "roundrobinpool",
+      "target": "balancedpool"
+    },
+    {
+      "source": "roundrobinpool",
+      "target": "poolstats"
+    },
+    {
+      "source": "roundrobinpool",
+      "target": "dispatcher"
+    },
+    {
+      "source": "retryhandler",
+      "target": "dispatcher"
+    },
+    {
+      "source": "clientstats",
+      "target": "client"
+    },
+    {
+      "source": "poolstats",
+      "target": "pool"
+    },
+    {
+      "source": "poolstats",
+      "target": "balancedpool"
+    },
+    {
+      "source": "api-lifecycle",
+      "target": "client"
+    },
+    {
+      "source": "client",
+      "target": "dispatcher"
+    },
+    {
+      "source": "mockclient",
+      "target": "mockpool"
+    },
+    {
+      "source": "mockclient",
+      "target": "dispatcher"
+    },
+    {
+      "source": "mockagent",
+      "target": "agent"
+    },
+    {
+      "source": "fetch",
+      "target": "globalinstallation"
+    },
+    {
+      "source": "mockcallhistory",
+      "target": "mockcallhistorylog"
+    },
+    {
+      "source": "pool",
+      "target": "client"
+    },
+    {
+      "source": "pool",
+      "target": "dispatcher"
+    },
+    {
+      "source": "mockpool",
+      "target": "dispatcher"
+    },
+    {
+      "source": "h2cclient",
+      "target": "dispatcher"
+    },
+    {
+      "source": "snapshotagent",
+      "target": "mockagent"
+    },
+    {
+      "source": "snapshotagent",
+      "target": "mockcallhistory"
+    },
+    {
+      "source": "snapshotagent",
+      "target": "writing-tests"
+    },
+    {
+      "source": "balancedpool",
+      "target": "pool"
+    },
+    {
+      "source": "balancedpool",
+      "target": "client"
+    },
+    {
+      "source": "balancedpool",
+      "target": "dispatcher"
+    },
+    {
+      "source": "socks5proxyagent",
+      "target": "pool"
+    },
+    {
+      "source": "socks5proxyagent",
+      "target": "dispatcher"
+    },
+    {
+      "source": "websocket",
+      "target": "dispatcher"
+    },
+    {
+      "source": "dispatcher",
+      "target": "redirecthandler"
+    },
+    {
+      "source": "dispatcher",
+      "target": "cachestore"
+    },
+    {
+      "source": "dispatcher",
+      "target": "diagnosticschannel"
+    },
+    {
+      "source": "proxyagent",
+      "target": "agent"
+    },
+    {
+      "source": "proxyagent",
+      "target": "client"
+    },
+    {
+      "source": "agent",
+      "target": "pool"
+    },
+    {
+      "source": "agent",
+      "target": "client"
+    },
+    {
+      "source": "agent",
+      "target": "dispatcher"
+    },
+    {
+      "source": "agent",
+      "target": "poolstats"
+    },
+    {
+      "source": "agent",
+      "target": "clientstats"
+    },
+    {
+      "source": "readme",
+      "target": "changelog"
+    },
+    {
+      "source": "readme",
+      "target": "licence"
+    },
+    {
+      "source": "readme",
+      "target": "api"
+    },
+    {
+      "source": "readme",
+      "target": "tasks"
+    },
+    {
+      "source": "readme",
+      "target": "index"
+    },
+    {
+      "source": "readme",
+      "target": "babel"
+    },
+    {
+      "source": "readme",
+      "target": "scripts"
+    },
+    {
+      "source": "readme-es",
+      "target": "changelog"
+    },
+    {
+      "source": "readme pt br",
+      "target": "changelog"
+    },
+    {
+      "source": "readme",
+      "target": "typescript"
+    },
+    {
+      "source": "readme",
+      "target": "troubleshooting"
+    },
+    {
+      "source": "contributing",
+      "target": "code of conduct"
+    }
+  ]
+}

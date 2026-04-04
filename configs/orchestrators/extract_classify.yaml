@@ -1,0 +1,7 @@
+name: extract_classify
+timeout_seconds: 300
+pipeline_stages:
+- name: step1
+  worker_type: classifier
+  input_mapping:
+    text: goal.context.text

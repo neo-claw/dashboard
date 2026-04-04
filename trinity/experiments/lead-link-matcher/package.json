@@ -1,0 +1,13 @@
+{
+  "name": "lead-link-matcher",
+  "version": "0.1.0",
+  "description": "Salesforce Lead-Appointment matching tool to improve data linkage",
+  "main": "matcher.js",
+  "scripts": {
+    "start": "node matcher.js",
+    "demo": "node matcher.js --demo"
+  },
+  "keywords": ["salesforce", "data-quality", "matching"],
+  "author": "",
+  "license": "ISC"
+}

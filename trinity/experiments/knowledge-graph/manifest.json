@@ -1,0 +1,7 @@
+{
+  "name": "knowledge-graph",
+  "description": "Shared knowledge graph for multi-agent collaboration",
+  "status": "experiment",
+  "tech": ["GrafitoDB", "Python", "OpenClaw plugin"],
+  "utility_score": 9
+}

@@ -1,0 +1,25 @@
+date,tenant_id,tenant_name,business_unit,capacity_pct,shift_hours_booked,shift_hours_available
+2026-04-02,t12,Hoffmann Nashville,Plumbing,92.3,185,200
+2026-04-02,t12,Hoffmann Nashville,Electrical,98.8,198,200
+2026-04-02,t12,Hoffmann Nashville,HVAC,86.1,172,200
+2026-04-03,t12,Hoffmann Nashville,Plumbing,94.7,189,200
+2026-04-03,t12,Hoffmann Nashville,Electrical,100.4,201,200
+2026-04-03,t12,Hoffmann Nashville,HVAC,88.2,176,200
+2026-04-04,t13,Ferguson Roofing,Roofing,112.6,225,200
+2026-04-04,t13,Ferguson Roofing,Siding,104.3,209,200
+2026-04-05,t13,Ferguson Roofing,Roofing,115.9,232,200
+2026-04-05,t13,Ferguson Roofing,Siding,107.8,216,200
+2026-04-06,t14,HB Solutions Group,Marketing,102.1,204,200
+2026-04-06,t14,HB Solutions Group,Sales,116.8,234,200
+2026-04-07,t14,HB Solutions Group,Marketing,105.4,211,200
+2026-04-07,t14,HB Solutions Group,Sales,120.3,241,200
+2026-04-08,t15,Hoffmann Austin,Plumbing,116.9,234,200
+2026-04-08,t15,Hoffmann Austin,Electrical,124.2,248,200
+2026-04-08,t15,Hoffmann Austin,HVAC,106.7,213,200
+2026-04-09,t15,Hoffmann Austin,Plumbing,119.4,239,200
+2026-04-09,t15,Hoffmann Austin,Electrical,127.1,254,200
+2026-04-09,t15,Hoffmann Austin,HVAC,108.9,218,200
+2026-04-10,t16,Blue Sky Plumbing,Plumbing,89.2,178,200
+2026-04-10,t16,Blue Sky Plumbing,Drain Cleaning,82.7,165,200
+2026-04-11,t16,Blue Sky Plumbing,Plumbing,92.5,185,200
+2026-04-11,t16,Blue Sky Plumbing,Drain Cleaning,85.3,171,200

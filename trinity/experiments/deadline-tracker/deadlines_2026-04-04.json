@@ -1,0 +1,42 @@
+[
+  {
+    "date_raw": "today",
+    "context": "Async update due to traffic to airport. Note will be unavailable 5pm PST to \\~10am PST as I will be flying back to NYC then driving to Boston. Here is the update from today:",
+    "source": "/home/ubuntu/.openclaw/workspace/trinity/notes/running_notes.md",
+    "line": 1323,
+    "date_parsed": "2026-04-04",
+    "days_until": 0
+  },
+  {
+    "date_raw": "today",
+    "context": "* **Adjust timelines?** I won\u2019t be super available Thursday, Friday due to a school trip. Frontloaded the week \\+ weekend with experiments to hit my hours and will work today/tonight as I travel.",
+    "source": "/home/ubuntu/.openclaw/workspace/trinity/notes/running_notes.md",
+    "line": 2329,
+    "date_parsed": "2026-04-04",
+    "days_until": 0
+  },
+  {
+    "date_raw": "tomorrow",
+    "context": "* **Timeline:** draft refactor by tomorrow design iterations,",
+    "source": "/home/ubuntu/.openclaw/workspace/trinity/notes/running_notes.md",
+    "line": 979,
+    "date_parsed": "2026-04-05",
+    "days_until": 1
+  },
+  {
+    "date_raw": "tomorrow",
+    "context": "* **Timeline:** draft refactor by tomorrow design iterations,",
+    "source": "/home/ubuntu/.openclaw/workspace/trinity/notes/running_notes.md",
+    "line": 1001,
+    "date_parsed": "2026-04-05",
+    "days_until": 1
+  },
+  {
+    "date_raw": "tomorrow",
+    "context": "* **Timeline:** draft refactor by tomorrow design iterations,",
+    "source": "/home/ubuntu/.openclaw/workspace/trinity/notes/running_notes.md",
+    "line": 1039,
+    "date_parsed": "2026-04-05",
+    "days_until": 1
+  }
+]

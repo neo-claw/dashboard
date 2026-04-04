@@ -1,0 +1,11 @@
+{
+  "name": "team-opportunity-matcher",
+  "version": "0.1.0",
+  "description": "Matches Netic team members to research/business opportunities",
+  "main": "match-opportunities.js",
+  "scripts": {
+    "start": "node match-opportunities.js"
+  },
+  "author": "Trinity",
+  "license": "MIT"
+}

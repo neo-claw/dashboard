@@ -1,0 +1,14 @@
+{
+  "name": "entity-graph",
+  "version": "1.0.0",
+  "description": "Entity Knowledge Graph prototype for Neo",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "query": "node query.js",
+    "test": "npm run build && npm run query -- --list"
+  },
+  "keywords": ["knowledge-graph", "entities"],
+  "author": "",
+  "license": "ISC"
+}

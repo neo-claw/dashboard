@@ -1,0 +1,457 @@
+{
+  "generated": "2026-04-03T00:35:55.970Z",
+  "entityCount": 40,
+  "relationshipCount": 7,
+  "entities": [
+    {
+      "id": "flow",
+      "name": "Flow:",
+      "sourceFile": "dashboards.md",
+      "content": "```\nUser selects 5D + 3 BUs → clicks Export CSV\n  → POST /api/dashboard/capacity/utilization-export\n  → Body: { days: 5, buIds: [123, 456, 789] }\n  → getUtilizationBoardData runs engine per BU in batches of 5\n  → CSV built row-by-row, returned as { csvContent: string }\n  → Browser downloads utilization-2026-02-25.csv\n```\n\n**CSV columns:** Date, Business Unit, % Booked, Jobs Booked, Shift Hours, Job Hours\n\n**% Booked formula:** `jobHours / (shiftHours - nonJobHours)` — job hours as a % of available capacity after stripping non-job time (meetings, training, etc.)\n\n---",
+      "properties": []
+    },
+    {
+      "id": "after-hours-behaviour",
+      "name": "After hours behaviour",
+      "sourceFile": "dashboards.md",
+      "content": "The board currently shows a manual toggle to include/exclude today when after hours. The engineer confirmed this is broken/confusing. v1 makes it fully automatic: after hours = always start from tomorrow, no override. One fewer state variable, simpler mental model.",
+      "properties": []
+    },
+    {
+      "id": "null-booked-no-shifts",
+      "name": "Null % booked (no shifts)",
+      "sourceFile": "dashboards.md",
+      "content": "If a business unit has no shifts on a day, `percentBooked` is null. The CSV renders this as an empty cell — not 0 — so the ad agency doesn't misread \"no data\" as \"completely empty calendar.\"",
+      "properties": []
+    },
+    {
+      "id": "job-type-bu-attribution",
+      "name": "Job type / BU attribution",
+      "sourceFile": "dashboards.md",
+      "content": "The engineer flagged that a job type can technically be mapped to multiple business units. The current engine attributes jobs to BUs via `j.business_unit_id` for unassigned (tray) jobs and via the technician's home BU for assigned jobs. This needs a sanity check before merging — not a design problem but a data accuracy question.",
+      "properties": []
+    },
+    {
+      "id": "10-day-window-on-large-tenants",
+      "name": "10-day window on large tenants",
+      "sourceFile": "dashboards.md",
+      "content": "The engine runs per BU in batches of 5, so a tenant with 50 BUs × 10 days is ~100 DB query rounds. Fine for HB Nashville as the pilot. Worth monitoring before rolling out to tenants with large BU counts.\n\n---",
+      "properties": []
+    },
+    {
+      "id": "on-demand-calculation-vs-snapshot-table",
+      "name": "On-demand calculation vs. snapshot table",
+      "sourceFile": "dashboards.md",
+      "content": "We chose on-demand (no new DB tables) for v1. The alternative — storing daily utilization snapshots via an Inngest job — would be faster for large windows and would enable historical data, but adds significant complexity (migration, daily job, backfill, monitoring). For a pilot with one tenant, on-demand is the right call. Snapshot table is the obvious next step if we need historical exports or performance becomes an issue.",
+      "properties": []
+    },
+    {
+      "id": "post-body-vs-get-query-params-for-export",
+      "name": "POST body vs. GET query params for export",
+      "sourceFile": "dashboards.md",
+      "content": "Passing `buIds` as query params would hit URL length limits with many business units. POST body has no length constraint and matches how the existing export-reports routes work.",
+      "properties": []
+    },
+    {
+      "id": "-csvcontent-string-vs-streaming-response",
+      "name": "`{ csvContent: string }` vs. streaming response",
+      "sourceFile": "dashboards.md",
+      "content": "Returning CSV as a JSON string field is simple and consistent with existing exports. Max ~50KB for 10 days × 50 BUs — no meaningful overhead. Streaming/pre-signed S3 URLs are overkill here; they'd matter for exports with thousands of rows and large text fields.",
+      "properties": []
+    },
+    {
+      "id": "single-tenant-scope",
+      "name": "Single-tenant scope",
+      "sourceFile": "dashboards.md",
+      "content": "v1 exports one tenant at a time (current user's tenant). Hoffmann has multiple tenants (HB Nashville, HB St. Louis, etc.) and will eventually want a cross-tenant view for their agency. Deferred — the auth model and current UI are per-tenant; cross-tenant is a separate feature.\n\n---",
+      "properties": []
+    },
+    {
+      "id": "core-database-schema",
+      "name": "Core Database Schema:",
+      "sourceFile": "data_summary.md",
+      "content": "- `greenhouse.opportunity` - Versioned table tracking opportunities with fields: id, version, account_id, title, end_user_id, estimated_value, pipeline_id, stage_id, owner_id, custom_fields (JSONB), created_at, created_by\n- `greenhouse.opportunity_pipeline` - Versioned pipeline definitions with: id, version, account_id, name, description, is_active, stage_ids (array), settings (JSONB), created_at, created_by\n- `greenhouse.opportunity_stage` - Versioned stage definitions with: id, version, account_id, name, description, is_archived, stage_type (standard/intake), created_at, created_by\n- `greenhouse.gh_owner` - Sales owners/CRM users with: id, account_id, user_id, first_name, last_name, role (sales_rep/sales_manager/admin), is_active, created_at, updated_at\n- `greenhouse.gh_meeting` - Meeting/appointment tracking with: id, version, account_id, end_user_id, owner_id, opportunity_id (business ID), location_id, details (JSONB), created_at, created_by\n- `greenhouse.opportunity_field_definition` - Custom field definitions per pipeline with: id, version, account_id, pipeline_id, field_key, field_label, field_type, validation_rules, options, help_text, is_archived\n- `greenhouse.greenhouse_manual_interaction` - Manual interaction logging with: id, end_user_id, created_by_user_id, interaction_type (phone/email/text/user_note/in_person/other), note, created_at, updated_at",
+      "properties": [
+        "`greenhouse.opportunity` - Versioned table tracking opportunities with fields: id, version, account_id, title, end_user_id, estimated_value, pipeline_id, stage_id, owner_id, custom_fields (JSONB), created_at, created_by",
+        "`greenhouse.opportunity_pipeline` - Versioned pipeline definitions with: id, version, account_id, name, description, is_active, stage_ids (array), settings (JSONB), created_at, created_by",
+        "`greenhouse.opportunity_stage` - Versioned stage definitions with: id, version, account_id, name, description, is_archived, stage_type (standard/intake), created_at, created_by",
+        "`greenhouse.gh_owner` - Sales owners/CRM users with: id, account_id, user_id, first_name, last_name, role (sales_rep/sales_manager/admin), is_active, created_at, updated_at",
+        "`greenhouse.gh_meeting` - Meeting/appointment tracking with: id, version, account_id, end_user_id, owner_id, opportunity_id (business ID), location_id, details (JSONB), created_at, created_by",
+        "`greenhouse.opportunity_field_definition` - Custom field definitions per pipeline with: id, version, account_id, pipeline_id, field_key, field_label, field_type, validation_rules, options, help_text, is_archived",
+        "`greenhouse.greenhouse_manual_interaction` - Manual interaction logging with: id, end_user_id, created_by_user_id, interaction_type (phone/email/text/user_note/in_person/other), note, created_at, updated_at"
+      ]
+    },
+    {
+      "id": "supporting-infrastructure",
+      "name": "Supporting Infrastructure:",
+      "sourceFile": "data_summary.md",
+      "content": "- `service_titan.job` - Job records with: id, tenant_id, service_titan_id, service_titan_tenant_id, data (JSONB), created_at, updated_at\n- `service_titan.appointment` - Appointment records with: id, tenant_id, service_titan_id, service_titan_tenant_id, data (JSONB), created_at, updated_at\n- `customer_interaction` - Customer interaction tracking with: id, session_id, call_id, thread_id, scheduler_session_id, created_at, updated_at, tenant_id\n- `analytics.job_interaction_map` - Links ServiceTitan jobs to customer interactions\n- `session` and `thread` - Both have `marketing_source` column for attribution tracking\n- Latest views for all versioned greenhouse tables (opportunity_latest, opportunity_pipeline_latest, opportunity_stage_latest, gh_meeting_latest)",
+      "properties": [
+        "`service_titan.job` - Job records with: id, tenant_id, service_titan_id, service_titan_tenant_id, data (JSONB), created_at, updated_at",
+        "`service_titan.appointment` - Appointment records with: id, tenant_id, service_titan_id, service_titan_tenant_id, data (JSONB), created_at, updated_at",
+        "`customer_interaction` - Customer interaction tracking with: id, session_id, call_id, thread_id, scheduler_session_id, created_at, updated_at, tenant_id",
+        "`analytics.job_interaction_map` - Links ServiceTitan jobs to customer interactions",
+        "`session` and `thread` - Both have `marketing_source` column for attribution tracking",
+        "Latest views for all versioned greenhouse tables (opportunity_latest, opportunity_pipeline_latest, opportunity_stage_latest, gh_meeting_latest)"
+      ]
+    },
+    {
+      "id": "repository-classes",
+      "name": "Repository Classes:",
+      "sourceFile": "data_summary.md",
+      "content": "- `OpportunityRepository` - CRUD operations, list with filters (pipelineId, stageId, ownerId, endUserId), version history\n- `PipelineRepository` - CRUD operations, list with filters (isActive), find pipelines containing stage\n- `StageRepository` - CRUD operations, list with filters\n- `InteractionRepository` - List interactions by end user (unions call, text, manual interactions), create manual interactions\n- `ContactInfoRepository`, `LocationRepository`, `OpportunityFieldDefinitionRepository`",
+      "properties": [
+        "`OpportunityRepository` - CRUD operations, list with filters (pipelineId, stageId, ownerId, endUserId), version history",
+        "`PipelineRepository` - CRUD operations, list with filters (isActive), find pipelines containing stage",
+        "`StageRepository` - CRUD operations, list with filters",
+        "`InteractionRepository` - List interactions by end user (unions call, text, manual interactions), create manual interactions",
+        "`ContactInfoRepository`, `LocationRepository`, `OpportunityFieldDefinitionRepository`"
+      ]
+    },
+    {
+      "id": "effect-system",
+      "name": "Effect System:",
+      "sourceFile": "data_summary.md",
+      "content": "- Effect handler registry (`getEffectHandlersForAccount`) - Returns handlers for opportunity lifecycle events\n- `LogStageChangeHandler` - Logs stage changes (active for all accounts)\n- `TrackStageTimestampHandler` - Example handler (commented out) for tracking stage entry timestamps\n- `NotifyOwnerHandler` - Example handler (commented out) for owner notifications",
+      "properties": [
+        "Effect handler registry (`getEffectHandlersForAccount`) - Returns handlers for opportunity lifecycle events",
+        "`LogStageChangeHandler` - Logs stage changes (active for all accounts)",
+        "`TrackStageTimestampHandler` - Example handler (commented out) for tracking stage entry timestamps",
+        "`NotifyOwnerHandler` - Example handler (commented out) for owner notifications"
+      ]
+    },
+    {
+      "id": "type-definitions",
+      "name": "Type Definitions:",
+      "sourceFile": "data_summary.md",
+      "content": "- Full TypeScript interfaces for all core entities with Zod schemas\n- Custom fields support via JSONB\n- Pipeline settings support stage-specific configuration (entry_requirements, field_display)\n- Versioning pattern with optimistic locking",
+      "properties": [
+        "Full TypeScript interfaces for all core entities with Zod schemas",
+        "Custom fields support via JSONB",
+        "Pipeline settings support stage-specific configuration (entry_requirements, field_display)",
+        "Versioning pattern with optimistic locking"
+      ]
+    },
+    {
+      "id": "critical-analytics-infrastructure",
+      "name": "Critical Analytics Infrastructure:",
+      "sourceFile": "data_summary.md",
+      "content": "1. No stage change history table - Cannot track when opportunities moved through stages or calculate time in stage\n2. No close date tracking - Opportunity table has `created_at` but no `closed_at`, `won_at`, or `lost_at` fields\n3. No direct opportunity-to-appointment linkage - `gh_meeting.opportunity_id` stores business ID but no foreign key validation or join helpers\n4. No Branch/Region data model - Pipelines, owners, and opportunities have no branch association\n5. No ISP/OSP distinction - Pipeline table has no `pipeline_type` field or convention to distinguish ISP from OSP pipelines\n6. No marketing attribution on opportunities - Opportunities not linked to customer_interaction or session/thread for source tracking\n7. No \"scheduled by\" user tracking on meetings - `gh_meeting` has owner_id and created_by but no explicit \"scheduled_by_payroll_user_id\" for payroll reporting\n8. No aggregation/materialized views - No pre-computed analytics tables for dashboard performance",
+      "properties": []
+    },
+    {
+      "id": "needed-by",
+      "name": "Needed By:",
+      "sourceFile": "data_summary.md",
+      "content": "* Revenue Dashboard (close date)  \n* Opportunity Count Dashboard (stage change date)  \n* Proposal Pipeline Dashboard (time groupings)\n\n**Current State:** OpportunityRepository tracks version history, but not stage-specific transitions. TrackStageTimestampHandler example exists but is commented out and only logs, doesn't persist.",
+      "properties": []
+    },
+    {
+      "id": "what-needs-to-be-built",
+      "name": "What Needs to Be Built:",
+      "sourceFile": "data_summary.md",
+      "content": "- Create `greenhouse.opportunity_stage_transition` table with columns:  \n  - `id` (UUID), `opportunity_id` (business ID), `account_id`  \n  - `from_stage_id` (nullable for first entry, denormalized for query convenience)  \n  - `to_stage_id` (the stage they're IN during this period)  \n  - `entered_at` (timestamp when entered stage)  \n  - `exited_at` (timestamp when left stage, NULL \\= currently in this stage)  \n  - `duration_seconds` (generated column: `exited_at - entered_at`)  \n  - `changed_by` (user\\_id), `created_at`  \n- Add indexes: `(opportunity_id, entered_at DESC)`, `(account_id, to_stage_id, entered_at)`, `(account_id, entered_at)`  \n- Implement effect handler to:  \n  - UPDATE previous record (set `exited_at = NOW()`)  \n  - INSERT new record with `entered_at = NOW()`, `exited_at = NULL`  \n  - Skip intermediate states if multiple rapid changes occur  \n- Backfill from version history using LAG/LEAD window functions to reconstruct stage periods from `opportunity_version_history` table\n\n\\#\\#\\#\\#\\#\\#\\# [Thomaz Bonato](mailto:thomaz@netic.ai)",
+      "properties": [
+        "Create `greenhouse.opportunity_stage_transition` table with columns:",
+        "Add indexes: `(opportunity_id, entered_at DESC)`, `(account_id, to_stage_id, entered_at)`, `(account_id, entered_at)`",
+        "Implement effect handler to:",
+        "Backfill from version history using LAG/LEAD window functions to reconstruct stage periods from `opportunity_version_history` table"
+      ]
+    },
+    {
+      "id": "could-also-have-status-changing-value-sets",
+      "name": "Could also have status changing, value sets",
+      "sourceFile": "data_summary.md",
+      "content": "- **Blob it all together in stage transition**  \n- `GH.opportunity.opportunity_change` metadata blob  \n- There will likely be more events we want to track  \n  - Not one table per event  \n  - Be a little more generic about it  \n- [Thomaz Bonato](mailto:thomaz@netic.ai) think about generalizable vs. this  \n- Stages can be changed however you want, dont necessarily flow linearly  \n  - `Closed` is a stage here\n\n\\#\\#\\#\\#\\#\\#\\#\n\n**Impact:** Enables date-range filtering by close date, stage duration calculations, and time-in-stage analytics\n\n**Complexity:** Medium \\- Requires new table, effect handler implementation, and backfill strategy",
+      "properties": [
+        "**Blob it all together in stage transition**",
+        "`GH.opportunity.opportunity_change` metadata blob",
+        "There will likely be more events we want to track",
+        "[Thomaz Bonato](mailto:thomaz@netic.ai) think about generalizable vs. this",
+        "Stages can be changed however you want, dont necessarily flow linearly"
+      ]
+    },
+    {
+      "id": "current-state",
+      "name": "Current State:",
+      "sourceFile": "data_summary.md",
+      "content": "- `customer_interaction` table exists with links to session/call/thread  \n- `session` and `thread` have `marketing_source` column  \n- Opportunities link to `end_user_id` but not to specific interaction that created them  \n- No tracking of which phone number, UTM parameter, or campaign led to opportunity creation",
+      "properties": [
+        "`customer_interaction` table exists with links to session/call/thread",
+        "`session` and `thread` have `marketing_source` column",
+        "Opportunities link to `end_user_id` but not to specific interaction that created them",
+        "No tracking of which phone number, UTM parameter, or campaign led to opportunity creation"
+      ]
+    },
+    {
+      "id": "critical-path",
+      "name": "Critical Path:",
+      "sourceFile": "data_summary.md",
+      "content": "1. **Branch data model** (Gap \\#3) \\- Foundational for all dashboards, blocks most reporting features  \n2. **ISP/OSP distinction** (Gap \\#4) \\- Required for accurate pipeline segmentation, quick win  \n3. **Stage change history** (Gap \\#1) \\+ **Close date fields** (Gap \\#2) \\- Enables time-based reporting, should be built together  \n4. **Marketing attribution** (Gap \\#6) \\- Independent of other gaps, can be built in parallel  \n5. **Appointment linkage** (Gap \\#5) \\+ **Meeting type fields** (Dashboard \\#3.1) \\- Build together for appointment dashboard  \n6. **Scheduled by tracking** (Gap \\#7) \\- Quick add-on to appointment linkage work  \n7. **Closed won classification** (Dashboard \\#1.1) \\- Depends on stage history for backfill  \n8. **Proposal timestamps** (Dashboard \\#4.1) \\- Depends on stage history for automation  \n9. **Aggregation tables** (Gap \\#8) \\- Build last after all data sources stabilized\n\nTimeline by next week some time:\n\n* Focus on having the infra  \n* Build out hex on top of it for meetings next week  \n* Sync tmr and the next day 15 min quickly\n---",
+      "properties": []
+    },
+    {
+      "id": "gap-1-stage-change-history",
+      "name": "Gap #1 – Stage Change History:",
+      "sourceFile": "data_summary.md",
+      "content": "- Don't build a narrow `stage_transition` table. Instead, use a generic `GH.opportunity.opportunity_change` metadata blob that can capture any kind of change (stage, status, value, etc.)\n- Not one table per event — design should be generalizable\n- Stages don't flow linearly; `Closed` is itself a stage",
+      "properties": [
+        "Don't build a narrow `stage_transition` table. Instead, use a generic `GH.opportunity.opportunity_change` metadata blob that can capture any kind of change (stage, status, value, etc.)",
+        "Not one table per event — design should be generalizable",
+        "Stages don't flow linearly; `Closed` is itself a stage"
+      ]
+    },
+    {
+      "id": "gap-2-close-date-close-status",
+      "name": "Gap #2 – Close Date / Close Status:",
+      "sourceFile": "data_summary.md",
+      "content": "- `Closed` is a stage, not a separate field\n- Status lives on the opportunity `Opportunity.status`: `Pending / Voided / Won / Lost`\n- Voided = created by mistake, should not count in analytics\n- `Closed` stage has a restriction on which statuses are valid",
+      "properties": [
+        "`Closed` is a stage, not a separate field",
+        "Status lives on the opportunity `Opportunity.status`: `Pending / Voided / Won / Lost`",
+        "Voided = created by mistake, should not count in analytics",
+        "`Closed` stage has a restriction on which statuses are valid"
+      ]
+    },
+    {
+      "id": "gap-3-branchregion",
+      "name": "Gap #3 – Branch/Region:",
+      "sourceFile": "data_summary.md",
+      "content": "- No separate `branch` table — branch will live in custom fields on `opportunity_pipeline` (`opportunity.custom_values.branch`)\n- Owners have branch association via zipcode lookup (which can be overridden manually)\n- Not all opportunities will have a branch (hence optional/custom field approach)\n- Every opportunity must have an owner",
+      "properties": [
+        "No separate `branch` table — branch will live in custom fields on `opportunity_pipeline` (`opportunity.custom_values.branch`)",
+        "Owners have branch association via zipcode lookup (which can be overridden manually)",
+        "Not all opportunities will have a branch (hence optional/custom field approach)",
+        "Every opportunity must have an owner"
+      ]
+    },
+    {
+      "id": "gap-4-isposp-distinction",
+      "name": "Gap #4 – ISP/OSP Distinction:",
+      "sourceFile": "data_summary.md",
+      "content": "- Aligned, proceed as originally planned",
+      "properties": [
+        "Aligned, proceed as originally planned"
+      ]
+    },
+    {
+      "id": "gap-5-marketing-attribution",
+      "name": "Gap #5 – Marketing Attribution:",
+      "sourceFile": "data_summary.md",
+      "content": "- Confirmed we have API access to Invoca\n- Flow: Invoca pulls attribution from phone call → attribution lives on the interaction → opportunity inherits it from the interaction\n\t- **Will worry about this later**",
+      "properties": [
+        "Confirmed we have API access to Invoca",
+        "Flow: Invoca pulls attribution from phone call → attribution lives on the interaction → opportunity inherits it from the interaction"
+      ]
+    },
+    {
+      "id": "gap-6-scheduled-by-on-meetings",
+      "name": "Gap #6 – \"Scheduled By\" on Meetings:",
+      "sourceFile": "data_summary.md",
+      "content": "- Aligned, proceed as originally planned",
+      "properties": [
+        "Aligned, proceed as originally planned"
+      ]
+    },
+    {
+      "id": "revenue-dashboard-closed-won-identification",
+      "name": "Revenue Dashboard – Closed Won Identification:",
+      "sourceFile": "data_summary.md",
+      "content": "- Solved by the stage + status approach (stage = Closed, status = Won/Lost) — no separate `is_closed_won` field needed",
+      "properties": [
+        "Solved by the stage + status approach (stage = Closed, status = Won/Lost) — no separate `is_closed_won` field needed"
+      ]
+    },
+    {
+      "id": "opportunity-count-dashboard-has-scheduled-appointment",
+      "name": "Opportunity Count Dashboard – Has Scheduled Appointment:",
+      "sourceFile": "data_summary.md",
+      "content": "- Simplify: just join on the meeting table, no derived boolean column needed\n- Davin to build the meeting table early next week",
+      "properties": [
+        "Simplify: just join on the meeting table, no derived boolean column needed",
+        "Davin to build the meeting table early next week"
+      ]
+    },
+    {
+      "id": "appointmentmeeting-dashboard-meeting-type-fields",
+      "name": "Appointment/Meeting Dashboard – Meeting Type Fields:",
+      "sourceFile": "data_summary.md",
+      "content": "- Meetings are appointments booked through the OSP scheduler\n- One opportunity can have many meetings — that's fine\n- Manual linking of meetings to opportunities is acceptable for now",
+      "properties": [
+        "Meetings are appointments booked through the OSP scheduler",
+        "One opportunity can have many meetings — that's fine",
+        "Manual linking of meetings to opportunities is acceptable for now"
+      ]
+    },
+    {
+      "id": "proposal-pipeline-dashboard-proposal-timestamps",
+      "name": "Proposal Pipeline Dashboard – Proposal Timestamps:",
+      "sourceFile": "data_summary.md",
+      "content": "- Hold off entirely for now, 1:1 with opportunity\n- Not a priority — skip for current build\n\n---",
+      "properties": [
+        "Hold off entirely for now, 1:1 with opportunity",
+        "Not a priority — skip for current build"
+      ]
+    },
+    {
+      "id": "end_user",
+      "name": "End_user",
+      "sourceFile": "entities.md",
+      "content": "- This will be the core identity model that will act as the through line for who a customer is\n- It will be linked to all interactions and locations\n- Independently, it will also have an address that can be primarily used for billing\n\n**customer_interactions** (could be renamed)\n- This represents any interaction the end_user has with Netic\n- This can be phone calls, text messages, scheduler session, etc.",
+      "properties": [
+        "This will be the core identity model that will act as the through line for who a customer is",
+        "It will be linked to all interactions and locations",
+        "Independently, it will also have an address that can be primarily used for billing",
+        "This represents any interaction the end_user has with Netic",
+        "This can be phone calls, text messages, scheduler session, etc."
+      ]
+    },
+    {
+      "id": "end_user_contact_info",
+      "name": "end_user_contact_info",
+      "sourceFile": "entities.md",
+      "content": "- Represents a single contact method for an end user (e.g. email / phone number)\n- This will map to end_user and a single end_user can have many end_user_contact_info",
+      "properties": [
+        "Represents a single contact method for an end user (e.g. email / phone number)",
+        "This will map to end_user and a single end_user can have many end_user_contact_info"
+      ]
+    },
+    {
+      "id": "end_user_location",
+      "name": "end_user_location",
+      "sourceFile": "entities.md",
+      "content": "- This represents an address / service location\n- E.g. it is a home with an address where we send a person for work\n- This will map many to one with end_user",
+      "properties": [
+        "This represents an address / service location",
+        "E.g. it is a home with an address where we send a person for work",
+        "This will map many to one with end_user"
+      ]
+    },
+    {
+      "id": "opportunity",
+      "name": "Opportunity",
+      "sourceFile": "entities.md",
+      "content": "- An opportunity for business / to sell something\n- This will be the primary entity of the lead platform\n- We are purposely not calling this a lead to avoid confusion with \"leads\" in the normal platform\n- A lead is an interaction with an intent to book. It is a label for an interaction\n- This can be related to customer_interactions, end_user, and end_user_locations\n- Opportunities can be categorized with:\n  - Pipeline / Branch (MECES)\n  - Status (set by the customer)\n  - Sales_Owner\n- Notes:\n  - Tags [] for additional categorization\n  - We will have an enriched section for how to finish this",
+      "properties": [
+        "An opportunity for business / to sell something",
+        "This will be the primary entity of the lead platform",
+        "We are purposely not calling this a lead to avoid confusion with \"leads\" in the normal platform",
+        "A lead is an interaction with an intent to book. It is a label for an interaction",
+        "This can be related to customer_interactions, end_user, and end_user_locations",
+        "Opportunities can be categorized with:",
+        "Notes:"
+      ]
+    },
+    {
+      "id": "opportunity_pipeline",
+      "name": "Opportunity_Pipeline",
+      "sourceFile": "entities.md",
+      "content": "- This represents a sales pipeline\n- An opportunity can only be in one sales pipeline at a time\n- Important: this will house any logic related to transitioning between statuses",
+      "properties": [
+        "This represents a sales pipeline",
+        "An opportunity can only be in one sales pipeline at a time",
+        "Important: this will house any logic related to transitioning between statuses"
+      ]
+    },
+    {
+      "id": "opportunity_stage",
+      "name": "Opportunity_Stage",
+      "sourceFile": "entities.md",
+      "content": "- This is the status of an opportunity\n- Opportunities will have status and sales pipelines will manage opportunities with statuses\n- Users should be able to manage status's",
+      "properties": [
+        "This is the status of an opportunity",
+        "Opportunities will have status and sales pipelines will manage opportunities with statuses",
+        "Users should be able to manage status's"
+      ]
+    },
+    {
+      "id": "custom-fields",
+      "name": "Custom Fields",
+      "sourceFile": "entities.md",
+      "content": "- You can add custom fields to a stage / opportunity / pipeline",
+      "properties": [
+        "You can add custom fields to a stage / opportunity / pipeline"
+      ]
+    },
+    {
+      "id": "opportunity_tags",
+      "name": "Opportunity_Tags",
+      "sourceFile": "entities.md",
+      "content": "- A tag for tracking purposes\n- This should also be it's own object with it's own value and id",
+      "properties": [
+        "A tag for tracking purposes",
+        "This should also be it's own object with it's own value and id"
+      ]
+    },
+    {
+      "id": "enrichment_data",
+      "name": "Enrichment_Data",
+      "sourceFile": "entities.md",
+      "content": "- These are additional data fields that can be referenced on a pipeline / lead",
+      "properties": [
+        "These are additional data fields that can be referenced on a pipeline / lead"
+      ]
+    },
+    {
+      "id": "task",
+      "name": "Task",
+      "sourceFile": "entities.md",
+      "content": "- This represents a todo\n- It can be attached to an opportunity to be done",
+      "properties": [
+        "This represents a todo",
+        "It can be attached to an opportunity to be done"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from": "critical-analytics-infrastructure",
+      "to": "customer_interaction-or-sessionthread-for-source-tracking",
+      "type": "assoc",
+      "sourceFile": "data_summary.md",
+      "snippet": "linked to customer_interaction or session/thread for source tracking"
+    },
+    {
+      "from": "what-needs-to-be-built",
+      "to": "an-opportunity",
+      "type": "assoc",
+      "sourceFile": "data_summary.md",
+      "snippet": "linked to an opportunity  "
+    },
+    {
+      "from": "end_user",
+      "to": "all-interactions-and-locations",
+      "type": "assoc",
+      "sourceFile": "entities.md",
+      "snippet": "linked to all interactions and locations"
+    },
+    {
+      "from": "end_user_contact_info",
+      "to": "end_user-and-a-single-end_user-can-have-many-end_user_contact_info",
+      "type": "assoc",
+      "sourceFile": "entities.md",
+      "snippet": "map to end_user and a single end_user can have many end_user_contact_info"
+    },
+    {
+      "from": "opportunity",
+      "to": "customer_interactions-end_user-and-end_user_locations",
+      "type": "assoc",
+      "sourceFile": "entities.md",
+      "snippet": "related to customer_interactions, end_user, and end_user_locations"
+    },
+    {
+      "from": "opportunity_pipeline",
+      "to": "transitioning-between-statuses",
+      "type": "assoc",
+      "sourceFile": "entities.md",
+      "snippet": "related to transitioning between statuses"
+    },
+    {
+      "from": "task",
+      "to": "an-opportunity-to-be-done",
+      "type": "assoc",
+      "sourceFile": "entities.md",
+      "snippet": "attached to an opportunity to be done"
+    }
+  ]
+}

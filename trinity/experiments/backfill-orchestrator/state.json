@@ -1,0 +1,10 @@
+{
+  "jobs": {
+    "salesforce-flatten-account": {
+      "lastRun": 1775257724167,
+      "lastStatus": "success",
+      "lastDuration": 2008,
+      "lastError": null
+    }
+  }
+}

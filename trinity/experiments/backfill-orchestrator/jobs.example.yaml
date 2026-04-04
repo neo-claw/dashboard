@@ -1,0 +1,30 @@
+# Job definitions for backfills and recurring tasks.
+# Each job has:
+#   id: unique identifier (used on command line)
+#   name: human-readable
+#   type: "shell" (execute a shell command)
+#   command: the command to run (can include environment variable references)
+#   schedule: optional cron expression (e.g., "0 2 * * *" for daily at 2am)
+#   timeoutMs: optional, milliseconds before kill (default 1h)
+
+jobs:
+  - id: salesforce-flatten-account
+    name: "Backfill Salesforce account_id fields"
+    type: "shell"
+    command: "echo 'Simulating backfill: psql -c \"UPDATE salesforce.work_order ...\"' && sleep 2"
+    schedule: "0 3 * * *"
+    timeoutMs: 3600000
+
+  - id: transcript-recovery
+    name: "Recover missing call transcripts"
+    type: "shell"
+    command: "echo 'Running transcript recovery script...' && node -e \"console.log('Recovery complete')\""
+    schedule: "0 */6 * * *"
+    timeoutMs: 7200000
+
+  - id: analytics-override-backfill
+    name: "Backfill interactions_reason_override for threads"
+    type: "shell"
+    command: "echo 'Backfilling analytics overrides...' && sleep 1"
+    schedule: ""
+    timeoutMs: 1800000

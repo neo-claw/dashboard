@@ -1,0 +1,15 @@
+{
+  "name": "knowledge-graph",
+  "version": "1.0.0",
+  "description": "**Trinity Overnight Build** — May 1, 2026 (2026-04-02)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sqlite3": "^6.0.1"
+  }
+}

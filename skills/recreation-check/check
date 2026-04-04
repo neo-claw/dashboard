@@ -1,18 +1,29 @@
 #!/usr/bin/env python3
-import sys
+import argparse
 import json
 import os
+import sys
 import time
 import subprocess
 import smtplib
 from email.mime.text import MIMEText
-from datetime import datetime, timedelta
-from urllib.parse import quote
+from datetime import datetime
 
-# Constants
-LOG_FILE = os.path.expanduser("~/.openclaw/workspace/logs/recreation-check-notifications.log")
-HEARTBEAT_FILE = os.path.expanduser("~/.openclaw/workspace/cache/recreation-check-heartbeat.json")
-USER_AGENT = "OpenClaw-Recreation-Checker/1.0"
+# Import core logic
+from recreation_check import check_campground_availability, has_availability_changed
+
+# Constants (default paths)
+DEFAULT_LOG_FILE = os.path.expanduser("~/.openclaw/workspace/logs/recreation-check-notifications.log")
+DEFAULT_CACHE_FILE = os.path.expanduser("~/.openclaw/workspace/cache/recreation-check-last-result.json")
+DEFAULT_HEARTBEAT_FILE = os.path.expanduser("~/.openclaw/workspace/cache/recreation-check-heartbeat.json")
+
+# Global variables for paths (may be overridden in test mode)
+LOG_FILE = DEFAULT_LOG_FILE
+CACHE_FILE = DEFAULT_CACHE_FILE
+HEARTBEAT_FILE = DEFAULT_HEARTBEAT_FILE
+TELEGRAM_MOCK_FILE = None
+TEST_MODE = False
+FORCE_MODE = False
 
 def log(msg):
     print(f"[{datetime.utcnow().isoformat()}Z] {msg}", file=sys.stderr)
@@ -105,112 +116,30 @@ def get_campground_list(params):
         log("Error: Missing required parameter (preset, campgroundIds, or campgroundId)")
         sys.exit(1)
 
-def check_campground_availability(campground_id, start_date, end_date):
-    """Query API for a single campground and return list of available sites."""
-    start_norm = start_date[:10]
-    end_norm = end_date[:10]
-
-    log(f"Checking campground {campground_id} from {start_norm} to {end_norm}")
-
-    start_year = int(start_norm[:4])
-    start_month = int(start_norm[5:7])
-    end_year = int(end_norm[:4])
-    end_month = int(end_norm[5:7])
-
-    months = []
-    if start_year * 100 + start_month <= end_year * 100 + end_month:
-        year, month = start_year, start_month
-        while True:
-            months.append(f"{year}-{month:02d}")
-            if year == end_year and month == end_month:
-                break
-            month += 1
-            if month > 12:
-                month = 1
-                year += 1
-    else:
-        raise ValueError("startDate is after endDate")
-
-    log(f"Querying months: {', '.join(months)}")
-
-    all_campsites = {}
-    for month in months:
-        query_date = f"{month}-01T00:00:00.000Z"
-        encoded = quote(query_date, safe='')
-        url = f"https://www.recreation.gov/api/camps/availability/campground/{campground_id}/month?start_date={encoded}"
-        retries = 3
-        delay = 1
-        for attempt in range(1, retries+1):
-            log(f"Fetching {url} (attempt {attempt})")
-            try:
-                resp = subprocess.run(['curl', '-s', '-A', USER_AGENT, url], capture_output=True, text=True, timeout=30)
-                response = resp.stdout
-                if resp.returncode != 0:
-                    raise Exception(f"curl failed with code {resp.returncode}")
-                data = json.loads(response)
-                if 'error' in data:
-                    err_msg = data.get('error', '')
-                    log(f"API error: {err_msg}")
-                    if attempt < retries:
-                        time.sleep(delay)
-                        delay *= 2
-                        continue
-                    else:
-                        raise Exception(f"API error: {err_msg}")
-                break
-            except Exception as e:
-                log(f"Request failed: {e}")
-                if attempt < retries:
-                    time.sleep(delay)
-                    delay *= 2
-                    continue
-                else:
-                    raise
-
-        campsites = data.get('campsites', {})
-        for site_id, site_data in campsites.items():
-            if site_id not in all_campsites:
-                all_campsites[site_id] = site_data
-            else:
-                existing = all_campsites[site_id]
-                existing_avail = existing.get('availabilities', {})
-                new_avail = site_data.get('availabilities', {})
-                existing_avail.update(new_avail)
-                existing['availabilities'] = existing_avail
-                existing_quant = existing.get('quantities', {})
-                new_quant = site_data.get('quantities', {})
-                existing_quant.update(new_quant)
-                existing['quantities'] = existing_quant
-
-        if len(months) > 1 and month != months[-1]:
-            time.sleep(2)
-
-    available_sites = []
-    start_dt = datetime.strptime(start_norm, "%Y-%m-%d")
-    end_dt = datetime.strptime(end_norm, "%Y-%m-%d")
-    for site_id, site in all_campsites.items():
-        avail_dict = site.get('availabilities', {})
-        site_avail_dates = []
-        for ts, status in avail_dict.items():
-            date_part = ts.split('T')[0]
-            try:
-                dt = datetime.strptime(date_part, "%Y-%m-%d")
-            except ValueError:
-                continue
-            if start_dt <= dt <= end_dt and status == "Available":
-                site_avail_dates.append(date_part)
-        if site_avail_dates:
-            available_sites.append({
-                'campsite_id': int(site.get('campsite_id', site_id)),
-                'site': site.get('site', ''),
-                'loop': site.get('loop', ''),
-                'campsite_type': site.get('campsite_type', ''),
-                'available_dates': sorted(site_avail_dates)
-            })
-
-    return available_sites
-
 def main():
+    global TEST_MODE, FORCE_MODE, LOG_FILE, CACHE_FILE, HEARTBEAT_FILE, TELEGRAM_MOCK_FILE
+
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description='Recreation.gov campsite availability checker')
+    parser.add_argument('--test', '--simulate', action='store_true', help='Run in test mode (skip real API, use fake data)')
+    parser.add_argument('--force', action='store_true', help='Force sending notifications even if no change')
+    args = parser.parse_args()
+
+    TEST_MODE = args.test
+    FORCE_MODE = args.force
+
+    if TEST_MODE:
+        test_dir = os.environ.get('RECREATION_CHECK_TEST_DIR')
+        if not test_dir:
+            test_dir = os.path.join(os.path.dirname(DEFAULT_CACHE_FILE), 'recreation-check-test')
+        os.makedirs(test_dir, exist_ok=True)
+        CACHE_FILE = os.path.join(test_dir, 'recreation-check-last-result.json')
+        LOG_FILE = os.path.join(test_dir, 'notifications.log')
+        TELEGRAM_MOCK_FILE = os.path.join(test_dir, 'telegram-mock.txt')
+        HEARTBEAT_FILE = os.path.join(test_dir, 'heartbeat.json')
+        log(f"Test mode enabled, using test dir: {test_dir}")
+
+    # Read input JSON from stdin
     try:
         params = json.load(sys.stdin)
     except json.JSONDecodeError:
@@ -234,7 +163,7 @@ def main():
         cid = cg['id']
         cname = cg['name']
         try:
-            avail_sites = check_campground_availability(cid, start_date, end_date)
+            avail_sites = check_campground_availability(cid, start_date, end_date, test_mode=TEST_MODE)
             for site in avail_sites:
                 site['campground_id'] = cid
                 site['campground_name'] = cname
@@ -243,8 +172,7 @@ def main():
             err_msg = f"Failed to check campground {cid} ({cname}): {e}"
             log(err_msg)
             errors.append(err_msg)
-        # Politeness delay between campgrounds to manage rate limits
-        if idx < len(campgrounds) - 1:
+        if idx < len(campgrounds) - 1 and not TEST_MODE:
             time.sleep(1)
 
     count = len(all_available)
@@ -263,41 +191,24 @@ def main():
         'hadAvailability': count > 0
     }
 
-    cache_dir = os.path.expanduser("~/.openclaw/workspace/cache")
+    # Ensure cache directory exists
+    cache_dir = os.path.dirname(CACHE_FILE)
     os.makedirs(cache_dir, exist_ok=True)
-    cache_file = os.path.join(cache_dir, "recreation-check-last-result.json")
 
-    has_change = False
-    if os.path.exists(cache_file):
+    prev_cache = None
+    if os.path.exists(CACHE_FILE):
         try:
-            with open(cache_file, 'r') as f:
+            with open(CACHE_FILE, 'r') as f:
                 prev_cache = json.load(f)
-            prev_ids = set(prev_cache.get('campgroundIds', []))
-            curr_ids = set(checked_ids)
-            if prev_ids != curr_ids:
-                if count > 0:
-                    has_change = True
-            else:
-                prev_sites = prev_cache.get('availableSites', [])
-                prev_set = set()
-                for s in prev_sites:
-                    key = (s['campsite_id'], s['campground_id'], tuple(sorted(s['available_dates'])))
-                    prev_set.add(key)
-                curr_set = set()
-                for s in all_available:
-                    key = (s['campsite_id'], s['campground_id'], tuple(sorted(s['available_dates'])))
-                    curr_set.add(key)
-                if prev_set != curr_set:
-                    has_change = True
         except Exception as e:
-            log(f"Failed to read cache: {e}, will treat as change if availability")
-            if count > 0:
-                has_change = True
-    else:
-        if count > 0:
-            has_change = True
+            log(f"Failed to read cache: {e}")
 
-    with open(cache_file, 'w') as f:
+    has_change = has_availability_changed(prev_cache, current_result)
+    if FORCE_MODE and count > 0:
+        has_change = True
+
+    # Write current result to cache
+    with open(CACHE_FILE, 'w') as f:
         json.dump(current_result, f)
 
     if count > 0:
@@ -347,18 +258,22 @@ def main():
         telegram_chat_id = os.environ.get('OPENCLAW_TELEGRAM_CHAT_ID') or '8755267864'
         telegram_bot_token = os.environ.get('OPENCLAW_TELEGRAM_BOT_TOKEN')
         if telegram_bot_token:
-            try:
-                # Direct Telegram API call as fallback (no python libs needed)
-                subprocess.run([
-                    'curl', '-s', '-X', 'POST',
-                    f'https://api.telegram.org/bot{telegram_bot_token}/sendMessage',
-                    '-d', f'chat_id={telegram_chat_id}',
-                    '-d', f'text={msg}',
-                    '-d', 'parse_mode=plain'
-                ], check=False)
-                log("Telegram notification sent")
-            except Exception as e:
-                log(f"Telegram send failed: {e}")
+            if TEST_MODE:
+                with open(TELEGRAM_MOCK_FILE, 'w') as f:
+                    f.write(msg)
+                log(f"[TEST MODE] Telegram mock message written to {TELEGRAM_MOCK_FILE}")
+            else:
+                try:
+                    subprocess.run([
+                        'curl', '-s', '-X', 'POST',
+                        f'https://api.telegram.org/bot{telegram_bot_token}/sendMessage',
+                        '-d', f'chat_id={telegram_chat_id}',
+                        '-d', f'text={msg}',
+                        '-d', 'parse_mode=plain'
+                    ], check=False)
+                    log("Telegram notification sent")
+                except Exception as e:
+                    log(f"Telegram send failed: {e}")
         else:
             log("Telegram bot token not configured, skipping Telegram notification")
 
@@ -368,7 +283,6 @@ def main():
 
         update_heartbeat(success=True)
     else:
-        # Even if no availability or no change, we still update heartbeat to indicate the check ran
         update_heartbeat(success=not bool(errors))
 
     if errors:

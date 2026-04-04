@@ -1,0 +1,13 @@
+{
+  "lastChecks": {
+    "recreation_gov": 1743715230,
+    "yosemite_campgrounds": 1743715230
+  },
+  "lastResult": {
+    "total_available": 0,
+    "date_checked": "2026-04-03",
+    "check_time_utc": "21:30 UTC",
+    "campgrounds_checked": [232447, 232450, 232448],
+    "cron_job_id": "4315496e-bf9a-4716-85a2-d09cc09351c0"
+  }
+}

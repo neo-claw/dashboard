@@ -1,0 +1,95 @@
+date,tenant_id,tenant_name,business_unit,capacity_pct,shift_hours_booked,shift_hours_available
+2026-03-03,t1,Hoffmann Nashville,Plumbing,85.2,170,200
+2026-03-03,t1,Hoffmann Nashville,Electrical,92.5,185,200
+2026-03-03,t1,Hoffmann Nashville,HVAC,78.0,156,200
+2026-03-04,t1,Hoffmann Nashville,Plumbing,88.1,176,200
+2026-03-04,t1,Hoffmann Nashville,Electrical,95.0,190,200
+2026-03-04,t1,Hoffmann Nashville,HVAC,81.2,162,200
+2026-03-05,t1,Hoffmann Nashville,Plumbing,91.4,182,200
+2026-03-05,t1,Hoffmann Nashville,Electrical,98.2,196,200
+2026-03-05,t1,Hoffmann Nashville,HVAC,84.6,169,200
+2026-03-06,t1,Hoffmann Nashville,Plumbing,86.7,173,200
+2026-03-06,t1,Hoffmann Nashville,Electrical,94.8,190,200
+2026-03-06,t1,Hoffmann Nashville,HVAC,80.3,161,200
+2026-03-07,t1,Hoffmann Nashville,Plumbing,89.9,180,200
+2026-03-07,t1,Hoffmann Nashville,Electrical,96.1,192,200
+2026-03-07,t1,Hoffmann Nashville,HVAC,83.4,167,200
+2026-03-08,t2,Ferguson Roofing,Roofing,105.2,210,200
+2026-03-08,t2,Ferguson Roofing,Siding,97.5,195,200
+2026-03-09,t2,Ferguson Roofing,Roofing,108.7,217,200
+2026-03-09,t2,Ferguson Roofing,Siding,100.1,200,200
+2026-03-10,t2,Ferguson Roofing,Roofing,112.4,225,200
+2026-03-10,t2,Ferguson Roofing,Siding,103.8,208,200
+2026-03-11,t2,Ferguson Roofing,Roofing,115.9,232,200
+2026-03-11,t2,Ferguson Roofing,Siding,107.2,214,200
+2026-03-12,t3,Blue Sky Plumbing,Plumbing,72.3,145,200
+2026-03-12,t3,Blue Sky Plumbing,Drain Cleaning,65.8,132,200
+2026-03-13,t3,Blue Sky Plumbing,Plumbing,69.7,139,200
+2026-03-13,t3,Blue Sky Plumbing,Drain Cleaning,63.4,127,200
+2026-03-14,t3,Blue Sky Plumbing,Plumbing,75.1,150,200
+2026-03-14,t3,Blue Sky Plumbing,Drain Cleaning,68.9,138,200
+2026-03-15,t4,HB Solutions Group,Marketing,88.9,177,200
+2026-03-15,t4,HB Solutions Group,Sales,102.5,205,200
+2026-03-16,t4,HB Solutions Group,Marketing,91.2,182,200
+2026-03-16,t4,HB Solutions Group,Sales,105.8,212,200
+2026-03-17,t4,HB Solutions Group,Marketing,93.5,187,200
+2026-03-17,t4,HB Solutions Group,Sales,108.3,217,200
+2026-03-18,t5,Ferguson Roofing,Roofing,119.4,239,200
+2026-03-18,t5,Ferguson Roofing,Siding,110.2,220,200
+2026-03-19,t5,Ferguson Roofing,Roofing,122.1,244,200
+2026-03-19,t5,Ferguson Roofing,Siding,113.6,227,200
+2026-03-20,t5,Ferguson Roofing,Roofing,116.8,234,200
+2026-03-20,t5,Ferguson Roofing,Siding,108.9,218,200
+2026-03-21,t6,Hoffmann St. Louis,Plumbing,94.6,189,200
+2026-03-21,t6,Hoffmann St. Louis,Electrical,101.3,203,200
+2026-03-21,t6,Hoffmann St. Louis,HVAC,87.8,176,200
+2026-03-22,t6,Hoffmann St. Louis,Plumbing,97.2,194,200
+2026-03-22,t6,Hoffmann St. Louis,Electrical,104.9,210,200
+2026-03-22,t6,Hoffmann St. Louis,HVAC,90.5,181,200
+2026-03-23,t7,Blue Sky Plumbing,Plumbing,78.4,157,200
+2026-03-23,t7,Blue Sky Plumbing,Drain Cleaning,71.9,144,200
+2026-03-24,t7,Blue Sky Plumbing,Plumbing,81.6,163,200
+2026-03-24,t7,Blue Sky Plumbing,Drain Cleaning,74.2,148,200
+2026-03-25,t8,HB Solutions Group,Marketing,95.7,191,200
+2026-03-25,t8,HB Solutions Group,Sales,109.4,219,200
+2026-03-26,t8,HB Solutions Group,Marketing,98.0,196,200
+2026-03-26,t8,HB Solutions Group,Sales,112.1,224,200
+2026-03-27,t9,Ferguson Roofing,Roofing,125.3,251,200
+2026-03-27,t9,Ferguson Roofing,Siding,115.7,231,200
+2026-03-28,t9,Ferguson Roofing,Roofing,128.9,258,200
+2026-03-28,t9,Ferguson Roofing,Siding,118.4,237,200
+2026-03-29,t10,Hoffmann Austin,Plumbing,102.8,206,200
+2026-03-29,t10,Hoffmann Austin,Electrical,115.5,231,200
+2026-03-29,t10,Hoffmann Austin,HVAC,96.3,193,200
+2026-03-30,t10,Hoffmann Austin,Plumbing,108.4,217,200
+2026-03-30,t10,Hoffmann Austin,Electrical,118.7,237,200
+2026-03-30,t10,Hoffmann Austin,HVAC,99.1,198,200
+2026-03-31,t10,Hoffmann Austin,Plumbing,111.6,223,200
+2026-03-31,t10,Hoffmann Austin,Electrical,120.2,240,200
+2026-03-31,t10,Hoffmann Austin,HVAC,101.8,204,200
+2026-04-01,t11,Blue Sky Plumbing,Plumbing,83.9,168,200
+2026-04-01,t11,Blue Sky Plumbing,Drain Cleaning,77.5,155,200
+2026-04-02,t12,Hoffmann Nashville,Plumbing,92.3,185,200
+2026-04-02,t12,Hoffmann Nashville,Electrical,98.8,198,200
+2026-04-02,t12,Hoffmann Nashville,HVAC,86.1,172,200
+2026-04-03,t12,Hoffmann Nashville,Plumbing,94.7,189,200
+2026-04-03,t12,Hoffmann Nashville,Electrical,100.4,201,200
+2026-04-03,t12,Hoffmann Nashville,HVAC,88.2,176,200
+2026-04-04,t13,Ferguson Roofing,Roofing,112.6,225,200
+2026-04-04,t13,Ferguson Roofing,Siding,104.3,209,200
+2026-04-05,t13,Ferguson Roofing,Roofing,115.9,232,200
+2026-04-05,t13,Ferguson Roofing,Siding,107.8,216,200
+2026-04-06,t14,HB Solutions Group,Marketing,102.1,204,200
+2026-04-06,t14,HB Solutions Group,Sales,116.8,234,200
+2026-04-07,t14,HB Solutions Group,Marketing,105.4,211,200
+2026-04-07,t14,HB Solutions Group,Sales,120.3,241,200
+2026-04-08,t15,Hoffmann Austin,Plumbing,116.9,234,200
+2026-04-08,t15,Hoffmann Austin,Electrical,124.2,248,200
+2026-04-08,t15,Hoffmann Austin,HVAC,106.7,213,200
+2026-04-09,t15,Hoffmann Austin,Plumbing,119.4,239,200
+2026-04-09,t15,Hoffmann Austin,Electrical,127.1,254,200
+2026-04-09,t15,Hoffmann Austin,HVAC,108.9,218,200
+2026-04-10,t16,Blue Sky Plumbing,Plumbing,89.2,178,200
+2026-04-10,t16,Blue Sky Plumbing,Drain Cleaning,82.7,165,200
+2026-04-11,t16,Blue Sky Plumbing,Plumbing,92.5,185,200
+2026-04-11,t16,Blue Sky Plumbing,Drain Cleaning,85.3,171,200

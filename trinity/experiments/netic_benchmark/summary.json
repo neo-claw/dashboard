@@ -1,0 +1,26 @@
+{
+  "aco": {
+    "mean_fitness": 5.343999999999999,
+    "max_fitness": 6.96,
+    "min_fitness": 3.96,
+    "trials": 5
+  },
+  "random": {
+    "mean_fitness": 2.504,
+    "max_fitness": 3.84,
+    "min_fitness": 0.96,
+    "trials": 5
+  },
+  "pso": {
+    "mean_fitness": 9.96,
+    "max_fitness": 12.96,
+    "min_fitness": 7.96,
+    "trials": 5
+  },
+  "greedy": {
+    "mean_fitness": 10.328,
+    "max_fitness": 13.92,
+    "min_fitness": 7.92,
+    "trials": 5
+  }
+}

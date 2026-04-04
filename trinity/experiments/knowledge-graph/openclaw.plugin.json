@@ -1,0 +1,10 @@
+{
+  "manifestVersion": "1.0",
+  "name": "knowledge-graph-tools",
+  "description": "Adds knowledge graph capabilities to OpenClaw agents",
+  "version": "0.1.0",
+  "entry": "index.js",
+  "type": "tool",
+  "enabled": true,
+  "dependencies": []
+}

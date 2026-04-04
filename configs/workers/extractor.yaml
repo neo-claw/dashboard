@@ -1,0 +1,22 @@
+name: extractor
+reset_after_task: true
+default_model_tier: local
+system_prompt: You are a extractor worker. Process the input and return structured
+  JSON output.
+max_input_tokens: 8000
+max_output_tokens: 1000
+input_schema:
+  type: object
+  required:
+  - text
+  properties:
+    text:
+      type: string
+output_schema:
+  type: object
+  required:
+  - result
+  properties:
+    result:
+      type: string
+timeout_seconds: 30

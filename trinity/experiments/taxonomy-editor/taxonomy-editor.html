@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Netic Taxonomy Editor</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; overflow: auto; }
+    th, td { border: 1px solid #ccc; padding: 8px; min-width: 100px; }
+    th { background: #f0f0f0; text-align: left; }
+    td[contenteditable="true"]:focus { background: #ffffe0; outline: none; }
+    #toolbar { margin-bottom: 10px; }
+    button { padding: 8px 12px; margin-right: 5px; }
+    #status { margin-left: 10px; color: green; }
+  </style>
+</head>
+<body>
+  <h1>Netic Call Classification Taxonomy Editor</h1>
+  <div id="toolbar">
+    <button id="saveBtn">Save as Markdown</button>
+    <span id="status"></span>
+  </div>
+  <div id="tableContainer"></div>
+
+  <script src="taxonomy-parser.js"></script>
+  <script>
+    const TABLE_FILE = 'netic_inbound_drilldown.md';
+    let originalHeaders = [];
+    let originalRows = [];
+
+    async function loadTable() {
+      const resp = await fetch(TABLE_FILE);
+      if (!resp.ok) throw new Error(`Failed to load ${TABLE_FILE}: ${resp.status}`);
+      const md = await resp.text();
+      const { headers, rows } = parseMarkdownTable(md);
+      originalHeaders = headers;
+      originalRows = rows;
+      renderTable(headers, rows);
+    }
+
+    function renderTable(headers, rows) {
+      const container = document.getElementById('tableContainer');
+      const table = document.createElement('table');
+      const thead = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+      headers.forEach(h => {
+        const th = document.createElement('th');
+        th.textContent = h;
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+      rows.forEach((row, rowIndex) => {
+        const tr = document.createElement('tr');
+        row.forEach((cell, colIndex) => {
+          const td = document.createElement('td');
+          td.contentEditable = true;
+          td.textContent = cell;
+          // Preserve data attributes to track changes
+          td.dataset.row = rowIndex;
+          td.dataset.col = colIndex;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      container.innerHTML = '';
+      container.appendChild(table);
+    }
+
+    function collectTableData() {
+      const table = document.querySelector('table tbody');
+      const rows = [];
+      const rowNodes = table.querySelectorAll('tr');
+      rowNodes.forEach(tr => {
+        const cells = tr.querySelectorAll('td');
+        const rowData = Array.from(cells).map(td => td.textContent.trim());
+        rows.push(rowData);
+      });
+      return {
+        headers: originalHeaders,
+        rows: rows
+      };
+    }
+
+    document.getElementById('saveBtn').addEventListener('click', () => {
+      const { headers, rows } = collectTableData();
+      const md = generateMarkdownTable(headers, rows);
+      const blob = new Blob([md], { type: 'text/markdown' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'netic_inbound_drilldown_edited.md';
+      a.click();
+      URL.revokeObjectURL(url);
+      document.getElementById('status').textContent = 'Download started!';
+    });
+
+    // Initialize
+    loadTable().catch(err => {
+      document.getElementById('tableContainer').innerHTML = `<p style="color:red">Error: ${err.message}</p>`;
+    });
+  </script>
+</body>
+</html>

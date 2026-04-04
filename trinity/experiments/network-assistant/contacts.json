@@ -1,0 +1,118 @@
+{
+  "cofounders": [
+    {
+      "name": "ashwin"
+    }
+  ],
+  "vcs": [
+    {
+      "name": "austin",
+      "company": "sequoia"
+    },
+    {
+      "name": "mia",
+      "company": "crv"
+    },
+    {
+      "name": "benedict",
+      "company": "nova"
+    },
+    {
+      "name": "zodi",
+      "company": "root vc"
+    },
+    {
+      "name": "connor",
+      "company": "neo"
+    },
+    {
+      "name": "bella",
+      "company": "a16z"
+    },
+    {
+      "name": "someone",
+      "company": "8vc (thru fellowship)"
+    }
+  ],
+  "engineers": [
+    {
+      "name": "nikita mounier"
+    },
+    {
+      "name": "parsa idephour"
+    },
+    {
+      "name": "david bai"
+    },
+    {
+      "name": "sarah fan"
+    },
+    {
+      "name": "lee stilwell"
+    },
+    {
+      "name": "daniel yang"
+    },
+    {
+      "name": "joshua vallabhaneni"
+    },
+    {
+      "name": "netic peeps"
+    },
+    {
+      "name": "davin"
+    },
+    {
+      "name": "zi gao"
+    },
+    {
+      "name": "yue chen li"
+    },
+    {
+      "name": "ajay"
+    },
+    {
+      "name": "sameer"
+    },
+    {
+      "name": "soham gupta"
+    },
+    {
+      "name": "andrew liu"
+    },
+    {
+      "name": "xinyi"
+    },
+    {
+      "name": "ryan chang"
+    }
+  ],
+  "designers": [
+    {
+      "name": "osmond"
+    },
+    {
+      "name": "sasha birukoff"
+    }
+  ],
+  "generalists": [
+    {
+      "name": "samuel wang"
+    }
+  ],
+  "recruiting & people": [
+    {
+      "name": "david anyaeche"
+    },
+    {
+      "name": "bella",
+      "company": "a16z"
+    },
+    {
+      "name": "mike roney"
+    },
+    {
+      "name": "kam @ amya"
+    }
+  ]
+}

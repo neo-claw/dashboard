@@ -1,0 +1,40 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Trinity//Deadline Exporter//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:trinity-deadline-2026-04-04-0@openclaw
+DTSTART;VALUE=DATE:20260404
+DTEND;VALUE=DATE:20260404
+SUMMARY:Deadline: Async update due to traffic to airport. Note will be unavailable 5pm PST to \\~10
+DESCRIPTION:Source: /home/ubuntu/.openclaw/workspace/trinity/notes/running_notes.md (line 1323)\n\nAsync update due to traffic to airport. Note will be unavailable 5pm PST to \\~10am PST as I will be flying back to NYC then driving to Boston. Here is the update from today:
+END:VEVENT
+BEGIN:VEVENT
+UID:trinity-deadline-2026-04-04-1@openclaw
+DTSTART;VALUE=DATE:20260404
+DTEND;VALUE=DATE:20260404
+SUMMARY:Deadline: * **Adjust timelines?** I won’t be super available Thursday\, Friday due to a sch
+DESCRIPTION:Source: /home/ubuntu/.openclaw/workspace/trinity/notes/running_notes.md (line 2329)\n\n* **Adjust timelines?** I won’t be super available Thursday\, Friday due to a school trip. Frontloaded the week \\+ weekend with experiments to hit my hours and will work today/tonight as I travel.
+END:VEVENT
+BEGIN:VEVENT
+UID:trinity-deadline-2026-04-05-2@openclaw
+DTSTART;VALUE=DATE:20260405
+DTEND;VALUE=DATE:20260405
+SUMMARY:Deadline: * **Timeline:** draft refactor by tomorrow design iterations\,
+DESCRIPTION:Source: /home/ubuntu/.openclaw/workspace/trinity/notes/running_notes.md (line 979)\n\n* **Timeline:** draft refactor by tomorrow design iterations\,
+END:VEVENT
+BEGIN:VEVENT
+UID:trinity-deadline-2026-04-05-3@openclaw
+DTSTART;VALUE=DATE:20260405
+DTEND;VALUE=DATE:20260405
+SUMMARY:Deadline: * **Timeline:** draft refactor by tomorrow design iterations\,
+DESCRIPTION:Source: /home/ubuntu/.openclaw/workspace/trinity/notes/running_notes.md (line 1001)\n\n* **Timeline:** draft refactor by tomorrow design iterations\,
+END:VEVENT
+BEGIN:VEVENT
+UID:trinity-deadline-2026-04-05-4@openclaw
+DTSTART;VALUE=DATE:20260405
+DTEND;VALUE=DATE:20260405
+SUMMARY:Deadline: * **Timeline:** draft refactor by tomorrow design iterations\,
+DESCRIPTION:Source: /home/ubuntu/.openclaw/workspace/trinity/notes/running_notes.md (line 1039)\n\n* **Timeline:** draft refactor by tomorrow design iterations\,
+END:VEVENT
+END:VCALENDAR

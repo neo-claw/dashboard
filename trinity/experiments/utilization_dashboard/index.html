@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netic Utilization Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .filters { margin-bottom: 15px; display: flex; gap: 10px; align-items: center; }
+    label { font-weight: bold; }
+    select, input { padding: 5px; border: 1px solid #ccc; border-radius: 4px; }
+    button { padding: 6px 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background: #f2f2f2; position: sticky; top: 0; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    .summary { margin: 10px 0; font-style: italic; color: #555; }
+    .tab { margin-bottom: 10px; }
+    .tab button { background: #6c757d; margin-right: 5px; }
+    .tab button.active { background: #007bff; }
+  </style>
+</head>
+<body>
+  <h1>Netic Utilization Dashboard</h1>
+
+  <div class="tab">
+    <button id="tabHistorical" class="active" onclick="switchTab('historical')">Historical</button>
+    <button id="tabForecast" onclick="switchTab('forecast')">Forecast (Next Days)</button>
+  </div>
+
+  <div class="filters">
+    <label>Tenant:</label>
+    <select id="tenantFilter">
+      <option value="">All</option>
+    </select>
+    <label>Business Unit:</label>
+    <select id="buFilter">
+      <option value="">All</option>
+    </select>
+    <label>Date range:</label>
+    <input type="date" id="dateFrom">
+    <span>to</span>
+    <input type="date" id="dateTo">
+    <button onclick="applyFilters()">Apply</button>
+    <button onclick="resetFilters()">Reset</button>
+    <button onclick="exportCSV()">Export CSV</button>
+  </div>
+
+  <div class="summary" id="summary"></div>
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Tenant</th>
+        <th>Business Unit</th>
+        <th>Utilization %</th>
+        <th>Booked Hours</th>
+        <th>Available Hours</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    let rawData = [];
+    let filteredData = [];
+    let currentTab = 'historical'; // 'historical' or 'forecast'
+    const today = new Date().toISOString().split('T')[0];
+
+    // Populate tenant and business unit filters on load
+    function initFilters() {
+      const tenants = [...new Set(rawData.map(r => r.tenant_name))].sort();
+      const bus = [...new Set(rawData.map(r => r.business_unit))].sort();
+      const tenantSel = document.getElementById('tenantFilter');
+      const buSel = document.getElementById('buFilter');
+      tenants.forEach(t => { const opt = document.createElement('option'); opt.value = t; opt.textContent = t; tenantSel.appendChild(opt); });
+      bus.forEach(b => { const opt = document.createElement('option'); opt.value = b; opt.textContent = b; buSel.appendChild(opt); });
+    }
+
+    function switchTab(tab) {
+      currentTab = tab;
+      document.getElementById('tabHistorical').className = tab === 'historical' ? 'active' : '';
+      document.getElementById('tabForecast').className = tab === 'forecast' ? 'active' : '';
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const tenant = document.getElementById('tenantFilter').value;
+      const bu = document.getElementById('buFilter').value;
+      const dateFrom = document.getElementById('dateFrom').value;
+      const dateTo = document.getElementById('dateTo').value;
+
+      filteredData = rawData.filter(r => {
+        if (tenant && r.tenant_name !== tenant) return false;
+        if (bu && r.business_unit !== bu) return false;
+        if (dateFrom && r.date < dateFrom) return false;
+        if (dateTo && r.date > dateTo) return false;
+        // For forecast tab, only show future dates (>= today)
+        if (currentTab === 'forecast' && r.date < today) return false;
+        // For historical tab, only show past dates (< today)
+        if (currentTab === 'historical' && r.date >= today) return false;
+        return true;
+      });
+
+      // Sort by date descending
+      filteredData.sort((a, b) => b.date.localeCompare(a.date));
+
+      renderTable();
+      updateSummary();
+    }
+
+    function resetFilters() {
+      document.getElementById('tenantFilter').value = '';
+      document.getElementById('buFilter').value = '';
+      document.getElementById('dateFrom').value = '';
+      document.getElementById('dateTo').value = '';
+      applyFilters();
+    }
+
+    function renderTable() {
+      const tbody = document.querySelector('#dataTable tbody');
+      tbody.innerHTML = '';
+      filteredData.forEach(r => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${r.date}</td>
+          <td>${r.tenant_name}</td>
+          <td>${r.business_unit}</td>
+          <td>${r.capacity_pct.toFixed(1)}%</td>
+          <td>${r.shift_hours_booked}</td>
+          <td>${r.shift_hours_available}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function updateSummary() {
+      const totalRec = filteredData.length;
+      const avgUtil = filteredData.length ? (filteredData.reduce((sum, r) => sum + r.capacity_pct, 0) / filteredData.length).toFixed(1) : 0;
+      const over = filteredData.filter(r => r.capacity_pct > 100).length;
+      document.getElementById('summary').textContent = `Showing ${totalRec} records. Average Utilization: ${avgUtil}%. Over capacity: ${over}.`;
+    }
+
+    function exportCSV() {
+      if (filteredData.length === 0) {
+        alert('No data to export.');
+        return;
+      }
+      const headers = ['Date', 'Tenant', 'Business Unit', 'Utilization %', 'Booked Hours', 'Available Hours'];
+      const rows = filteredData.map(r => [r.date, r.tenant_name, r.business_unit, r.capacity_pct.toFixed(1), r.shift_hours_booked, r.shift_hours_available]);
+      const csvContent = [headers, ...rows].map(e => e.join(',')).join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `utilization_${currentTab}_${today}.csv`;
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // Load data
+    fetch('data.json')
+      .then(r => r.json())
+      .then(d => {
+        rawData = d.records;
+        initFilters();
+        applyFilters();
+      })
+      .catch(err => {
+        console.error('Failed to load data.json', err);
+        document.body.innerHTML += '<p style="color:red;">Error loading data. Ensure data.json is present.</p>';
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "loom-poc",
+  "version": "0.1.0",
+  "description": "Loom - Multi-Agent Context Management Framework (Proof of Concept)",
+  "main": "loom.js",
+  "scripts": {
+    "start": "node loom.js",
+    "test": "node loom.js"
+  },
+  "dependencies": {
+    "yaml": "^2.3.4"
+  },
+  "keywords": ["multi-agent", "context-management", "workflow", "orchestration"],
+  "author": "Trinity",
+  "license": "MIT"
+}

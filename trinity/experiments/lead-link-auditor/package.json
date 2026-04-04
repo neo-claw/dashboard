@@ -1,0 +1,16 @@
+{
+  "name": "lead-link-auditor",
+  "version": "0.1.0",
+  "description": "Audits Salesforce lead-to-account linkage completeness and produces a report.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "pg": "^8.20.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

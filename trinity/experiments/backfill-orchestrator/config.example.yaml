@@ -1,0 +1,15 @@
+# Example backfill configuration for Salesforce lead flattening
+table: salesforce.lead
+idColumn: id
+batchSize: 1000
+# Map target column names to SQL expressions that compute the new value.
+# The expressions can reference columns of the table (including JSONB fields).
+columns:
+  account_c: "data->>'Account__c'"
+  converted_account_id: "data->>'ConvertedAccountId'"
+# Optional additional WHERE clause to limit rows (beyond target columns being NULL)
+where: "account_c IS NULL OR converted_account_id IS NULL"
+# Path to state file (persists progress across runs)
+stateFile: .backfill-state.json
+# Set dryRun to true to print SQL without executing
+dryRun: false

@@ -1,0 +1,854 @@
+{
+  "meta": {
+    "generated": "2026-04-02T01:34:13Z",
+    "description": "Utilization data for Netic dashboard"
+  },
+  "records": [
+    {
+      "date": "2026-03-03",
+      "tenant_id": "t1",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "Plumbing",
+      "capacity_pct": 85.2,
+      "shift_hours_booked": 170,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-03",
+      "tenant_id": "t1",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "Electrical",
+      "capacity_pct": 92.5,
+      "shift_hours_booked": 185,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-03",
+      "tenant_id": "t1",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "HVAC",
+      "capacity_pct": 78.0,
+      "shift_hours_booked": 156,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-04",
+      "tenant_id": "t1",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "Plumbing",
+      "capacity_pct": 88.1,
+      "shift_hours_booked": 176,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-04",
+      "tenant_id": "t1",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "Electrical",
+      "capacity_pct": 95.0,
+      "shift_hours_booked": 190,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-04",
+      "tenant_id": "t1",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "HVAC",
+      "capacity_pct": 81.2,
+      "shift_hours_booked": 162,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-05",
+      "tenant_id": "t1",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "Plumbing",
+      "capacity_pct": 91.4,
+      "shift_hours_booked": 182,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-05",
+      "tenant_id": "t1",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "Electrical",
+      "capacity_pct": 98.2,
+      "shift_hours_booked": 196,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-05",
+      "tenant_id": "t1",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "HVAC",
+      "capacity_pct": 84.6,
+      "shift_hours_booked": 169,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-06",
+      "tenant_id": "t1",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "Plumbing",
+      "capacity_pct": 86.7,
+      "shift_hours_booked": 173,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-06",
+      "tenant_id": "t1",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "Electrical",
+      "capacity_pct": 94.8,
+      "shift_hours_booked": 190,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-06",
+      "tenant_id": "t1",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "HVAC",
+      "capacity_pct": 80.3,
+      "shift_hours_booked": 161,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-07",
+      "tenant_id": "t1",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "Plumbing",
+      "capacity_pct": 89.9,
+      "shift_hours_booked": 180,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-07",
+      "tenant_id": "t1",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "Electrical",
+      "capacity_pct": 96.1,
+      "shift_hours_booked": 192,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-07",
+      "tenant_id": "t1",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "HVAC",
+      "capacity_pct": 83.4,
+      "shift_hours_booked": 167,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-08",
+      "tenant_id": "t2",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Roofing",
+      "capacity_pct": 105.2,
+      "shift_hours_booked": 210,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-08",
+      "tenant_id": "t2",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Siding",
+      "capacity_pct": 97.5,
+      "shift_hours_booked": 195,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-09",
+      "tenant_id": "t2",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Roofing",
+      "capacity_pct": 108.7,
+      "shift_hours_booked": 217,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-09",
+      "tenant_id": "t2",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Siding",
+      "capacity_pct": 100.1,
+      "shift_hours_booked": 200,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-10",
+      "tenant_id": "t2",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Roofing",
+      "capacity_pct": 112.4,
+      "shift_hours_booked": 225,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-10",
+      "tenant_id": "t2",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Siding",
+      "capacity_pct": 103.8,
+      "shift_hours_booked": 208,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-11",
+      "tenant_id": "t2",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Roofing",
+      "capacity_pct": 115.9,
+      "shift_hours_booked": 232,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-11",
+      "tenant_id": "t2",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Siding",
+      "capacity_pct": 107.2,
+      "shift_hours_booked": 214,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-12",
+      "tenant_id": "t3",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Plumbing",
+      "capacity_pct": 72.3,
+      "shift_hours_booked": 145,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-12",
+      "tenant_id": "t3",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Drain Cleaning",
+      "capacity_pct": 65.8,
+      "shift_hours_booked": 132,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-13",
+      "tenant_id": "t3",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Plumbing",
+      "capacity_pct": 69.7,
+      "shift_hours_booked": 139,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-13",
+      "tenant_id": "t3",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Drain Cleaning",
+      "capacity_pct": 63.4,
+      "shift_hours_booked": 127,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-14",
+      "tenant_id": "t3",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Plumbing",
+      "capacity_pct": 75.1,
+      "shift_hours_booked": 150,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-14",
+      "tenant_id": "t3",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Drain Cleaning",
+      "capacity_pct": 68.9,
+      "shift_hours_booked": 138,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-15",
+      "tenant_id": "t4",
+      "tenant_name": "HB Solutions Group",
+      "business_unit": "Marketing",
+      "capacity_pct": 88.9,
+      "shift_hours_booked": 177,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-15",
+      "tenant_id": "t4",
+      "tenant_name": "HB Solutions Group",
+      "business_unit": "Sales",
+      "capacity_pct": 102.5,
+      "shift_hours_booked": 205,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-16",
+      "tenant_id": "t4",
+      "tenant_name": "HB Solutions Group",
+      "business_unit": "Marketing",
+      "capacity_pct": 91.2,
+      "shift_hours_booked": 182,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-16",
+      "tenant_id": "t4",
+      "tenant_name": "HB Solutions Group",
+      "business_unit": "Sales",
+      "capacity_pct": 105.8,
+      "shift_hours_booked": 212,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-17",
+      "tenant_id": "t4",
+      "tenant_name": "HB Solutions Group",
+      "business_unit": "Marketing",
+      "capacity_pct": 93.5,
+      "shift_hours_booked": 187,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-17",
+      "tenant_id": "t4",
+      "tenant_name": "HB Solutions Group",
+      "business_unit": "Sales",
+      "capacity_pct": 108.3,
+      "shift_hours_booked": 217,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-18",
+      "tenant_id": "t5",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Roofing",
+      "capacity_pct": 119.4,
+      "shift_hours_booked": 239,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-18",
+      "tenant_id": "t5",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Siding",
+      "capacity_pct": 110.2,
+      "shift_hours_booked": 220,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-19",
+      "tenant_id": "t5",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Roofing",
+      "capacity_pct": 122.1,
+      "shift_hours_booked": 244,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-19",
+      "tenant_id": "t5",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Siding",
+      "capacity_pct": 113.6,
+      "shift_hours_booked": 227,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-20",
+      "tenant_id": "t5",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Roofing",
+      "capacity_pct": 116.8,
+      "shift_hours_booked": 234,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-20",
+      "tenant_id": "t5",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Siding",
+      "capacity_pct": 108.9,
+      "shift_hours_booked": 218,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-21",
+      "tenant_id": "t6",
+      "tenant_name": "Hoffmann St. Louis",
+      "business_unit": "Plumbing",
+      "capacity_pct": 94.6,
+      "shift_hours_booked": 189,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-21",
+      "tenant_id": "t6",
+      "tenant_name": "Hoffmann St. Louis",
+      "business_unit": "Electrical",
+      "capacity_pct": 101.3,
+      "shift_hours_booked": 203,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-21",
+      "tenant_id": "t6",
+      "tenant_name": "Hoffmann St. Louis",
+      "business_unit": "HVAC",
+      "capacity_pct": 87.8,
+      "shift_hours_booked": 176,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-22",
+      "tenant_id": "t6",
+      "tenant_name": "Hoffmann St. Louis",
+      "business_unit": "Plumbing",
+      "capacity_pct": 97.2,
+      "shift_hours_booked": 194,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-22",
+      "tenant_id": "t6",
+      "tenant_name": "Hoffmann St. Louis",
+      "business_unit": "Electrical",
+      "capacity_pct": 104.9,
+      "shift_hours_booked": 210,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-22",
+      "tenant_id": "t6",
+      "tenant_name": "Hoffmann St. Louis",
+      "business_unit": "HVAC",
+      "capacity_pct": 90.5,
+      "shift_hours_booked": 181,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-23",
+      "tenant_id": "t7",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Plumbing",
+      "capacity_pct": 78.4,
+      "shift_hours_booked": 157,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-23",
+      "tenant_id": "t7",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Drain Cleaning",
+      "capacity_pct": 71.9,
+      "shift_hours_booked": 144,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-24",
+      "tenant_id": "t7",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Plumbing",
+      "capacity_pct": 81.6,
+      "shift_hours_booked": 163,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-24",
+      "tenant_id": "t7",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Drain Cleaning",
+      "capacity_pct": 74.2,
+      "shift_hours_booked": 148,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-25",
+      "tenant_id": "t8",
+      "tenant_name": "HB Solutions Group",
+      "business_unit": "Marketing",
+      "capacity_pct": 95.7,
+      "shift_hours_booked": 191,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-25",
+      "tenant_id": "t8",
+      "tenant_name": "HB Solutions Group",
+      "business_unit": "Sales",
+      "capacity_pct": 109.4,
+      "shift_hours_booked": 219,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-26",
+      "tenant_id": "t8",
+      "tenant_name": "HB Solutions Group",
+      "business_unit": "Marketing",
+      "capacity_pct": 98.0,
+      "shift_hours_booked": 196,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-26",
+      "tenant_id": "t8",
+      "tenant_name": "HB Solutions Group",
+      "business_unit": "Sales",
+      "capacity_pct": 112.1,
+      "shift_hours_booked": 224,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-27",
+      "tenant_id": "t9",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Roofing",
+      "capacity_pct": 125.3,
+      "shift_hours_booked": 251,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-27",
+      "tenant_id": "t9",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Siding",
+      "capacity_pct": 115.7,
+      "shift_hours_booked": 231,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-28",
+      "tenant_id": "t9",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Roofing",
+      "capacity_pct": 128.9,
+      "shift_hours_booked": 258,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-28",
+      "tenant_id": "t9",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Siding",
+      "capacity_pct": 118.4,
+      "shift_hours_booked": 237,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-29",
+      "tenant_id": "t10",
+      "tenant_name": "Hoffmann Austin",
+      "business_unit": "Plumbing",
+      "capacity_pct": 102.8,
+      "shift_hours_booked": 206,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-29",
+      "tenant_id": "t10",
+      "tenant_name": "Hoffmann Austin",
+      "business_unit": "Electrical",
+      "capacity_pct": 115.5,
+      "shift_hours_booked": 231,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-29",
+      "tenant_id": "t10",
+      "tenant_name": "Hoffmann Austin",
+      "business_unit": "HVAC",
+      "capacity_pct": 96.3,
+      "shift_hours_booked": 193,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-30",
+      "tenant_id": "t10",
+      "tenant_name": "Hoffmann Austin",
+      "business_unit": "Plumbing",
+      "capacity_pct": 108.4,
+      "shift_hours_booked": 217,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-30",
+      "tenant_id": "t10",
+      "tenant_name": "Hoffmann Austin",
+      "business_unit": "Electrical",
+      "capacity_pct": 118.7,
+      "shift_hours_booked": 237,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-30",
+      "tenant_id": "t10",
+      "tenant_name": "Hoffmann Austin",
+      "business_unit": "HVAC",
+      "capacity_pct": 99.1,
+      "shift_hours_booked": 198,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-31",
+      "tenant_id": "t10",
+      "tenant_name": "Hoffmann Austin",
+      "business_unit": "Plumbing",
+      "capacity_pct": 111.6,
+      "shift_hours_booked": 223,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-31",
+      "tenant_id": "t10",
+      "tenant_name": "Hoffmann Austin",
+      "business_unit": "Electrical",
+      "capacity_pct": 120.2,
+      "shift_hours_booked": 240,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-03-31",
+      "tenant_id": "t10",
+      "tenant_name": "Hoffmann Austin",
+      "business_unit": "HVAC",
+      "capacity_pct": 101.8,
+      "shift_hours_booked": 204,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-01",
+      "tenant_id": "t11",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Plumbing",
+      "capacity_pct": 83.9,
+      "shift_hours_booked": 168,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-01",
+      "tenant_id": "t11",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Drain Cleaning",
+      "capacity_pct": 77.5,
+      "shift_hours_booked": 155,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-02",
+      "tenant_id": "t12",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "Plumbing",
+      "capacity_pct": 92.3,
+      "shift_hours_booked": 185,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-02",
+      "tenant_id": "t12",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "Electrical",
+      "capacity_pct": 98.8,
+      "shift_hours_booked": 198,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-02",
+      "tenant_id": "t12",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "HVAC",
+      "capacity_pct": 86.1,
+      "shift_hours_booked": 172,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-03",
+      "tenant_id": "t12",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "Plumbing",
+      "capacity_pct": 94.7,
+      "shift_hours_booked": 189,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-03",
+      "tenant_id": "t12",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "Electrical",
+      "capacity_pct": 100.4,
+      "shift_hours_booked": 201,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-03",
+      "tenant_id": "t12",
+      "tenant_name": "Hoffmann Nashville",
+      "business_unit": "HVAC",
+      "capacity_pct": 88.2,
+      "shift_hours_booked": 176,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-04",
+      "tenant_id": "t13",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Roofing",
+      "capacity_pct": 112.6,
+      "shift_hours_booked": 225,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-04",
+      "tenant_id": "t13",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Siding",
+      "capacity_pct": 104.3,
+      "shift_hours_booked": 209,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-05",
+      "tenant_id": "t13",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Roofing",
+      "capacity_pct": 115.9,
+      "shift_hours_booked": 232,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-05",
+      "tenant_id": "t13",
+      "tenant_name": "Ferguson Roofing",
+      "business_unit": "Siding",
+      "capacity_pct": 107.8,
+      "shift_hours_booked": 216,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-06",
+      "tenant_id": "t14",
+      "tenant_name": "HB Solutions Group",
+      "business_unit": "Marketing",
+      "capacity_pct": 102.1,
+      "shift_hours_booked": 204,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-06",
+      "tenant_id": "t14",
+      "tenant_name": "HB Solutions Group",
+      "business_unit": "Sales",
+      "capacity_pct": 116.8,
+      "shift_hours_booked": 234,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-07",
+      "tenant_id": "t14",
+      "tenant_name": "HB Solutions Group",
+      "business_unit": "Marketing",
+      "capacity_pct": 105.4,
+      "shift_hours_booked": 211,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-07",
+      "tenant_id": "t14",
+      "tenant_name": "HB Solutions Group",
+      "business_unit": "Sales",
+      "capacity_pct": 120.3,
+      "shift_hours_booked": 241,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-08",
+      "tenant_id": "t15",
+      "tenant_name": "Hoffmann Austin",
+      "business_unit": "Plumbing",
+      "capacity_pct": 116.9,
+      "shift_hours_booked": 234,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-08",
+      "tenant_id": "t15",
+      "tenant_name": "Hoffmann Austin",
+      "business_unit": "Electrical",
+      "capacity_pct": 124.2,
+      "shift_hours_booked": 248,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-08",
+      "tenant_id": "t15",
+      "tenant_name": "Hoffmann Austin",
+      "business_unit": "HVAC",
+      "capacity_pct": 106.7,
+      "shift_hours_booked": 213,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-09",
+      "tenant_id": "t15",
+      "tenant_name": "Hoffmann Austin",
+      "business_unit": "Plumbing",
+      "capacity_pct": 119.4,
+      "shift_hours_booked": 239,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-09",
+      "tenant_id": "t15",
+      "tenant_name": "Hoffmann Austin",
+      "business_unit": "Electrical",
+      "capacity_pct": 127.1,
+      "shift_hours_booked": 254,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-09",
+      "tenant_id": "t15",
+      "tenant_name": "Hoffmann Austin",
+      "business_unit": "HVAC",
+      "capacity_pct": 108.9,
+      "shift_hours_booked": 218,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-10",
+      "tenant_id": "t16",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Plumbing",
+      "capacity_pct": 89.2,
+      "shift_hours_booked": 178,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-10",
+      "tenant_id": "t16",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Drain Cleaning",
+      "capacity_pct": 82.7,
+      "shift_hours_booked": 165,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-11",
+      "tenant_id": "t16",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Plumbing",
+      "capacity_pct": 92.5,
+      "shift_hours_booked": 185,
+      "shift_hours_available": 200
+    },
+    {
+      "date": "2026-04-11",
+      "tenant_id": "t16",
+      "tenant_name": "Blue Sky Plumbing",
+      "business_unit": "Drain Cleaning",
+      "capacity_pct": 85.3,
+      "shift_hours_booked": 171,
+      "shift_hours_available": 200
+    }
+  ]
+}
