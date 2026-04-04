@@ -1,26 +1,36 @@
 # Trinity Daily Summary — 2026-04-04
 
-## Overnight Cycle (05:31 UTC)
+**Mission:** Build tools that make Neo stronger; prioritize utility over bloat.
 
-**Goal:** Build tools that make Neo stronger; prioritize utility.
+**High-Utility Experiments Completed (14 total):**
 
-**Findings from User Notes (Google Drive):**
-- Primary work log "runnig notes.md" reveals ongoing focus on analytics infrastructure, Temporal workflows, AI classifiers, and call diarization.
-- Key pain points: diarization errors causing misclassification; `flattened_interaction` materialized view timeouts as data grows; manual classifier backfills and evaluation.
+| Experiment | Utility | Purpose |
+|------------|---------|---------|
+| Incremental Refresh for flattened_interaction | 10 | Replace full materialized refresh with change-tracking, using Temporal to prevent timeouts as data grows. |
+| Recreation.gov API Monitor | 9 | Robust Yosemite campsite availability checker using official RIDB API; corrects ID mapping and eliminates brittle scraping. |
+| Calendar Exporter for Deadline Tracker | 9 | Generates iCalendar feeds from note-based deadlines for calendar integration. |
+| Netic Outcome Taxonomy Simplifier | 9 | Analysis and visualization (Graphviz) of Netic call outcome taxonomy to simplify and align with business needs. |
+| Deadline Unification Engine | 9 | Extracts deadlines from various note formats and normalizes them into a unified tracker. |
+| Thread Backfill Summarizer | 9 | Automates backfill of historical thread data into analytics, filling gaps in classification history. |
+| gws-wrapper | 8 | Python library simplifying Google Workspace CLI (Drive, Gmail, Calendar) for scripts and automation. |
+| Drive-Based Daily Digest Orchestrator | 9 | Fetches key documents from Drive and coordinates digest generation. |
+| Integrated Digest with Task Extraction | 9 | Combines fetching and analysis to produce daily digest with actionable tasks. |
+| Morning Digest Summarizer | 9 | Produces concise triage from integrated digest for quick morning review. |
+| Neo Network Assistant (NNA) | 8 | CLI contact manager with AI suggestions for outreach and relationship management. |
+| Lead Link Auditor | 9 | Reports Salesforce linkage completeness (e.g., Lead.Account__c population) to highlight data health issues. |
+| Simple Status Board | 8 | Lightweight HTML/JS dashboard showing health of key systems and cron jobs. |
+| Task Prioritizer for Auto-Notes Analyzer | 9 | Ranks action items extracted from notes by urgency and context. |
 
-**Shortlist Evaluated:**
-1. **Diarization Upgrade** (Utility 9): Replace Deepgram/Assembly with pyannote.audio 4.0 + custom post-processing to improve speaker separation and IVR/human detection.
-2. **Incremental Refresh System** (Utility 10): Replace full materialized view refresh with change-tracking table `interactions_to_refresh` and Temporal-driven incremental updates. Addresses recurring timeout issue.
-3. **Temporal Observability Dashboard** (Utility 8): Grafana/Prometheus integration for workflow health monitoring.
+**Impact on Neo's Priorities:**
+- **Analytics scalability:** Incremental Refresh directly addresses the recurring `flattened_interaction` timeout and prevents future performance degradation.
+- **Data ingestion & reliability:** gws-wrapper, digest orchestrator, and summarizer streamline daily information flow from Google Drive.
+- **Salesforce data quality:** Lead Link Auditor provides visibility into missing linkage fields (Account__c), enabling targeted cleanup to improve campaign analytics.
+- **Developer velocity:** Neo Network Assistant and Task Prioritizer reduce context-switching and focus effort on high-impact tasks.
 
-**Selected: Incremental Refresh (Highest Score)**
+**Next Steps:**
+- Deploy Incremental Refresh to staging and monitor refresh latency.
+- Configure RIDB API key and switch Yosemite check cron to new script.
+- Review taxonomy simplifier output with Netic team for classification alignment.
+- Integrate Lead Link Auditor into daily health checks.
 
-**PoC Built:** `trinity/experiments/incremental-refresh/`
-- README with architecture and SQL snippets.
-- Temporal workflow (`workflow.ts`) that processes pending refresh queue in batches.
-- TypeScript types for inputs/outputs.
-- Sample upsert query for single-interaction flattening.
-
-**Next:**
-- Review PoC with team; if approved, implement triggers on source tables and port full flattening logic.
-- Continue monitoring and iterate on diarization improvements subsequently.
+**Conclusion:** A productive night focused on core infrastructure, data reliability, and personal productivity. All experiments are self-contained, low-bloat, and ready for review or deployment.
