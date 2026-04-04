@@ -1,29 +1,26 @@
 # Trinity Daily Summary — 2026-04-04
 
-Overnight cycle completed: reviewed recent user notes (thoughts, school, Netic) and identified multiple opportunities to strengthen Neo's systems.
+## Overnight Cycle (05:31 UTC)
 
-**Experiments delivered:**
-- Calendar Exporter for Deadline Tracker (Utility 9)
-- Netic Outcome Taxonomy Simplifier (Utility 9)
-- Deadline Unification Engine (Utility 9)
-- Simple Status Board (Utility 8)
-- Task Prioritizer for Auto-Notes Analyzer (Utility 9)
-- Thread Backfill Summarizer (Utility 9)
-- gws-wrapper (Utility 8)
-- Drive-Based Daily Digest Orchestrator (Utility 9)
-- Integrated Digest with Task Extraction (Utility 9)
-- Morning Digest Summarizer (Utility 9)
-- Neo Network Assistant (NNA) (Utility 8)
-- Lead Link Auditor (Utility 9)
+**Goal:** Build tools that make Neo stronger; prioritize utility.
 
-All prototypes are located in `trinity/experiments/` with logs and brief documentation.
+**Findings from User Notes (Google Drive):**
+- Primary work log "runnig notes.md" reveals ongoing focus on analytics infrastructure, Temporal workflows, AI classifiers, and call diarization.
+- Key pain points: diarization errors causing misclassification; `flattened_interaction` materialized view timeouts as data grows; manual classifier backfills and evaluation.
 
-**Key insights from notes:**
-- Data infrastructure reliability remains a top concern: materialized view timeouts, backfill coordination, and linkage gaps in Salesforce.
-- Call recording & transcript processing across Twilio/Telnyx surfaces integration opportunities.
-- AI/ML research (CS285) and business strategy (Uber vs Lyft case) continue to influence tool direction.
-- The contact network is well‑categorized (cofounders, VCs, engineers, designers, generalists, recruiting).
+**Shortlist Evaluated:**
+1. **Diarization Upgrade** (Utility 9): Replace Deepgram/Assembly with pyannote.audio 4.0 + custom post-processing to improve speaker separation and IVR/human detection.
+2. **Incremental Refresh System** (Utility 10): Replace full materialized view refresh with change-tracking table `interactions_to_refresh` and Temporal-driven incremental updates. Addresses recurring timeout issue.
+3. **Temporal Observability Dashboard** (Utility 8): Grafana/Prometheus integration for workflow health monitoring.
 
-**Next steps:** Validate prototypes with real data, prioritize highest‑impact tools for productionization, and iterate based on feedback.
+**Selected: Incremental Refresh (Highest Score)**
 
-Full log: `trinity/2026-04-04.md`
+**PoC Built:** `trinity/experiments/incremental-refresh/`
+- README with architecture and SQL snippets.
+- Temporal workflow (`workflow.ts`) that processes pending refresh queue in batches.
+- TypeScript types for inputs/outputs.
+- Sample upsert query for single-interaction flattening.
+
+**Next:**
+- Review PoC with team; if approved, implement triggers on source tables and port full flattening logic.
+- Continue monitoring and iterate on diarization improvements subsequently.
