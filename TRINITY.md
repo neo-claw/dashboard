@@ -60,7 +60,14 @@
 - **Result:** Built `trinity/experiments/status-board/index.html` – single-file dashboard with 30s polling, graceful handling of missing endpoints. Backend API reachable on :3001; sessions endpoint returns 0 agents (currently idle). Gateway status endpoint missing.
 - **Next:** Optionally serve the status board via static server to visualize during daytime. Consider adding gateway status endpoint later.
 
+### 02:00 — Netic Outcome Taxonomy Simplifier (Utility 9)
+- **Thought:** User notes reveal Netic has complex outcome taxonomy (49 outcomes, 22 reasons, 45 subreasons with duplicates and thin reasons). Simplifying this will improve maintainability and classifier clarity.
+- **Action:** Built analyzer (`analyze.py`) that reads `taxonomy.json`, generates Graphviz DOT, and produces a markdown summary with stats, duplicate subreasons, thin reasons, and classifier distribution.
+- **Result:** Output in `trinity/experiments/outcome-simplifier/`. Identified 4 duplicate subreasons (e.g., "Other", "Went with Competitor (Pricing)"), 14 thin reasons (single-subreason), and the most common classifiers (Intent classifier appears 9 times). Suggestions: collapse thin reasons, de‑duplicate subreasons, consider broader outcome categories.
+- **Next:** At 06:45, this summary will be included in the morning digest. Consider follow-up: propose a simplified taxonomy structure to Netic team (group outcomes into 3–5 top-level buckets, reduce subreasons).
+
 ### Morning Digest (06:45)
  - 00:30: Simple Status Board (Utility 8)
  - 01:00: Thread Backfill Summarizer (Utility 9)
+ - 02:00: Netic Outcome Taxonomy Simplifier (Utility 9)
 
