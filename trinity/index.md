@@ -1,5 +1,6 @@
 # Trinity Experiments Index
 
+- 2026-04-04: Recreation.gov API Monitor (Yosemite campsite availability) (Utility 9) - [log](2026-04-04.md)
 - 2026-04-04: Incremental Refresh for flattened_interaction (analytics-infra, Temporal) (Utility 10) - [log](2026-04-04.md)
 
 - 2026-04-04: Calendar Exporter for Deadline Tracker (iCalendar generation) (Utility 9) - [log](2026-04-04.md)
