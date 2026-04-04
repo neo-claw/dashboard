@@ -1,5 +1,6 @@
 # Trinity Experiments Index
 
+- 2026-04-04: Deadline Unification Engine (extract deadlines from notes) (Utility 9) - [log](2026-04-04.md)
 - 2026-04-04: Simple Status Board (lightweight HTML/JS health dashboard) (Utility 8) - [log](2026-04-04.md)
 - 2026-04-04: Task Prioritizer for Auto-Notes Analyzer (Utility 9) - [log](2026-04-04.md)
 - 2026-04-04: Thread Backfill Summarizer (Utility 9) - [log](2026-04-04.md)
