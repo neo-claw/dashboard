@@ -11,6 +11,8 @@
 - 2026-04-02: Knowledge Graph Integration (Utility 9) - [log](2026-04-02.md)
 - 2026-04-02: Benchmark suite for Netic router (Utility 8) - [log](2026-04-02.md)
 - 2026-04-02: Interactive Taxonomy Editor for Netic Call Classification (Utility 9) - [log](2026-04-02.md)
+- 2026-04-04: gws-wrapper (Python library to simplify Google Workspace CLI) (Utility 8) - [log](2026-04-04.md)
+- 2026-04-04: Drive-Based Daily Digest Orchestrator (Utility 9) - [log](2026-04-04.md)
 - 2026-04-03: Knowledge Graph Visualizer (Utility 9) - [log](2026-04-03.md)
 - 2026-04-03: Generic Opportunity Change History Store (analytics-infra) - [log](2026-04-03.md)
 - 2026-04-03: Entity Knowledge Graph prototype (Utility 9) - [log](2026-04-03.md)
