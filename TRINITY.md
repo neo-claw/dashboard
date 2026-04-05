@@ -1,13 +1,23 @@
-# Trinity Overnight Digest — 2026-04-05
+# Trinity Daily Summary – 2026-04-05
 
-## 2026-04-05
+**Overnight cycle completed** (started 04:02 UTC)
 
-- **Built:** `netic_utilization.py` with wrapper `run_feed.sh` — generates daily utilization feed (historical + 3/5/10-day forecasts) by tenant and business unit; robust to sparse data; ready for cron deployment.
-- **Outcome:** Python script computes utilization from CSV input; handles edge cases (missing days, zero capacity); synthetic data generator created for testing (1270 rows). Wrapper handles timestamped output archiving and logging.
-- **Utility Score:** 9/10 (validated business need: Netic/Tinuiti ad budget coordination; minimal dependencies; low maintenance).
-- **Next:** Integrate with live data source (Google Sheets or DB export); monitor daily runs; explore automated ad budget triggers beyond Rule of 20 constraints.
+## Build: gh-trend digest (Utility 8)
+- Python script that fetches top new GitHub repositories from the last 24 hours (GitHub Search API)
+- Outputs formatted markdown with name, stars, language, description
+- Location: `trinity/experiments/gh-trend/gh-trend.py`
+- Usage: `python3 gh-trend.py --count 10` (default 10)
 
-- **Built:** `neo-pulse` dashboard builder (`build.js`) — generates static HTML dashboard showing recent memory logs, Trinity focus, backend health.
-- **Outcome:** Successfully generated `dashboard.html` (Node.js; ~6KB). Backend reported healthy. Dashboard ready for local viewing.
-- **Utility Score:** 9/10 (immediate visibility; low maintenance; fits existing stack).
-- **Next:** Add more service checks (cron jobs status, storage health), auto-refresh, consider making it a static site served locally.
+## Context
+- Google Drive access failed (gws token expired) → user notes unavailable
+- Web search blocked (DuckDuckGo bot detection)
+- pivoted to direct GitHub API, which proved reliable
+
+## Why this matters
+- Provides daily signal on emerging developer tools without bloat
+- Low maintenance, uses stable public API
+- Easy to extend (filters, formats, channels)
+
+## Next
+- Monitor usage; consider adding language/topic filters
+- Integrate into morning digest if useful
