@@ -1,1 +1,1 @@
-2026-04-05: [Built Netic Utilization Data Feed generator](2026-04-05.md) (prototype; Utility 9/10).
+2026-04-05: [Neo Pulse dashboard builder](2026-04-05.md) (Node.js prototype; Utility 9/10)
