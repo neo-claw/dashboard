@@ -1,1 +1,1 @@
-2026-04-05: [Neo Pulse dashboard builder](2026-04-05.md) (Node.js prototype; Utility 9/10)
+2026-04-05: Neo Pulse dashboard builder (Node.js prototype; Utility 9) + Telegram notifier for Yosemite campsite alerts (Utility 9)
