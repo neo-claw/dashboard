@@ -1,1 +1,1 @@
-[2026-04-05: Trinity builds — Neo Pulse (9), Telegram notifier (9), System Health Monitor (9), gh-trend digest (8), devdigest notifier (9), goose integration (9), Neo Bridge (8)](trinity/2026-04-05.md)
+[2026-04-05: Trinity builds — Neo Pulse (9), Telegram notifier (9), System Health Monitor (9), gh-trend digest (8), devdigest notifier (9), goose integration (9), Neo Bridge (8), oh-my-codex (9)](trinity/2026-04-05.md)

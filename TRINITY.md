@@ -44,3 +44,27 @@
 - Package as Docker image for easy deployment.
 - Explore streaming responses via Server-Sent Events.
 - Document custom skill registration (command-based) for non-OpenClaw tools.
+
+## Build: oh-my-codex (Utility 9)
+- Workflow layer for OpenAI Codex CLI with native OpenClaw integration; adds hooks, agent teams, HUDs.
+- Provides lifecycle notifications (session start/idle/end, user questions) and can trigger agent turns via clawdbot.
+- Location: `trinity/experiments/oh-my-codex/`
+- Verified: OpenClaw gateway reachable at http://127.0.0.1:18789 (health check OK).
+- Integration guide reviewed; command gateway pattern selected for robustness.
+- Utility Score: 9 – enhances agent coordination and proactive monitoring with minimal bloat.
+
+## Context
+- Google Drive access failed (gws token expired); user notes sourced from local memory/notes.
+- Web search via DuckDuckGo blocked; used GitHub trending via web_fetch.
+- Evaluated multiple tools; oh-my-codex chosen for direct OpenClaw compatibility and high utility.
+
+## Why this matters
+- Extends OpenClaw's native capabilities without reinventing the wheel.
+- Enables proactive session management and automated follow-ups via hooks.
+- Thin configuration layer; respects existing agent architecture.
+
+## Next
+- Implement hook configuration with desired verbosity (e.g., verbose HUD).
+- Test event delivery by sending a test wake and agent notification.
+- Monitor integration and tune hook instructions for Korean-first workflow.
+- Commit changes and push to repository.
