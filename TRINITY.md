@@ -2,18 +2,19 @@
 
 ## Morning Summary
 
-**Chosen Experiment:** Classifier Evaluation Framework  
-**Utility Score:** 9/10
+**Experiments Completed:**
 
-**What was built:**
-- PostgreSQL schema (`classifier_labels`, `classifier_results`) for storing human-labeled ground truth and predictions.
-- Python metrics engine (`compute_metrics.py`) that computes macro precision/recall/F1, confusion matrices, and generates a static HTML dashboard.
-- Unit test suite (7 tests) covering normal, edge (NaT timestamps, missing labels, single-class) and regression scenarios. All tests pass.
-- Documentation: `README.md` with quickstart, integration ideas, and a new Testing section.
-- Robustness improvements: timezone-aware timestamps, automatic dropping of rows with missing labels.
+1. Classifier Evaluation Framework (Utility: 9/10)
+   - PostgreSQL schema for labels and results
+   - Python metrics engine (precision/recall/F1, confusion matrices) + static HTML dashboard
+   - Unit test suite (7 tests) covering edge cases; all passing
+   - Documentation and robustness improvements
 
-**Status:** Prototype ready for pilot. Needs: connection to actual `analytics.classification` (or equivalent) to feed predictions; labeling process to populate `classifier_labels`; scheduling via cron/Temporal.
+2. Context Packager (neo-digest) (Utility: 9/10)
+   - Bash script to aggregate recent memory files and long-term MEMORY.md
+   - Generates a concise markdown digest for Neo
+   - Tested successfully with actual memory data
 
-**Next:** If DB credentials become available, run an integration test with real classifier results to validate end-to-end.
+**Status:** Both prototypes built and tested. Classifier framework awaits DB credentials for pilot integration; neo-digest ready for immediate use in morning routine.
 
 For full details, see the nightly log: `trinity/2026-04-06.md`
