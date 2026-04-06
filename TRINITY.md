@@ -21,6 +21,11 @@
    - Includes comprehensive README with troubleshooting
    - Provides JSON output for automation; tested with dry-run validation
 
-**Status:** All prototypes built and documented. Classifier framework awaits DB credentials; neo-digest ready; CDC helper ready for deployment during BigQuery migration.
+4. NeoNotes CLI (Utility: 8/10)
+   - Command-line note manager with tags, fast search (ripgrep/fzf), and markdown storage
+   - Zero external dependencies beyond Python stdlib
+   - Supports add/list/search/edit; ready for daily use
+
+**Status:** All prototypes built and documented. Classifier framework awaits DB credentials; neo-digest and NeoNotes ready; CDC helper ready for deployment during BigQuery migration.
 
 For full details, see the nightly log: `trinity/2026-04-06.md`
