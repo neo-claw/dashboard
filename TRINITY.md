@@ -15,6 +15,12 @@
    - Generates a concise markdown digest for Neo
    - Tested successfully with actual memory data
 
-**Status:** Both prototypes built and tested. Classifier framework awaits DB credentials for pilot integration; neo-digest ready for immediate use in morning routine.
+3. Netic CDC Migration Helper (Utility: 9/10)
+   - Python CLI tool to validate and monitor Postgres → BigQuery CDC pipeline
+   - Features: config validation, replication lag check, row count comparison, sample data validation
+   - Includes comprehensive README with troubleshooting
+   - Provides JSON output for automation; tested with dry-run validation
+
+**Status:** All prototypes built and documented. Classifier framework awaits DB credentials; neo-digest ready; CDC helper ready for deployment during BigQuery migration.
 
 For full details, see the nightly log: `trinity/2026-04-06.md`
